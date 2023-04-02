@@ -8,8 +8,10 @@ import 'package:rent_house/pages/home/home_page.dart';
 import 'package:rent_house/pages/test.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
+import '../pages/onboarding/onboarding_page.dart';
 
 String get test_page => '/test_page';
+String get onboarding_page => '/onboarding_page';
 String get home_page => '/home_page';
 String get login_page => '/login_page';
 String get user_register_page => '/user_register_page';
@@ -56,6 +58,11 @@ class Routers {
       case '/test_page':
         return MaterialPageRoute(
           builder: (context) => const TestPage(),
+        );
+
+      case '/onboarding_page':
+        return MaterialPageRoute(
+          builder: (context) => const OnBoardingPage(),
         );
       default:
         null;

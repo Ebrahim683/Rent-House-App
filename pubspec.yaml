@@ -60,8 +60,11 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - asset/animations/
+    - asset/icons/
+    - asset/images/
+    - asset/logo/
 
   # list giving the asset and other descriptors for the font. For
   # example:
