@@ -186,7 +186,8 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                 name: name,
                                 phoneNumber: phoneNumber,
                                 email: email == '' ? 'no email' : email,
-                                password: password);
+                                password: password,
+                                role: role);
                           }
                         },
                         child: Row(

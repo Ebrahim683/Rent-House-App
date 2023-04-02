@@ -22,14 +22,16 @@ class AuthCubit extends Cubit<AuthState> {
       {required String name,
       required String phoneNumber,
       required String email,
-      required String password}) async {
+      required String password,
+      required String role}) async {
     emit(AuthLoadingState());
     try {
       final result = await AuthRepository.registerUser(
           name: name,
           phoneNumber: phoneNumber,
           email: email,
-          password: password);
+          password: password,
+          role: role);
       AuthModel authModel = AuthModel.fromJson(result);
       emit(AuthSuccessState(authModel));
     } catch (e) {

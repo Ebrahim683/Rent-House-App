@@ -16,7 +16,8 @@ class AuthRepository {
       {required String name,
       required String phoneNumber,
       required String email,
-      required String password}) async {
+      required String password,
+      required String role}) async {
     Map<String, dynamic> map = {
       'name': name,
       'phone_number': phoneNumber,
