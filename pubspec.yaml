@@ -21,6 +21,7 @@ dependencies:
   dots_indicator: ^2.1.0
   #animation
   lottie: ^2.2.0
+  liquid_swipe: 3.1.0
   #storage
   get_storage: ^2.0.3
   #bottom nav

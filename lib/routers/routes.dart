@@ -10,8 +10,9 @@ import 'package:rent_house/pages/test.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
 import '../pages/house/details/house_details.dart';
-import '../pages/house/houselist/house_list.dart';
+import '../pages/house/houselist/house_list_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
+import '../state/cubit/gethouse/get_house_list_cubit.dart';
 
 String get test_page => '/test_page';
 String get splash_page => '/splash_page';
@@ -80,8 +81,11 @@ class Routers {
         Map<String, dynamic> arguments =
             settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => HouseListPage(
-            category: arguments['category'],
+          builder: (context) => BlocProvider(
+            create: (context) => GetHouseListCubit(arguments['category']),
+            child: HouseListPage(
+              category: arguments['category'],
+            ),
           ),
         );
       //room details

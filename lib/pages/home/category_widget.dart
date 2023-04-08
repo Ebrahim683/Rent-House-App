@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:rent_house/widget/app_widget.dart';
+import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 
 import '../../routers/routes.dart';
 
@@ -20,30 +20,38 @@ class CategoryWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, house_list_page,
-            arguments: {'category': title});
+            arguments: {'category': title.toLowerCase().replaceAll(' ', '')});
       },
-      child: Container(
-        margin: const EdgeInsets.all(15),
-        height: Get.height * 0.5,
-        width: Get.width * 0.5,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 151, 156, 158),
-          borderRadius: BorderRadius.circular(15.r),
+      child: Card(
+        margin: const EdgeInsets.all(10),
+        elevation: 15,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          side: BorderSide(color: Colors.black, width: 0.5.w),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Lottie.asset(
-                animation,
-                height: 120,
-                animate: true,
-              ),
-              Text(
-                title,
-                style: const TextStyle(color: Colors.black),
-              ),
-            ],
+        child: Container(
+          // margin: const EdgeInsets.all(15),
+          // height: Get.height * 0.5,
+          // width: Get.width * 0.5,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Lottie.asset(
+                  animation,
+                  height: 120,
+                  animate: true,
+                ),
+                Text(
+                  title,
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ],
+            ),
           ),
         ),
       ),

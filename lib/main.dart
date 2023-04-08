@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           scaffoldBackgroundColor: bgColor,
         ),
-        initialRoute: splash_page,
+        initialRoute: onboarding_page,
         onGenerateRoute: Routers.onGenerateRoute,
       ),
     );
