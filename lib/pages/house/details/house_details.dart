@@ -1,11 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
+import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
+import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
+import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
 class HouseDetailsPage extends StatelessWidget {
-  const HouseDetailsPage({super.key});
+  final GetHouseModel getHouseModel;
+  const HouseDetailsPage({super.key, required this.getHouseModel});
 
   @override
   Widget build(BuildContext context) {
@@ -52,158 +61,208 @@ class HouseDetailsPage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            leading: IconButton(
-                onPressed: () => Get.back(),
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                )),
-            backgroundColor: Colors.amber[200],
-            pinned: true,
-            toolbarHeight: 60,
-            elevation: 0,
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(0.h),
-              child: Container(
-                width: Get.width,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40.r),
-                        topRight: Radius.circular(40.r))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          'মোঃ ছাব্বির হোসেন (গিরোস্তো)',
-                          style: TextStyle(
-                              fontSize: 18.sp, fontWeight: FontWeight.w500),
-                          softWrap: false,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            expandedHeight: Get.height * 0.55,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'asset/images/sliderhouse3.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40.r),
-                      topRight: Radius.circular(40.r))),
-              child: Column(
-                children: [
-                  gap(h: 5.h),
-                  setInfo(
-                    icon: Icons.wallet,
-                    title: 'মাসিক ভাড়াঃ',
-                    description: '১০০০০০০০০০ টাকা',
-                  ),
-                  gap(),
-                  setInfo(
-                    icon: Icons.add_home_work_outlined,
-                    title: 'রুম সংখাঃ',
-                    description: '৪',
-                  ),
-                  gap(),
-                  setInfo(
-                    icon: Icons.electrical_services_outlined,
-                    title: 'বিদ্যুৎ বিলঃ',
-                    description: '150 টাকা',
-                  ),
-                  gap(),
-                  setInfo(
-                    icon: Icons.gas_meter_outlined,
-                    title: 'গ্যাস বিলঃ',
-                    description: '200 টাকা',
-                  ),
-                  gap(),
-                  setInfo(
-                    icon: Icons.money,
-                    title: 'অন্যান্য বিলঃ',
-                    description: '৬০ টাকা',
-                  ),
-                  gap(),
-                  setInfo(
-                    icon: Icons.currency_exchange,
-                    title: 'অগ্রিমঃ',
-                    description: '৬০ টাকা',
-                  ),
-                  gap(),
-                  setInfo(
-                    icon: Icons.location_on_outlined,
-                    title: 'ঠিকানাঃ',
-                    description: 'জিরাবো, আশুলিয়া, সাভার, ঢাকা',
-                  ),
-                  gap(),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.h),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 5.w, horizontal: 10.h),
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 190, 196, 195),
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
-                    child: Text(
-                      'অবশ্যই বাড়ি ছাড়ার ২ মাস আগে বাড়িওয়ালাকে জানাতে হবে। অন্যথায় ১ মাস আগের ভাড়া দিয়ে বাড়ি ছাড়তে হবে।',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                  gap(),
-                  SizedBox(
-                    height: 130.h,
-                    width: Get.width,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: roomList.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15.w),
-                            child: Image.asset(
-                              roomList[index],
-                              fit: BoxFit.cover,
+      body: BlocConsumer<BookHouseCubit, BookHouseState>(
+        listener: (context, state) {
+          if (state is BookHouseErrorState) {
+            showGetSnackBar(title: '', message: state.error);
+            log(state.error);
+          } else if (state is BookHouseSuccessState) {
+            showGetSnackBar(
+                title: '', message: state.bookHouseModel.message.toString());
+            log(state.bookHouseModel.message.toString());
+          }
+        },
+        builder: (context, state) {
+          return LoadingOverlay(
+            isLoading: state is BookHouseLoadingState ? true : false,
+            child: CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  leading: IconButton(
+                      onPressed: () => Get.back(),
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      )),
+                  backgroundColor: Colors.amber[200],
+                  pinned: true,
+                  toolbarHeight: 60,
+                  elevation: 0,
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(0.h),
+                    child: Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40.r),
+                              topRight: Radius.circular(40.r))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                getHouseModel.ownerName.toString(),
+                                style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w500),
+                                softWrap: false,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          );
-                        }),
-                  ),
-                  gap(),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.w),
-                    width: Get.width,
-                    child: MaterialButton(
-                      color: Colors.orange[300],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.r)),
-                      onPressed: () {},
-                      child: Text(
-                        'এখনি বুক করুন',
-                        style: TextStyle(color: Colors.white),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  gap(),
-                ],
-              ),
+                  expandedHeight: Get.height * 0.55,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Image.asset(
+                      'asset/images/sliderhouse3.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40.r),
+                            topRight: Radius.circular(40.r))),
+                    child: Column(
+                      children: [
+                        gap(h: 5.h),
+                        setInfo(
+                          icon: Icons.wallet,
+                          title: 'মাসিক ভাড়াঃ',
+                          description: '${getHouseModel.fee} টাকা',
+                        ),
+                        gap(),
+                        setInfo(
+                          icon: Icons.add_home_work_outlined,
+                          title: 'রুম সংখাঃ',
+                          description: getHouseModel.quantity.toString(),
+                        ),
+                        gap(),
+                        setInfo(
+                          icon: Icons.electrical_services_outlined,
+                          title: 'বিদ্যুৎ বিলঃ',
+                          description: '${getHouseModel.electricityFee} টাকা',
+                        ),
+                        gap(),
+                        setInfo(
+                          icon: Icons.gas_meter_outlined,
+                          title: 'গ্যাস বিলঃ',
+                          description: '${getHouseModel.gasFee} টাকা',
+                        ),
+                        gap(),
+                        setInfo(
+                          icon: Icons.money,
+                          title: 'অন্যান্য বিলঃ',
+                          description: '${getHouseModel.othersFee} টাকা',
+                        ),
+                        gap(),
+                        setInfo(
+                          icon: Icons.currency_exchange,
+                          title: 'অগ্রিমঃ',
+                          description: '${getHouseModel.advanceFee} টাকা',
+                        ),
+                        gap(),
+                        setInfo(
+                          icon: Icons.location_on_outlined,
+                          title: 'ঠিকানাঃ',
+                          description: getHouseModel.address.toString(),
+                        ),
+                        gap(),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20.h),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 5.w, horizontal: 10.h),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 190, 196, 195),
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child: Text(
+                            getHouseModel.notice.toString(),
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        ),
+                        gap(),
+                        SizedBox(
+                          height: 130.h,
+                          width: Get.width,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: roomList.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 15.w),
+                                  child: Image.asset(
+                                    roomList[index],
+                                    fit: BoxFit.cover,
+                                  ),
+                                );
+                              }),
+                        ),
+                        gap(),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20.w),
+                          width: Get.width,
+                          child: MaterialButton(
+                            color: Colors.orange[300],
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.r)),
+                            onPressed: () {
+                              String payment = 'complete';
+                              int ownerId = getHouseModel.ownerId!;
+                              String ownerName = getHouseModel.ownerName!;
+                              String image = getHouseModel.image!;
+                              String category = getHouseModel.category!;
+                              String fee = getHouseModel.fee!;
+                              String quantity = getHouseModel.quantity!;
+                              String advanceFee = getHouseModel.advanceFee!;
+                              String electricityFee =
+                                  getHouseModel.electricityFee!;
+                              String gasFee = getHouseModel.gasFee!;
+                              String othersFee = getHouseModel.othersFee!;
+                              String address = getHouseModel.address!;
+                              String notice = getHouseModel.notice!;
+
+                              BlocProvider.of<BookHouseCubit>(context).bookRoom(
+                                  phoneNumber: '01478',
+                                  payment: payment,
+                                  ownerId: ownerId,
+                                  ownerName: ownerName,
+                                  image: image,
+                                  category: category,
+                                  fee: fee,
+                                  quantity: quantity,
+                                  advanceFee: advanceFee,
+                                  electricityFee: electricityFee,
+                                  gasFee: gasFee,
+                                  othersFee: othersFee,
+                                  address: address,
+                                  notice: notice);
+                            },
+                            child: const Text(
+                              'এখনি বুক করুন',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        gap(),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

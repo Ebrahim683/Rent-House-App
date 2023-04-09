@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:rent_house/pages/onboarding/onboarding_widget.dart';
 import 'package:rent_house/routers/routes.dart';
+import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -54,6 +55,7 @@ class OnBoardingPage extends StatelessWidget {
               elevation: 20,
               backgroundColor: Colors.black,
               onPressed: () {
+                StorageUtils.newUser('newUser');
                 pushOff(name: login_page);
               },
               child: const Icon(

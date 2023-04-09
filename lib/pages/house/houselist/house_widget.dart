@@ -13,7 +13,10 @@ class HouseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, house_details_page),
+      onTap: () {
+        Map<String, dynamic> arguments = {'getHouseModel': getHouseModel};
+        Navigator.pushNamed(context, house_details_page, arguments: arguments);
+      },
       child: Container(
         margin: const EdgeInsets.all(8.0),
         height: Get.height * 0.2,
@@ -44,7 +47,7 @@ class HouseWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'মোঃ ছাব্বির হোসেন (গিরোস্তো)',
+                          getHouseModel.ownerName.toString(),
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                           softWrap: false,
@@ -68,7 +71,7 @@ class HouseWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'রুম সংখাঃ ৪',
+                          'রুম সংখাঃ ${getHouseModel.quantity}',
                           softWrap: false,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -79,7 +82,7 @@ class HouseWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'অবস্থা: খালি আছে',
+                          'অবস্থা: ${getHouseModel.status}',
                           softWrap: false,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -90,7 +93,7 @@ class HouseWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'ঠিকানাঃ জিরাবো, আশুলিয়া, সাভার, ঢাকা',
+                          'ঠিকানাঃ ${getHouseModel.address}',
                           softWrap: false,
                           overflow: TextOverflow.ellipsis,
                         ),

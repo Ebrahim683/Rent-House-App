@@ -7,6 +7,8 @@ import 'package:rent_house/pages/auth/login_page.dart';
 import 'package:rent_house/pages/auth/user_register_page.dart';
 import 'package:rent_house/pages/home/home_page.dart';
 import 'package:rent_house/pages/test.dart';
+import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
+import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
 import '../pages/house/details/house_details.dart';
@@ -44,7 +46,7 @@ class Routers {
       case '/login_page':
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => AuthCubit(),
+            create: (context) => LoginCubit(),
             child: const LoginPage(),
           ),
         );
@@ -90,8 +92,15 @@ class Routers {
         );
       //room details
       case '/house_details_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => HouseDetailsPage(),
+          builder: (context) => BlocProvider(
+            create: (context) => BookHouseCubit(),
+            child: HouseDetailsPage(
+              getHouseModel: arguments['getHouseModel'],
+            ),
+          ),
         );
       default:
         null;

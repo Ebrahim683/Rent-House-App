@@ -1,11 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
-import 'package:rent_house/state/cubit/authcubit/auth_state.dart';
+import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
+import 'package:rent_house/state/cubit/authcubit/login_state.dart';
+import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 import '../../routers/routes.dart';
 import '../../utils/app_colors.dart';
@@ -29,19 +30,20 @@ class _LoginPageState extends State<LoginPage> {
         title: const Text('লগিন'),
         automaticallyImplyLeading: false,
       ),
-      body: BlocConsumer<AuthCubit, AuthState>(
+      body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-          if (state is AuthSuccessState) {
+          if (state is LoginSuccessState) {
+            StorageUtils.saveNumber(mobileController.text.trim().toString());
+            StorageUtils.saveName(state.loginModel.message![0].name.toString());
             pushOff(name: home_page);
-            log(state.authModel.message.toString());
-          } else if (state is AuthErrorState) {
+          } else if (state is LoginErrorState) {
             showGetSnackBar(title: 'ত্রুটি', message: state.error);
             log(state.error);
           }
         },
         builder: (context, state) {
           return LoadingOverlay(
-            isLoading: state is AuthLoadingState ? true : false,
+            isLoading: state is LoginLoadingState ? true : false,
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
@@ -107,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                                 title: 'ত্রুটি',
                                 message: 'আপনার পাসওয়ার্ড লিখুন');
                           } else {
-                            BlocProvider.of<AuthCubit>(context).login(
+                            BlocProvider.of<LoginCubit>(context).login(
                                 phoneNumber: phoneNumber, password: password);
                           }
                         },
