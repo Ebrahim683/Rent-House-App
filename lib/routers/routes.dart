@@ -11,10 +11,13 @@ import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
+import '../pages/house/booked/book_house_details_page.dart';
+import '../pages/house/booked/booked_house_page.dart';
 import '../pages/house/details/house_details.dart';
 import '../pages/house/houselist/house_list_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
 import '../state/cubit/gethouse/get_house_list_cubit.dart';
+import '../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
 
 String get test_page => '/test_page';
 String get splash_page => '/splash_page';
@@ -25,13 +28,15 @@ String get user_register_page => '/user_register_page';
 String get owner_register_page => '/owner_register_page';
 String get house_list_page => '/house_list_page';
 String get house_details_page => '/house_details_page';
+String get booked_house_page => '/booked_house_page';
+String get booked_house_details_page => '/booked_house_details_page';
 
 push({required String name}) {
   Get.toNamed(name);
 }
 
 pushOff({required String name}) {
-  Get.offNamed(name);
+  Get.offAllNamed(name);
 }
 
 class Routers {
@@ -87,6 +92,7 @@ class Routers {
             create: (context) => GetHouseListCubit(arguments['category']),
             child: HouseListPage(
               category: arguments['category'],
+              title: arguments['title'],
             ),
           ),
         );
@@ -100,6 +106,23 @@ class Routers {
             child: HouseDetailsPage(
               getHouseModel: arguments['getHouseModel'],
             ),
+          ),
+        );
+      //booked house
+      case '/booked_house_page':
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => ShowBookedHouseCubit(),
+            child: const BookedHousePage(),
+          ),
+        );
+      //booked house details
+      case '/booked_house_details_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => BookedHouseDetailsPage(
+            bookedHouseModel: arguments['bookedHouseModel'],
           ),
         );
       default:

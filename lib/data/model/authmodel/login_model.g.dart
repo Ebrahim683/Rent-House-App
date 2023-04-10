@@ -24,10 +24,12 @@ _$_LoginDetails _$$_LoginDetailsFromJson(Map<String, dynamic> json) =>
     _$_LoginDetails(
       phoneNumber: json['phone_number'] as String?,
       name: json['name'] as String?,
+      role: json['role'] as String?,
     );
 
 Map<String, dynamic> _$$_LoginDetailsToJson(_$_LoginDetails instance) =>
     <String, dynamic>{
       'phone_number': instance.phoneNumber,
       'name': instance.name,
+      'role': instance.role,
     };

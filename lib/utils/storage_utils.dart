@@ -15,10 +15,6 @@ class StorageUtils {
     box.write('new', newUser);
   }
 
-  static String getNewUser() {
-    return box.read('new');
-  }
-
   static String getNumber() {
     return box.read('number');
   }
@@ -27,22 +23,12 @@ class StorageUtils {
     return box.read('name');
   }
 
-  static bool isNewUser() {
-    String newUser = box.read('new');
-    if (newUser != '') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   static bool isLoggedIn() {
     String number = box.read('number');
     if (number != '') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   static logOut() {

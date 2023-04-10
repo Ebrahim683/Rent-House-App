@@ -19,8 +19,10 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, house_list_page,
-            arguments: {'category': title.toLowerCase().replaceAll(' ', '')});
+        Navigator.pushNamed(context, house_list_page, arguments: {
+          'category': title.toLowerCase().replaceAll(' ', ''),
+          'title': title.toString(),
+        });
       },
       child: Card(
         margin: const EdgeInsets.all(10),

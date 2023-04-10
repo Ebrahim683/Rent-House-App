@@ -15,16 +15,11 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   checkLoggedIn() {
-    log(StorageUtils.getNewUser().toString());
     Future.delayed(const Duration(seconds: 4), () {
-      if (StorageUtils.isNewUser() == true) {
-        pushOff(name: onboarding_page);
+      if (StorageUtils.isLoggedIn() == true) {
+        pushOff(name: home_page);
       } else {
-        if (StorageUtils.isLoggedIn() == true) {
-          pushOff(name: home_page);
-        } else {
-          pushOff(name: login_page);
-        }
+        pushOff(name: login_page);
       }
     });
   }
