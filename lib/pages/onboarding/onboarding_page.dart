@@ -55,7 +55,6 @@ class OnBoardingPage extends StatelessWidget {
               elevation: 20,
               backgroundColor: Colors.black,
               onPressed: () {
-                StorageUtils.newUser('newUser');
                 pushOff(name: login_page);
               },
               child: const Icon(

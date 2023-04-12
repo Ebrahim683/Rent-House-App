@@ -18,7 +18,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    log(StorageUtils.getName().toString());
+    log(StorageUtils.getName().toString() +
+        StorageUtils.getNumber().toString());
   }
 
   @override

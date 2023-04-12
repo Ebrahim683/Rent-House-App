@@ -8,37 +8,18 @@ class BookHouseCubit extends Cubit<BookHouseState> {
 
   bookRoom({
     required String phoneNumber,
-    required String payment,
-    required int ownerId,
     required String ownerName,
-    required String image,
-    required String category,
-    required String fee,
-    required String quantity,
-    required String advanceFee,
-    required String electricityFee,
-    required String gasFee,
-    required String othersFee,
-    required String address,
-    required String notice,
+    required String ownerNumber,
+    required int houseId,
   }) async {
     emit(BookHouseLoadingState());
     try {
       final result = await BookHouseRepository.bookHouseRepo(
-          phoneNumber: phoneNumber,
-          payment: payment,
-          ownerId: ownerId,
-          ownerName: ownerName,
-          image: image,
-          category: category,
-          fee: fee,
-          quantity: quantity,
-          advanceFee: advanceFee,
-          electricityFee: electricityFee,
-          gasFee: gasFee,
-          othersFee: othersFee,
-          address: address,
-          notice: notice);
+        phoneNumber: phoneNumber,
+        ownerName: ownerName,
+        ownerNumber: ownerNumber,
+        houseId: houseId,
+      );
       BookHouseModel bookHouseModel =
           BookHouseModel.fromJson(result as Map<String, dynamic>);
       emit(BookHouseSuccessState(bookHouseModel));

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/app_colors.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 

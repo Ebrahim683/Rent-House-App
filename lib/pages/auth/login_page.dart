@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_state.dart';
@@ -35,9 +34,14 @@ class _LoginPageState extends State<LoginPage> {
           if (state is LoginSuccessState) {
             StorageUtils.saveNumber(mobileController.text.trim().toString());
             StorageUtils.saveName(state.loginModel.message![0].name.toString());
-            pushOff(name: home_page);
+            if (state.loginModel.message![0].role == 'user') {
+              pushOff(name: home_page);
+            } else if (state.loginModel.message![0].role == 'owner') {
+              pushOff(name: owner_dashboard_page);
+            }
           } else if (state is LoginErrorState) {
-            showGetSnackBar(title: 'ত্রুটি', message: state.error);
+            errorDialog(context: context, message: state.error);
+            // showGetSnackBar(title: 'ত্রুটি', message: state.error);
             log(state.error);
           }
         },

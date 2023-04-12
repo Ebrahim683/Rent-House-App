@@ -22,7 +22,8 @@ class AuthRepository {
       'name': name,
       'phone_number': phoneNumber,
       'email': email,
-      'password': password
+      'password': password,
+      'role': role
     };
     return await ApiService.postApi(path: register, body: map);
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
 import 'package:rent_house/pages/splash/splash_page.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/pages/auth/login_page.dart';
@@ -30,6 +31,7 @@ String get house_list_page => '/house_list_page';
 String get house_details_page => '/house_details_page';
 String get booked_house_page => '/booked_house_page';
 String get booked_house_details_page => '/booked_house_details_page';
+String get owner_dashboard_page => '/owner_dashboard_page';
 
 push({required String name}) {
   Get.toNamed(name);
@@ -124,6 +126,11 @@ class Routers {
           builder: (context) => BookedHouseDetailsPage(
             bookedHouseModel: arguments['bookedHouseModel'],
           ),
+        );
+      //owner dashboard
+      case '/owner_dashboard_page':
+        return MaterialPageRoute(
+          builder: (context) => const OwnerDashboardPage(),
         );
       default:
         null;

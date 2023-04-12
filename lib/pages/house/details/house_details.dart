@@ -12,6 +12,8 @@ import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
+import '../../../utils/storage_utils.dart';
+
 class HouseDetailsPage extends StatelessWidget {
   final GetHouseModel getHouseModel;
   const HouseDetailsPage({super.key, required this.getHouseModel});
@@ -217,36 +219,15 @@ class HouseDetailsPage extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.r)),
                             onPressed: () {
-                              String payment = 'complete';
-                              int ownerId = getHouseModel.ownerId!;
                               String ownerName = getHouseModel.ownerName!;
-                              String image = getHouseModel.image!;
-                              String category = getHouseModel.category!;
-                              String fee = getHouseModel.fee!;
-                              String quantity = getHouseModel.quantity!;
-                              String advanceFee = getHouseModel.advanceFee!;
-                              String electricityFee =
-                                  getHouseModel.electricityFee!;
-                              String gasFee = getHouseModel.gasFee!;
-                              String othersFee = getHouseModel.othersFee!;
-                              String address = getHouseModel.address!;
-                              String notice = getHouseModel.notice!;
+                              String ownerNumber = getHouseModel.ownerNumber!;
 
                               BlocProvider.of<BookHouseCubit>(context).bookRoom(
-                                  phoneNumber: '01478',
-                                  payment: payment,
-                                  ownerId: ownerId,
-                                  ownerName: ownerName,
-                                  image: image,
-                                  category: category,
-                                  fee: fee,
-                                  quantity: quantity,
-                                  advanceFee: advanceFee,
-                                  electricityFee: electricityFee,
-                                  gasFee: gasFee,
-                                  othersFee: othersFee,
-                                  address: address,
-                                  notice: notice);
+                                phoneNumber: StorageUtils.getNumber(),
+                                ownerName: ownerName,
+                                ownerNumber: ownerNumber,
+                                houseId: getHouseModel.id!,
+                              );
                             },
                             child: const Text(
                               'এখনি বুক করুন',
