@@ -35,12 +35,13 @@ class _HomePageState extends State<HomePage> {
       'asset/animations/house2.json',
       'asset/animations/house2.json',
       'asset/animations/house2.json',
+      'asset/animations/house1.json',
     ];
 
     final titles = [
-      'Family House',
-      'Bachelor Mess',
-      'Female Mess',
+      'Family',
+      'Bachelor',
+      'Female',
       'Sublet',
       'Office',
       'Warehouse',
@@ -48,6 +49,7 @@ class _HomePageState extends State<HomePage> {
       'Garage',
       'Others',
       'Industry',
+      'Flat Sell',
     ];
 
     handlePopUp(int value) {

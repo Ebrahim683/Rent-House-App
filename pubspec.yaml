@@ -28,7 +28,8 @@ dependencies:
   salomon_bottom_bar: ^3.3.1
   #date formate
   intl: ^0.18.0
-  #radio button
+  #button
+  chips_choice_null_safety: ^2.0.6
   custom_radio_grouped_button: ^2.1.2+2
   #alert dialog
   cool_alert: any

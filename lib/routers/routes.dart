@@ -10,6 +10,7 @@ import 'package:rent_house/pages/home/home_page.dart';
 import 'package:rent_house/pages/test.dart';
 import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
+import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_cubit.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
 import '../pages/house/booked/book_house_details_page.dart';
@@ -17,6 +18,8 @@ import '../pages/house/booked/booked_house_page.dart';
 import '../pages/house/details/house_details.dart';
 import '../pages/house/houselist/house_list_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
+import '../pages/owners/addhouse/add_house_cubit.dart';
+import '../pages/owners/addhouse/add_house_page.dart';
 import '../state/cubit/gethouse/get_house_list_cubit.dart';
 import '../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
 
@@ -32,6 +35,7 @@ String get house_details_page => '/house_details_page';
 String get booked_house_page => '/booked_house_page';
 String get booked_house_details_page => '/booked_house_details_page';
 String get owner_dashboard_page => '/owner_dashboard_page';
+String get add_house_page => '/add_house_page';
 
 push({required String name}) {
   Get.toNamed(name);
@@ -130,8 +134,17 @@ class Routers {
       //owner dashboard
       case '/owner_dashboard_page':
         return MaterialPageRoute(
-          builder: (context) => const OwnerDashboardPage(),
+          builder: (context) => BlocProvider(
+              create: (BuildContext context) => ShowOwnerHouseCubit(),
+              child: const OwnerDashboardPage()),
         );
+      //add house
+      case '/add_house_page':
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => AddHouseCubit(),
+                  child: const AddHousePage(),
+                ));
       default:
         null;
     }

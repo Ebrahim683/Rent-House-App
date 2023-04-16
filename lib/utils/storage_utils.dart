@@ -15,6 +15,10 @@ class StorageUtils {
     box.write('name', name);
   }
 
+  static saveUser(String user) {
+    box.write('user', user);
+  }
+
   static String getNumber() {
     return box.read('number');
   }
@@ -25,10 +29,11 @@ class StorageUtils {
 
   static bool isLoggedIn() {
     String number = box.read('number');
-    if (number != '') {
+    if (number != "") {
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
   static logOut() {

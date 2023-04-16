@@ -219,6 +219,7 @@ class HouseDetailsPage extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.r)),
                             onPressed: () {
+                              log(getHouseModel.id!.toString());
                               String ownerName = getHouseModel.ownerName!;
                               String ownerNumber = getHouseModel.ownerNumber!;
 
