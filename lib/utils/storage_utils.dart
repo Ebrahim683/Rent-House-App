@@ -15,8 +15,8 @@ class StorageUtils {
     box.write('name', name);
   }
 
-  static saveUser(String user) {
-    box.write('user', user);
+  static saveRole(String role) {
+    box.write('role', role);
   }
 
   static String getNumber() {
@@ -27,18 +27,15 @@ class StorageUtils {
     return box.read('name');
   }
 
-  static bool isLoggedIn() {
-    String number = box.read('number');
-    if (number != "") {
-      return true;
-    } else {
-      return false;
-    }
+  static String getRole() {
+    String role = box.read('role');
+    return role;
   }
 
   static logOut() {
     log('cleared');
     box.remove('number');
     box.remove('name');
+    box.remove('user');
   }
 }

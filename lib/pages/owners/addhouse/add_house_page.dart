@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:rent_house/pages/owners/addhouse/add_house_cubit.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
+import 'package:rent_house/utils/utils.dart';
 
 import '../../../widget/app_widget.dart';
 
@@ -60,7 +62,16 @@ class _AddHousePageState extends State<AddHousePage> {
       appBar: AppBar(
         title: const Text('Add House'),
       ),
-      body: BlocBuilder<AddHouseCubit, AddHouseState>(
+      body: BlocConsumer<AddHouseCubit, AddHouseState>(
+        listener: (context, state) {
+          if (state is AddHouseSuccessState) {
+            successDialog(
+                context: context,
+                message: state.addHouseModel.message.toString());
+          } else if (state is AddHouseErrorState) {
+            errorDialog(context: context, message: state.error);
+          }
+        },
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is AddHouseLoadingState ? true : false,
@@ -88,27 +99,50 @@ class _AddHousePageState extends State<AddHousePage> {
                         color: Colors.green, borderColor: Colors.blue),
                   ),
                   gap(),
-                  inputText(controller: feeController, hint: 'Fee'),
-                  gap(),
-                  inputText(controller: quantityController, hint: 'Quantity'),
+                  inputText(
+                      controller: feeController,
+                      hint: 'Fee',
+                      type: TextInputType.number),
                   gap(),
                   inputText(
-                      controller: advanceFeeController, hint: 'Advance fee'),
+                      controller: quantityController,
+                      hint: 'Quantity',
+                      type: TextInputType.number),
+                  gap(),
+                  inputText(
+                      controller: advanceFeeController,
+                      hint: 'Advance fee',
+                      type: TextInputType.number),
                   gap(),
                   inputText(
                       controller: electricityFeeController,
-                      hint: 'Electricity fee'),
-                  gap(),
-                  inputText(controller: gasFeeController, hint: 'Gas fee'),
+                      hint: 'Electricity fee',
+                      type: TextInputType.number),
                   gap(),
                   inputText(
-                      controller: othersFeeController, hint: 'Others fee'),
+                      controller: gasFeeController,
+                      hint: 'Gas fee',
+                      type: TextInputType.number),
                   gap(),
-                  inputText(controller: addressController, hint: 'Address'),
+                  inputText(
+                      controller: othersFeeController,
+                      hint: 'Others fee',
+                      type: TextInputType.number),
                   gap(),
-                  inputText(controller: noticeController, hint: 'Notice'),
+                  inputText(
+                      controller: addressController,
+                      hint: 'Address',
+                      type: TextInputType.text),
                   gap(),
-                  inputText(controller: statusController, hint: 'Status'),
+                  inputText(
+                      controller: noticeController,
+                      hint: 'Notice',
+                      type: TextInputType.text),
+                  gap(),
+                  inputText(
+                      controller: statusController,
+                      hint: 'Status',
+                      type: TextInputType.text),
                   gap(),
                 ],
               ),
@@ -128,8 +162,40 @@ class _AddHousePageState extends State<AddHousePage> {
           String address = addressController.text.toString();
           String notice = noticeController.text.toString();
           String status = statusController.text.toString();
+          if (fee == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter fee');
+          } else if (quantity == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter quantity');
+          } else if (advanceFee == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter advanceFee');
+          } else if (electricityFee == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter electricityFee');
+          } else if (gasFee == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter gasFee');
+          } else if (othersFee == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter othersFee');
+          } else if (address == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter address');
+          } else if (notice == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter notice');
+          } else if (status == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter status');
+          } else {
+            BlocProvider.of<AddHouseCubit>(context).addHouse(
+                fee: fee,
+                advanceFee: advanceFee,
+                quantity: quantity,
+                electricityFee: electricityFee,
+                gasFee: gasFee,
+                othersFee: othersFee,
+                address: address,
+                notice: notice,
+                status: status,
+                image: 'image',
+                category: category);
+          }
         },
-        child: const Icon(Icons.add, color: Colors.white),
+        child: const Icon(Icons.done, color: Colors.white),
       ),
     );
   }

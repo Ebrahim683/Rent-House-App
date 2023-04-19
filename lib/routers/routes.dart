@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
+import 'package:rent_house/pages/owners/userslist/users_list_page.dart';
 import 'package:rent_house/pages/splash/splash_page.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/pages/auth/login_page.dart';
@@ -20,7 +21,10 @@ import '../pages/house/houselist/house_list_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
 import '../pages/owners/addhouse/add_house_cubit.dart';
 import '../pages/owners/addhouse/add_house_page.dart';
+import '../pages/owners/updatehouse/update_house_page.dart';
 import '../state/cubit/gethouse/get_house_list_cubit.dart';
+import '../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
+import '../state/cubit/owner/updatehouse/update_house_cubit.dart';
 import '../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
 
 String get test_page => '/test_page';
@@ -34,8 +38,11 @@ String get house_list_page => '/house_list_page';
 String get house_details_page => '/house_details_page';
 String get booked_house_page => '/booked_house_page';
 String get booked_house_details_page => '/booked_house_details_page';
+//owner=======================================
 String get owner_dashboard_page => '/owner_dashboard_page';
 String get add_house_page => '/add_house_page';
+String get users_list_page => '/users_list_page';
+String get update_house_page => '/update_house_page';
 
 push({required String name}) {
   Get.toNamed(name);
@@ -141,10 +148,31 @@ class Routers {
       //add house
       case '/add_house_page':
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => AddHouseCubit(),
-                  child: const AddHousePage(),
-                ));
+          builder: (context) => BlocProvider(
+            create: (context) => AddHouseCubit(),
+            child: const AddHousePage(),
+          ),
+        );
+      //users list
+      case '/users_list_page':
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => ShowOwnerBookedHouseCubit(),
+            child: const UsersListPage(),
+          ),
+        );
+      //update house
+      case '/update_house_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => UpdateHouseCubit(),
+            child: UpdateHousePage(
+              ownerHouseModel: arguments['ownerHouseModel'],
+            ),
+          ),
+        );
       default:
         null;
     }

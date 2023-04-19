@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
+
 import '../../routers/routes.dart';
 import '../../utils/app_colors.dart';
 import '../../widget/app_widget.dart';
@@ -34,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
           if (state is LoginSuccessState) {
             StorageUtils.saveNumber(mobileController.text.trim().toString());
             StorageUtils.saveName(state.loginModel.message![0].name.toString());
+            StorageUtils.saveRole(state.loginModel.message![0].role.toString());
             if (state.loginModel.message![0].role == 'user') {
               pushOff(name: home_page);
             } else if (state.loginModel.message![0].role == 'owner') {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:rent_house/data/model/owner/ownerhousemodel/owner_house_list_model.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
 class RoomWidget extends StatelessWidget {
@@ -11,7 +12,10 @@ class RoomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, update_house_page,
+            arguments: {'ownerHouseModel': ownerHouseModel});
+      },
       child: Container(
         margin: const EdgeInsets.all(8.0),
         height: Get.height * 0.2,

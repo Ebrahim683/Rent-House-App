@@ -6,3 +6,5 @@ String get bookHouse => '/bookHouse';
 String get showBookedHouse => '/showBookedHouse';
 String get showOwnerHouse => '/owner/showOwnerHouse';
 String get addHouse => '/owner/addHouse';
+String get showBookedHouseOwner => '/owner/showBookedHouse';
+String get updateHouseOwner => '/owner/updateHouse';

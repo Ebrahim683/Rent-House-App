@@ -51,6 +51,29 @@ class ApiService {
     }
   }
 
+    static Future<dynamic> putApi(
+      {required String path, Map<String, dynamic>? body, dynamic data}) async {
+    log('postApi: ${baseUrl + path}');
+    try {
+      log('post api called');
+      final response =
+          await _dio.put(baseUrl + path, queryParameters: body, data: data);
+      log(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        log(response.data.toString());
+        return Future.value(response.data);
+      } else {
+        log(response.statusMessage.toString());
+        return Future.error(response.statusMessage.toString());
+      }
+    } on dio.DioError catch (e) {
+      String errorMessage = getError(e);
+      return Future.error(errorMessage);
+    } catch (e) {
+      return Future.error('Something went wrong');
+    }
+  }
+
   static String getError(DioError error) {
     switch (error.type) {
       case DioErrorType.connectionTimeout:

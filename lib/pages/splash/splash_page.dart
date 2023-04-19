@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/routers/routes.dart';
@@ -16,8 +14,10 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   checkLoggedIn() {
     Future.delayed(const Duration(seconds: 4), () {
-      if (StorageUtils.isLoggedIn() == true) {
+      if (StorageUtils.getRole() == 'user') {
         pushOff(name: home_page);
+      } else if (StorageUtils.getRole() == 'owner') {
+        pushOff(name: owner_dashboard_page);
       } else {
         pushOff(name: login_page);
       }

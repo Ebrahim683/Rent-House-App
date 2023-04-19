@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'app_colors.dart';
 import 'package:cool_alert/cool_alert.dart';
 
@@ -23,17 +24,16 @@ errorDialog({required BuildContext context, required String message}) {
       context: context,
       type: CoolAlertType.error,
       text: message,
-      animType: CoolAlertAnimType.rotate,
       loopAnimation: true);
 }
 
 successDialog({required BuildContext context, required String message}) {
   CoolAlert.show(
-      context: context,
-      type: CoolAlertType.success,
-      text: message,
-      animType: CoolAlertAnimType.rotate,
-      loopAnimation: true);
+    context: context,
+    type: CoolAlertType.success,
+    text: message,
+    loopAnimation: true,
+  );
 }
 
 warningDialog({required BuildContext context, required String message}) {
@@ -41,6 +41,5 @@ warningDialog({required BuildContext context, required String message}) {
       context: context,
       type: CoolAlertType.warning,
       text: message,
-      animType: CoolAlertAnimType.rotate,
       loopAnimation: true);
 }
