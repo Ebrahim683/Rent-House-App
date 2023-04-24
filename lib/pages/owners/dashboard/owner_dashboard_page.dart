@@ -1,9 +1,11 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:rent_house/data/model/owner/ownerhousemodel/owner_house_list_model.dart';
 import 'package:rent_house/pages/owners/dashboard/room_widget.dart';
 import 'package:rent_house/routers/routes.dart';
@@ -12,7 +14,7 @@ import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_sta
 import 'package:rent_house/utils/strings.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+
 import '../../../utils/storage_utils.dart';
 
 class OwnerDashboardPage extends StatefulWidget {
@@ -23,8 +25,6 @@ class OwnerDashboardPage extends StatefulWidget {
 }
 
 class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
-
-  
   void getCurrentPosition() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied ||
@@ -74,6 +74,9 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
         case 1:
           push(name: users_list_page);
           break;
+        case 2:
+          push(name: leave_room_page_request_list_page);
+          break;
         default:
           null;
       }
@@ -88,6 +91,8 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
             itemBuilder: (context) => [
               const PopupMenuItem<int>(value: 0, child: Text('লগ আউট')),
               const PopupMenuItem<int>(value: 1, child: Text('ভাড়াটিয়া লিস্ট')),
+              const PopupMenuItem<int>(
+                  value: 2, child: Text('রুম ছাড়ার আবেদন')),
             ],
           ),
         ],

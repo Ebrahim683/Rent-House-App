@@ -8,3 +8,6 @@ String get showOwnerHouse => '/owner/showOwnerHouse';
 String get addHouse => '/owner/addHouse';
 String get showBookedHouseOwner => '/owner/showBookedHouse';
 String get updateHouseOwner => '/owner/updateHouse';
+String get leaveRoomRequest => '/leaveRoom';
+String get leaveRoomRequests => '/leaveRoomRequests';
+String get approveLeaveRoomRequest => '/approveLeaveRoomRequest';

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
-import 'package:rent_house/pages/owners/userslist/users_list_page.dart';
-import 'package:rent_house/pages/splash/splash_page.dart';
-import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/pages/auth/login_page.dart';
 import 'package:rent_house/pages/auth/user_register_page.dart';
 import 'package:rent_house/pages/home/home_page.dart';
+import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
+import 'package:rent_house/pages/owners/leaveroomrequestlist/approve_page.dart';
+import 'package:rent_house/pages/owners/leaveroomrequestlist/leave_room_request_list_page.dart';
+import 'package:rent_house/pages/owners/userslist/users_list_page.dart';
+import 'package:rent_house/pages/splash/splash_page.dart';
 import 'package:rent_house/pages/test.dart';
+import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
+import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit.dart';
+import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_cubit.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
@@ -19,10 +23,11 @@ import '../pages/house/booked/booked_house_page.dart';
 import '../pages/house/details/house_details.dart';
 import '../pages/house/houselist/house_list_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
-import '../state/cubit/owner/addhouse/add_house_cubit.dart';
 import '../pages/owners/addhouse/add_house_page.dart';
 import '../pages/owners/updatehouse/update_house_page.dart';
 import '../state/cubit/gethouse/get_house_list_cubit.dart';
+import '../state/cubit/owner/addhouse/add_house_cubit.dart';
+import '../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_cubit.dart';
 import '../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
 import '../state/cubit/owner/updatehouse/update_house_cubit.dart';
 import '../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
@@ -43,6 +48,9 @@ String get owner_dashboard_page => '/owner_dashboard_page';
 String get add_house_page => '/add_house_page';
 String get users_list_page => '/users_list_page';
 String get update_house_page => '/update_house_page';
+String get leave_room_page_request_list_page =>
+    '/leave_room_page_request_list_page';
+String get approve_page => '/approve_page';
 
 push({required String name}) {
   Get.toNamed(name);
@@ -134,8 +142,11 @@ class Routers {
         Map<String, dynamic> arguments =
             settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => BookedHouseDetailsPage(
-            bookedHouseModel: arguments['bookedHouseModel'],
+          builder: (context) => BlocProvider(
+            create: (context) => LeaveRoomRequestCubit(),
+            child: BookedHouseDetailsPage(
+              bookedHouseModel: arguments['bookedHouseModel'],
+            ),
           ),
         );
       //owner dashboard
@@ -170,6 +181,26 @@ class Routers {
             create: (context) => UpdateHouseCubit(),
             child: UpdateHousePage(
               ownerHouseModel: arguments['ownerHouseModel'],
+            ),
+          ),
+        );
+      //leave room request page
+      case '/leave_room_page_request_list_page':
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LeaveRoomRequestListCubit(),
+            child: const LeaveRoomRequestListPage(),
+          ),
+        );
+      //approve page
+      case '/approve_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => ApproveCubit(),
+            child: ApprovePage(
+              leaveRoomModel: arguments['leaveRoomModel'],
             ),
           ),
         );
