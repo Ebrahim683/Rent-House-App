@@ -50,6 +50,8 @@ mixin _$GetHouseModel {
   String? get notice => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'time')
+  String? get time => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,7 +80,8 @@ abstract class $GetHouseModelCopyWith<$Res> {
       @JsonKey(name: 'others_fee') String? othersFee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'notice') String? notice,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'time') String? time});
 }
 
 /// @nodoc
@@ -109,6 +112,7 @@ class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
     Object? address = freezed,
     Object? notice = freezed,
     Object? status = freezed,
+    Object? time = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -171,6 +175,10 @@ class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -198,7 +206,8 @@ abstract class _$$_GetHouseModelCopyWith<$Res>
       @JsonKey(name: 'others_fee') String? othersFee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'notice') String? notice,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'time') String? time});
 }
 
 /// @nodoc
@@ -227,6 +236,7 @@ class __$$_GetHouseModelCopyWithImpl<$Res>
     Object? address = freezed,
     Object? notice = freezed,
     Object? status = freezed,
+    Object? time = freezed,
   }) {
     return _then(_$_GetHouseModel(
       id: freezed == id
@@ -289,6 +299,10 @@ class __$$_GetHouseModelCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -311,7 +325,8 @@ class _$_GetHouseModel implements _GetHouseModel {
       @JsonKey(name: 'others_fee') this.othersFee,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'notice') this.notice,
-      @JsonKey(name: 'status') this.status});
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'time') this.time});
 
   factory _$_GetHouseModel.fromJson(Map<String, dynamic> json) =>
       _$$_GetHouseModelFromJson(json);
@@ -361,10 +376,13 @@ class _$_GetHouseModel implements _GetHouseModel {
   @override
   @JsonKey(name: 'status')
   final String? status;
+  @override
+  @JsonKey(name: 'time')
+  final String? time;
 
   @override
   String toString() {
-    return 'GetHouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image: $image, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status)';
+    return 'GetHouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image: $image, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status, time: $time)';
   }
 
   @override
@@ -393,7 +411,8 @@ class _$_GetHouseModel implements _GetHouseModel {
                 other.othersFee == othersFee) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.notice, notice) || other.notice == notice) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.time, time) || other.time == time));
   }
 
   @JsonKey(ignore: true)
@@ -414,7 +433,8 @@ class _$_GetHouseModel implements _GetHouseModel {
       othersFee,
       address,
       notice,
-      status);
+      status,
+      time);
 
   @JsonKey(ignore: true)
   @override
@@ -446,7 +466,8 @@ abstract class _GetHouseModel implements GetHouseModel {
       @JsonKey(name: 'others_fee') final String? othersFee,
       @JsonKey(name: 'address') final String? address,
       @JsonKey(name: 'notice') final String? notice,
-      @JsonKey(name: 'status') final String? status}) = _$_GetHouseModel;
+      @JsonKey(name: 'status') final String? status,
+      @JsonKey(name: 'time') final String? time}) = _$_GetHouseModel;
 
   factory _GetHouseModel.fromJson(Map<String, dynamic> json) =
       _$_GetHouseModel.fromJson;
@@ -496,6 +517,9 @@ abstract class _GetHouseModel implements GetHouseModel {
   @override
   @JsonKey(name: 'status')
   String? get status;
+  @override
+  @JsonKey(name: 'time')
+  String? get time;
   @override
   @JsonKey(ignore: true)
   _$$_GetHouseModelCopyWith<_$_GetHouseModel> get copyWith =>

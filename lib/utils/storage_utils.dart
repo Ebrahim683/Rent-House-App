@@ -19,6 +19,11 @@ class StorageUtils {
     box.write('role', role);
   }
 
+  static saveLocation(String location) {
+    log('$location saved');
+    box.write('location', location);
+  }
+
   static String getNumber() {
     return box.read('number');
   }
@@ -32,10 +37,16 @@ class StorageUtils {
     return role;
   }
 
+  static String getLocation() {
+    String location = box.read('location');
+    return location;
+  }
+
   static logOut() {
     log('cleared');
     box.remove('number');
     box.remove('name');
     box.remove('user');
+    box.remove('location');
   }
 }

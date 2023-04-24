@@ -19,7 +19,7 @@ import '../pages/house/booked/booked_house_page.dart';
 import '../pages/house/details/house_details.dart';
 import '../pages/house/houselist/house_list_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
-import '../pages/owners/addhouse/add_house_cubit.dart';
+import '../state/cubit/owner/addhouse/add_house_cubit.dart';
 import '../pages/owners/addhouse/add_house_page.dart';
 import '../pages/owners/updatehouse/update_house_page.dart';
 import '../state/cubit/gethouse/get_house_list_cubit.dart';

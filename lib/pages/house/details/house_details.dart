@@ -66,11 +66,12 @@ class HouseDetailsPage extends StatelessWidget {
       body: BlocConsumer<BookHouseCubit, BookHouseState>(
         listener: (context, state) {
           if (state is BookHouseErrorState) {
-            showGetSnackBar(title: '', message: state.error);
+            errorDialog(context: context, message: state.error);
             log(state.error);
           } else if (state is BookHouseSuccessState) {
-            showGetSnackBar(
-                title: '', message: state.bookHouseModel.message.toString());
+            successDialog(
+                context: context,
+                message: state.bookHouseModel.message.toString());
             log(state.bookHouseModel.message.toString());
           }
         },
@@ -223,12 +224,19 @@ class HouseDetailsPage extends StatelessWidget {
                               String ownerName = getHouseModel.ownerName!;
                               String ownerNumber = getHouseModel.ownerNumber!;
 
-                              BlocProvider.of<BookHouseCubit>(context).bookRoom(
-                                phoneNumber: StorageUtils.getNumber(),
-                                ownerName: ownerName,
-                                ownerNumber: ownerNumber,
-                                houseId: getHouseModel.id!,
-                              );
+                              if (getHouseModel.status == 'booked') {
+                                warningDialog(
+                                    context: context,
+                                    message: 'Already booked');
+                              } else {
+                                BlocProvider.of<BookHouseCubit>(context)
+                                    .bookRoom(
+                                  phoneNumber: StorageUtils.getNumber(),
+                                  ownerName: ownerName,
+                                  ownerNumber: ownerNumber,
+                                  houseId: getHouseModel.id!,
+                                );
+                              }
                             },
                             child: const Text(
                               'এখনি বুক করুন',

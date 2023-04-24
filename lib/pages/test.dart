@@ -1,8 +1,9 @@
 import 'dart:developer';
-import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
-import 'package:dio/dio.dart' as _dio;
+
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:rent_house/pages/house/houselist/house_search.dart';
+import 'package:geolocator/geolocator.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -12,52 +13,43 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+  void getCurrentPosition() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      Geolocator.requestPermission();
+    } else {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      log(position.longitude.toString());
+      log(position.latitude.toString());
+      getAddress(position);
+    }
+  }
 
-  int tag = 0;
-  List<String> options = [
-    'Family',
-    'Bachelor',
-    'Female',
-    'Sublet',
-    'Office',
-    'Warehouse',
-    'Shop',
-    'Garage',
-    'Others',
-    'Industry',
-    'Flat Sell',
-  ];
-
-  // final controller = TextEditingController();
-  // List<String> data = [
-  //   'windows',
-  //   'apple',
-  //   'mango',
-  //   'mango2',
-  //   'guava',
-  //   'banana',
-  //   'cocacola',
-  //   'guava',
-  //   '7up',
-  //   'pen',
-  //   'mouse',
-  //   'pc',
-  //   'mobile',
-  //   'mouse',
-  //   'apple',
-  // ];
-  // String search = '';
-  getProfile() async {
-    log('called');
-    var dio = _dio.Dio();
-    final data = {"phone_number": "123"};
+  getAddress(Position position) async {
     try {
-      final response = await dio.post('http://192.168.0.7:3000/profile',
-          queryParameters: data);
-      log(response.data.toString());
+      // GeoCode geoCode = GeoCode();
+      // Address address = await geoCode.reverseGeocoding(
+      //     latitude: position.latitude, longitude: position.longitude);
+      // Coordinates coordinates =
+      //     Coordinates(position.latitude, position.longitude);
+      // final address =
+      //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      List<Placemark> placemark =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      Placemark address = placemark[0];
+
+      log(address.toString());
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentPosition();
   }
 
   @override
@@ -71,53 +63,17 @@ class _TestPageState extends State<TestPage> {
               icon: const Icon(Icons.search))
         ],
       ),
-      body: Column(
-        children: [
-          // TextField(
-          //   onChanged: (value) {
-          //     setState(() {
-          //       search = value.toString();
-          //     });
-          //   },
-          //   controller: controller,
-          //   decoration: InputDecoration(
-          //     border: OutlineInputBorder(
-          //       borderRadius: BorderRadius.circular(20),
-          //     ),
-          //   ),
-          // ),
-          // Expanded(
-          //   child: ListView.builder(
-          //     itemCount: data.length,
-          //     itemBuilder: (context, index) {
-          //       String s = data[index];
-          //       if (controller.text.toString().isEmpty) {
-          //         return ListTile(
-          //           title: Text(data[index]),
-          //         );
-          //       }
-          //     },
-          //   ),
-          // ),
-             ChipsChoice.single(
-            value: tag,
-            onChanged: (value) {
-              setState(() {
-                tag = value;
-              });
-            },
-            choiceItems: C2Choice.listFrom(
-              source: options,
-              value: (index, item) => index,
-              label: (index, item) => item,
-            ),
-            wrapped: true,
-            choiceStyle: const C2ChoiceStyle(
-                color: Colors.teal, borderColor: Colors.black),
-            choiceActiveStyle: const C2ChoiceStyle(
-                color: Colors.green, borderColor: Colors.blue),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () async {
+                  getCurrentPosition();
+                },
+                child: Text('get location')),
+          ],
+        ),
       ),
     );
   }

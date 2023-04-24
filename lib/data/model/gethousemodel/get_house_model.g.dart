@@ -23,6 +23,7 @@ _$_GetHouseModel _$$_GetHouseModelFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
       notice: json['notice'] as String?,
       status: json['status'] as String?,
+      time: json['time'] as String?,
     );
 
 Map<String, dynamic> _$$_GetHouseModelToJson(_$_GetHouseModel instance) =>
@@ -42,4 +43,5 @@ Map<String, dynamic> _$$_GetHouseModelToJson(_$_GetHouseModel instance) =>
       'address': instance.address,
       'notice': instance.notice,
       'status': instance.status,
+      'time': instance.time,
     };

@@ -4,9 +4,9 @@ import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:rent_house/pages/owners/addhouse/add_house_cubit.dart';
-import 'package:rent_house/routers/routes.dart';
+import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
+import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 
 import '../../../widget/app_widget.dart';
@@ -131,7 +131,9 @@ class _AddHousePageState extends State<AddHousePage> {
                   gap(),
                   inputText(
                       controller: addressController,
-                      hint: 'Address',
+                      hint: StorageUtils.getLocation() == ''
+                          ? 'Address'
+                          : StorageUtils.getLocation(),
                       type: TextInputType.text),
                   gap(),
                   inputText(
@@ -162,6 +164,7 @@ class _AddHousePageState extends State<AddHousePage> {
           String address = addressController.text.toString();
           String notice = noticeController.text.toString();
           String status = statusController.text.toString();
+          log(StorageUtils.getLocation().toString());
           if (fee == '') {
             showGetSnackBar(title: 'Error', message: 'Enter fee');
           } else if (quantity == '') {
@@ -174,10 +177,10 @@ class _AddHousePageState extends State<AddHousePage> {
             showGetSnackBar(title: 'Error', message: 'Enter gasFee');
           } else if (othersFee == '') {
             showGetSnackBar(title: 'Error', message: 'Enter othersFee');
-          } else if (address == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter address');
           } else if (notice == '') {
             showGetSnackBar(title: 'Error', message: 'Enter notice');
+          } else if (address == '') {
+            showGetSnackBar(title: 'Error', message: 'Enter address');
           } else if (status == '') {
             showGetSnackBar(title: 'Error', message: 'Enter status');
           } else {

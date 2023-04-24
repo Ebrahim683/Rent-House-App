@@ -21,6 +21,7 @@ class GetHouseModel with _$GetHouseModel {
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'notice') String? notice,
     @JsonKey(name: 'status') String? status,
+    @JsonKey(name: 'time') String? time,
   }) = _GetHouseModel;
   factory GetHouseModel.fromJson(Map<String, dynamic> json) =>
       _$GetHouseModelFromJson(json);
