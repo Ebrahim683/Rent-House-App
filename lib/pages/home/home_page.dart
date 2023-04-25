@@ -52,31 +52,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final animations = [
-      'asset/animations/house1.json',
-      'asset/animations/house2.json',
-      'asset/animations/house2.json',
-      'asset/animations/house2.json',
-      'asset/animations/house1.json',
-      'asset/animations/house2.json',
-      'asset/animations/house1.json',
-      'asset/animations/house2.json',
-      'asset/animations/house2.json',
-      'asset/animations/house2.json',
-      'asset/animations/house1.json',
+      'asset/animations/family.riv',
+      'asset/animations/bachelor.riv',
+      'asset/animations/male.riv',
+      'asset/animations/female.riv',
+      'asset/animations/sublet.riv',
+      'asset/animations/office.riv',
+      'asset/animations/shop.riv',
+      'asset/animations/garage.riv',
+      'asset/animations/industry.riv',
+      'asset/animations/flat.riv',
     ];
 
     final titles = [
       'Family',
       'Bachelor',
+      'Male',
       'Female',
       'Sublet',
       'Office',
-      'Warehouse',
       'Shop',
       'Garage',
-      'Others',
       'Industry',
-      'Flat Sell',
+      'Flat',
     ];
 
     handlePopUp(int value) {
@@ -108,39 +106,14 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  'Category',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17.sp,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
-            // gap(h: 10.h),
-            GridView.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 5,
-              crossAxisSpacing: 5,
-              shrinkWrap: true,
-              primary: false,
-              children: List.generate(
-                  titles.length,
-                  (index) => CategoryWidget(
-                        title: titles[index],
-                        animation: animations[index],
-                      )),
-            ),
-          ],
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(
+          titles.length,
+          (index) => CategoryWidget(
+            title: titles[index],
+            animation: animations[index],
+          ),
         ),
       ),
     );

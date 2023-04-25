@@ -1,11 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
-import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
-
+import 'package:rent_house/widget/app_widget.dart';
+import 'package:rive/rive.dart';
 import '../../routers/routes.dart';
 
 class CategoryWidget extends StatelessWidget {
@@ -32,9 +28,6 @@ class CategoryWidget extends StatelessWidget {
           side: BorderSide(color: Colors.black, width: 0.5.w),
         ),
         child: Container(
-          // margin: const EdgeInsets.all(15),
-          // height: Get.height * 0.5,
-          // width: Get.width * 0.5,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10.r),
@@ -43,14 +36,19 @@ class CategoryWidget extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Lottie.asset(
-                  animation,
-                  height: 120,
-                  animate: true,
+                gap(h: 5.h),
+                Expanded(
+                  child: RiveAnimation.asset(
+                    animation,
+                  ),
                 ),
+                gap(h: 3.h),
                 Text(
                   title,
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

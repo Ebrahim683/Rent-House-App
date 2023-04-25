@@ -142,7 +142,7 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                       );
                     } else {
                       return const Center(
-                        child: CircularProgressIndicator(),
+                        child: Text('Something went wrong try to refresh'),
                       );
                     }
                   },

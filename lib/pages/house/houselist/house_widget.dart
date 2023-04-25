@@ -28,14 +28,17 @@ class HouseWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              height: Get.height * 0.2,
-              width: Get.width * 0.4,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('asset/images/sliderhouse1.png'),
-                    fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(20.r),
+            Hero(
+              tag: 'img1',
+              child: Container(
+                height: Get.height * 0.2,
+                width: Get.width * 0.4,
+                decoration: BoxDecoration(
+                  image: const DecorationImage(
+                      image: AssetImage('asset/images/sliderhouse1.png'),
+                      fit: BoxFit.cover),
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
               ),
             ),
             gap(w: 10.w),

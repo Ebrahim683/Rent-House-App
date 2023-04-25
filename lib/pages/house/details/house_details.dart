@@ -122,9 +122,12 @@ class HouseDetailsPage extends StatelessWidget {
                   ),
                   expandedHeight: Get.height * 0.55,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Image.asset(
-                      'asset/images/sliderhouse3.png',
-                      fit: BoxFit.cover,
+                    background: Hero(
+                      tag: 'img1',
+                      child: Image.asset(
+                        'asset/images/sliderhouse3.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

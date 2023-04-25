@@ -61,7 +61,7 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
               );
             } else {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: Text('Something went wrong try to refresh'),
               );
             }
           },
