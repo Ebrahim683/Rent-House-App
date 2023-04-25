@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/storage_utils.dart';
-import 'package:rent_house/widget/app_widget.dart';
+import 'package:rive/rive.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -32,19 +33,10 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.orange,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.asset('asset/animations/house1.json'),
-            gap(),
-            const CircularProgressIndicator(
-              color: Colors.white,
-            ),
-          ],
-        ),
+    return const Scaffold(
+      backgroundColor: Color.fromARGB(255, 49, 49, 49),
+      body: RiveAnimation.asset(
+        'asset/animations/loading1.riv',
       ),
     );
   }

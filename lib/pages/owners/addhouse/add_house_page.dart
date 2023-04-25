@@ -8,6 +8,7 @@ import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
+import 'package:rive/rive.dart';
 
 import '../../../widget/app_widget.dart';
 
@@ -75,6 +76,8 @@ class _AddHousePageState extends State<AddHousePage> {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is AddHouseLoadingState ? true : false,
+             progressIndicator:
+                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: SingleChildScrollView(
               child: Column(
                 children: [

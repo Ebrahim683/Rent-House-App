@@ -7,6 +7,7 @@ import 'package:rent_house/state/cubit/owner/updatehouse/update_house_cubit.dart
 import 'package:rent_house/state/cubit/owner/updatehouse/update_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
+import 'package:rive/rive.dart';
 
 import '../../../data/model/owner/ownerhousemodel/owner_house_list_model.dart';
 
@@ -44,6 +45,8 @@ class UpdateHousePage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is UpdateHouseLoadingState ? true : false,
+            progressIndicator:
+                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: SingleChildScrollView(
               child: Column(
                 children: [

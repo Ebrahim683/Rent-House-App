@@ -11,6 +11,7 @@ import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
+import 'package:rive/rive.dart';
 
 import '../../../utils/storage_utils.dart';
 
@@ -78,6 +79,8 @@ class HouseDetailsPage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is BookHouseLoadingState ? true : false,
+             progressIndicator:
+                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(

@@ -8,6 +8,7 @@ import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
+import 'package:rive/rive.dart';
 
 import '../../routers/routes.dart';
 import '../../utils/app_colors.dart';
@@ -51,6 +52,8 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is LoginLoadingState ? true : false,
+            progressIndicator:
+                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(

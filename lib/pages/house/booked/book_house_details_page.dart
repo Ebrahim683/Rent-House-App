@@ -9,6 +9,7 @@ import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
+import 'package:rive/rive.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../../widget/app_widget.dart';
@@ -96,6 +97,8 @@ class BookedHouseDetailsPage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is LeaveRoomRequestLoadingState ? true : false,
+            progressIndicator:
+                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(

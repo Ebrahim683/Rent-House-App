@@ -6,6 +6,7 @@ import 'package:rent_house/data/model/owner/leaveroomlistmodel/leave_room_list_m
 import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_state.dart';
 import 'package:rent_house/utils/utils.dart';
+import 'package:rive/rive.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../../widget/app_widget.dart';
@@ -68,6 +69,8 @@ class ApprovePage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is ApproveLoadingState ? true : false,
+            progressIndicator:
+                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: Column(
               children: [
                 setInfo(

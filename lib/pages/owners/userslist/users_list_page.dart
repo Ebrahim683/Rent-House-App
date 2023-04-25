@@ -6,6 +6,7 @@ import 'package:rent_house/data/model/owner/bookedroommodel/show_booked_room_lis
 import 'package:rent_house/state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/showownerbookedhouse/show_owner_booked_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
+import 'package:rive/rive.dart';
 
 class UsersListPage extends StatefulWidget {
   const UsersListPage({super.key});
@@ -43,6 +44,8 @@ class _UsersListPageState extends State<UsersListPage> {
               return LoadingOverlay(
                 isLoading:
                     state is ShowOwnerBookedHouseLoadingState ? true : false,
+                progressIndicator: const RiveAnimation.asset(
+                    'asset/animations/loadingEarth.riv'),
                 child: ListView.builder(
                   itemCount: showBookedRoomModel.length,
                   itemBuilder: (context, index) {
