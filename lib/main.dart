@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           scaffoldBackgroundColor: bgColor,
+          appBarTheme: AppBarTheme(color: bgColor),
         ),
         initialRoute: splash_page,
         onGenerateRoute: Routers.onGenerateRoute,

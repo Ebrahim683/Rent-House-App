@@ -79,7 +79,7 @@ class HouseDetailsPage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is BookHouseLoadingState ? true : false,
-             progressIndicator:
+            progressIndicator:
                 const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: CustomScrollView(
               slivers: [
@@ -125,12 +125,9 @@ class HouseDetailsPage extends StatelessWidget {
                   ),
                   expandedHeight: Get.height * 0.55,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Hero(
-                      tag: 'img1',
-                      child: Image.asset(
-                        'asset/images/sliderhouse3.png',
-                        fit: BoxFit.cover,
-                      ),
+                    background: Image.asset(
+                      'asset/images/sliderhouse3.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

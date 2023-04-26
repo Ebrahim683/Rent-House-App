@@ -76,7 +76,7 @@ class _AddHousePageState extends State<AddHousePage> {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is AddHouseLoadingState ? true : false,
-             progressIndicator:
+            progressIndicator:
                 const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
             child: SingleChildScrollView(
               child: Column(
@@ -134,9 +134,7 @@ class _AddHousePageState extends State<AddHousePage> {
                   gap(),
                   inputText(
                       controller: addressController,
-                      hint: StorageUtils.getLocation() == ''
-                          ? 'Address'
-                          : StorageUtils.getLocation(),
+                      hint: 'Address',
                       type: TextInputType.text),
                   gap(),
                   inputText(

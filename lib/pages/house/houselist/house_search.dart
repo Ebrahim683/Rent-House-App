@@ -1,16 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rent_house/pages/house/houselist/house_widget.dart';
+
+import '../../../data/model/gethousemodel/get_house_model.dart';
 
 class HouseSearch extends SearchDelegate {
-  List<String> data = [
-    'windows',
-    'apple',
-    'mango',
-    'mango2',
-    'guava',
-    'banana'
-  ];
-  List<String> sug = ['windows', 'apple'];
+  final List<GetHouseModel> getHouseModelList;
+  HouseSearch({required this.getHouseModelList});
   @override
   List<Widget>? buildActions(BuildContext context) {
     return <Widget>[
@@ -35,34 +33,26 @@ class HouseSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    if (query != null && data.contains(query.toLowerCase())) {
-      return ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          if (data.contains(query.toLowerCase())) {
-            return ListTile(
-              title: Text(data[index]),
-            );
-          }
-        },
-      );
-    } else if (query == '') {
-      return const Text('');
-    } else {
-      return const ListTile(
-        title: Text('No result found'),
-      );
-    }
+    return ListView.builder(
+      itemCount: getHouseModelList.length,
+      itemBuilder: (context, index) {
+        if (getHouseModelList[index].fee!.contains(query)) {
+          return HouseWidget(getHouseModel: getHouseModelList[index]);
+        } else if (getHouseModelList[index].address!.contains(query)) {
+          return HouseWidget(getHouseModel: getHouseModelList[index]);
+        } else {
+          return Container();
+        }
+      },
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     return ListView.builder(
-      itemCount: sug.length,
+      itemCount: getHouseModelList.length,
       itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(sug[index]),
-        );
+        return HouseWidget(getHouseModel: getHouseModelList[index]);
       },
     );
   }

@@ -81,6 +81,17 @@ class RoomWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
+                          'ধরনঃ ${ownerHouseModel.category}',
+                          softWrap: false,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
                           'অবস্থা: ${ownerHouseModel.status}',
                           softWrap: false,
                           overflow: TextOverflow.ellipsis,
