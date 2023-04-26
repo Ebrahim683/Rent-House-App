@@ -64,6 +64,19 @@ class _HomePageState extends State<HomePage> {
       'asset/animations/flat.riv',
     ];
 
+    final images = [
+      'asset/images/family.jpg',
+      'asset/images/bachelor.jpg',
+      'asset/images/male.jpg',
+      'asset/images/female.jpg',
+      'asset/images/sublet.jpg',
+      'asset/images/office.jpg',
+      'asset/images/shop.jpg',
+      'asset/images/garage.jpg',
+      'asset/images/industry.jpg',
+      'asset/images/flat.jpg',
+    ];
+
     final titles = [
       'Family',
       'Bachelor',
@@ -112,7 +125,7 @@ class _HomePageState extends State<HomePage> {
           titles.length,
           (index) => CategoryWidget(
             title: titles[index],
-            animation: animations[index],
+            animation: images[index],
           ),
         ),
       ),

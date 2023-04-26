@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +7,6 @@ import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_state.dart';
 import 'package:rent_house/widget/app_widget.dart';
-
 import 'house_widget.dart';
 
 class HouseListPage extends StatefulWidget {

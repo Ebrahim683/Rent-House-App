@@ -38,8 +38,11 @@ class CategoryWidget extends StatelessWidget {
               children: [
                 gap(h: 5.h),
                 Expanded(
-                  child: RiveAnimation.asset(
-                    animation,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Image.asset(
+                      animation,
+                    ),
                   ),
                 ),
                 gap(h: 3.h),
