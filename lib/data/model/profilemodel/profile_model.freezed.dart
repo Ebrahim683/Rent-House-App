@@ -23,6 +23,8 @@ mixin _$ProfileModel {
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
   List<ProfileData>? get profileData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +41,8 @@ abstract class $ProfileModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<ProfileData>? profileData});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<ProfileData>? profileData});
 }
 
 /// @nodoc
@@ -56,12 +59,17 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? profileData = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       profileData: freezed == profileData
           ? _value.profileData
@@ -81,7 +89,8 @@ abstract class _$$_ProfileModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<ProfileData>? profileData});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<ProfileData>? profileData});
 }
 
 /// @nodoc
@@ -96,12 +105,17 @@ class __$$_ProfileModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? profileData = freezed,
   }) {
     return _then(_$_ProfileModel(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       profileData: freezed == profileData
           ? _value._profileData
@@ -116,7 +130,8 @@ class __$$_ProfileModelCopyWithImpl<$Res>
 class _$_ProfileModel implements _ProfileModel {
   const _$_ProfileModel(
       {@JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'message') final List<ProfileData>? profileData})
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<ProfileData>? profileData})
       : _profileData = profileData;
 
   factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
@@ -125,9 +140,12 @@ class _$_ProfileModel implements _ProfileModel {
   @override
   @JsonKey(name: 'status')
   final String? status;
-  final List<ProfileData>? _profileData;
   @override
   @JsonKey(name: 'message')
+  final String? message;
+  final List<ProfileData>? _profileData;
+  @override
+  @JsonKey(name: 'data')
   List<ProfileData>? get profileData {
     final value = _profileData;
     if (value == null) return null;
@@ -138,7 +156,7 @@ class _$_ProfileModel implements _ProfileModel {
 
   @override
   String toString() {
-    return 'ProfileModel(status: $status, profileData: $profileData)';
+    return 'ProfileModel(status: $status, message: $message, profileData: $profileData)';
   }
 
   @override
@@ -147,14 +165,15 @@ class _$_ProfileModel implements _ProfileModel {
         (other.runtimeType == runtimeType &&
             other is _$_ProfileModel &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality()
                 .equals(other._profileData, _profileData));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(_profileData));
+  int get hashCode => Object.hash(runtimeType, status, message,
+      const DeepCollectionEquality().hash(_profileData));
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +192,8 @@ class _$_ProfileModel implements _ProfileModel {
 abstract class _ProfileModel implements ProfileModel {
   const factory _ProfileModel(
           {@JsonKey(name: 'status') final String? status,
-          @JsonKey(name: 'message') final List<ProfileData>? profileData}) =
+          @JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'data') final List<ProfileData>? profileData}) =
       _$_ProfileModel;
 
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =
@@ -184,6 +204,9 @@ abstract class _ProfileModel implements ProfileModel {
   String? get status;
   @override
   @JsonKey(name: 'message')
+  String? get message;
+  @override
+  @JsonKey(name: 'data')
   List<ProfileData>? get profileData;
   @override
   @JsonKey(ignore: true)

@@ -17,7 +17,9 @@ class UsersListPage extends StatefulWidget {
 
 class _UsersListPageState extends State<UsersListPage> {
   refreshCallBack() async {
-    setState(() {});
+    setState(() {
+      BlocProvider.of<ShowOwnerBookedHouseCubit>(context).showUsers();
+    });
   }
 
   @override

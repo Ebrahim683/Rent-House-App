@@ -10,7 +10,8 @@ _$_ShowBookedRoomListModel _$$_ShowBookedRoomListModelFromJson(
         Map<String, dynamic> json) =>
     _$_ShowBookedRoomListModel(
       status: json['status'] as String?,
-      bookedRoomModel: (json['message'] as List<dynamic>?)
+      message: json['message'] as String?,
+      bookedRoomModel: (json['data'] as List<dynamic>?)
           ?.map((e) => ShowBookedRoomModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -19,7 +20,8 @@ Map<String, dynamic> _$$_ShowBookedRoomListModelToJson(
         _$_ShowBookedRoomListModel instance) =>
     <String, dynamic>{
       'status': instance.status,
-      'message': instance.bookedRoomModel,
+      'message': instance.message,
+      'data': instance.bookedRoomModel,
     };
 
 _$_ShowBookedRoomModel _$$_ShowBookedRoomModelFromJson(

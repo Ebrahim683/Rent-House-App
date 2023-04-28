@@ -23,7 +23,9 @@ mixin _$LoginModel {
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
-  List<LoginDetails>? get message => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
+  List<LoginDetails>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +41,8 @@ abstract class $LoginModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<LoginDetails>? message});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LoginDetails>? data});
 }
 
 /// @nodoc
@@ -57,6 +60,7 @@ class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -66,6 +70,10 @@ class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as List<LoginDetails>?,
     ) as $Val);
   }
@@ -81,7 +89,8 @@ abstract class _$$_LoginModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<LoginDetails>? message});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LoginDetails>? data});
 }
 
 /// @nodoc
@@ -97,6 +106,7 @@ class __$$_LoginModelCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
+    Object? data = freezed,
   }) {
     return _then(_$_LoginModel(
       status: freezed == status
@@ -104,8 +114,12 @@ class __$$_LoginModelCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
       message: freezed == message
-          ? _value._message
+          ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      data: freezed == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
               as List<LoginDetails>?,
     ));
   }
@@ -116,8 +130,9 @@ class __$$_LoginModelCopyWithImpl<$Res>
 class _$_LoginModel implements _LoginModel {
   const _$_LoginModel(
       {@JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'message') final List<LoginDetails>? message})
-      : _message = message;
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<LoginDetails>? data})
+      : _data = data;
 
   factory _$_LoginModel.fromJson(Map<String, dynamic> json) =>
       _$$_LoginModelFromJson(json);
@@ -125,20 +140,23 @@ class _$_LoginModel implements _LoginModel {
   @override
   @JsonKey(name: 'status')
   final String? status;
-  final List<LoginDetails>? _message;
   @override
   @JsonKey(name: 'message')
-  List<LoginDetails>? get message {
-    final value = _message;
+  final String? message;
+  final List<LoginDetails>? _data;
+  @override
+  @JsonKey(name: 'data')
+  List<LoginDetails>? get data {
+    final value = _data;
     if (value == null) return null;
-    if (_message is EqualUnmodifiableListView) return _message;
+    if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'LoginModel(status: $status, message: $message)';
+    return 'LoginModel(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -147,13 +165,14 @@ class _$_LoginModel implements _LoginModel {
         (other.runtimeType == runtimeType &&
             other is _$_LoginModel &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other._message, _message));
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(_message));
+      runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -171,9 +190,9 @@ class _$_LoginModel implements _LoginModel {
 
 abstract class _LoginModel implements LoginModel {
   const factory _LoginModel(
-          {@JsonKey(name: 'status') final String? status,
-          @JsonKey(name: 'message') final List<LoginDetails>? message}) =
-      _$_LoginModel;
+      {@JsonKey(name: 'status') final String? status,
+      @JsonKey(name: 'message') final String? message,
+      @JsonKey(name: 'data') final List<LoginDetails>? data}) = _$_LoginModel;
 
   factory _LoginModel.fromJson(Map<String, dynamic> json) =
       _$_LoginModel.fromJson;
@@ -183,7 +202,10 @@ abstract class _LoginModel implements LoginModel {
   String? get status;
   @override
   @JsonKey(name: 'message')
-  List<LoginDetails>? get message;
+  String? get message;
+  @override
+  @JsonKey(name: 'data')
+  List<LoginDetails>? get data;
   @override
   @JsonKey(ignore: true)
   _$$_LoginModelCopyWith<_$_LoginModel> get copyWith =>

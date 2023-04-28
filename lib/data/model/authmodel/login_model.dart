@@ -7,7 +7,8 @@ part 'login_model.freezed.dart';
 class LoginModel with _$LoginModel {
   const factory LoginModel({
     @JsonKey(name: 'status') String? status,
-    @JsonKey(name: 'message') List<LoginDetails>? message,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'data') List<LoginDetails>? data,
   }) = _LoginModel;
   factory LoginModel.fromJson(Map<String, dynamic> json) =>
       _$LoginModelFromJson(json);

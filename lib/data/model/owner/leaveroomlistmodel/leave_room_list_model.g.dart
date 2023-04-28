@@ -10,7 +10,8 @@ _$_LeaveRoomListModel _$$_LeaveRoomListModelFromJson(
         Map<String, dynamic> json) =>
     _$_LeaveRoomListModel(
       status: json['status'] as String?,
-      leaveRoomModel: (json['message'] as List<dynamic>?)
+      message: json['message'] as String?,
+      leaveRoomModel: (json['data'] as List<dynamic>?)
           ?.map((e) => LeaveRoomModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -19,7 +20,8 @@ Map<String, dynamic> _$$_LeaveRoomListModelToJson(
         _$_LeaveRoomListModel instance) =>
     <String, dynamic>{
       'status': instance.status,
-      'message': instance.leaveRoomModel,
+      'message': instance.message,
+      'data': instance.leaveRoomModel,
     };
 
 _$_LeaveRoomModel _$$_LeaveRoomModelFromJson(Map<String, dynamic> json) =>

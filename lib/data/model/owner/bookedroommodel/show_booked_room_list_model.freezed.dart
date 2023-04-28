@@ -24,6 +24,8 @@ mixin _$ShowBookedRoomListModel {
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
   List<ShowBookedRoomModel>? get bookedRoomModel =>
       throw _privateConstructorUsedError;
 
@@ -41,7 +43,8 @@ abstract class $ShowBookedRoomListModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<ShowBookedRoomModel>? bookedRoomModel});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<ShowBookedRoomModel>? bookedRoomModel});
 }
 
 /// @nodoc
@@ -59,12 +62,17 @@ class _$ShowBookedRoomListModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? bookedRoomModel = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       bookedRoomModel: freezed == bookedRoomModel
           ? _value.bookedRoomModel
@@ -84,7 +92,8 @@ abstract class _$$_ShowBookedRoomListModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<ShowBookedRoomModel>? bookedRoomModel});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<ShowBookedRoomModel>? bookedRoomModel});
 }
 
 /// @nodoc
@@ -100,12 +109,17 @@ class __$$_ShowBookedRoomListModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? bookedRoomModel = freezed,
   }) {
     return _then(_$_ShowBookedRoomListModel(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       bookedRoomModel: freezed == bookedRoomModel
           ? _value._bookedRoomModel
@@ -119,10 +133,9 @@ class __$$_ShowBookedRoomListModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ShowBookedRoomListModel implements _ShowBookedRoomListModel {
   const _$_ShowBookedRoomListModel(
-      {@JsonKey(name: 'status')
-          this.status,
-      @JsonKey(name: 'message')
-          final List<ShowBookedRoomModel>? bookedRoomModel})
+      {@JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<ShowBookedRoomModel>? bookedRoomModel})
       : _bookedRoomModel = bookedRoomModel;
 
   factory _$_ShowBookedRoomListModel.fromJson(Map<String, dynamic> json) =>
@@ -131,9 +144,12 @@ class _$_ShowBookedRoomListModel implements _ShowBookedRoomListModel {
   @override
   @JsonKey(name: 'status')
   final String? status;
-  final List<ShowBookedRoomModel>? _bookedRoomModel;
   @override
   @JsonKey(name: 'message')
+  final String? message;
+  final List<ShowBookedRoomModel>? _bookedRoomModel;
+  @override
+  @JsonKey(name: 'data')
   List<ShowBookedRoomModel>? get bookedRoomModel {
     final value = _bookedRoomModel;
     if (value == null) return null;
@@ -144,7 +160,7 @@ class _$_ShowBookedRoomListModel implements _ShowBookedRoomListModel {
 
   @override
   String toString() {
-    return 'ShowBookedRoomListModel(status: $status, bookedRoomModel: $bookedRoomModel)';
+    return 'ShowBookedRoomListModel(status: $status, message: $message, bookedRoomModel: $bookedRoomModel)';
   }
 
   @override
@@ -153,13 +169,14 @@ class _$_ShowBookedRoomListModel implements _ShowBookedRoomListModel {
         (other.runtimeType == runtimeType &&
             other is _$_ShowBookedRoomListModel &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality()
                 .equals(other._bookedRoomModel, _bookedRoomModel));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status,
+  int get hashCode => Object.hash(runtimeType, status, message,
       const DeepCollectionEquality().hash(_bookedRoomModel));
 
   @JsonKey(ignore: true)
@@ -183,6 +200,8 @@ abstract class _ShowBookedRoomListModel implements ShowBookedRoomListModel {
           {@JsonKey(name: 'status')
               final String? status,
           @JsonKey(name: 'message')
+              final String? message,
+          @JsonKey(name: 'data')
               final List<ShowBookedRoomModel>? bookedRoomModel}) =
       _$_ShowBookedRoomListModel;
 
@@ -194,6 +213,9 @@ abstract class _ShowBookedRoomListModel implements ShowBookedRoomListModel {
   String? get status;
   @override
   @JsonKey(name: 'message')
+  String? get message;
+  @override
+  @JsonKey(name: 'data')
   List<ShowBookedRoomModel>? get bookedRoomModel;
   @override
   @JsonKey(ignore: true)

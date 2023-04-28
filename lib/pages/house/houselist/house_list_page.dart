@@ -24,7 +24,9 @@ class _HouseListPageState extends State<HouseListPage> {
   @override
   Widget build(BuildContext context) {
     refreshCallBack() async {
-      setState(() {});
+      setState(() {
+        BlocProvider.of<GetHouseListCubit>(context).getHouse();
+      });
     }
 
     return Scaffold(

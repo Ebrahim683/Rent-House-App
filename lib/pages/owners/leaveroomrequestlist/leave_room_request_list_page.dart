@@ -20,7 +20,9 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
   @override
   Widget build(BuildContext context) {
     refreshCallBack() async {
-      setState(() {});
+      setState(() {
+        BlocProvider.of<LeaveRoomRequestListCubit>(context).getRequestList();
+      });
     }
 
     return Scaffold(

@@ -7,7 +7,8 @@ part 'leave_room_list_model.freezed.dart';
 class LeaveRoomListModel with _$LeaveRoomListModel {
   const factory LeaveRoomListModel({
     @JsonKey(name: 'status') String? status,
-    @JsonKey(name: 'message') List<LeaveRoomModel>? leaveRoomModel,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'data') List<LeaveRoomModel>? leaveRoomModel,
   }) = _LeaveRoomListModel;
   factory LeaveRoomListModel.fromJson(Map<String, dynamic> json) =>
       _$LeaveRoomListModelFromJson(json);

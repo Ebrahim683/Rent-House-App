@@ -9,5 +9,5 @@ String get addHouse => '/owner/addHouse';
 String get showBookedHouseOwner => '/owner/showBookedHouse';
 String get updateHouseOwner => '/owner/updateHouse';
 String get leaveRoomRequest => '/leaveRoom';
-String get leaveRoomRequests => '/leaveRoomRequests';
-String get approveLeaveRoomRequest => '/approveLeaveRoomRequest';
+String get leaveRoomRequests => '/owner/leaveRoomRequests';
+String get approveLeaveRoomRequest => '/owner/approveLeaveRoomRequest';

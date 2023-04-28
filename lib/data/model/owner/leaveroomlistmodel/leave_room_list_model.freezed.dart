@@ -23,6 +23,8 @@ mixin _$LeaveRoomListModel {
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
   List<LeaveRoomModel>? get leaveRoomModel =>
       throw _privateConstructorUsedError;
 
@@ -40,7 +42,8 @@ abstract class $LeaveRoomListModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<LeaveRoomModel>? leaveRoomModel});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LeaveRoomModel>? leaveRoomModel});
 }
 
 /// @nodoc
@@ -57,12 +60,17 @@ class _$LeaveRoomListModelCopyWithImpl<$Res, $Val extends LeaveRoomListModel>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? leaveRoomModel = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       leaveRoomModel: freezed == leaveRoomModel
           ? _value.leaveRoomModel
@@ -82,7 +90,8 @@ abstract class _$$_LeaveRoomListModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<LeaveRoomModel>? leaveRoomModel});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LeaveRoomModel>? leaveRoomModel});
 }
 
 /// @nodoc
@@ -97,12 +106,17 @@ class __$$_LeaveRoomListModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? leaveRoomModel = freezed,
   }) {
     return _then(_$_LeaveRoomListModel(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       leaveRoomModel: freezed == leaveRoomModel
           ? _value._leaveRoomModel
@@ -117,7 +131,8 @@ class __$$_LeaveRoomListModelCopyWithImpl<$Res>
 class _$_LeaveRoomListModel implements _LeaveRoomListModel {
   const _$_LeaveRoomListModel(
       {@JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'message') final List<LeaveRoomModel>? leaveRoomModel})
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<LeaveRoomModel>? leaveRoomModel})
       : _leaveRoomModel = leaveRoomModel;
 
   factory _$_LeaveRoomListModel.fromJson(Map<String, dynamic> json) =>
@@ -126,9 +141,12 @@ class _$_LeaveRoomListModel implements _LeaveRoomListModel {
   @override
   @JsonKey(name: 'status')
   final String? status;
-  final List<LeaveRoomModel>? _leaveRoomModel;
   @override
   @JsonKey(name: 'message')
+  final String? message;
+  final List<LeaveRoomModel>? _leaveRoomModel;
+  @override
+  @JsonKey(name: 'data')
   List<LeaveRoomModel>? get leaveRoomModel {
     final value = _leaveRoomModel;
     if (value == null) return null;
@@ -139,7 +157,7 @@ class _$_LeaveRoomListModel implements _LeaveRoomListModel {
 
   @override
   String toString() {
-    return 'LeaveRoomListModel(status: $status, leaveRoomModel: $leaveRoomModel)';
+    return 'LeaveRoomListModel(status: $status, message: $message, leaveRoomModel: $leaveRoomModel)';
   }
 
   @override
@@ -148,13 +166,14 @@ class _$_LeaveRoomListModel implements _LeaveRoomListModel {
         (other.runtimeType == runtimeType &&
             other is _$_LeaveRoomListModel &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality()
                 .equals(other._leaveRoomModel, _leaveRoomModel));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status,
+  int get hashCode => Object.hash(runtimeType, status, message,
       const DeepCollectionEquality().hash(_leaveRoomModel));
 
   @JsonKey(ignore: true)
@@ -174,10 +193,10 @@ class _$_LeaveRoomListModel implements _LeaveRoomListModel {
 
 abstract class _LeaveRoomListModel implements LeaveRoomListModel {
   const factory _LeaveRoomListModel(
-      {@JsonKey(name: 'status')
-          final String? status,
-      @JsonKey(name: 'message')
-          final List<LeaveRoomModel>? leaveRoomModel}) = _$_LeaveRoomListModel;
+          {@JsonKey(name: 'status') final String? status,
+          @JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'data') final List<LeaveRoomModel>? leaveRoomModel}) =
+      _$_LeaveRoomListModel;
 
   factory _LeaveRoomListModel.fromJson(Map<String, dynamic> json) =
       _$_LeaveRoomListModel.fromJson;
@@ -187,6 +206,9 @@ abstract class _LeaveRoomListModel implements LeaveRoomListModel {
   String? get status;
   @override
   @JsonKey(name: 'message')
+  String? get message;
+  @override
+  @JsonKey(name: 'data')
   List<LeaveRoomModel>? get leaveRoomModel;
   @override
   @JsonKey(ignore: true)

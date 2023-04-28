@@ -35,12 +35,13 @@ class _LoginPageState extends State<LoginPage> {
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
+            log(state.loginModel.message.toString());
             StorageUtils.saveNumber(mobileController.text.trim().toString());
-            StorageUtils.saveName(state.loginModel.message![0].name.toString());
-            StorageUtils.saveRole(state.loginModel.message![0].role.toString());
-            if (state.loginModel.message![0].role == 'user') {
+            StorageUtils.saveName(state.loginModel.data![0].name.toString());
+            StorageUtils.saveRole(state.loginModel.data![0].role.toString());
+            if (state.loginModel.data![0].role == 'user') {
               pushOff(name: home_page);
-            } else if (state.loginModel.message![0].role == 'owner') {
+            } else if (state.loginModel.data![0].role == 'owner') {
               pushOff(name: owner_dashboard_page);
             }
           } else if (state is LoginErrorState) {

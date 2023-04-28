@@ -10,7 +10,8 @@ _$_BookedHouseListModel _$$_BookedHouseListModelFromJson(
         Map<String, dynamic> json) =>
     _$_BookedHouseListModel(
       status: json['status'] as String?,
-      bookedHouseModel: (json['message'] as List<dynamic>?)
+      message: json['message'] as String?,
+      bookedHouseModel: (json['data'] as List<dynamic>?)
           ?.map((e) => BookedHouseModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -19,7 +20,8 @@ Map<String, dynamic> _$$_BookedHouseListModelToJson(
         _$_BookedHouseListModel instance) =>
     <String, dynamic>{
       'status': instance.status,
-      'message': instance.bookedHouseModel,
+      'message': instance.message,
+      'data': instance.bookedHouseModel,
     };
 
 _$_BookedHouseModel _$$_BookedHouseModelFromJson(Map<String, dynamic> json) =>

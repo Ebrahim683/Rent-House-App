@@ -23,6 +23,8 @@ mixin _$OwnerHouseListModel {
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
   List<OwnerHouseModel>? get ownerHouseModel =>
       throw _privateConstructorUsedError;
 
@@ -40,7 +42,8 @@ abstract class $OwnerHouseListModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<OwnerHouseModel>? ownerHouseModel});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<OwnerHouseModel>? ownerHouseModel});
 }
 
 /// @nodoc
@@ -57,12 +60,17 @@ class _$OwnerHouseListModelCopyWithImpl<$Res, $Val extends OwnerHouseListModel>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? ownerHouseModel = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       ownerHouseModel: freezed == ownerHouseModel
           ? _value.ownerHouseModel
@@ -82,7 +90,8 @@ abstract class _$$_OwnerHouseListModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'message') List<OwnerHouseModel>? ownerHouseModel});
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<OwnerHouseModel>? ownerHouseModel});
 }
 
 /// @nodoc
@@ -97,12 +106,17 @@ class __$$_OwnerHouseListModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = freezed,
     Object? ownerHouseModel = freezed,
   }) {
     return _then(_$_OwnerHouseListModel(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       ownerHouseModel: freezed == ownerHouseModel
           ? _value._ownerHouseModel
@@ -117,7 +131,8 @@ class __$$_OwnerHouseListModelCopyWithImpl<$Res>
 class _$_OwnerHouseListModel implements _OwnerHouseListModel {
   const _$_OwnerHouseListModel(
       {@JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'message') final List<OwnerHouseModel>? ownerHouseModel})
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<OwnerHouseModel>? ownerHouseModel})
       : _ownerHouseModel = ownerHouseModel;
 
   factory _$_OwnerHouseListModel.fromJson(Map<String, dynamic> json) =>
@@ -126,9 +141,12 @@ class _$_OwnerHouseListModel implements _OwnerHouseListModel {
   @override
   @JsonKey(name: 'status')
   final String? status;
-  final List<OwnerHouseModel>? _ownerHouseModel;
   @override
   @JsonKey(name: 'message')
+  final String? message;
+  final List<OwnerHouseModel>? _ownerHouseModel;
+  @override
+  @JsonKey(name: 'data')
   List<OwnerHouseModel>? get ownerHouseModel {
     final value = _ownerHouseModel;
     if (value == null) return null;
@@ -139,7 +157,7 @@ class _$_OwnerHouseListModel implements _OwnerHouseListModel {
 
   @override
   String toString() {
-    return 'OwnerHouseListModel(status: $status, ownerHouseModel: $ownerHouseModel)';
+    return 'OwnerHouseListModel(status: $status, message: $message, ownerHouseModel: $ownerHouseModel)';
   }
 
   @override
@@ -148,13 +166,14 @@ class _$_OwnerHouseListModel implements _OwnerHouseListModel {
         (other.runtimeType == runtimeType &&
             other is _$_OwnerHouseListModel &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality()
                 .equals(other._ownerHouseModel, _ownerHouseModel));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status,
+  int get hashCode => Object.hash(runtimeType, status, message,
       const DeepCollectionEquality().hash(_ownerHouseModel));
 
   @JsonKey(ignore: true)
@@ -177,6 +196,8 @@ abstract class _OwnerHouseListModel implements OwnerHouseListModel {
           {@JsonKey(name: 'status')
               final String? status,
           @JsonKey(name: 'message')
+              final String? message,
+          @JsonKey(name: 'data')
               final List<OwnerHouseModel>? ownerHouseModel}) =
       _$_OwnerHouseListModel;
 
@@ -188,6 +209,9 @@ abstract class _OwnerHouseListModel implements OwnerHouseListModel {
   String? get status;
   @override
   @JsonKey(name: 'message')
+  String? get message;
+  @override
+  @JsonKey(name: 'data')
   List<OwnerHouseModel>? get ownerHouseModel;
   @override
   @JsonKey(ignore: true)

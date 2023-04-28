@@ -9,7 +9,8 @@ part of 'login_model.dart';
 _$_LoginModel _$$_LoginModelFromJson(Map<String, dynamic> json) =>
     _$_LoginModel(
       status: json['status'] as String?,
-      message: (json['message'] as List<dynamic>?)
+      message: json['message'] as String?,
+      data: (json['data'] as List<dynamic>?)
           ?.map((e) => LoginDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$_LoginModelToJson(_$_LoginModel instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
+      'data': instance.data,
     };
 
 _$_LoginDetails _$$_LoginDetailsFromJson(Map<String, dynamic> json) =>

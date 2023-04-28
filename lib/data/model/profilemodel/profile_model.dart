@@ -8,7 +8,8 @@ part 'profile_model.freezed.dart';
 class ProfileModel with _$ProfileModel {
   const factory ProfileModel({
     @JsonKey(name: 'status') String? status,
-    @JsonKey(name: 'message') List<ProfileData>? profileData,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'data') List<ProfileData>? profileData,
   }) = _ProfileModel;
   factory ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileModelFromJson(json);

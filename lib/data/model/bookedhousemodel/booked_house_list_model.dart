@@ -7,7 +7,8 @@ part 'booked_house_list_model.freezed.dart';
 class BookedHouseListModel with _$BookedHouseListModel {
   const factory BookedHouseListModel({
     @JsonKey(name: 'status') String? status,
-    @JsonKey(name: 'message') List<BookedHouseModel>? bookedHouseModel,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'data') List<BookedHouseModel>? bookedHouseModel,
   }) = _BookedHouseListModel;
   factory BookedHouseListModel.fromJson(Map<String, dynamic> json) =>
       _$BookedHouseListModelFromJson(json);
