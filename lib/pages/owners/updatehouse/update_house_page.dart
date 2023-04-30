@@ -1,20 +1,27 @@
 import 'dart:developer';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/state/cubit/owner/updatehouse/update_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/updatehouse/update_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
-import 'package:rive/rive.dart';
 
 import '../../../data/model/owner/ownerhousemodel/owner_house_list_model.dart';
 
-class UpdateHousePage extends StatelessWidget {
+class UpdateHousePage extends StatefulWidget {
   final OwnerHouseModel ownerHouseModel;
   const UpdateHousePage({super.key, required this.ownerHouseModel});
 
+  @override
+  State<UpdateHousePage> createState() => _UpdateHousePageState();
+}
+
+class _UpdateHousePageState extends State<UpdateHousePage> {
   @override
   Widget build(BuildContext context) {
     final categoryController = TextEditingController();
@@ -27,6 +34,28 @@ class UpdateHousePage extends StatelessWidget {
     final addressController = TextEditingController();
     final noticeController = TextEditingController();
     final statusController = TextEditingController();
+
+    List<String> items = [
+      'family',
+      'bachelor',
+      'female',
+      'sublet',
+      'office',
+      'warehouse',
+      'shop',
+      'garage',
+      'others',
+      'industry',
+      'flat',
+    ];
+    int index = 0;
+    var category;
+    Container labelText({required String label}) {
+      return Container(
+        margin: EdgeInsets.only(top: 3.h, bottom: 3.h, left: 30.w),
+        child: Align(alignment: Alignment.centerLeft, child: Text(label)),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -45,56 +74,102 @@ class UpdateHousePage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is UpdateHouseLoadingState ? true : false,
-            progressIndicator:
-                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
+            progressIndicator: Lottie.asset(
+              'asset/animations/timer.json',
+            ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  inputText(
-                      controller: categoryController,
-                      hint: ownerHouseModel.category.toString()),
+                  // gap(),
+                  // Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  //   child: DropdownButtonFormField(
+                  //     value: category,
+                  //     decoration: InputDecoration(
+                  //       border: OutlineInputBorder(
+                  //           borderRadius: BorderRadius.circular(15.r)),
+                  //     ),
+                  //     hint: Text(widget.ownerHouseModel.category.toString()),
+                  //     items: items.map((item) {
+                  //       return DropdownMenuItem(value: item, child: Text(item));
+                  //     }).toList(),
+                  //     onChanged: (value) {
+                  //       setState(() {
+                  //         category = value.toString();
+                  //         log(category.toString());
+                  //       });
+                  //     },
+                  //   ),
+                  // ),
                   gap(),
+                  labelText(label: 'Fee'),
                   inputText(
-                      controller: feeController,
-                      hint: ownerHouseModel.fee.toString(),
-                      type: TextInputType.number),
+                    controller: feeController,
+                    hint: widget.ownerHouseModel.fee.toString(),
+                    type: TextInputType.number,
+                    icon: Icons.wallet,
+                  ),
                   gap(),
+                  labelText(label: 'Quantity'),
                   inputText(
-                      controller: quantityController,
-                      hint: ownerHouseModel.quantity.toString(),
-                      type: TextInputType.number),
+                    controller: quantityController,
+                    hint: widget.ownerHouseModel.quantity.toString(),
+                    type: TextInputType.number,
+                    icon: Icons.add_home_work_outlined,
+                  ),
                   gap(),
+                  labelText(label: 'Advance Fee'),
                   inputText(
-                      controller: advanceFeeController,
-                      hint: ownerHouseModel.advanceFee.toString(),
-                      type: TextInputType.number),
+                    controller: advanceFeeController,
+                    hint: widget.ownerHouseModel.advanceFee.toString(),
+                    type: TextInputType.number,
+                    icon: Icons.currency_exchange,
+                  ),
                   gap(),
+                  labelText(label: 'Electricity Fee'),
                   inputText(
-                      controller: electricityFeeController,
-                      hint: ownerHouseModel.electricityFee.toString(),
-                      type: TextInputType.number),
+                    controller: electricityFeeController,
+                    hint: widget.ownerHouseModel.electricityFee.toString(),
+                    type: TextInputType.number,
+                    icon: Icons.electrical_services_outlined,
+                  ),
                   gap(),
+                  labelText(label: 'Gas Fee'),
                   inputText(
-                      controller: gasFeeController,
-                      hint: ownerHouseModel.gasFee.toString(),
-                      type: TextInputType.number),
+                    controller: gasFeeController,
+                    hint: widget.ownerHouseModel.gasFee.toString(),
+                    type: TextInputType.number,
+                    icon: Icons.gas_meter_outlined,
+                  ),
                   gap(),
+                  labelText(label: 'Others Fee'),
                   inputText(
-                      controller: othersFeeController,
-                      hint: ownerHouseModel.othersFee.toString(),
-                      type: TextInputType.number),
+                    controller: othersFeeController,
+                    hint: widget.ownerHouseModel.othersFee.toString(),
+                    type: TextInputType.number,
+                    icon: Icons.money,
+                  ),
                   gap(),
+                  labelText(label: 'Address'),
                   inputText(
-                      controller: addressController,
-                      hint: ownerHouseModel.address.toString()),
+                    controller: addressController,
+                    hint: widget.ownerHouseModel.address.toString(),
+                    icon: Icons.location_on_outlined,
+                  ),
                   gap(),
+                  labelText(label: 'Notice'),
                   inputText(
-                      controller: noticeController,
-                      hint: ownerHouseModel.notice.toString()),
+                    controller: noticeController,
+                    hint: widget.ownerHouseModel.notice.toString(),
+                    icon: Icons.warning_rounded,
+                  ),
                   gap(),
+                  labelText(label: 'Status'),
                   inputText(
-                      controller: statusController,
-                      hint: ownerHouseModel.status.toString()),
+                    controller: statusController,
+                    hint: widget.ownerHouseModel.status.toString(),
+                    icon: Icons.timer,
+                  ),
                   gap(),
                 ],
               ),
@@ -105,8 +180,7 @@ class UpdateHousePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         onPressed: () {
-          log(ownerHouseModel.id!.toString());
-          String category = categoryController.text.toString();
+          log(category.toString());
           String fee = feeController.text.toString();
           String quantity = quantityController.text.toString();
           String advanceFee = advanceFeeController.text.toString();
@@ -117,26 +191,33 @@ class UpdateHousePage extends StatelessWidget {
           String notice = noticeController.text.toString();
           String status = statusController.text.toString();
           BlocProvider.of<UpdateHouseCubit>(context).updateHouse(
-            houseId: ownerHouseModel.id!,
-            category:
-                category == '' ? ownerHouseModel.category.toString() : category,
-            fee: fee == '' ? ownerHouseModel.fee.toString() : fee,
-            quantity:
-                quantity == '' ? ownerHouseModel.quantity.toString() : quantity,
+            houseId: widget.ownerHouseModel.id!,
+            category: widget.ownerHouseModel.category.toString(),
+            fee: fee == '' ? widget.ownerHouseModel.fee.toString() : fee,
+            quantity: quantity == ''
+                ? widget.ownerHouseModel.quantity.toString()
+                : quantity,
             advanceFee: advanceFee == ''
-                ? ownerHouseModel.advanceFee.toString()
+                ? widget.ownerHouseModel.advanceFee.toString()
                 : advanceFee,
             electricityFee: electricityFee == ''
-                ? ownerHouseModel.electricityFee.toString()
+                ? widget.ownerHouseModel.electricityFee.toString()
                 : electricityFee,
-            gasFee: gasFee == '' ? ownerHouseModel.gasFee.toString() : gasFee,
+            gasFee: gasFee == ''
+                ? widget.ownerHouseModel.gasFee.toString()
+                : gasFee,
             othersFee: othersFee == ''
-                ? ownerHouseModel.othersFee.toString()
+                ? widget.ownerHouseModel.othersFee.toString()
                 : othersFee,
-            address:
-                address == '' ? ownerHouseModel.address.toString() : address,
-            notice: notice == '' ? ownerHouseModel.notice.toString() : notice,
-            status: status == '' ? ownerHouseModel.status.toString() : status,
+            address: address == ''
+                ? widget.ownerHouseModel.address.toString()
+                : address,
+            notice: notice == ''
+                ? widget.ownerHouseModel.notice.toString()
+                : notice,
+            status: status == ''
+                ? widget.ownerHouseModel.status.toString()
+                : status,
           );
         },
         child: const Icon(

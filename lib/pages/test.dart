@@ -1,9 +1,15 @@
 import 'dart:developer';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:rent_house/pages/house/houselist/house_search.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:rent_house/utils/utils.dart';
+import 'package:rent_house/widget/app_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -46,10 +52,26 @@ class _TestPageState extends State<TestPage> {
     }
   }
 
+  List<String> items = [
+    'family',
+    'bachelor',
+    'female',
+    'sublet',
+    'office',
+    'warehouse',
+    'shop',
+    'garage',
+    'others',
+    'industry',
+    'flat',
+  ];
+
+  String? selectedValue;
+
   @override
   void initState() {
     super.initState();
-    getCurrentPosition();
+    // getCurrentPosition();
   }
 
   @override
@@ -58,13 +80,13 @@ class _TestPageState extends State<TestPage> {
       appBar: AppBar(),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-                onPressed: () async {
-                  getCurrentPosition();
-                },
-                child: Text('get location')),
+              child: const Text('call'),
+              onPressed: () async {
+                makeCall(number: '5434165465');
+              },
+            ),
           ],
         ),
       ),

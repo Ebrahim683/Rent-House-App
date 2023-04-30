@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/owner/ownerhousemodel/owner_house_list_model.dart';
 import 'package:rent_house/pages/owners/dashboard/room_widget.dart';
 import 'package:rent_house/routers/routes.dart';
@@ -126,25 +128,75 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                   },
                   builder: (context, state) {
                     if (state is ShowOwnerHouseLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return Center(
+                        child: Lottie.asset(
+                          'asset/animations/timer.json',
+                        ),
                       );
                     } else if (state is ShowOwnerHouseSuccessState) {
                       OwnerHouseListModel ownerHouseListModel =
                           state.ownerHouseListModel;
                       List<OwnerHouseModel> ownerHouseModel =
                           ownerHouseListModel.ownerHouseModel!;
-                      return ListView.builder(
-                        itemCount: ownerHouseModel.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return RoomWidget(
-                              ownerHouseModel: ownerHouseModel[index]);
-                        },
+                      if (ownerHouseModel.isEmpty) {
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('No room available'),
+                              gap(),
+                              refreshButton(onPress: () {
+                                BlocProvider.of<ShowOwnerHouseCubit>(context)
+                                    .showOwnerHouse();
+                              }),
+                            ],
+                          ),
+                        );
+                      } else {
+                        return LoadingOverlay(
+                          isLoading: state is ShowOwnerHouseLoadingState
+                              ? true
+                              : false,
+                          progressIndicator: Lottie.asset(
+                            'asset/animations/timer.json',
+                          ),
+                          child: ListView.builder(
+                            itemCount: ownerHouseModel.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return RoomWidget(
+                                  ownerHouseModel: ownerHouseModel[index]);
+                            },
+                          ),
+                        );
+                      }
+                    } else if (state is ShowOwnerHouseErrorState) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(state.error),
+                            gap(),
+                            refreshButton(onPress: () {
+                              BlocProvider.of<ShowOwnerHouseCubit>(context)
+                                  .showOwnerHouse();
+                            }),
+                          ],
+                        ),
                       );
                     } else {
-                      return const Center(
-                        child: Text('Something went wrong try to refresh'),
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Something went wrong try again'),
+                            gap(),
+                            refreshButton(onPress: () {
+                              BlocProvider.of<ShowOwnerHouseCubit>(context)
+                                  .showOwnerHouse();
+                            }),
+                          ],
+                        ),
                       );
                     }
                   },

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -64,5 +65,16 @@ gap({double? h, double? w}) {
   return SizedBox(
     height: h ?? 20.h,
     width: w ?? 20.w,
+  );
+}
+
+CupertinoButton refreshButton({required Function onPress}) {
+  return CupertinoButton(
+    color: Colors.orange,
+    borderRadius: BorderRadius.circular(20.r),
+    onPressed: () {
+      onPress();
+    },
+    child: const Text('Try again'),
   );
 }

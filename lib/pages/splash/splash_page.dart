@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/storage_utils.dart';
-import 'package:rive/rive.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -19,6 +17,8 @@ class _SplashPageState extends State<SplashPage> {
         pushOff(name: home_page);
       } else if (StorageUtils.getRole() == 'owner') {
         pushOff(name: owner_dashboard_page);
+      } else if (StorageUtils.getRole() == '') {
+        pushOff(name: login_page);
       } else {
         pushOff(name: login_page);
       }
@@ -33,10 +33,22 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color.fromARGB(255, 49, 49, 49),
-      body: RiveAnimation.asset(
-        'asset/animations/loading1.riv',
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromARGB(255, 245, 145, 98),
+                Color.fromARGB(255, 41, 67, 136),
+              ]),
+        ),
+        child: Center(
+          child: Lottie.asset(
+            'asset/animations/loading.json',
+          ),
+        ),
       ),
     );
   }

@@ -1,9 +1,12 @@
+import 'dart:developer';
+
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:rent_house/routers/routes.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'app_colors.dart';
-import 'package:cool_alert/cool_alert.dart';
 
 showSnackBar({required BuildContext context, required String message}) {
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -42,4 +45,13 @@ warningDialog({required BuildContext context, required String message}) {
       type: CoolAlertType.warning,
       text: message,
       loopAnimation: true);
+}
+
+makeCall({required String number}) async {
+  final Uri url = Uri(scheme: 'tel', path: number);
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    log('fail');
+  }
 }

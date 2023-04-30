@@ -22,6 +22,7 @@ class BookedHouseModel with _$BookedHouseModel {
     @JsonKey(name: 'payment') String? payment,
     @JsonKey(name: 'owner_id') int? ownerId,
     @JsonKey(name: 'owner_name') String? ownerName,
+    @JsonKey(name: 'owner_number') String? ownerNumber,
     @JsonKey(name: 'image') String? image,
     @JsonKey(name: 'category') String? category,
     @JsonKey(name: 'fee') String? fee,

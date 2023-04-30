@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
@@ -79,17 +80,19 @@ class HouseDetailsPage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is BookHouseLoadingState ? true : false,
-            progressIndicator:
-                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
+            progressIndicator: Lottie.asset(
+              'asset/animations/timer.json',
+            ),
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
                   leading: IconButton(
-                      onPressed: () => Get.back(),
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      )),
+                    onPressed: () => Get.back(),
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                  ),
                   backgroundColor: Colors.amber[200],
                   pinned: true,
                   toolbarHeight: 60,
@@ -107,18 +110,32 @@ class HouseDetailsPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          gap(),
                           Expanded(
-                            child: Center(
-                              child: Text(
-                                getHouseModel.ownerName.toString(),
-                                style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w500),
-                                softWrap: false,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            child: Text(
+                              getHouseModel.ownerName.toString(),
+                              style: TextStyle(
+                                  fontSize: 18.sp, fontWeight: FontWeight.w500),
+                              softWrap: false,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
+                          gap(w: 10.w),
+                          Text(
+                            getHouseModel.ownerNumber.toString(),
+                            style: TextStyle(
+                                fontSize: 18.sp, fontWeight: FontWeight.w500),
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                makeCall(
+                                    number:
+                                        getHouseModel.ownerNumber.toString());
+                              },
+                              icon: const Icon(Icons.call)),
+                          gap(),
                         ],
                       ),
                     ),

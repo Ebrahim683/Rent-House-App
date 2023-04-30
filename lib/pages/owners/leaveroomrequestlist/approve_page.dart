@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/owner/leaveroomlistmodel/leave_room_list_model.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_state.dart';
 import 'package:rent_house/utils/utils.dart';
-import 'package:rive/rive.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../../widget/app_widget.dart';
@@ -56,6 +56,15 @@ class ApprovePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(leaveRoomModel.userName.toString()),
+        actions: [
+          IconButton(
+            onPressed: () {
+              makeCall(number: leaveRoomModel.userNumber.toString());
+            },
+            icon: const Icon(Icons.call),
+          ),
+          gap(),
+        ],
       ),
       body: BlocConsumer<ApproveCubit, ApproveState>(
         listener: (context, state) {
@@ -69,8 +78,9 @@ class ApprovePage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is ApproveLoadingState ? true : false,
-            progressIndicator:
-                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
+            progressIndicator: Lottie.asset(
+              'asset/animations/timer.json',
+            ),
             child: Column(
               children: [
                 setInfo(

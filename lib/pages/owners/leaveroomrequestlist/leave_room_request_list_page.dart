@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/owner/leaveroomlistmodel/leave_room_list_model.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/utils.dart';
+import 'package:rent_house/widget/app_widget.dart';
 
 import '../../../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_cubit.dart';
 import '../../../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_state.dart';
@@ -38,32 +42,89 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
             }
           },
           builder: (context, state) {
-            if (state is LeaveRoomRequestSuccessState) {
+            if (state is LeaveRoomRequestLoadingState) {
+              return Center(
+                child: Lottie.asset(
+                  'asset/animations/timer.json',
+                ),
+              );
+            } else if (state is LeaveRoomRequestSuccessState) {
               LeaveRoomListModel leaveRoomListModel = state.leaveRoomListModel;
               List<LeaveRoomModel> leaveRoomModel =
                   leaveRoomListModel.leaveRoomModel!;
-              return ListView.builder(
-                itemCount: leaveRoomModel.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      child: Text(leaveRoomModel[index].requestId.toString()),
-                    ),
-                    title: Text(leaveRoomModel[index].userName.toString()),
-                    subtitle: Text(leaveRoomModel[index].userNumber.toString()),
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        approve_page,
-                        arguments: {'leaveRoomModel': leaveRoomModel[index]},
+              if (leaveRoomModel.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('No request available'),
+                      gap(),
+                      refreshButton(onPress: () {
+                        BlocProvider.of<LeaveRoomRequestListCubit>(context)
+                            .getRequestList();
+                      }),
+                    ],
+                  ),
+                );
+              } else {
+                return LoadingOverlay(
+                  isLoading:
+                      state is LeaveRoomRequestLoadingState ? true : false,
+                  progressIndicator: Lottie.asset(
+                    'asset/animations/timer.json',
+                  ),
+                  child: ListView.builder(
+                    itemCount: leaveRoomModel.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: CircleAvatar(
+                          child:
+                              Text(leaveRoomModel[index].requestId.toString()),
+                        ),
+                        title: Text(leaveRoomModel[index].userName.toString()),
+                        subtitle:
+                            Text(leaveRoomModel[index].userNumber.toString()),
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            approve_page,
+                            arguments: {
+                              'leaveRoomModel': leaveRoomModel[index]
+                            },
+                          );
+                        },
                       );
                     },
-                  );
-                },
+                  ),
+                );
+              }
+            } else if (state is LeaveRoomRequestErrorState) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(state.error),
+                    gap(),
+                    refreshButton(onPress: () {
+                      BlocProvider.of<LeaveRoomRequestListCubit>(context)
+                          .getRequestList();
+                    }),
+                  ],
+                ),
               );
             } else {
-              return const Center(
-                child: Text('Something went wrong try to refresh'),
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Something went wrong try again'),
+                    gap(),
+                    refreshButton(onPress: () {
+                      BlocProvider.of<LeaveRoomRequestListCubit>(context)
+                          .getRequestList();
+                    }),
+                  ],
+                ),
               );
             }
           },

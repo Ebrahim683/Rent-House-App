@@ -51,19 +51,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final animations = [
-      'asset/animations/family.riv',
-      'asset/animations/bachelor.riv',
-      'asset/animations/male.riv',
-      'asset/animations/female.riv',
-      'asset/animations/sublet.riv',
-      'asset/animations/office.riv',
-      'asset/animations/shop.riv',
-      'asset/animations/garage.riv',
-      'asset/animations/industry.riv',
-      'asset/animations/flat.riv',
-    ];
-
     final images = [
       'asset/images/family.jpg',
       'asset/images/bachelor.jpg',

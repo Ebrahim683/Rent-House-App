@@ -4,8 +4,8 @@ import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 
 class ApiService {
-  // static String baseUrl = 'http://renthouse-api.infinityalgostation.com';
-  static String baseUrl = 'http://10.0.2.2:5000';
+  static String baseUrl = 'http://renthouse-api.infinityalgostation.com';
+  // static String baseUrl = 'http://10.0.2.2:5000';
   static final _dio = dio.Dio();
   ApiService();
   static Future<dynamic> getApi(

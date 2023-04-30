@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_state.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:rent_house/utils/utils.dart';
-import 'package:rive/rive.dart';
 
 import '../../utils/app_colors.dart';
 import '../../widget/app_widget.dart';
@@ -53,8 +53,9 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is AuthLoadingState ? true : false,
-            progressIndicator:
-                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
+            progressIndicator: Lottie.asset(
+              'asset/animations/timer.json',
+            ),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(

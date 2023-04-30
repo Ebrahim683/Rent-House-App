@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/gethousemodel/get_house_list_model.dart';
 import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
 import 'package:rent_house/pages/house/houselist/house_search.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_state.dart';
 import 'package:rent_house/utils/utils.dart';
+import '../../../widget/app_widget.dart';
 import 'house_widget.dart';
 
 class HouseListPage extends StatefulWidget {
@@ -52,27 +55,68 @@ class _HouseListPageState extends State<HouseListPage> {
           },
           builder: (context, state) {
             if (state is GetHouseListLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Center(
+                child: Lottie.asset(
+                  'asset/animations/timer.json',
+                ),
               );
             } else if (state is GetHouseListSuccessState) {
               GetHouseListModel getHouseListModel = state.getHouseListModel;
               List<GetHouseModel>? getHouseModel =
                   getHouseListModel.getHouseModel;
-              return ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: getHouseModel?.length,
-                itemBuilder: (context, index) {
-                  return HouseWidget(getHouseModel: getHouseModel![index]);
-                },
-              );
+              if (getHouseModel!.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('No room available'),
+                      gap(),
+                      refreshButton(onPress: () {
+                        BlocProvider.of<GetHouseListCubit>(context).getHouse();
+                      }),
+                    ],
+                  ),
+                );
+              } else {
+                return LoadingOverlay(
+                  isLoading: state is GetHouseListLoadingState ? true : false,
+                  progressIndicator: Lottie.asset(
+                    'asset/animations/timer.json',
+                  ),
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: getHouseModel.length,
+                    itemBuilder: (context, index) {
+                      return HouseWidget(getHouseModel: getHouseModel[index]);
+                    },
+                  ),
+                );
+              }
             } else if (state is GetHouseListErrorState) {
               return Center(
-                child: Text(state.error),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(state.error),
+                    gap(),
+                    refreshButton(onPress: () {
+                      BlocProvider.of<GetHouseListCubit>(context).getHouse();
+                    }),
+                  ],
+                ),
               );
             } else {
-              return const Center(
-                child: Text('Error'),
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Something went wrong try again'),
+                    gap(),
+                    refreshButton(onPress: () {
+                      BlocProvider.of<GetHouseListCubit>(context).getHouse();
+                    }),
+                  ],
+                ),
               );
             }
           },

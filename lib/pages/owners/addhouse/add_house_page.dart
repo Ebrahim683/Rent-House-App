@@ -4,6 +4,7 @@ import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
@@ -76,8 +77,9 @@ class _AddHousePageState extends State<AddHousePage> {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is AddHouseLoadingState ? true : false,
-            progressIndicator:
-                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
+            progressIndicator: Lottie.asset(
+              'asset/animations/timer.json',
+            ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -103,49 +105,67 @@ class _AddHousePageState extends State<AddHousePage> {
                   ),
                   gap(),
                   inputText(
-                      controller: feeController,
-                      hint: 'Fee',
-                      type: TextInputType.number),
+                    controller: feeController,
+                    hint: 'Fee',
+                    type: TextInputType.number,
+                    icon: Icons.wallet,
+                  ),
                   gap(),
                   inputText(
-                      controller: quantityController,
-                      hint: 'Quantity',
-                      type: TextInputType.number),
+                    controller: quantityController,
+                    hint: 'Quantity',
+                    type: TextInputType.number,
+                    icon: Icons.add_home_work_outlined,
+                  ),
                   gap(),
                   inputText(
-                      controller: advanceFeeController,
-                      hint: 'Advance fee',
-                      type: TextInputType.number),
+                    controller: advanceFeeController,
+                    hint: 'Advance fee',
+                    type: TextInputType.number,
+                    icon: Icons.currency_exchange,
+                  ),
                   gap(),
                   inputText(
-                      controller: electricityFeeController,
-                      hint: 'Electricity fee',
-                      type: TextInputType.number),
+                    controller: electricityFeeController,
+                    hint: 'Electricity fee',
+                    type: TextInputType.number,
+                    icon: Icons.electrical_services_outlined,
+                  ),
                   gap(),
                   inputText(
-                      controller: gasFeeController,
-                      hint: 'Gas fee',
-                      type: TextInputType.number),
+                    controller: gasFeeController,
+                    hint: 'Gas fee',
+                    type: TextInputType.number,
+                    icon: Icons.gas_meter_outlined,
+                  ),
                   gap(),
                   inputText(
-                      controller: othersFeeController,
-                      hint: 'Others fee',
-                      type: TextInputType.number),
+                    controller: othersFeeController,
+                    hint: 'Others fee',
+                    type: TextInputType.number,
+                    icon: Icons.money,
+                  ),
                   gap(),
                   inputText(
-                      controller: addressController,
-                      hint: 'Address',
-                      type: TextInputType.text),
+                    controller: addressController,
+                    hint: 'Address',
+                    type: TextInputType.text,
+                    icon: Icons.location_on_outlined,
+                  ),
                   gap(),
                   inputText(
-                      controller: noticeController,
-                      hint: 'Notice',
-                      type: TextInputType.text),
+                    controller: noticeController,
+                    hint: 'Notice',
+                    type: TextInputType.text,
+                    icon: Icons.warning_rounded,
+                  ),
                   gap(),
                   inputText(
-                      controller: statusController,
-                      hint: 'Status',
-                      type: TextInputType.text),
+                    controller: statusController,
+                    hint: 'Status',
+                    type: TextInputType.text,
+                    icon: Icons.timer,
+                  ),
                   gap(),
                 ],
               ),

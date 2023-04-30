@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/bookedhousemodel/booked_house_list_model.dart';
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit.dart';
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_state.dart';
@@ -97,8 +98,9 @@ class BookedHouseDetailsPage extends StatelessWidget {
         builder: (context, state) {
           return LoadingOverlay(
             isLoading: state is LeaveRoomRequestLoadingState ? true : false,
-            progressIndicator:
-                const RiveAnimation.asset('asset/animations/loadingEarth.riv'),
+            progressIndicator: Lottie.asset(
+              'asset/animations/timer.json',
+            ),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
