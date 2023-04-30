@@ -59,6 +59,8 @@ dependencies:
   geocoder: any 
   #launcher
   url_launcher: ^6.1.10
+  #glass
+  glassmorphism_ui: ^0.3.0
 
 dev_dependencies:
   flutter_test:
