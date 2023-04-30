@@ -8,11 +8,11 @@ class ApiService {
   // static String baseUrl = 'http://10.0.2.2:5000';
   static final _dio = dio.Dio();
   ApiService();
+
   static Future<dynamic> getApi(
       {required String path, Map<String, dynamic>? body}) async {
     log('getApi: ${baseUrl + path}');
     try {
-      log('get api called');
       final response = await _dio.get(baseUrl + path, queryParameters: body);
       log(response.data.toString());
       if (response.statusCode == 200) {
@@ -33,6 +33,7 @@ class ApiService {
     log('postApi: ${baseUrl + path}');
     try {
       log('post api called');
+
       final response =
           await _dio.post(baseUrl + path, queryParameters: body, data: data);
       log(response.statusCode.toString());

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:rent_house/data/network/api/api_service.dart';
 import 'package:rent_house/data/network/api/end_points.dart';
 import 'package:rent_house/utils/storage_utils.dart';
@@ -13,12 +16,11 @@ class AddHouseRepository {
     required String address,
     required String notice,
     required String status,
-    required String image,
     required String category,
+    required File image,
   }) async {
     Map<String, dynamic> map = {
       'owner_number': StorageUtils.getNumber(),
-      'image': image,
       'category': category,
       'fee': fee,
       'quantity': quantity,
@@ -30,6 +32,9 @@ class AddHouseRepository {
       'notice': notice,
       'status': status,
     };
-    return await ApiService.postApi(path: addHouse, body: map);
+    final formData = FormData.fromMap({
+      'image': await MultipartFile.fromFile(image.path),
+    });
+    return await ApiService.postApi(path: addHouse, body: map, data: formData);
   }
 }

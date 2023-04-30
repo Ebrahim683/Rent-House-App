@@ -1,15 +1,17 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
-import 'package:rive/rive.dart';
 
 import '../../../widget/app_widget.dart';
 
@@ -58,6 +60,21 @@ class _AddHousePageState extends State<AddHousePage> {
     'flat',
   ];
   String category = '';
+
+  File? _image;
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+        log(_image.toString());
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +119,16 @@ class _AddHousePageState extends State<AddHousePage> {
                         color: Colors.teal, borderColor: Colors.black),
                     choiceActiveStyle: const C2ChoiceStyle(
                         color: Colors.green, borderColor: Colors.blue),
+                  ),
+                  gap(),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30.w),
+                    child: InkWell(
+                      onTap: () => _pickImage(),
+                      child: _image == null
+                          ? Image.asset('asset/images/sliderhouse1.png')
+                          : Image.file(_image!),
+                    ),
                   ),
                   gap(),
                   inputText(
@@ -204,19 +231,22 @@ class _AddHousePageState extends State<AddHousePage> {
             showGetSnackBar(title: 'Error', message: 'Enter address');
           } else if (status == '') {
             showGetSnackBar(title: 'Error', message: 'Enter status');
+          } else if (_image == null) {
+            showGetSnackBar(title: 'Error', message: 'Add a photo');
           } else {
             BlocProvider.of<AddHouseCubit>(context).addHouse(
-                fee: fee,
-                advanceFee: advanceFee,
-                quantity: quantity,
-                electricityFee: electricityFee,
-                gasFee: gasFee,
-                othersFee: othersFee,
-                address: address,
-                notice: notice,
-                status: status,
-                image: 'image',
-                category: category);
+              fee: fee,
+              advanceFee: advanceFee,
+              quantity: quantity,
+              electricityFee: electricityFee,
+              gasFee: gasFee,
+              othersFee: othersFee,
+              address: address,
+              notice: notice,
+              status: status,
+              category: category == '' ? 'family' : category,
+              image: _image!,
+            );
           }
         },
         child: const Icon(Icons.done, color: Colors.white),

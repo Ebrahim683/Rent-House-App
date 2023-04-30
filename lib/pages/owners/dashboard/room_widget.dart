@@ -27,14 +27,26 @@ class RoomWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
+            // Container(
+            //   height: Get.height * 0.2,
+            //   width: Get.width * 0.4,
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //         image: AssetImage('asset/images/sliderhouse1.png'),
+            //         fit: BoxFit.cover),
+            //     borderRadius: BorderRadius.circular(20.r),
+            //   ),
+            // ),
+            SizedBox(
               height: Get.height * 0.2,
               width: Get.width * 0.4,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('asset/images/sliderhouse1.png'),
-                    fit: BoxFit.cover),
+              child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.r),
+                child: Image.network(
+                  ownerHouseModel.image.toString(),
+                  scale: 1.0,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             gap(w: 10.w),

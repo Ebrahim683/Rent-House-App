@@ -31,7 +31,11 @@ class HouseWidget extends StatelessWidget {
             text,
             softWrap: false,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.black, fontSize: 12.sp),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       );
@@ -50,8 +54,11 @@ class HouseWidget extends StatelessWidget {
           color: Colors.black,
           border: Border.all(color: Colors.black),
           borderRadius: BorderRadius.circular(25.r),
-          image: const DecorationImage(
-            image: AssetImage('asset/images/sliderhouse1.png'),
+          image: DecorationImage(
+            image: NetworkImage(
+              getHouseModel.image.toString(),
+              scale: 1.0,
+            ),
             fit: BoxFit.cover,
           ),
         ),

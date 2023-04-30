@@ -61,6 +61,8 @@ dependencies:
   url_launcher: ^6.1.10
   #glass
   glassmorphism_ui: ^0.3.0
+  #image picker
+  image_picker:
 
 dev_dependencies:
   flutter_test:

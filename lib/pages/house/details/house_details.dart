@@ -12,7 +12,6 @@ import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
-import 'package:rive/rive.dart';
 
 import '../../../utils/storage_utils.dart';
 
@@ -57,7 +56,7 @@ class HouseDetailsPage extends StatelessWidget {
               description,
               softWrap: false,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
           ],
         ),
@@ -97,6 +96,13 @@ class HouseDetailsPage extends StatelessWidget {
                   pinned: true,
                   toolbarHeight: 60,
                   elevation: 0,
+                  expandedHeight: Get.height * 0.55,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Image.network(
+                      getHouseModel.image.toString(),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   bottom: PreferredSize(
                     preferredSize: Size.fromHeight(0.h),
                     child: Container(
@@ -138,13 +144,6 @@ class HouseDetailsPage extends StatelessWidget {
                           gap(),
                         ],
                       ),
-                    ),
-                  ),
-                  expandedHeight: Get.height * 0.55,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Image.asset(
-                      'asset/images/sliderhouse3.png',
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rent_house/data/model/owner/addhousemodel/add_house_model.dart';
 import 'package:rent_house/data/network/repository/add_house_repository.dart';
@@ -16,23 +18,24 @@ class AddHouseCubit extends Cubit<AddHouseState> {
     required String address,
     required String notice,
     required String status,
-    required String image,
     required String category,
+    required File image,
   }) async {
     emit(AddHouseLoadingState());
     try {
       final result = await AddHouseRepository.addHouseRepo(
-          fee: fee,
-          advanceFee: advanceFee,
-          quantity: quantity,
-          electricityFee: electricityFee,
-          gasFee: gasFee,
-          othersFee: othersFee,
-          address: address,
-          notice: notice,
-          status: status,
-          image: image,
-          category: category);
+        fee: fee,
+        advanceFee: advanceFee,
+        quantity: quantity,
+        electricityFee: electricityFee,
+        gasFee: gasFee,
+        othersFee: othersFee,
+        address: address,
+        notice: notice,
+        status: status,
+        category: category,
+        image: image,
+      );
       AddHouseModel addHouseModel = AddHouseModel.fromJson(result);
       emit(AddHouseSuccessState(addHouseModel));
     } catch (e) {

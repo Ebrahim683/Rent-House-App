@@ -49,8 +49,6 @@ class _HouseListPageState extends State<HouseListPage> {
           listener: (context, state) {
             if (state is GetHouseListErrorState) {
               errorDialog(context: context, message: state.error);
-            } else if (state is GetHouseListSuccessState) {
-              getHouseModelList = state.getHouseListModel.getHouseModel!;
             }
           },
           builder: (context, state) {
@@ -64,34 +62,19 @@ class _HouseListPageState extends State<HouseListPage> {
               GetHouseListModel getHouseListModel = state.getHouseListModel;
               List<GetHouseModel>? getHouseModel =
                   getHouseListModel.getHouseModel;
-              if (getHouseModel!.isEmpty) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('No room available'),
-                      gap(),
-                      refreshButton(onPress: () {
-                        BlocProvider.of<GetHouseListCubit>(context).getHouse();
-                      }),
-                    ],
-                  ),
-                );
-              } else {
-                return LoadingOverlay(
-                  isLoading: state is GetHouseListLoadingState ? true : false,
-                  progressIndicator: Lottie.asset(
-                    'asset/animations/timer.json',
-                  ),
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: getHouseModel.length,
-                    itemBuilder: (context, index) {
-                      return HouseWidget(getHouseModel: getHouseModel[index]);
-                    },
-                  ),
-                );
-              }
+              return LoadingOverlay(
+                isLoading: state is GetHouseListLoadingState ? true : false,
+                progressIndicator: Lottie.asset(
+                  'asset/animations/timer.json',
+                ),
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: getHouseModel!.length,
+                  itemBuilder: (context, index) {
+                    return HouseWidget(getHouseModel: getHouseModel[index]);
+                  },
+                ),
+              );
             } else if (state is GetHouseListErrorState) {
               return Center(
                 child: Column(

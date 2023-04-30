@@ -1,10 +1,13 @@
 import 'dart:developer';
-
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rent_house/pages/house/houselist/house_search.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rent_house/utils/utils.dart';
@@ -68,6 +71,39 @@ class _TestPageState extends State<TestPage> {
 
   String? selectedValue;
 
+  File? _image;
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+        log(_image.toString());
+      });
+    }
+  }
+
+  Future<void> _uploadImage() async {
+    if (_image == null) {
+      return;
+    }
+
+    final formData = FormData.fromMap({
+      'image': await MultipartFile.fromFile(_image!.path),
+    });
+
+    try {
+      final response = await Dio().post(
+        'http://10.0.2.2:5000/owner/photo',
+        data: formData,
+      );
+      log(response.data);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -83,8 +119,14 @@ class _TestPageState extends State<TestPage> {
           children: [
             ElevatedButton(
               child: const Text('call'),
-              onPressed: () async {
-                makeCall(number: '5434165465');
+              onPressed: () {
+                _pickImage();
+              },
+            ),
+            ElevatedButton(
+              child: const Text('upload'),
+              onPressed: () {
+                _uploadImage();
               },
             ),
           ],
