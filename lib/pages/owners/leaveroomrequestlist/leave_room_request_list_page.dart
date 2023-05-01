@@ -50,14 +50,14 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
               );
             } else if (state is LeaveRoomRequestSuccessState) {
               LeaveRoomListModel leaveRoomListModel = state.leaveRoomListModel;
-              List<LeaveRoomModel> leaveRoomModel =
-                  leaveRoomListModel.leaveRoomModel!;
-              if (leaveRoomModel.isEmpty) {
+              List<LeaveRoomModel>? leaveRoomModel =
+                  leaveRoomListModel.leaveRoomModel;
+              if (state.leaveRoomListModel.status == 'fail') {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('No request available'),
+                      Text(state.leaveRoomListModel.message.toString()),
                       gap(),
                       refreshButton(onPress: () {
                         BlocProvider.of<LeaveRoomRequestListCubit>(context)
@@ -74,12 +74,12 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
                     'asset/animations/timer.json',
                   ),
                   child: ListView.builder(
-                    itemCount: leaveRoomModel.length,
+                    itemCount: (leaveRoomModel ?? []).length,
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: CircleAvatar(
                           child:
-                              Text(leaveRoomModel[index].requestId.toString()),
+                              Text(leaveRoomModel![index].requestId.toString()),
                         ),
                         title: Text(leaveRoomModel[index].userName.toString()),
                         subtitle:

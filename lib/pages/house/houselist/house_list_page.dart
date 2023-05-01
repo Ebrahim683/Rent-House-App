@@ -62,19 +62,34 @@ class _HouseListPageState extends State<HouseListPage> {
               GetHouseListModel getHouseListModel = state.getHouseListModel;
               List<GetHouseModel>? getHouseModel =
                   getHouseListModel.getHouseModel;
-              return LoadingOverlay(
-                isLoading: state is GetHouseListLoadingState ? true : false,
-                progressIndicator: Lottie.asset(
-                  'asset/animations/timer.json',
-                ),
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: getHouseModel!.length,
-                  itemBuilder: (context, index) {
-                    return HouseWidget(getHouseModel: getHouseModel[index]);
-                  },
-                ),
-              );
+              if (state.getHouseListModel.status == 'fail') {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(state.getHouseListModel.message.toString()),
+                      gap(),
+                      refreshButton(onPress: () {
+                        BlocProvider.of<GetHouseListCubit>(context).getHouse();
+                      }),
+                    ],
+                  ),
+                );
+              } else {
+                return LoadingOverlay(
+                  isLoading: state is GetHouseListLoadingState ? true : false,
+                  progressIndicator: Lottie.asset(
+                    'asset/animations/timer.json',
+                  ),
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: (getHouseModel ?? []).length,
+                    itemBuilder: (context, index) {
+                      return HouseWidget(getHouseModel: getHouseModel![index]);
+                    },
+                  ),
+                );
+              }
             } else if (state is GetHouseListErrorState) {
               return Center(
                 child: Column(

@@ -67,14 +67,14 @@ class _BookedHousePageState extends State<BookedHousePage> {
             } else if (state is ShowBookedHouseSuccessState) {
               BookedHouseListModel bookedHouseListModel =
                   state.bookedHouseListModel;
-              List<BookedHouseModel> bookedHouseModel =
-                  bookedHouseListModel.bookedHouseModel!;
-              if (bookedHouseModel.isEmpty) {
+              List<BookedHouseModel>? bookedHouseModel =
+                  bookedHouseListModel.bookedHouseModel;
+              if (state.bookedHouseListModel.status == 'fail') {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('No room booked'),
+                      Text(state.bookedHouseListModel.message.toString()),
                       gap(),
                       refreshButton(onPress: () {
                         BlocProvider.of<ShowBookedHouseCubit>(context)
@@ -91,11 +91,11 @@ class _BookedHousePageState extends State<BookedHousePage> {
                     'asset/animations/timer.json',
                   ),
                   child: ListView.builder(
-                    itemCount: bookedHouseModel.length,
+                    itemCount: (bookedHouseModel ?? []).length,
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text(
-                          bookedHouseModel[index].ownerName.toString(),
+                          bookedHouseModel![index].ownerName.toString(),
                         ),
                         leading: CircleAvatar(
                           child: Text(bookedHouseModel[index].id.toString()),

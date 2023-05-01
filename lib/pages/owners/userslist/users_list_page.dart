@@ -50,14 +50,14 @@ class _UsersListPageState extends State<UsersListPage> {
             } else if (state is ShowOwnerBookedHouseSuccessState) {
               ShowBookedRoomListModel showBookedRoomListModel =
                   state.showBookedRoomListModel;
-              List<ShowBookedRoomModel> showBookedRoomModel =
-                  showBookedRoomListModel.bookedRoomModel!;
-              if (showBookedRoomModel.isEmpty) {
+              List<ShowBookedRoomModel>? showBookedRoomModel =
+                  showBookedRoomListModel.bookedRoomModel;
+              if (state.showBookedRoomListModel.status == 'fail') {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('No user available'),
+                      Text(state.showBookedRoomListModel.message.toString()),
                       gap(),
                       refreshButton(onPress: () {
                         BlocProvider.of<ShowOwnerBookedHouseCubit>(context)
@@ -74,7 +74,7 @@ class _UsersListPageState extends State<UsersListPage> {
                     'asset/animations/timer.json',
                   ),
                   child: ListView.builder(
-                    itemCount: showBookedRoomModel.length,
+                    itemCount: (showBookedRoomModel ?? []).length,
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: CircleAvatar(
@@ -83,14 +83,14 @@ class _UsersListPageState extends State<UsersListPage> {
                         trailing: IconButton(
                           onPressed: () async {
                             makeCall(
-                                number: showBookedRoomModel[index]
+                                number: showBookedRoomModel![index]
                                     .userNumber
                                     .toString());
                           },
                           icon: const Icon(Icons.call),
                         ),
                         title: Text(
-                            showBookedRoomModel[index].userName.toString()),
+                            showBookedRoomModel![index].userName.toString()),
                         subtitle: Text(
                             showBookedRoomModel[index].userNumber.toString()),
                       );

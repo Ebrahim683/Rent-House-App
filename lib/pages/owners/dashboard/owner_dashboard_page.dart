@@ -136,14 +136,16 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                     } else if (state is ShowOwnerHouseSuccessState) {
                       OwnerHouseListModel ownerHouseListModel =
                           state.ownerHouseListModel;
-                      List<OwnerHouseModel> ownerHouseModel =
-                          ownerHouseListModel.ownerHouseModel!;
-                      if (ownerHouseModel.isEmpty) {
+                      List<OwnerHouseModel>? ownerHouseModel =
+                          ownerHouseListModel.ownerHouseModel;
+
+                      if (state.ownerHouseListModel.status == 'fail') {
                         return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('No room available'),
+                              Text(
+                                  state.ownerHouseListModel.message.toString()),
                               gap(),
                               refreshButton(onPress: () {
                                 BlocProvider.of<ShowOwnerHouseCubit>(context)
@@ -161,11 +163,11 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                             'asset/animations/timer.json',
                           ),
                           child: ListView.builder(
-                            itemCount: ownerHouseModel.length,
+                            itemCount: (ownerHouseModel ?? []).length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return RoomWidget(
-                                  ownerHouseModel: ownerHouseModel[index]);
+                                  ownerHouseModel: ownerHouseModel![index]);
                             },
                           ),
                         );
