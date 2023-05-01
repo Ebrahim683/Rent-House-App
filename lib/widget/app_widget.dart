@@ -30,25 +30,34 @@ roundButton() {
   );
 }
 
-inputText(
-    {IconData? icon,
-    required controller,
-    required String hint,
-    TextInputType? type}) {
+inputText({
+  IconData? icon,
+  required controller,
+  required String hint,
+  TextInputType? type,
+  Color? color,
+}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.w),
     child: TextField(
       keyboardType: type ?? TextInputType.text,
       controller: controller,
+      style: TextStyle(color: color ?? Colors.black),
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: const BorderSide(color: Colors.black),
+          borderSide: BorderSide(
+            color: color ?? Colors.black,
+          ),
         ),
         filled: true,
         hintText: hint,
+        hintStyle: TextStyle(color: color ?? Colors.black),
         fillColor: Colors.white.withAlpha(0),
-        prefixIcon: Icon(icon ?? Icons.abc),
+        prefixIcon: Icon(
+          icon ?? Icons.abc,
+          color: color ?? Colors.black,
+        ),
       ),
     ),
   );
