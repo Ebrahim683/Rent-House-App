@@ -17,8 +17,17 @@ class AddHouseRepository {
     required String notice,
     required String status,
     required String category,
-    required File image,
+    required List<File> imageList,
   }) async {
+    List<dynamic> images = [];
+    for (var i = 0; i < imageList.length; i++) {
+      var path = imageList[i].path;
+      images.add(await MultipartFile.fromFile(path));
+    }
+    final formData = FormData.fromMap({
+      'image': images,
+    });
+
     Map<String, dynamic> map = {
       'owner_number': StorageUtils.getNumber(),
       'category': category,
@@ -32,9 +41,6 @@ class AddHouseRepository {
       'notice': notice,
       'status': status,
     };
-    final formData = FormData.fromMap({
-      'image': await MultipartFile.fromFile(image.path),
-    });
     return await ApiService.postApi(path: addHouse, body: map, data: formData);
   }
 }

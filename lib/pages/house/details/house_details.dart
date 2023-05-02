@@ -21,11 +21,11 @@ class HouseDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final roomList = [
-      'asset/images/sliderhouse2.png',
-      'asset/images/sliderhouse3.png',
-      'asset/images/sliderhouse2.png',
-      'asset/images/sliderhouse3.png',
+    final imageList = [
+      getHouseModel.image1.toString(),
+      getHouseModel.image2.toString(),
+      getHouseModel.image3.toString(),
+      getHouseModel.image4.toString(),
     ];
     Widget setInfo(
         {required IconData icon,
@@ -99,7 +99,7 @@ class HouseDetailsPage extends StatelessWidget {
                   expandedHeight: Get.height * 0.55,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image.network(
-                      getHouseModel.image.toString(),
+                      getHouseModel.image1.toString(),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -112,36 +112,51 @@ class HouseDetailsPage extends StatelessWidget {
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(40.r),
                               topRight: Radius.circular(40.r))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      child: Column(
                         children: [
-                          gap(),
-                          Expanded(
-                            child: Text(
-                              getHouseModel.ownerName.toString(),
-                              style: TextStyle(
-                                  fontSize: 18.sp, fontWeight: FontWeight.w500),
-                              softWrap: false,
-                              overflow: TextOverflow.ellipsis,
+                          gap(h: 10.h),
+                          Container(
+                            height: 5.h,
+                            width: 120.w,
+                            decoration: BoxDecoration(
+                              color: Colors.teal,
+                              borderRadius: BorderRadius.circular(25.r),
                             ),
                           ),
-                          gap(w: 10.w),
-                          Text(
-                            getHouseModel.ownerNumber.toString(),
-                            style: TextStyle(
-                                fontSize: 18.sp, fontWeight: FontWeight.w500),
-                            softWrap: false,
-                            overflow: TextOverflow.ellipsis,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              gap(),
+                              Expanded(
+                                child: Text(
+                                  getHouseModel.ownerName.toString(),
+                                  style: TextStyle(
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w500),
+                                  softWrap: false,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              gap(w: 10.w),
+                              Text(
+                                getHouseModel.ownerNumber.toString(),
+                                style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w500),
+                                softWrap: false,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    makeCall(
+                                        number: getHouseModel.ownerNumber
+                                            .toString());
+                                  },
+                                  icon: const Icon(Icons.call)),
+                              gap(),
+                            ],
                           ),
-                          IconButton(
-                              onPressed: () {
-                                makeCall(
-                                    number:
-                                        getHouseModel.ownerNumber.toString());
-                              },
-                              icon: const Icon(Icons.call)),
-                          gap(),
                         ],
                       ),
                     ),
@@ -217,15 +232,22 @@ class HouseDetailsPage extends StatelessWidget {
                           width: Get.width,
                           child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: roomList.length,
+                              itemCount: imageList.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 15.w),
-                                  child: Image.asset(
-                                    roomList[index],
-                                    fit: BoxFit.cover,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(25.r),
+                                    child: FadeInImage.assetNetwork(
+                                      image: imageList[index].toString(),
+                                      imageScale: 1.0,
+                                      fit: BoxFit.cover,
+                                      width: Get.width * 0.5,
+                                      placeholder:
+                                          'asset/images/sliderhouse1.png',
+                                    ),
                                   ),
                                 );
                               }),

@@ -67,6 +67,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                         height: Get.height * 0.4,
                         width: Get.width,
                       ),
+                      gap(),
                       Lottie.asset(
                         'asset/animations/bubbles.json',
                         height: Get.height * 0.4,

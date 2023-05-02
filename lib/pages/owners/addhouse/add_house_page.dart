@@ -5,6 +5,7 @@ import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
@@ -61,16 +62,38 @@ class _AddHousePageState extends State<AddHousePage> {
   ];
   String category = '';
 
-  File? _image;
-
+  File? image1;
+  File? image2;
+  File? image3;
+  File? image4;
+  List<XFile>? imageList = [];
+  List<File>? images = [];
   Future<void> _pickImage() async {
     final picker = ImagePicker();
-    final pickedFile =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
-    if (pickedFile != null) {
+    // final pickedFile =
+    //     await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     image1 = File(pickedFile.path);
+    //     log(image1.toString());
+    //   });
+    // }
+    final List<XFile> selectedImages =
+        await picker.pickMultiImage(imageQuality: 30);
+    if (selectedImages.isNotEmpty) {
       setState(() {
-        _image = File(pickedFile.path);
-        log(_image.toString());
+        try {
+          imageList!.clear();
+          imageList!.addAll(selectedImages);
+          image1 = File(imageList![0].path);
+          image2 = File(imageList![1].path);
+          image3 = File(imageList![2].path);
+          image4 = File(imageList![3].path);
+          images = [image1!, image2!, image3!, image4!];
+          log(imageList!.length.toString());
+        } catch (e) {
+          showGetSnackBar(title: 'Error', message: 'Minimum 4 photo required');
+        }
       });
     }
   }
@@ -119,16 +142,6 @@ class _AddHousePageState extends State<AddHousePage> {
                         color: Colors.teal, borderColor: Colors.black),
                     choiceActiveStyle: const C2ChoiceStyle(
                         color: Colors.green, borderColor: Colors.blue),
-                  ),
-                  gap(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.w),
-                    child: InkWell(
-                      onTap: () => _pickImage(),
-                      child: _image == null
-                          ? Image.asset('asset/images/sliderhouse1.png')
-                          : Image.file(_image!),
-                    ),
                   ),
                   gap(),
                   inputText(
@@ -194,6 +207,64 @@ class _AddHousePageState extends State<AddHousePage> {
                     icon: Icons.timer,
                   ),
                   gap(),
+                  gap(),
+                  const Text(
+                    'Select minimum 4 images of your house',
+                    style: TextStyle(
+                      color: Colors.orange,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  gap(h: 10.h),
+                  SizedBox(
+                    height: Get.height * 0.5,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Stack(
+                        children: [
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: (imageList ?? []).length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10.w,
+                              mainAxisSpacing: 10.h,
+                            ),
+                            itemBuilder: (context, index) {
+                              if (imageList!.isEmpty) {
+                                return Image.asset(
+                                  'asset/images/sliderhouse1.png',
+                                  height: 130.h,
+                                  fit: BoxFit.cover,
+                                );
+                              } else {
+                                return Image.file(
+                                  File(imageList![index].path),
+                                  fit: BoxFit.cover,
+                                  height: 130.h,
+                                );
+                              }
+                            },
+                          ),
+                          Positioned(
+                            top: Get.height * 0.18,
+                            left: Get.width * 0.38,
+                            child: FloatingActionButton(
+                              heroTag: 'btnimage',
+                              backgroundColor: Colors.black45,
+                              onPressed: () => _pickImage(),
+                              child: const Icon(
+                                Icons.add_photo_alternate_outlined,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -202,6 +273,7 @@ class _AddHousePageState extends State<AddHousePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
+        heroTag: 'btnsubmit',
         onPressed: () {
           String fee = feeController.text.toString();
           String quantity = quantityController.text.toString();
@@ -231,8 +303,9 @@ class _AddHousePageState extends State<AddHousePage> {
             showGetSnackBar(title: 'Error', message: 'Enter address');
           } else if (status == '') {
             showGetSnackBar(title: 'Error', message: 'Enter status');
-          } else if (_image == null) {
-            showGetSnackBar(title: 'Error', message: 'Add a photo');
+          } else if (imageList!.isEmpty || imageList!.length > 4) {
+            showGetSnackBar(
+                title: 'Error', message: 'Minimum 4 photo required');
           } else {
             BlocProvider.of<AddHouseCubit>(context).addHouse(
               fee: fee,
@@ -245,7 +318,7 @@ class _AddHousePageState extends State<AddHousePage> {
               notice: notice,
               status: status,
               category: category == '' ? 'family' : category,
-              image: _image!,
+              imageList: images!,
             );
           }
         },

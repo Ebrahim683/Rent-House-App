@@ -62,7 +62,8 @@ class _HouseListPageState extends State<HouseListPage> {
               GetHouseListModel getHouseListModel = state.getHouseListModel;
               List<GetHouseModel>? getHouseModel =
                   getHouseListModel.getHouseModel;
-              if (state.getHouseListModel.status == 'fail') {
+              if (state.getHouseListModel.status == 'fail' ||
+                  state.getHouseListModel.getHouseModel!.isEmpty) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -76,6 +77,7 @@ class _HouseListPageState extends State<HouseListPage> {
                   ),
                 );
               } else {
+                getHouseModelList.addAll(getHouseModel!);
                 return LoadingOverlay(
                   isLoading: state is GetHouseListLoadingState ? true : false,
                   progressIndicator: Lottie.asset(
@@ -83,9 +85,9 @@ class _HouseListPageState extends State<HouseListPage> {
                   ),
                   child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: (getHouseModel ?? []).length,
+                    itemCount: getHouseModel.length,
                     itemBuilder: (context, index) {
-                      return HouseWidget(getHouseModel: getHouseModel![index]);
+                      return HouseWidget(getHouseModel: getHouseModel[index]);
                     },
                   ),
                 );

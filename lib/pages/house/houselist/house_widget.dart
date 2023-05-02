@@ -5,6 +5,7 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
 import '../../../data/model/gethousemodel/get_house_model.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HouseWidget extends StatelessWidget {
   final GetHouseModel getHouseModel;
@@ -51,19 +52,22 @@ class HouseWidget extends StatelessWidget {
         height: 300.h,
         width: Get.width,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Colors.white,
           border: Border.all(color: Colors.black),
           borderRadius: BorderRadius.circular(25.r),
-          image: DecorationImage(
-            image: NetworkImage(
-              getHouseModel.image.toString(),
-              scale: 1.0,
-            ),
-            fit: BoxFit.cover,
-          ),
         ),
         child: Stack(
           children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(25.r),
+              child: FadeInImage.assetNetwork(
+                image: getHouseModel.image1.toString(),
+                imageScale: 1.0,
+                fit: BoxFit.cover,
+                width: Get.width,
+                placeholder: 'asset/images/sliderhouse1.png',
+              ),
+            ),
             Positioned(
               bottom: 10,
               left: 8,

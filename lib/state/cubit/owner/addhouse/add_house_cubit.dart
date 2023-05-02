@@ -19,7 +19,7 @@ class AddHouseCubit extends Cubit<AddHouseState> {
     required String notice,
     required String status,
     required String category,
-    required File image,
+    required List<File> imageList,
   }) async {
     emit(AddHouseLoadingState());
     try {
@@ -34,7 +34,7 @@ class AddHouseCubit extends Cubit<AddHouseState> {
         notice: notice,
         status: status,
         category: category,
-        image: image,
+        imageList: imageList,
       );
       AddHouseModel addHouseModel = AddHouseModel.fromJson(result);
       emit(AddHouseSuccessState(addHouseModel));
