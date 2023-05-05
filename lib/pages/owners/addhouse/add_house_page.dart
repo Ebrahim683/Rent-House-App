@@ -13,6 +13,7 @@ import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
+import 'package:video_compress/video_compress.dart';
 
 import '../../../widget/app_widget.dart';
 
@@ -91,15 +92,25 @@ class _AddHousePageState extends State<AddHousePage> {
   }
 
   Future<void> _pickVideo() async {
-    final selectedVideo = await picker.pickVideo(source: ImageSource.gallery);
+    final selectedVideo = await picker.pickVideo(
+      source: ImageSource.gallery,
+      maxDuration: const Duration(minutes: 1),
+    );
     if (selectedVideo != null) {
-      setState(() {
-        try {
-          video = File(selectedVideo.path);
-        } catch (e) {
-          log(e.toString());
-        }
-      });
+      try {
+        MediaInfo? mediaInfo = await VideoCompress.compressVideo(
+          selectedVideo.path,
+          quality: VideoQuality.LowQuality,
+          deleteOrigin: true,
+          includeAudio: false,
+        );
+        log(mediaInfo!.filesize.toString());
+        setState(() {
+          video = File(mediaInfo.file!.path);
+        });
+      } catch (e) {
+        log(e.toString());
+      }
     }
   }
 
@@ -281,7 +292,7 @@ class _AddHousePageState extends State<AddHousePage> {
                       ),
                       child: Text(
                         video == null
-                            ? 'Select a sort video'
+                            ? 'Select a sort video under 15 second'
                             : video.toString(),
                         style: TextStyle(color: Colors.white, fontSize: 15.sp),
                       ),
@@ -329,6 +340,9 @@ class _AddHousePageState extends State<AddHousePage> {
           } else if (imageList!.isEmpty || imageList!.length > 4) {
             showGetSnackBar(
                 title: 'Error', message: 'Minimum 4 photo required');
+          } else if (video == null) {
+            showGetSnackBar(
+                title: 'Error', message: 'Add a video of your room');
           } else {
             BlocProvider.of<AddHouseCubit>(context).addHouse(
                 fee: fee,

@@ -52,7 +52,7 @@ class _RoomVideoPageState extends State<RoomVideoPage> {
   @override
   void dispose() {
     super.dispose();
-    controller.dispose();
+    customVideoPlayerController.dispose();
   }
 
   @override
