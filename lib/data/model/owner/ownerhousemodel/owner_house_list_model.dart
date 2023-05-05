@@ -25,6 +25,7 @@ class OwnerHouseModel with _$OwnerHouseModel {
     @JsonKey(name: 'image2') String? image2,
     @JsonKey(name: 'image3') String? image3,
     @JsonKey(name: 'image4') String? image4,
+    @JsonKey(name: 'video') String? video,
     @JsonKey(name: 'category') String? category,
     @JsonKey(name: 'fee') String? fee,
     @JsonKey(name: 'quantity') String? quantity,

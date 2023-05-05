@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,25 +8,39 @@ import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
+import 'package:rent_house/data/network/api/end_points.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
-
 import '../../../utils/storage_utils.dart';
 
-class HouseDetailsPage extends StatelessWidget {
+class HouseDetailsPage extends StatefulWidget {
   final GetHouseModel getHouseModel;
   const HouseDetailsPage({super.key, required this.getHouseModel});
 
   @override
+  State<HouseDetailsPage> createState() => _HouseDetailsPageState();
+}
+
+class _HouseDetailsPageState extends State<HouseDetailsPage> {
+  late String videoUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    String video = widget.getHouseModel.video.toString();
+    videoUrl = video.replaceAll('http', 'https');
+  }
+
+  @override
   Widget build(BuildContext context) {
     final imageList = [
-      getHouseModel.image1.toString(),
-      getHouseModel.image2.toString(),
-      getHouseModel.image3.toString(),
-      getHouseModel.image4.toString(),
+      widget.getHouseModel.image1.toString(),
+      widget.getHouseModel.image2.toString(),
+      widget.getHouseModel.image3.toString(),
+      widget.getHouseModel.image4.toString(),
     ];
     Widget setInfo(
         {required IconData icon,
@@ -99,7 +114,7 @@ class HouseDetailsPage extends StatelessWidget {
                   expandedHeight: Get.height * 0.55,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image.network(
-                      getHouseModel.image1.toString(),
+                      widget.getHouseModel.image1.toString(),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -130,7 +145,7 @@ class HouseDetailsPage extends StatelessWidget {
                               gap(),
                               Expanded(
                                 child: Text(
-                                  getHouseModel.ownerName.toString(),
+                                  widget.getHouseModel.ownerName.toString(),
                                   style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500),
@@ -140,7 +155,7 @@ class HouseDetailsPage extends StatelessWidget {
                               ),
                               gap(w: 10.w),
                               Text(
-                                getHouseModel.ownerNumber.toString(),
+                                widget.getHouseModel.ownerNumber.toString(),
                                 style: TextStyle(
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w500),
@@ -150,7 +165,7 @@ class HouseDetailsPage extends StatelessWidget {
                               IconButton(
                                   onPressed: () {
                                     makeCall(
-                                        number: getHouseModel.ownerNumber
+                                        number: widget.getHouseModel.ownerNumber
                                             .toString());
                                   },
                                   icon: const Icon(Icons.call)),
@@ -174,43 +189,45 @@ class HouseDetailsPage extends StatelessWidget {
                         setInfo(
                           icon: Icons.wallet,
                           title: 'মাসিক ভাড়াঃ',
-                          description: '${getHouseModel.fee} টাকা',
+                          description: '${widget.getHouseModel.fee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.add_home_work_outlined,
                           title: 'রুম সংখাঃ',
-                          description: getHouseModel.quantity.toString(),
+                          description: widget.getHouseModel.quantity.toString(),
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.electrical_services_outlined,
                           title: 'বিদ্যুৎ বিলঃ',
-                          description: '${getHouseModel.electricityFee} টাকা',
+                          description:
+                              '${widget.getHouseModel.electricityFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.gas_meter_outlined,
                           title: 'গ্যাস বিলঃ',
-                          description: '${getHouseModel.gasFee} টাকা',
+                          description: '${widget.getHouseModel.gasFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.money,
                           title: 'অন্যান্য বিলঃ',
-                          description: '${getHouseModel.othersFee} টাকা',
+                          description: '${widget.getHouseModel.othersFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.currency_exchange,
                           title: 'অগ্রিমঃ',
-                          description: '${getHouseModel.advanceFee} টাকা',
+                          description:
+                              '${widget.getHouseModel.advanceFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.location_on_outlined,
                           title: 'ঠিকানাঃ',
-                          description: getHouseModel.address.toString(),
+                          description: widget.getHouseModel.address.toString(),
                         ),
                         gap(),
                         Container(
@@ -222,7 +239,7 @@ class HouseDetailsPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: Text(
-                            getHouseModel.notice.toString(),
+                            widget.getHouseModel.notice.toString(),
                             style: const TextStyle(color: Colors.black),
                           ),
                         ),
@@ -253,6 +270,29 @@ class HouseDetailsPage extends StatelessWidget {
                               }),
                         ),
                         gap(),
+                        SizedBox(
+                          width: 300.w,
+                          child: CupertinoButton(
+                              color: Colors.orange,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: const [
+                                  Text('ভিডিও দেখুন'),
+                                  Icon(
+                                    Icons.video_collection,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/room_video_page',
+                                    arguments: {
+                                      'videoUrl': videoUrl,
+                                    });
+                              }),
+                        ),
+                        gap(),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
                           width: Get.width,
@@ -261,11 +301,13 @@ class HouseDetailsPage extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.r)),
                             onPressed: () {
-                              log(getHouseModel.id!.toString());
-                              String ownerName = getHouseModel.ownerName!;
-                              String ownerNumber = getHouseModel.ownerNumber!;
+                              log(widget.getHouseModel.id!.toString());
+                              String ownerName =
+                                  widget.getHouseModel.ownerName!;
+                              String ownerNumber =
+                                  widget.getHouseModel.ownerNumber!;
 
-                              if (getHouseModel.status == 'booked') {
+                              if (widget.getHouseModel.status == 'booked') {
                                 warningDialog(
                                     context: context,
                                     message: 'Already booked');
@@ -275,7 +317,7 @@ class HouseDetailsPage extends StatelessWidget {
                                   phoneNumber: StorageUtils.getNumber(),
                                   ownerName: ownerName,
                                   ownerNumber: ownerNumber,
-                                  houseId: getHouseModel.id!,
+                                  houseId: widget.getHouseModel.id!,
                                 );
                               }
                             },

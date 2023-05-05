@@ -61,9 +61,10 @@ dependencies:
   url_launcher: ^6.1.10
   #glass
   glassmorphism_ui: ^0.3.0
-  #image
+  #media
   image_picker:
   cached_network_image: ^3.2.3
+  appinio_video_player: ^1.2.1
 
 dev_dependencies:
   flutter_test:

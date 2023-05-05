@@ -61,23 +61,15 @@ class _AddHousePageState extends State<AddHousePage> {
     'flat',
   ];
   String category = '';
-
+  final picker = ImagePicker();
   File? image1;
   File? image2;
   File? image3;
   File? image4;
+  File? video;
   List<XFile>? imageList = [];
   List<File>? images = [];
   Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    // final pickedFile =
-    //     await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     image1 = File(pickedFile.path);
-    //     log(image1.toString());
-    //   });
-    // }
     final List<XFile> selectedImages =
         await picker.pickMultiImage(imageQuality: 30);
     if (selectedImages.isNotEmpty) {
@@ -93,6 +85,19 @@ class _AddHousePageState extends State<AddHousePage> {
           log(imageList!.length.toString());
         } catch (e) {
           showGetSnackBar(title: 'Error', message: 'Minimum 4 photo required');
+        }
+      });
+    }
+  }
+
+  Future<void> _pickVideo() async {
+    final selectedVideo = await picker.pickVideo(source: ImageSource.gallery);
+    if (selectedVideo != null) {
+      setState(() {
+        try {
+          video = File(selectedVideo.path);
+        } catch (e) {
+          log(e.toString());
         }
       });
     }
@@ -265,6 +270,24 @@ class _AddHousePageState extends State<AddHousePage> {
                       ),
                     ),
                   ),
+                  gap(),
+                  GestureDetector(
+                    onTap: () => _pickVideo(),
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(25.r),
+                      ),
+                      child: Text(
+                        video == null
+                            ? 'Select a sort video'
+                            : video.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 15.sp),
+                      ),
+                    ),
+                  ),
+                  gap(h: 50.h),
                 ],
               ),
             ),
@@ -308,18 +331,18 @@ class _AddHousePageState extends State<AddHousePage> {
                 title: 'Error', message: 'Minimum 4 photo required');
           } else {
             BlocProvider.of<AddHouseCubit>(context).addHouse(
-              fee: fee,
-              advanceFee: advanceFee,
-              quantity: quantity,
-              electricityFee: electricityFee,
-              gasFee: gasFee,
-              othersFee: othersFee,
-              address: address,
-              notice: notice,
-              status: status,
-              category: category == '' ? 'family' : category,
-              imageList: images!,
-            );
+                fee: fee,
+                advanceFee: advanceFee,
+                quantity: quantity,
+                electricityFee: electricityFee,
+                gasFee: gasFee,
+                othersFee: othersFee,
+                address: address,
+                notice: notice,
+                status: status,
+                category: category == '' ? 'family' : category,
+                imageList: images!,
+                video: video!);
           }
         },
         child: const Icon(Icons.done, color: Colors.white),

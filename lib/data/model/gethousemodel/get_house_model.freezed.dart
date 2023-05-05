@@ -36,6 +36,8 @@ mixin _$GetHouseModel {
   String? get image3 => throw _privateConstructorUsedError;
   @JsonKey(name: 'image4')
   String? get image4 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'video')
+  String? get video => throw _privateConstructorUsedError;
   @JsonKey(name: 'category')
   String? get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'fee')
@@ -80,6 +82,7 @@ abstract class $GetHouseModelCopyWith<$Res> {
       @JsonKey(name: 'image2') String? image2,
       @JsonKey(name: 'image3') String? image3,
       @JsonKey(name: 'image4') String? image4,
+      @JsonKey(name: 'video') String? video,
       @JsonKey(name: 'category') String? category,
       @JsonKey(name: 'fee') String? fee,
       @JsonKey(name: 'quantity') String? quantity,
@@ -114,6 +117,7 @@ class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
     Object? image2 = freezed,
     Object? image3 = freezed,
     Object? image4 = freezed,
+    Object? video = freezed,
     Object? category = freezed,
     Object? fee = freezed,
     Object? quantity = freezed,
@@ -158,6 +162,10 @@ class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
       image4: freezed == image4
           ? _value.image4
           : image4 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
               as String?,
       category: freezed == category
           ? _value.category
@@ -224,6 +232,7 @@ abstract class _$$_GetHouseModelCopyWith<$Res>
       @JsonKey(name: 'image2') String? image2,
       @JsonKey(name: 'image3') String? image3,
       @JsonKey(name: 'image4') String? image4,
+      @JsonKey(name: 'video') String? video,
       @JsonKey(name: 'category') String? category,
       @JsonKey(name: 'fee') String? fee,
       @JsonKey(name: 'quantity') String? quantity,
@@ -256,6 +265,7 @@ class __$$_GetHouseModelCopyWithImpl<$Res>
     Object? image2 = freezed,
     Object? image3 = freezed,
     Object? image4 = freezed,
+    Object? video = freezed,
     Object? category = freezed,
     Object? fee = freezed,
     Object? quantity = freezed,
@@ -300,6 +310,10 @@ class __$$_GetHouseModelCopyWithImpl<$Res>
       image4: freezed == image4
           ? _value.image4
           : image4 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
               as String?,
       category: freezed == category
           ? _value.category
@@ -361,6 +375,7 @@ class _$_GetHouseModel implements _GetHouseModel {
       @JsonKey(name: 'image2') this.image2,
       @JsonKey(name: 'image3') this.image3,
       @JsonKey(name: 'image4') this.image4,
+      @JsonKey(name: 'video') this.video,
       @JsonKey(name: 'category') this.category,
       @JsonKey(name: 'fee') this.fee,
       @JsonKey(name: 'quantity') this.quantity,
@@ -401,6 +416,9 @@ class _$_GetHouseModel implements _GetHouseModel {
   @JsonKey(name: 'image4')
   final String? image4;
   @override
+  @JsonKey(name: 'video')
+  final String? video;
+  @override
   @JsonKey(name: 'category')
   final String? category;
   @override
@@ -436,7 +454,7 @@ class _$_GetHouseModel implements _GetHouseModel {
 
   @override
   String toString() {
-    return 'GetHouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image1: $image1, image2: $image2, image3: $image3, image4: $image4, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status, time: $time)';
+    return 'GetHouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image1: $image1, image2: $image2, image3: $image3, image4: $image4, video: $video, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status, time: $time)';
   }
 
   @override
@@ -454,6 +472,7 @@ class _$_GetHouseModel implements _GetHouseModel {
             (identical(other.image2, image2) || other.image2 == image2) &&
             (identical(other.image3, image3) || other.image3 == image3) &&
             (identical(other.image4, image4) || other.image4 == image4) &&
+            (identical(other.video, video) || other.video == video) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.fee, fee) || other.fee == fee) &&
@@ -484,6 +503,7 @@ class _$_GetHouseModel implements _GetHouseModel {
         image2,
         image3,
         image4,
+        video,
         category,
         fee,
         quantity,
@@ -521,6 +541,7 @@ abstract class _GetHouseModel implements GetHouseModel {
       @JsonKey(name: 'image2') final String? image2,
       @JsonKey(name: 'image3') final String? image3,
       @JsonKey(name: 'image4') final String? image4,
+      @JsonKey(name: 'video') final String? video,
       @JsonKey(name: 'category') final String? category,
       @JsonKey(name: 'fee') final String? fee,
       @JsonKey(name: 'quantity') final String? quantity,
@@ -560,6 +581,9 @@ abstract class _GetHouseModel implements GetHouseModel {
   @override
   @JsonKey(name: 'image4')
   String? get image4;
+  @override
+  @JsonKey(name: 'video')
+  String? get video;
   @override
   @JsonKey(name: 'category')
   String? get category;

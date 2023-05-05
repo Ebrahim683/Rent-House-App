@@ -18,14 +18,17 @@ class AddHouseRepository {
     required String status,
     required String category,
     required List<File> imageList,
+    required File video,
   }) async {
     List<dynamic> images = [];
     for (var i = 0; i < imageList.length; i++) {
       var path = imageList[i].path;
       images.add(await MultipartFile.fromFile(path));
     }
+    var roomVideo = await MultipartFile.fromFile(video.path);
     final formData = FormData.fromMap({
       'image': images,
+      'video': roomVideo,
     });
 
     Map<String, dynamic> map = {

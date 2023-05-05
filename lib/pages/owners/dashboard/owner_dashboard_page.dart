@@ -180,8 +180,10 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                             Text(state.error),
                             gap(),
                             refreshButton(onPress: () {
-                              BlocProvider.of<ShowOwnerHouseCubit>(context)
-                                  .showOwnerHouse();
+                              setState(() {
+                                BlocProvider.of<ShowOwnerHouseCubit>(context)
+                                    .showOwnerHouse();
+                              });
                             }),
                           ],
                         ),
@@ -194,8 +196,10 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                             const Text('Something went wrong try again'),
                             gap(),
                             refreshButton(onPress: () {
-                              BlocProvider.of<ShowOwnerHouseCubit>(context)
-                                  .showOwnerHouse();
+                              setState(() {
+                                BlocProvider.of<ShowOwnerHouseCubit>(context)
+                                    .showOwnerHouse();
+                              });
                             }),
                           ],
                         ),

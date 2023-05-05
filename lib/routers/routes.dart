@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:rent_house/pages/auth/login_page.dart';
 import 'package:rent_house/pages/auth/user_register_page.dart';
 import 'package:rent_house/pages/home/home_page.dart';
+import 'package:rent_house/pages/house/details/video/room_video_page.dart';
 import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
 import 'package:rent_house/pages/owners/leaveroomrequestlist/approve_page.dart';
 import 'package:rent_house/pages/owners/leaveroomrequestlist/leave_room_request_list_page.dart';
@@ -40,6 +41,7 @@ String get house_list_page => '/house_list_page';
 String get house_details_page => '/house_details_page';
 String get booked_house_page => '/booked_house_page';
 String get booked_house_details_page => '/booked_house_details_page';
+String get room_video_page => '/room_video_page';
 //owner=======================================
 String get owner_dashboard_page => '/owner_dashboard_page';
 String get add_house_page => '/add_house_page';
@@ -194,6 +196,15 @@ class Routers {
             child: ApprovePage(
               leaveRoomModel: arguments['leaveRoomModel'],
             ),
+          ),
+        );
+      //video page
+      case '/room_video_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => RoomVideoPage(
+            videoUrl: arguments['videoUrl'],
           ),
         );
       default:
