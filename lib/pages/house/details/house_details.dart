@@ -27,21 +27,32 @@ class HouseDetailsPage extends StatefulWidget {
 class _HouseDetailsPageState extends State<HouseDetailsPage> {
   late String videoUrl;
 
+  List<String> imageList = [];
+  List<String> getImageLink() {
+    try {
+      imageList = [
+        widget.getHouseModel.image1.toString(),
+        widget.getHouseModel.image2.toString(),
+        widget.getHouseModel.image3.toString(),
+        widget.getHouseModel.image4.toString(),
+      ];
+      log(imageList[0].toString());
+    } catch (e) {
+      log(e.toString());
+    }
+    return imageList;
+  }
+
   @override
   void initState() {
     super.initState();
+    getImageLink();
     String video = widget.getHouseModel.video.toString();
     videoUrl = video.replaceAll('http', 'https');
   }
 
   @override
   Widget build(BuildContext context) {
-    final imageList = [
-      widget.getHouseModel.image1.toString(),
-      widget.getHouseModel.image2.toString(),
-      widget.getHouseModel.image3.toString(),
-      widget.getHouseModel.image4.toString(),
-    ];
     Widget setInfo(
         {required IconData icon,
         required String title,
@@ -248,26 +259,26 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                           height: 130.h,
                           width: Get.width,
                           child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: imageList.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 15.w),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(25.r),
-                                    child: FadeInImage.assetNetwork(
-                                      image: imageList[index].toString(),
-                                      imageScale: 1.0,
-                                      fit: BoxFit.cover,
-                                      width: Get.width * 0.5,
-                                      placeholder:
-                                          'asset/images/sliderhouse1.png',
-                                    ),
+                            shrinkWrap: true,
+                            itemCount: imageList.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(25.r),
+                                  child: FadeInImage.assetNetwork(
+                                    image: imageList[index].toString(),
+                                    imageScale: 1.0,
+                                    fit: BoxFit.cover,
+                                    width: Get.width * 0.5,
+                                    placeholder:
+                                        'asset/images/sliderhouse1.png',
                                   ),
-                                );
-                              }),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                         gap(),
                         SizedBox(
