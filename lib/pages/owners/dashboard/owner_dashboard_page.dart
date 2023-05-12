@@ -148,8 +148,10 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                                   state.ownerHouseListModel.message.toString()),
                               gap(),
                               refreshButton(onPress: () {
-                                BlocProvider.of<ShowOwnerHouseCubit>(context)
-                                    .showOwnerHouse();
+                                setState(() {
+                                  BlocProvider.of<ShowOwnerHouseCubit>(context)
+                                      .showOwnerHouse();
+                                });
                               }),
                             ],
                           ),

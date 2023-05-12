@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -16,10 +17,12 @@ class AddHouseRepository {
     required String address,
     required String notice,
     required String status,
+    required String canBook,
     required String category,
     required List<File> imageList,
     required File video,
   }) async {
+    log('${canBook}repo');
     List<dynamic> images = [];
     for (var i = 0; i < imageList.length; i++) {
       var path = imageList[i].path;
@@ -43,6 +46,7 @@ class AddHouseRepository {
       'address': address,
       'notice': notice,
       'status': status,
+      'canBook': canBook,
     };
     return await ApiService.postApi(path: addHouse, body: map, data: formData);
   }

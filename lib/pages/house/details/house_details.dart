@@ -307,34 +307,39 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
                           width: Get.width,
-                          child: MaterialButton(
-                            color: Colors.orange[300],
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.r)),
-                            onPressed: () {
-                              log(widget.getHouseModel.id!.toString());
-                              String ownerName =
-                                  widget.getHouseModel.ownerName!;
-                              String ownerNumber =
-                                  widget.getHouseModel.ownerNumber!;
+                          child: Visibility(
+                            visible: widget.getHouseModel.canBook == 'yes'
+                                ? true
+                                : false,
+                            child: MaterialButton(
+                              color: Colors.orange[300],
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.r)),
+                              onPressed: () {
+                                log(widget.getHouseModel.id!.toString());
+                                String ownerName =
+                                    widget.getHouseModel.ownerName!;
+                                String ownerNumber =
+                                    widget.getHouseModel.ownerNumber!;
 
-                              if (widget.getHouseModel.status == 'booked') {
-                                warningDialog(
-                                    context: context,
-                                    message: 'Already booked');
-                              } else {
-                                BlocProvider.of<BookHouseCubit>(context)
-                                    .bookRoom(
-                                  phoneNumber: StorageUtils.getNumber(),
-                                  ownerName: ownerName,
-                                  ownerNumber: ownerNumber,
-                                  houseId: widget.getHouseModel.id!,
-                                );
-                              }
-                            },
-                            child: const Text(
-                              'এখনি বুক করুন',
-                              style: TextStyle(color: Colors.white),
+                                if (widget.getHouseModel.status == 'booked') {
+                                  warningDialog(
+                                      context: context,
+                                      message: 'Already booked');
+                                } else {
+                                  BlocProvider.of<BookHouseCubit>(context)
+                                      .bookRoom(
+                                    phoneNumber: StorageUtils.getNumber(),
+                                    ownerName: ownerName,
+                                    ownerNumber: ownerNumber,
+                                    houseId: widget.getHouseModel.id!,
+                                  );
+                                }
+                              },
+                              child: const Text(
+                                'এখনি বুক করুন',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
                         ),

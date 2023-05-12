@@ -23,40 +23,47 @@ class UpdateHousePage extends StatefulWidget {
 
 class _UpdateHousePageState extends State<UpdateHousePage> {
   @override
+  final feeController = TextEditingController();
+  final quantityController = TextEditingController();
+  final advanceFeeController = TextEditingController();
+  final electricityFeeController = TextEditingController();
+  final gasFeeController = TextEditingController();
+  final othersFeeController = TextEditingController();
+  final addressController = TextEditingController();
+  final noticeController = TextEditingController();
+  final statusController = TextEditingController();
+
+  String canBook = '';
+
+  List<String> items = [
+    'family',
+    'bachelor',
+    'female',
+    'sublet',
+    'office',
+    'warehouse',
+    'shop',
+    'garage',
+    'others',
+    'industry',
+    'flat',
+  ];
+  int index = 0;
+  var category;
+  Container labelText({required String label}) {
+    return Container(
+      margin: EdgeInsets.only(top: 3.h, bottom: 3.h, left: 30.w),
+      child: Align(alignment: Alignment.centerLeft, child: Text(label)),
+    );
+  }
+
+  void initState() {
+    super.initState();
+    canBook = widget.ownerHouseModel.canBook.toString();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final categoryController = TextEditingController();
-    final feeController = TextEditingController();
-    final quantityController = TextEditingController();
-    final advanceFeeController = TextEditingController();
-    final electricityFeeController = TextEditingController();
-    final gasFeeController = TextEditingController();
-    final othersFeeController = TextEditingController();
-    final addressController = TextEditingController();
-    final noticeController = TextEditingController();
-    final statusController = TextEditingController();
-
-    List<String> items = [
-      'family',
-      'bachelor',
-      'female',
-      'sublet',
-      'office',
-      'warehouse',
-      'shop',
-      'garage',
-      'others',
-      'industry',
-      'flat',
-    ];
-    int index = 0;
-    var category;
-    Container labelText({required String label}) {
-      return Container(
-        margin: EdgeInsets.only(top: 3.h, bottom: 3.h, left: 30.w),
-        child: Align(alignment: Alignment.centerLeft, child: Text(label)),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Update'),
@@ -80,27 +87,30 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // gap(),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  //   child: DropdownButtonFormField(
-                  //     value: category,
-                  //     decoration: InputDecoration(
-                  //       border: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(15.r)),
-                  //     ),
-                  //     hint: Text(widget.ownerHouseModel.category.toString()),
-                  //     items: items.map((item) {
-                  //       return DropdownMenuItem(value: item, child: Text(item));
-                  //     }).toList(),
-                  //     onChanged: (value) {
-                  //       setState(() {
-                  //         category = value.toString();
-                  //         log(category.toString());
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
+                  gap(),
+                  const Text(
+                    'Can Book ?',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  gap(h: 10.h),
+                  DropdownButton(
+                    hint: const Text('Can book the room'),
+                    value: canBook,
+                    items: ['yes', 'no']
+                        .map(
+                          (item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(item.toString()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        canBook = value as String;
+                      });
+                      log(canBook);
+                    },
+                  ),
                   gap(),
                   labelText(label: 'Fee'),
                   inputText(
@@ -218,6 +228,9 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
             status: status == ''
                 ? widget.ownerHouseModel.status.toString()
                 : status,
+            canBook: canBook == ''
+                ? widget.ownerHouseModel.canBook.toString()
+                : canBook,
           );
         },
         child: const Icon(

@@ -6,6 +6,8 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/app_colors.dart';
 
 void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   await GetStorage.init();
   runApp(const MyApp());
 }

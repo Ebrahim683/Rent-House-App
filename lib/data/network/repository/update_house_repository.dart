@@ -4,19 +4,19 @@ import 'package:rent_house/utils/storage_utils.dart';
 import '../api/end_points.dart';
 
 class UpdateHouseRepository {
-  static updateHouse({
-    required int houseId,
-    required String category,
-    required String fee,
-    required String quantity,
-    required String advanceFee,
-    required String electricityFee,
-    required String gasFee,
-    required String othersFee,
-    required String address,
-    required String notice,
-    required String status,
-  }) async {
+  static updateHouse(
+      {required int houseId,
+      required String category,
+      required String fee,
+      required String quantity,
+      required String advanceFee,
+      required String electricityFee,
+      required String gasFee,
+      required String othersFee,
+      required String address,
+      required String notice,
+      required String status,
+      required String canBook}) async {
     Map<String, dynamic> map = {
       'house_id': houseId,
       'owner_name': StorageUtils.getName(),
@@ -31,6 +31,7 @@ class UpdateHouseRepository {
       'address': address,
       'notice': notice,
       'status': status,
+      'canBook': canBook,
     };
     return await ApiService.putApi(path: updateHouseOwner, body: map);
   }

@@ -263,6 +263,8 @@ mixin _$OwnerHouseModel {
   String? get notice => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'can_book')
+  String? get canBook => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -295,7 +297,8 @@ abstract class $OwnerHouseModelCopyWith<$Res> {
       @JsonKey(name: 'others_fee') String? othersFee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'notice') String? notice,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'can_book') String? canBook});
 }
 
 /// @nodoc
@@ -330,6 +333,7 @@ class _$OwnerHouseModelCopyWithImpl<$Res, $Val extends OwnerHouseModel>
     Object? address = freezed,
     Object? notice = freezed,
     Object? status = freezed,
+    Object? canBook = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -408,6 +412,10 @@ class _$OwnerHouseModelCopyWithImpl<$Res, $Val extends OwnerHouseModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      canBook: freezed == canBook
+          ? _value.canBook
+          : canBook // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -439,7 +447,8 @@ abstract class _$$_OwnerHouseModelCopyWith<$Res>
       @JsonKey(name: 'others_fee') String? othersFee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'notice') String? notice,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'can_book') String? canBook});
 }
 
 /// @nodoc
@@ -472,6 +481,7 @@ class __$$_OwnerHouseModelCopyWithImpl<$Res>
     Object? address = freezed,
     Object? notice = freezed,
     Object? status = freezed,
+    Object? canBook = freezed,
   }) {
     return _then(_$_OwnerHouseModel(
       id: freezed == id
@@ -550,6 +560,10 @@ class __$$_OwnerHouseModelCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      canBook: freezed == canBook
+          ? _value.canBook
+          : canBook // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -576,7 +590,8 @@ class _$_OwnerHouseModel implements _OwnerHouseModel {
       @JsonKey(name: 'others_fee') this.othersFee,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'notice') this.notice,
-      @JsonKey(name: 'status') this.status});
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'can_book') this.canBook});
 
   factory _$_OwnerHouseModel.fromJson(Map<String, dynamic> json) =>
       _$$_OwnerHouseModelFromJson(json);
@@ -638,10 +653,13 @@ class _$_OwnerHouseModel implements _OwnerHouseModel {
   @override
   @JsonKey(name: 'status')
   final String? status;
+  @override
+  @JsonKey(name: 'can_book')
+  final String? canBook;
 
   @override
   String toString() {
-    return 'OwnerHouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image1: $image1, image2: $image2, image3: $image3, image4: $image4, video: $video, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status)';
+    return 'OwnerHouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image1: $image1, image2: $image2, image3: $image3, image4: $image4, video: $video, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status, canBook: $canBook)';
   }
 
   @override
@@ -674,7 +692,8 @@ class _$_OwnerHouseModel implements _OwnerHouseModel {
                 other.othersFee == othersFee) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.notice, notice) || other.notice == notice) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.canBook, canBook) || other.canBook == canBook));
   }
 
   @JsonKey(ignore: true)
@@ -699,7 +718,8 @@ class _$_OwnerHouseModel implements _OwnerHouseModel {
         othersFee,
         address,
         notice,
-        status
+        status,
+        canBook
       ]);
 
   @JsonKey(ignore: true)
@@ -736,7 +756,8 @@ abstract class _OwnerHouseModel implements OwnerHouseModel {
       @JsonKey(name: 'others_fee') final String? othersFee,
       @JsonKey(name: 'address') final String? address,
       @JsonKey(name: 'notice') final String? notice,
-      @JsonKey(name: 'status') final String? status}) = _$_OwnerHouseModel;
+      @JsonKey(name: 'status') final String? status,
+      @JsonKey(name: 'can_book') final String? canBook}) = _$_OwnerHouseModel;
 
   factory _OwnerHouseModel.fromJson(Map<String, dynamic> json) =
       _$_OwnerHouseModel.fromJson;
@@ -798,6 +819,9 @@ abstract class _OwnerHouseModel implements OwnerHouseModel {
   @override
   @JsonKey(name: 'status')
   String? get status;
+  @override
+  @JsonKey(name: 'can_book')
+  String? get canBook;
   @override
   @JsonKey(ignore: true)
   _$$_OwnerHouseModelCopyWith<_$_OwnerHouseModel> get copyWith =>

@@ -45,6 +45,7 @@ _$_OwnerHouseModel _$$_OwnerHouseModelFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
       notice: json['notice'] as String?,
       status: json['status'] as String?,
+      canBook: json['can_book'] as String?,
     );
 
 Map<String, dynamic> _$$_OwnerHouseModelToJson(_$_OwnerHouseModel instance) =>
@@ -68,4 +69,5 @@ Map<String, dynamic> _$$_OwnerHouseModelToJson(_$_OwnerHouseModel instance) =>
       'address': instance.address,
       'notice': instance.notice,
       'status': instance.status,
+      'can_book': instance.canBook,
     };

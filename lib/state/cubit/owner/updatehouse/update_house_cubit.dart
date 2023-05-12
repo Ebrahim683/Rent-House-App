@@ -18,21 +18,24 @@ class UpdateHouseCubit extends Cubit<UpdateHouseState> {
     required String address,
     required String notice,
     required String status,
+    required String canBook,
   }) async {
     emit(UpdateHouseLoadingState());
     try {
       final result = await UpdateHouseRepository.updateHouse(
-          houseId: houseId,
-          category: category,
-          fee: fee,
-          quantity: quantity,
-          advanceFee: advanceFee,
-          electricityFee: electricityFee,
-          gasFee: gasFee,
-          othersFee: othersFee,
-          address: address,
-          notice: notice,
-          status: status);
+        houseId: houseId,
+        category: category,
+        fee: fee,
+        quantity: quantity,
+        advanceFee: advanceFee,
+        electricityFee: electricityFee,
+        gasFee: gasFee,
+        othersFee: othersFee,
+        address: address,
+        notice: notice,
+        status: status,
+        canBook: canBook,
+      );
       AuthModel authModel = AuthModel.fromJson(result);
       emit(UpdateHouseSuccessState(authModel));
     } catch (e) {

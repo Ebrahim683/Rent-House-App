@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,12 +19,14 @@ class AddHouseCubit extends Cubit<AddHouseState> {
     required String address,
     required String notice,
     required String status,
+    required String canBook,
     required String category,
     required List<File> imageList,
     required File video,
   }) async {
     emit(AddHouseLoadingState());
     try {
+      log('${canBook}cubit');
       final result = await AddHouseRepository.addHouseRepo(
         fee: fee,
         advanceFee: advanceFee,
@@ -34,9 +37,10 @@ class AddHouseCubit extends Cubit<AddHouseState> {
         address: address,
         notice: notice,
         status: status,
+        canBook: canBook,
         category: category,
         imageList: imageList,
-        video:video,
+        video: video,
       );
       AddHouseModel addHouseModel = AddHouseModel.fromJson(result);
       emit(AddHouseSuccessState(addHouseModel));

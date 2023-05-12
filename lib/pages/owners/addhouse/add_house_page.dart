@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,10 +10,8 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
-import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:video_compress/video_compress.dart';
-
 import '../../../widget/app_widget.dart';
 
 class AddHousePage extends StatefulWidget {
@@ -61,6 +58,7 @@ class _AddHousePageState extends State<AddHousePage> {
     'industry',
     'flat',
   ];
+  String canBook = 'no';
   String category = '';
   final picker = ImagePicker();
   File? image1;
@@ -158,6 +156,30 @@ class _AddHousePageState extends State<AddHousePage> {
                         color: Colors.teal, borderColor: Colors.black),
                     choiceActiveStyle: const C2ChoiceStyle(
                         color: Colors.green, borderColor: Colors.blue),
+                  ),
+                  gap(),
+                  const Text(
+                    'Can Book ?',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  gap(h: 10.h),
+                  DropdownButton(
+                    hint: const Text('Can book the room'),
+                    value: canBook,
+                    items: ['yes', 'no']
+                        .map(
+                          (item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(item.toString()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        canBook = value as String;
+                      });
+                      log(canBook);
+                    },
                   ),
                   gap(),
                   inputText(
@@ -292,7 +314,7 @@ class _AddHousePageState extends State<AddHousePage> {
                       ),
                       child: Text(
                         video == null
-                            ? 'Select a sort video under 15 second'
+                            ? 'Select a sort video under 1 minute'
                             : video.toString(),
                         style: TextStyle(color: Colors.white, fontSize: 15.sp),
                       ),
@@ -318,7 +340,7 @@ class _AddHousePageState extends State<AddHousePage> {
           String address = addressController.text.toString();
           String notice = noticeController.text.toString();
           String status = statusController.text.toString();
-          log(StorageUtils.getLocation().toString());
+
           if (fee == '') {
             showGetSnackBar(title: 'Error', message: 'Enter fee');
           } else if (quantity == '') {
@@ -354,6 +376,7 @@ class _AddHousePageState extends State<AddHousePage> {
                 address: address,
                 notice: notice,
                 status: status,
+                canBook: canBook,
                 category: category == '' ? 'family' : category,
                 imageList: images!,
                 video: video!);
