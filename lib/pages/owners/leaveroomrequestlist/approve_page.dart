@@ -137,6 +137,7 @@ class ApprovePage extends StatelessWidget {
             houseId: leaveRoomModel.houseId!,
             userName: leaveRoomModel.userName!,
             userNumber: leaveRoomModel.userNumber!,
+            time: leaveRoomModel.time!,
           );
         },
         child: const Icon(

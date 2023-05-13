@@ -11,14 +11,17 @@ class ApproveCubit extends Cubit<ApproveState> {
     required int houseId,
     required String userName,
     required String userNumber,
+    required String time,
   }) async {
     emit(ApproveLoadingState());
     try {
       final result = await ApproveRepository.approve(
-          requestId: requestId,
-          houseId: houseId,
-          userName: userName,
-          userNumber: userNumber);
+        requestId: requestId,
+        houseId: houseId,
+        userName: userName,
+        userNumber: userNumber,
+        time: time,
+      );
       AuthModel authModel = AuthModel.fromJson(result);
       emit(ApproveSuccessState(authModel));
     } catch (e) {

@@ -27,6 +27,7 @@ class LeaveRoomModel with _$LeaveRoomModel {
     @JsonKey(name: 'category') String? category,
     @JsonKey(name: 'fee') String? fee,
     @JsonKey(name: 'address') String? address,
+    @JsonKey(name: 'time') String? time,
   }) = _LeaveRoomModel;
   factory LeaveRoomModel.fromJson(Map<String, dynamic> json) =>
       _$LeaveRoomModelFromJson(json);

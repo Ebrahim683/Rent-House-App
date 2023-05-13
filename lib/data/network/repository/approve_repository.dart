@@ -9,6 +9,7 @@ class ApproveRepository {
     required int houseId,
     required String userName,
     required String userNumber,
+    required String time,
   }) async {
     Map<String, dynamic> map = {
       'request_id': requestId,
@@ -17,6 +18,7 @@ class ApproveRepository {
       'user_number': userNumber,
       'owner_name': StorageUtils.getName(),
       'owner_number': StorageUtils.getNumber(),
+      'time': time,
     };
     return await ApiService.deleteApi(path: approveLeaveRoomRequest, body: map);
   }

@@ -36,6 +36,7 @@ _$_LeaveRoomModel _$$_LeaveRoomModelFromJson(Map<String, dynamic> json) =>
       category: json['category'] as String?,
       fee: json['fee'] as String?,
       address: json['address'] as String?,
+      time: json['time'] as String?,
     );
 
 Map<String, dynamic> _$$_LeaveRoomModelToJson(_$_LeaveRoomModel instance) =>
@@ -50,4 +51,5 @@ Map<String, dynamic> _$$_LeaveRoomModelToJson(_$_LeaveRoomModel instance) =>
       'category': instance.category,
       'fee': instance.fee,
       'address': instance.address,
+      'time': instance.time,
     };

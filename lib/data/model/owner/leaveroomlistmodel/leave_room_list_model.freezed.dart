@@ -242,6 +242,8 @@ mixin _$LeaveRoomModel {
   String? get fee => throw _privateConstructorUsedError;
   @JsonKey(name: 'address')
   String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'time')
+  String? get time => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -265,7 +267,8 @@ abstract class $LeaveRoomModelCopyWith<$Res> {
       @JsonKey(name: 'user_number') String? userNumber,
       @JsonKey(name: 'category') String? category,
       @JsonKey(name: 'fee') String? fee,
-      @JsonKey(name: 'address') String? address});
+      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'time') String? time});
 }
 
 /// @nodoc
@@ -291,6 +294,7 @@ class _$LeaveRoomModelCopyWithImpl<$Res, $Val extends LeaveRoomModel>
     Object? category = freezed,
     Object? fee = freezed,
     Object? address = freezed,
+    Object? time = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -333,6 +337,10 @@ class _$LeaveRoomModelCopyWithImpl<$Res, $Val extends LeaveRoomModel>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -355,7 +363,8 @@ abstract class _$$_LeaveRoomModelCopyWith<$Res>
       @JsonKey(name: 'user_number') String? userNumber,
       @JsonKey(name: 'category') String? category,
       @JsonKey(name: 'fee') String? fee,
-      @JsonKey(name: 'address') String? address});
+      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'time') String? time});
 }
 
 /// @nodoc
@@ -379,6 +388,7 @@ class __$$_LeaveRoomModelCopyWithImpl<$Res>
     Object? category = freezed,
     Object? fee = freezed,
     Object? address = freezed,
+    Object? time = freezed,
   }) {
     return _then(_$_LeaveRoomModel(
       id: freezed == id
@@ -421,6 +431,10 @@ class __$$_LeaveRoomModelCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -438,7 +452,8 @@ class _$_LeaveRoomModel implements _LeaveRoomModel {
       @JsonKey(name: 'user_number') this.userNumber,
       @JsonKey(name: 'category') this.category,
       @JsonKey(name: 'fee') this.fee,
-      @JsonKey(name: 'address') this.address});
+      @JsonKey(name: 'address') this.address,
+      @JsonKey(name: 'time') this.time});
 
   factory _$_LeaveRoomModel.fromJson(Map<String, dynamic> json) =>
       _$$_LeaveRoomModelFromJson(json);
@@ -473,10 +488,13 @@ class _$_LeaveRoomModel implements _LeaveRoomModel {
   @override
   @JsonKey(name: 'address')
   final String? address;
+  @override
+  @JsonKey(name: 'time')
+  final String? time;
 
   @override
   String toString() {
-    return 'LeaveRoomModel(id: $id, requestId: $requestId, houseId: $houseId, ownerName: $ownerName, ownerNumber: $ownerNumber, userName: $userName, userNumber: $userNumber, category: $category, fee: $fee, address: $address)';
+    return 'LeaveRoomModel(id: $id, requestId: $requestId, houseId: $houseId, ownerName: $ownerName, ownerNumber: $ownerNumber, userName: $userName, userNumber: $userNumber, category: $category, fee: $fee, address: $address, time: $time)';
   }
 
   @override
@@ -499,13 +517,25 @@ class _$_LeaveRoomModel implements _LeaveRoomModel {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.fee, fee) || other.fee == fee) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.time, time) || other.time == time));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, requestId, houseId,
-      ownerName, ownerNumber, userName, userNumber, category, fee, address);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      requestId,
+      houseId,
+      ownerName,
+      ownerNumber,
+      userName,
+      userNumber,
+      category,
+      fee,
+      address,
+      time);
 
   @JsonKey(ignore: true)
   @override
@@ -532,7 +562,8 @@ abstract class _LeaveRoomModel implements LeaveRoomModel {
       @JsonKey(name: 'user_number') final String? userNumber,
       @JsonKey(name: 'category') final String? category,
       @JsonKey(name: 'fee') final String? fee,
-      @JsonKey(name: 'address') final String? address}) = _$_LeaveRoomModel;
+      @JsonKey(name: 'address') final String? address,
+      @JsonKey(name: 'time') final String? time}) = _$_LeaveRoomModel;
 
   factory _LeaveRoomModel.fromJson(Map<String, dynamic> json) =
       _$_LeaveRoomModel.fromJson;
@@ -567,6 +598,9 @@ abstract class _LeaveRoomModel implements LeaveRoomModel {
   @override
   @JsonKey(name: 'address')
   String? get address;
+  @override
+  @JsonKey(name: 'time')
+  String? get time;
   @override
   @JsonKey(ignore: true)
   _$$_LeaveRoomModelCopyWith<_$_LeaveRoomModel> get copyWith =>
