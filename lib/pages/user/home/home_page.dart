@@ -1,10 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:rent_house/pages/home/category_widget.dart';
-import 'package:rent_house/routers/routes.dart';
+import 'package:rent_house/pages/user/home/category_widget.dart';
 import 'package:rent_house/utils/storage_utils.dart';
-import '../../utils/strings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -73,34 +70,35 @@ class _HomePageState extends State<HomePage> {
       'Flat',
     ];
 
-    handlePopUp(int value) {
-      switch (value) {
-        case 0:
-          StorageUtils.logOut();
-          pushOff(context: context, name: login_page);
-          break;
-        case 1:
-          push(context: context, name: booked_house_page);
-          break;
-        default:
-          null;
-      }
-    }
+    // handlePopUp(int value) {
+    //   switch (value) {
+    //     case 0:
+    //       StorageUtils.logOut();
+    //       pushOff(context: context, name: login_page);
+    //       break;
+    //     case 1:
+    //       push(context: context, name: booked_house_page);
+    //       break;
+    //     default:
+    //       null;
+    //   }
+    // }
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(appName),
-        actions: [
-          PopupMenuButton<int>(
-            onSelected: (value) => handlePopUp(value),
-            itemBuilder: (context) => [
-              const PopupMenuItem<int>(value: 0, child: Text('লগ আউট')),
-              const PopupMenuItem<int>(value: 1, child: Text('ভাড়াকৃত রুম')),
-            ],
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   title: Text(appName),
+      //   centerTitle: true,
+      //   actions: [
+      //     PopupMenuButton<int>(
+      //       onSelected: (value) => handlePopUp(value),
+      //       itemBuilder: (context) => [
+      //         const PopupMenuItem<int>(value: 0, child: Text('লগ আউট')),
+      //         const PopupMenuItem<int>(value: 1, child: Text('ভাড়াকৃত রুম')),
+      //       ],
+      //     ),
+      //   ],
+      // ),
       resizeToAvoidBottomInset: true,
       body: GridView.count(
         crossAxisCount: 2,

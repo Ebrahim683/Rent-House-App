@@ -29,9 +29,9 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('রুম ছাড়ার আবেদন'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('রুম ছাড়ার আবেদন'),
+      // ),
       body: LiquidPullToRefresh(
         child:
             BlocConsumer<LeaveRoomRequestListCubit, LeaveRoomRequestListState>(

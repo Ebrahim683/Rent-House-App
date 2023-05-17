@@ -115,9 +115,9 @@ class _AddHousePageState extends State<AddHousePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add House'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Add House'),
+      // ),
       body: BlocConsumer<AddHouseCubit, AddHouseState>(
         listener: (context, state) {
           if (state is AddHouseSuccessState) {

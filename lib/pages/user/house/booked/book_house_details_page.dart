@@ -11,8 +11,9 @@ import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_state
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 
-import '../../../utils/app_colors.dart';
-import '../../../widget/app_widget.dart';
+import '../../../../utils/app_colors.dart';
+import '../../../../widget/app_widget.dart';
+
 
 class BookedHouseDetailsPage extends StatelessWidget {
   final BookedHouseModel bookedHouseModel;

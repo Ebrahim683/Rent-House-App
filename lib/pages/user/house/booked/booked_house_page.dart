@@ -10,8 +10,8 @@ import 'package:rent_house/state/cubit/showbookedhouse/show_booked_house_cubit.d
 import 'package:rent_house/state/cubit/showbookedhouse/show_booked_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
 
-import '../../../routers/routes.dart';
-import '../../../widget/app_widget.dart';
+import '../../../../routers/routes.dart';
+import '../../../../widget/app_widget.dart';
 
 class BookedHousePage extends StatefulWidget {
   const BookedHousePage({super.key});
@@ -30,9 +30,9 @@ class _BookedHousePageState extends State<BookedHousePage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ভাড়াকৃত রুম'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('ভাড়াকৃত রুম'),
+      // ),
       body: LiquidPullToRefresh(
         onRefresh: refreshCallBack,
         child: BlocConsumer<ShowBookedHouseCubit, ShowBookedHouseState>(

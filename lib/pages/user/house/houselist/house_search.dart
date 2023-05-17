@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rent_house/pages/house/houselist/house_widget.dart';
-import '../../../data/model/gethousemodel/get_house_model.dart';
+
+import '../../../../data/model/gethousemodel/get_house_model.dart';
+import 'house_widget.dart';
+
 
 class HouseSearch extends SearchDelegate {
   final List<GetHouseModel> getHouseModelList;

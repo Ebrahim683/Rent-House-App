@@ -2,16 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/owner/ownerhousemodel/owner_house_list_model.dart';
 import 'package:rent_house/pages/owners/dashboard/room_widget.dart';
-import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_state.dart';
-import 'package:rent_house/utils/strings.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
@@ -67,52 +64,42 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
       });
     }
 
-    handlePopUp(int value) {
-      switch (value) {
-        case 0:
-            StorageUtils.logOut();
-          pushOff(context: context, name: login_page);
-          break;
-        case 1:
-          push(context: context, name: users_list_page);
-          break;
-        case 2:
-          push(context: context, name: leave_room_page_request_list_page);
-          break;
-        default:
-          null;
-      }
-    }
+    // handlePopUp(int value) {
+    //   switch (value) {
+    //     case 0:
+    //         StorageUtils.logOut();
+    //       pushOff(context: context, name: login_page);
+    //       break;
+    //     case 1:
+    //       push(context: context, name: users_list_page);
+    //       break;
+    //     case 2:
+    //       push(context: context, name: leave_room_page_request_list_page);
+    //       break;
+    //     default:
+    //       null;
+    //   }
+    // }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(appName),
-        actions: [
-          PopupMenuButton<int>(
-            onSelected: (value) => handlePopUp(value),
-            itemBuilder: (context) => [
-              const PopupMenuItem<int>(value: 0, child: Text('লগ আউট')),
-              const PopupMenuItem<int>(value: 1, child: Text('ভাড়াটিয়া লিস্ট')),
-              const PopupMenuItem<int>(
-                  value: 2, child: Text('রুম ছাড়ার আবেদন')),
-            ],
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: Text(appName),
+      //   actions: [
+      //     PopupMenuButton<int>(
+      //       onSelected: (value) => handlePopUp(value),
+      //       itemBuilder: (context) => [
+      //         const PopupMenuItem<int>(value: 0, child: Text('লগ আউট')),
+      //         const PopupMenuItem<int>(value: 1, child: Text('ভাড়াটিয়া লিস্ট')),
+      //         const PopupMenuItem<int>(
+      //             value: 2, child: Text('রুম ছাড়ার আবেদন')),
+      //       ],
+      //     ),
+      //   ],
+      // ),
       body: LiquidPullToRefresh(
         onRefresh: refreshCallBack,
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Text(
-                'রুম লিস্ট',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                ),
-              ),
-            ),
-            gap(),
             Expanded(
               child: BlocProvider<ShowOwnerHouseCubit>(
                 create: (context) => ShowOwnerHouseCubit(),
@@ -210,16 +197,6 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
               ),
             ),
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        onPressed: () {
-          push(context: context, name: add_house_page);
-        },
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
         ),
       ),
     );

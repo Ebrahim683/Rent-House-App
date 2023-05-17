@@ -14,9 +14,9 @@ class _SplashPageState extends State<SplashPage> {
   checkLoggedIn() {
     Future.delayed(const Duration(seconds: 4), () {
       if (storageUtils.getRole == 'user') {
-        pushOff(context: context, name: home_page);
+        pushOff(context: context, name: user_base_page);
       } else if (storageUtils.getRole == 'owner') {
-        pushOff(context: context, name: owner_dashboard_page);
+        pushOff(context: context, name: owner_base_page);
       } else {
         pushOff(context: context, name: login_page);
       }

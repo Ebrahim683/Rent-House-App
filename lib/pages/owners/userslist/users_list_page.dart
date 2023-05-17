@@ -27,9 +27,9 @@ class _UsersListPageState extends State<UsersListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ভারাটিয়া লিস্ট'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('ভারাটিয়া লিস্ট'),
+      // ),
       body: LiquidPullToRefresh(
         onRefresh: () => refreshCallBack(),
         child:

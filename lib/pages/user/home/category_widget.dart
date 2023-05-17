@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
-import '../../routers/routes.dart';
 
 class CategoryWidget extends StatelessWidget {
   final String animation;

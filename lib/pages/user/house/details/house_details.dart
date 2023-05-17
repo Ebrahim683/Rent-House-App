@@ -14,8 +14,9 @@ import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
-import '../../../routers/routes.dart';
-import '../../../utils/storage_utils.dart';
+import '../../../../routers/routes.dart';
+import '../../../../utils/storage_utils.dart';
+
 
 class HouseDetailsPage extends StatefulWidget {
   final GetHouseModel getHouseModel;

@@ -5,11 +5,11 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/gethousemodel/get_house_list_model.dart';
 import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
-import 'package:rent_house/pages/house/houselist/house_search.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_state.dart';
 import 'package:rent_house/utils/utils.dart';
-import '../../../widget/app_widget.dart';
+import '../../../../widget/app_widget.dart';
+import 'house_search.dart';
 import 'house_widget.dart';
 
 class HouseListPage extends StatefulWidget {
