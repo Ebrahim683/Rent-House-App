@@ -10,7 +10,6 @@ import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
-import 'package:rive/rive.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../../widget/app_widget.dart';
@@ -50,7 +49,7 @@ class BookedHouseDetailsPage extends StatelessWidget {
               description,
               softWrap: false,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
           ],
         ),
@@ -63,8 +62,8 @@ class BookedHouseDetailsPage extends StatelessWidget {
           log(bookedHouseModel.id!.toString());
           BlocProvider.of<LeaveRoomRequestCubit>(context).leaveRoom(
             id: bookedHouseModel.id!,
-            userName: StorageUtils.getName(),
-            userNumber: StorageUtils.getNumber(),
+            userName: storageUtils.getName!,
+            userNumber: storageUtils.getNumber!,
           );
           break;
         default:
@@ -92,7 +91,8 @@ class BookedHouseDetailsPage extends StatelessWidget {
             errorDialog(context: context, message: state.error);
           } else if (state is LeaveRoomRequestSuccessState) {
             successDialog(
-                context: context, message: state.authModel.message.toString());
+                context: context,
+                message: state.commonModel.message.toString());
           }
         },
         builder: (context, state) {

@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
 import 'package:rent_house/data/network/repository/update_house_repository.dart';
 import 'package:rent_house/state/cubit/owner/updatehouse/update_house_state.dart';
+
+import '../../../../data/model/common/common_model.dart';
 
 class UpdateHouseCubit extends Cubit<UpdateHouseState> {
   UpdateHouseCubit() : super(UpdateHouseInitialState());
@@ -36,8 +37,8 @@ class UpdateHouseCubit extends Cubit<UpdateHouseState> {
         status: status,
         canBook: canBook,
       );
-      AuthModel authModel = AuthModel.fromJson(result);
-      emit(UpdateHouseSuccessState(authModel));
+      CommonModel commonModel = CommonModel.fromJson(result);
+      emit(UpdateHouseSuccessState(commonModel));
     } catch (e) {
       emit(UpdateHouseErrorState(e.toString()));
     }

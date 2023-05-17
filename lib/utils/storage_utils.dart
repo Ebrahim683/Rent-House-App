@@ -1,52 +1,37 @@
 import 'dart:developer';
-
-import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageUtils {
-  static final box = GetStorage();
+  static SharedPreferences? sharedPreference;
 
-  static saveNumber(String number) {
+  init() async {
+    sharedPreference ??= await SharedPreferences.getInstance();
+  }
+
+  saveNumber(String number) {
     log('number saved');
-    box.write('number', number);
+    sharedPreference?.setString('number', number);
   }
 
-  static saveName(String name) {
+  saveName(String name) {
     log('name saved');
-    box.write('name', name);
+    sharedPreference?.setString('name', name);
   }
 
-  static saveRole(String role) {
-    box.write('role', role);
+  saveRole(String role) {
+    sharedPreference?.setString('role', role);
   }
 
-  static saveLocation(String location) {
-    log('$location saved');
-    box.write('location', location);
-  }
+  String? get getNumber => sharedPreference?.getString('number') ?? '';
 
-  static String getNumber() {
-    return box.read('number');
-  }
+  String? get getName => sharedPreference?.getString('name') ?? '';
 
-  static String getName() {
-    return box.read('name');
-  }
-
-  static String getRole() {
-    String role = box.read('role');
-    return role;
-  }
-
-  static String getLocation() {
-    String location = box.read('location');
-    return location;
-  }
+  String? get getRole => sharedPreference?.getString('role') ?? '';
 
   static logOut() {
-    log('cleared');
-    box.remove('number');
-    box.remove('name');
-    box.remove('user');
-    box.remove('location');
+    log('logout');
+    sharedPreference?.clear();
   }
 }
+
+final storageUtils = StorageUtils();

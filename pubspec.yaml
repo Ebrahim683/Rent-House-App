@@ -4,7 +4,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.19.4 <3.0.0"
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -24,12 +24,12 @@ dependencies:
   lottie: ^2.2.0
   liquid_swipe: ^3.1.0
   rive: ^0.10.4
+  flutter_animate: ^4.1.1+1
   #storage
+  shared_preferences: ^2.1.1
   get_storage: ^2.0.3
   #bottom nav
   salomon_bottom_bar: ^3.3.1
-  #date formate
-  intl: ^0.18.0
   #button
   chips_choice_null_safety: ^2.0.6
   custom_radio_grouped_button: ^2.1.2+2
@@ -38,25 +38,21 @@ dependencies:
   cool_alert: any
   loading_overlay: ^0.3.0
   #slider
-  velocity_x: any
   carousel_slider: ^4.2.1
   #payment
   flutter_sslcommerz: ^2.2.2-nullsafety.0
   #screen size
   flutter_screenutil: ^5.6.1
-  device_preview: any
   #grid view
   flutter_staggered_grid_view: ^0.6.2
   #network
   dio: ^5.1.1
   freezed: ^2.3.2
   freezed_annotation: ^2.2.0
-  http: ^0.13.5
   #location
-  geolocator: ^9.0.2
-  geocoding:
-  geocode:
-  geocoder: any
+  # geolocator: ^9.0.2
+  # geocoding:
+  # geocode:
   #launcher
   url_launcher: ^6.1.10
   #glass
@@ -66,10 +62,7 @@ dependencies:
   cached_network_image: ^3.2.3
   appinio_video_player: ^1.2.1
   video_compress: ^3.1.2
-  #notification
-  onesignal_flutter: ^3.5.1
-  #firebase
-  # firebase_core: ^2.11.0
+
 
 dev_dependencies:
   flutter_test:

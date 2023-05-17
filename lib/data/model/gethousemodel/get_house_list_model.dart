@@ -7,8 +7,11 @@ part 'get_house_list_model.freezed.dart';
 @freezed
 class GetHouseListModel with _$GetHouseListModel {
   const factory GetHouseListModel({
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'status') String? status,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'message') String? message,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'data') List<GetHouseModel>? getHouseModel,
   }) = _GetHouseListModel;
   factory GetHouseListModel.fromJson(Map<String, dynamic> json) =>

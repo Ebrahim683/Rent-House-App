@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -31,7 +30,7 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('রুম ছাড়ার আবেদন'),
+        title: const Text('রুম ছাড়ার আবেদন'),
       ),
       body: LiquidPullToRefresh(
         child:

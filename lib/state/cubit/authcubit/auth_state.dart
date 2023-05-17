@@ -1,4 +1,4 @@
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
+import '../../../data/model/common/common_model.dart';
 
 abstract class AuthState {}
 
@@ -7,8 +7,8 @@ class AuthInitialState extends AuthState {}
 class AuthLoadingState extends AuthState {}
 
 class AuthSuccessState extends AuthState {
-  AuthModel authModel;
-  AuthSuccessState(this.authModel);
+  CommonModel commonModel;
+  AuthSuccessState(this.commonModel);
 }
 
 class AuthErrorState extends AuthState {

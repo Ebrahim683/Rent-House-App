@@ -13,14 +13,12 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   checkLoggedIn() {
     Future.delayed(const Duration(seconds: 4), () {
-      if (StorageUtils.getRole() == 'user') {
-        pushOff(name: home_page);
-      } else if (StorageUtils.getRole() == 'owner') {
-        pushOff(name: owner_dashboard_page);
-      } else if (StorageUtils.getRole() == '') {
-        pushOff(name: login_page);
+      if (storageUtils.getRole == 'user') {
+        pushOff(context: context, name: home_page);
+      } else if (storageUtils.getRole == 'owner') {
+        pushOff(context: context, name: owner_dashboard_page);
       } else {
-        pushOff(name: login_page);
+        pushOff(context: context, name: login_page);
       }
     });
   }

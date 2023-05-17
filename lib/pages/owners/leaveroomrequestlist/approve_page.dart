@@ -46,7 +46,7 @@ class ApprovePage extends StatelessWidget {
               description,
               softWrap: false,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
           ],
         ),
@@ -70,7 +70,7 @@ class ApprovePage extends StatelessWidget {
         listener: (context, state) {
           if (state is ApproveSuccessState) {
             successDialog(
-                context: context, message: state.authModel.message.toString());
+                context: context, message: state.commonModel.message.toString());
           } else if (state is ApproveErrorState) {
             errorDialog(context: context, message: state.error);
           }

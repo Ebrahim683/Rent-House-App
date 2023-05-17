@@ -5,7 +5,6 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
 import '../../../data/model/gethousemodel/get_house_model.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class HouseWidget extends StatelessWidget {
   final GetHouseModel getHouseModel;

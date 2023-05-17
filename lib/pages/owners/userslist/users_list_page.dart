@@ -7,7 +7,6 @@ import 'package:rent_house/data/model/owner/bookedroommodel/show_booked_room_lis
 import 'package:rent_house/state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/showownerbookedhouse/show_owner_booked_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../widget/app_widget.dart';
 
@@ -29,7 +28,7 @@ class _UsersListPageState extends State<UsersListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ভারাটিয়া লিস্ট'),
+        title: const Text('ভারাটিয়া লিস্ট'),
       ),
       body: LiquidPullToRefresh(
         onRefresh: () => refreshCallBack(),

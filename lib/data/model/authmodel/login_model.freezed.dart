@@ -20,10 +20,13 @@ LoginModel _$LoginModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginModel {
+ 
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError;
+  String? get status =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'message')
-  String? get message => throw _privateConstructorUsedError;
+  String? get message =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'data')
   List<LoginDetails>? get data => throw _privateConstructorUsedError;
 
@@ -137,13 +140,17 @@ class _$_LoginModel implements _LoginModel {
   factory _$_LoginModel.fromJson(Map<String, dynamic> json) =>
       _$$_LoginModelFromJson(json);
 
+ 
   @override
   @JsonKey(name: 'status')
   final String? status;
+ 
   @override
   @JsonKey(name: 'message')
   final String? message;
+ 
   final List<LoginDetails>? _data;
+ 
   @override
   @JsonKey(name: 'data')
   List<LoginDetails>? get data {
@@ -197,13 +204,13 @@ abstract class _LoginModel implements LoginModel {
   factory _LoginModel.fromJson(Map<String, dynamic> json) =
       _$_LoginModel.fromJson;
 
-  @override
+  @override  
   @JsonKey(name: 'status')
   String? get status;
-  @override
+  @override  
   @JsonKey(name: 'message')
   String? get message;
-  @override
+  @override  
   @JsonKey(name: 'data')
   List<LoginDetails>? get data;
   @override
@@ -218,10 +225,13 @@ LoginDetails _$LoginDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginDetails {
+ 
   @JsonKey(name: 'phone_number')
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
 
@@ -334,12 +344,15 @@ class _$_LoginDetails implements _LoginDetails {
   factory _$_LoginDetails.fromJson(Map<String, dynamic> json) =>
       _$$_LoginDetailsFromJson(json);
 
+ 
   @override
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
+ 
   @override
   @JsonKey(name: 'name')
   final String? name;
+ 
   @override
   @JsonKey(name: 'role')
   final String? role;
@@ -387,13 +400,13 @@ abstract class _LoginDetails implements LoginDetails {
   factory _LoginDetails.fromJson(Map<String, dynamic> json) =
       _$_LoginDetails.fromJson;
 
-  @override
+  @override  
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
-  @override
+  @override  
   @JsonKey(name: 'name')
   String? get name;
-  @override
+  @override  
   @JsonKey(name: 'role')
   String? get role;
   @override

@@ -35,7 +35,7 @@ class AddHouseRepository {
     });
 
     Map<String, dynamic> map = {
-      'owner_number': StorageUtils.getNumber(),
+      'owner_number': storageUtils.getNumber,
       'category': category,
       'fee': fee,
       'quantity': quantity,

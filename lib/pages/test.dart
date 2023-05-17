@@ -1,20 +1,7 @@
 import 'dart:developer';
-import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:rent_house/pages/house/houselist/house_search.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:rent_house/utils/utils.dart';
-import 'package:rent_house/widget/app_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:appinio_video_player/appinio_video_player.dart';
 
 class TestPage extends StatefulWidget {

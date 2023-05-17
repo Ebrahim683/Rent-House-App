@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +21,6 @@ class UpdateHousePage extends StatefulWidget {
 }
 
 class _UpdateHousePageState extends State<UpdateHousePage> {
-  @override
   final feeController = TextEditingController();
   final quantityController = TextEditingController();
   final advanceFeeController = TextEditingController();
@@ -57,6 +55,7 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
     );
   }
 
+  @override
   void initState() {
     super.initState();
     canBook = widget.ownerHouseModel.canBook.toString();
@@ -75,7 +74,8 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
             errorDialog(context: context, message: state.error);
           } else if (state is UpdateHouseSuccessState) {
             successDialog(
-                context: context, message: state.authModel.message.toString());
+                context: context,
+                message: state.commonModel.message.toString());
           }
         },
         builder: (context, state) {

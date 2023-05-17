@@ -1,9 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:rent_house/pages/home/category_widget.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/storage_utils.dart';
@@ -17,36 +14,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void getCurrentPosition() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
-      Geolocator.requestPermission();
-    } else {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      log(position.longitude.toString());
-      log(position.latitude.toString());
-      getAddress(position);
-    }
-  }
+  // void getCurrentPosition() async {
+  //   LocationPermission permission = await Geolocator.checkPermission();
+  //   if (permission == LocationPermission.denied ||
+  //       permission == LocationPermission.deniedForever) {
+  //     Geolocator.requestPermission();
+  //   } else {
+  //     Position position = await Geolocator.getCurrentPosition(
+  //         desiredAccuracy: LocationAccuracy.high);
+  //     log(position.longitude.toString());
+  //     log(position.latitude.toString());
+  //     getAddress(position);
+  //   }
+  // }
 
-  getAddress(Position position) async {
-    List<Placemark> placemark =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    Placemark place = placemark[0];
-    log('${place.subLocality},${place.locality},${place.subAdministrativeArea},${place.administrativeArea}');
-    String address =
-        '${place.subLocality},${place.locality},${place.subAdministrativeArea},${place.administrativeArea}';
-    StorageUtils.saveLocation(address);
-  }
+  // getAddress(Position position) async {
+  //   List<Placemark> placemark =
+  //       await placemarkFromCoordinates(position.latitude, position.longitude);
+  //   Placemark place = placemark[0];
+  //   log('${place.subLocality},${place.locality},${place.subAdministrativeArea},${place.administrativeArea}');
+  //   String address =
+  //       '${place.subLocality},${place.locality},${place.subAdministrativeArea},${place.administrativeArea}';
+  //   StorageUtils.saveLocation(address);
+  // }
 
   @override
   void initState() {
     super.initState();
 
-    log(StorageUtils.getName().toString() +
-        StorageUtils.getNumber().toString());
+    log(storageUtils.getName.toString() + storageUtils.getNumber.toString());
   }
 
   @override
@@ -81,10 +77,10 @@ class _HomePageState extends State<HomePage> {
       switch (value) {
         case 0:
           StorageUtils.logOut();
-          pushOff(name: login_page);
+          pushOff(context: context, name: login_page);
           break;
         case 1:
-          push(name: booked_house_page);
+          push(context: context, name: booked_house_page);
           break;
         default:
           null;

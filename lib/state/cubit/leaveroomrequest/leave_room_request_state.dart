@@ -1,4 +1,4 @@
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
+import '../../../data/model/common/common_model.dart';
 
 abstract class LeaveRoomRequestState {}
 
@@ -12,6 +12,6 @@ class LeaveRoomRequestErrorState extends LeaveRoomRequestState {
 }
 
 class LeaveRoomRequestSuccessState extends LeaveRoomRequestState {
-  final AuthModel authModel;
-  LeaveRoomRequestSuccessState(this.authModel);
+  final CommonModel commonModel;
+  LeaveRoomRequestSuccessState(this.commonModel);
 }

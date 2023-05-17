@@ -44,8 +44,8 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccessState) {
-            log(state.authModel.message.toString());
-            pushOff(name: login_page);
+            log(state.commonModel.message.toString());
+            pushOff(context: context, name: login_page);
           } else if (state is AuthErrorState) {
             log(state.error);
             showGetSnackBar(title: 'ত্রুটি', message: state.error);
@@ -269,12 +269,13 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                       text: 'একাউন্ট আছে?'),
                                   gap(w: 10.w),
                                   InkWell(
-                                    onTap: () => pushOff(name: login_page),
+                                    onTap: () => pushOff(
+                                        context: context, name: login_page),
                                     child: Container(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 10.w, vertical: 5.h),
                                       decoration: BoxDecoration(
-                                        color: Colors.tealAccent,
+                                        color: Colors.teal,
                                         borderRadius:
                                             BorderRadius.circular(10.r),
                                       ),

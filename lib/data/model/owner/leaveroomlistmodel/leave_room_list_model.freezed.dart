@@ -20,10 +20,13 @@ LeaveRoomListModel _$LeaveRoomListModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LeaveRoomListModel {
+ 
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError;
+  String? get status =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'message')
-  String? get message => throw _privateConstructorUsedError;
+  String? get message =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'data')
   List<LeaveRoomModel>? get leaveRoomModel =>
       throw _privateConstructorUsedError;
@@ -138,13 +141,17 @@ class _$_LeaveRoomListModel implements _LeaveRoomListModel {
   factory _$_LeaveRoomListModel.fromJson(Map<String, dynamic> json) =>
       _$$_LeaveRoomListModelFromJson(json);
 
+ 
   @override
   @JsonKey(name: 'status')
   final String? status;
+ 
   @override
   @JsonKey(name: 'message')
   final String? message;
+ 
   final List<LeaveRoomModel>? _leaveRoomModel;
+ 
   @override
   @JsonKey(name: 'data')
   List<LeaveRoomModel>? get leaveRoomModel {
@@ -201,13 +208,13 @@ abstract class _LeaveRoomListModel implements LeaveRoomListModel {
   factory _LeaveRoomListModel.fromJson(Map<String, dynamic> json) =
       _$_LeaveRoomListModel.fromJson;
 
-  @override
+  @override  
   @JsonKey(name: 'status')
   String? get status;
-  @override
+  @override  
   @JsonKey(name: 'message')
   String? get message;
-  @override
+  @override  
   @JsonKey(name: 'data')
   List<LeaveRoomModel>? get leaveRoomModel;
   @override
@@ -222,26 +229,37 @@ LeaveRoomModel _$LeaveRoomModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LeaveRoomModel {
+ 
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  int? get id =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'request_id')
-  int? get requestId => throw _privateConstructorUsedError;
+  int? get requestId =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'house_id')
-  int? get houseId => throw _privateConstructorUsedError;
+  int? get houseId =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'owner_name')
-  String? get ownerName => throw _privateConstructorUsedError;
+  String? get ownerName =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'owner_number')
-  String? get ownerNumber => throw _privateConstructorUsedError;
+  String? get ownerNumber =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'user_name')
-  String? get userName => throw _privateConstructorUsedError;
+  String? get userName =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'user_number')
-  String? get userNumber => throw _privateConstructorUsedError;
+  String? get userNumber =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'category')
-  String? get category => throw _privateConstructorUsedError;
+  String? get category =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'fee')
-  String? get fee => throw _privateConstructorUsedError;
+  String? get fee =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError;
+  String? get address =>
+      throw _privateConstructorUsedError;  
   @JsonKey(name: 'time')
   String? get time => throw _privateConstructorUsedError;
 
@@ -458,36 +476,47 @@ class _$_LeaveRoomModel implements _LeaveRoomModel {
   factory _$_LeaveRoomModel.fromJson(Map<String, dynamic> json) =>
       _$$_LeaveRoomModelFromJson(json);
 
+ 
   @override
   @JsonKey(name: 'id')
   final int? id;
+ 
   @override
   @JsonKey(name: 'request_id')
   final int? requestId;
+ 
   @override
   @JsonKey(name: 'house_id')
   final int? houseId;
+ 
   @override
   @JsonKey(name: 'owner_name')
   final String? ownerName;
+ 
   @override
   @JsonKey(name: 'owner_number')
   final String? ownerNumber;
+ 
   @override
   @JsonKey(name: 'user_name')
   final String? userName;
+ 
   @override
   @JsonKey(name: 'user_number')
   final String? userNumber;
+ 
   @override
   @JsonKey(name: 'category')
   final String? category;
+ 
   @override
   @JsonKey(name: 'fee')
   final String? fee;
+ 
   @override
   @JsonKey(name: 'address')
   final String? address;
+ 
   @override
   @JsonKey(name: 'time')
   final String? time;
@@ -568,37 +597,37 @@ abstract class _LeaveRoomModel implements LeaveRoomModel {
   factory _LeaveRoomModel.fromJson(Map<String, dynamic> json) =
       _$_LeaveRoomModel.fromJson;
 
-  @override
+  @override  
   @JsonKey(name: 'id')
   int? get id;
-  @override
+  @override  
   @JsonKey(name: 'request_id')
   int? get requestId;
-  @override
+  @override  
   @JsonKey(name: 'house_id')
   int? get houseId;
-  @override
+  @override  
   @JsonKey(name: 'owner_name')
   String? get ownerName;
-  @override
+  @override  
   @JsonKey(name: 'owner_number')
   String? get ownerNumber;
-  @override
+  @override  
   @JsonKey(name: 'user_name')
   String? get userName;
-  @override
+  @override  
   @JsonKey(name: 'user_number')
   String? get userNumber;
-  @override
+  @override  
   @JsonKey(name: 'category')
   String? get category;
-  @override
+  @override  
   @JsonKey(name: 'fee')
   String? get fee;
-  @override
+  @override  
   @JsonKey(name: 'address')
   String? get address;
-  @override
+  @override  
   @JsonKey(name: 'time')
   String? get time;
   @override

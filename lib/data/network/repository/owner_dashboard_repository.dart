@@ -5,8 +5,8 @@ import 'package:rent_house/utils/storage_utils.dart';
 class OwnerDashboardRepository {
   static Future<dynamic> ownerDashboardHouse() async {
     Map<String, dynamic> map = {
-      'name': StorageUtils.getName(),
-      'owner_number': StorageUtils.getNumber()
+      'name': storageUtils.getName,
+      'owner_number': storageUtils.getNumber,
     };
     return await ApiService.getApi(path: showOwnerHouse, body: map);
   }

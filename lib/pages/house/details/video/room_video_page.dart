@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:lottie/lottie.dart';
 

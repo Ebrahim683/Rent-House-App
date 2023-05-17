@@ -8,12 +8,13 @@ import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
-import 'package:rent_house/data/network/api/end_points.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
+
+import '../../../routers/routes.dart';
 import '../../../utils/storage_utils.dart';
 
 class HouseDetailsPage extends StatefulWidget {
@@ -98,8 +99,8 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
           } else if (state is BookHouseSuccessState) {
             successDialog(
                 context: context,
-                message: state.bookHouseModel.message.toString());
-            log(state.bookHouseModel.message.toString());
+                message: state.commonModel.message.toString());
+            log(state.commonModel.message.toString());
           }
         },
         builder: (context, state) {
@@ -112,7 +113,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
               slivers: [
                 SliverAppBar(
                   leading: IconButton(
-                    onPressed: () => Get.back(),
+                    onPressed: () => pop(context: context),
                     icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -285,10 +286,10 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                           width: 300.w,
                           child: CupertinoButton(
                               color: Colors.orange,
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
-                                children: const [
+                                children: [
                                   Text('ভিডিও দেখুন'),
                                   Icon(
                                     Icons.video_collection,
@@ -329,7 +330,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                                 } else {
                                   BlocProvider.of<BookHouseCubit>(context)
                                       .bookRoom(
-                                    phoneNumber: StorageUtils.getNumber(),
+                                    phoneNumber: storageUtils.getNumber!,
                                     ownerName: ownerName,
                                     ownerNumber: ownerNumber,
                                     houseId: widget.getHouseModel.id!,

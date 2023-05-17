@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
@@ -27,38 +25,38 @@ class OwnerDashboardPage extends StatefulWidget {
 }
 
 class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
-  void getCurrentPosition() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
-      Geolocator.requestPermission();
-    } else {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      log(position.longitude.toString());
-      log(position.latitude.toString());
-      getAddress(position);
-    }
-  }
+  // void getCurrentPosition() async {
+  //   LocationPermission permission = await Geolocator.checkPermission();
+  //   if (permission == LocationPermission.denied ||
+  //       permission == LocationPermission.deniedForever) {
+  //     Geolocator.requestPermission();
+  //   } else {
+  //     Position position = await Geolocator.getCurrentPosition(
+  //         desiredAccuracy: LocationAccuracy.high);
+  //     log(position.longitude.toString());
+  //     log(position.latitude.toString());
+  //     getAddress(position);
+  //   }
+  // }
 
-  getAddress(Position position) async {
-    try {
-      List<Placemark> placemark =
-          await placemarkFromCoordinates(position.latitude, position.longitude);
-      Placemark place = placemark[0];
-      log('${place}');
-      String address =
-          '${place.subLocality},${place.locality},${place.subAdministrativeArea},${place.administrativeArea}';
-      StorageUtils.saveLocation(address);
-    } catch (e) {
-      log(e.toString());
-    }
-  }
+  // getAddress(Position position) async {
+  //   try {
+  //     List<Placemark> placemark =
+  //         await placemarkFromCoordinates(position.latitude, position.longitude);
+  //     Placemark place = placemark[0];
+  //     log('$place');
+  //     String address =
+  //         '${place.subLocality},${place.locality},${place.subAdministrativeArea},${place.administrativeArea}';
+  //     StorageUtils.saveLocation(address);
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
-    log('${StorageUtils.getName()} ${StorageUtils.getNumber()}');
+    log('${storageUtils.getName} ${storageUtils.getNumber}');
   }
 
   @override
@@ -72,14 +70,14 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
     handlePopUp(int value) {
       switch (value) {
         case 0:
-          StorageUtils.logOut();
-          pushOff(name: login_page);
+            StorageUtils.logOut();
+          pushOff(context: context, name: login_page);
           break;
         case 1:
-          push(name: users_list_page);
+          push(context: context, name: users_list_page);
           break;
         case 2:
-          push(name: leave_room_page_request_list_page);
+          push(context: context, name: leave_room_page_request_list_page);
           break;
         default:
           null;
@@ -217,7 +215,7 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         onPressed: () {
-          push(name: add_house_page);
+          push(context: context, name: add_house_page);
         },
         child: const Icon(
           Icons.add,

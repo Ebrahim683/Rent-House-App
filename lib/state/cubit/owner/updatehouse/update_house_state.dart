@@ -1,4 +1,4 @@
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
+import '../../../../data/model/common/common_model.dart';
 
 abstract class UpdateHouseState {}
 
@@ -12,6 +12,6 @@ class UpdateHouseErrorState extends UpdateHouseState {
 }
 
 class UpdateHouseSuccessState extends UpdateHouseState {
-  final AuthModel authModel;
-  UpdateHouseSuccessState(this.authModel);
+  final CommonModel commonModel;
+  UpdateHouseSuccessState(this.commonModel);
 }

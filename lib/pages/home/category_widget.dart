@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/widget/app_widget.dart';
-import 'package:rive/rive.dart';
 import '../../routers/routes.dart';
 
 class CategoryWidget extends StatelessWidget {

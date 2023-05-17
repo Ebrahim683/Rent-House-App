@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
 import 'package:rent_house/data/network/repository/approve_repository.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_state.dart';
+
+import '../../../../data/model/common/common_model.dart';
 
 class ApproveCubit extends Cubit<ApproveState> {
   ApproveCubit() : super(ApproveInitialState());
@@ -22,8 +23,8 @@ class ApproveCubit extends Cubit<ApproveState> {
         userNumber: userNumber,
         time: time,
       );
-      AuthModel authModel = AuthModel.fromJson(result);
-      emit(ApproveSuccessState(authModel));
+   CommonModel commonModel = CommonModel.fromJson(result);
+      emit(ApproveSuccessState(commonModel));
     } catch (e) {
       emit(ApproveErrorState(e.toString()));
     }

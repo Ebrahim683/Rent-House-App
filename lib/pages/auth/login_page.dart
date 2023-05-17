@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,9 +11,7 @@ import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
-
 import '../../routers/routes.dart';
-import '../../utils/app_colors.dart';
 import '../../widget/app_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -42,17 +39,17 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           if (state is LoginSuccessState) {
             log(state.loginModel.message.toString());
-            StorageUtils.saveNumber(mobileController.text.trim().toString());
-            StorageUtils.saveName(state.loginModel.data![0].name.toString());
-            StorageUtils.saveRole(state.loginModel.data![0].role.toString());
+
+            storageUtils.saveNumber(mobileController.text.trim().toString());
+            storageUtils.saveName(state.loginModel.data![0].name.toString());
+            storageUtils.saveRole(state.loginModel.data![0].role.toString());
             if (state.loginModel.data![0].role == 'user') {
-              pushOff(name: home_page);
+              pushOff(context: context, name: home_page);
             } else if (state.loginModel.data![0].role == 'owner') {
-              pushOff(name: owner_dashboard_page);
+              pushOff(context: context, name: owner_dashboard_page);
             }
           } else if (state is LoginErrorState) {
             errorDialog(context: context, message: state.error);
-            // showGetSnackBar(title: 'ত্রুটি', message: state.error);
             log(state.error);
           }
         },
@@ -199,13 +196,14 @@ class _LoginPageState extends State<LoginPage> {
                                       color: Colors.white, text: 'এখানে নতুন?'),
                                   gap(w: 10.w),
                                   InkWell(
-                                    onTap: () =>
-                                        pushOff(name: user_register_page),
+                                    onTap: () => pushOff(
+                                        context: context,
+                                        name: user_register_page),
                                     child: Container(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 10.w, vertical: 5.h),
                                       decoration: BoxDecoration(
-                                        color: Colors.tealAccent,
+                                        color: Colors.teal,
                                         borderRadius:
                                             BorderRadius.circular(10.r),
                                       ),

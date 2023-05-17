@@ -2,9 +2,10 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rent_house/data/model/owner/addhousemodel/add_house_model.dart';
 import 'package:rent_house/data/network/repository/add_house_repository.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
+
+import '../../../../data/model/common/common_model.dart';
 
 class AddHouseCubit extends Cubit<AddHouseState> {
   AddHouseCubit() : super(AddHouseInitialState());
@@ -42,8 +43,8 @@ class AddHouseCubit extends Cubit<AddHouseState> {
         imageList: imageList,
         video: video,
       );
-      AddHouseModel addHouseModel = AddHouseModel.fromJson(result);
-      emit(AddHouseSuccessState(addHouseModel));
+      CommonModel commonModel = CommonModel.fromJson(result);
+      emit(AddHouseSuccessState(commonModel));
     } catch (e) {
       emit(AddHouseErrorState(e.toString()));
     }

@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
 import 'package:rent_house/data/network/repository/leave_room_request_repository.dart';
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_state.dart';
+
+import '../../../data/model/common/common_model.dart';
 
 class LeaveRoomRequestCubit extends Cubit<LeaveRoomRequestState> {
   LeaveRoomRequestCubit() : super(LeaveRoomRequestInitialState());
@@ -15,8 +16,8 @@ class LeaveRoomRequestCubit extends Cubit<LeaveRoomRequestState> {
     try {
       final result = await LeaveRoomRequestRepository.leaveRoom(
           id: id, userName: userName, userNumber: userNumber);
-      AuthModel authModel = AuthModel.fromJson(result);
-      emit(LeaveRoomRequestSuccessState(authModel));
+      CommonModel commonModel = CommonModel.fromJson(result);
+      emit(LeaveRoomRequestSuccessState(commonModel));
     } catch (e) {
       emit(LeaveRoomRequestErrorState(e.toString()));
     }

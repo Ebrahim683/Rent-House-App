@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rent_house/data/model/common/common_model.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_state.dart';
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
 import 'package:rent_house/data/network/repository/auth_repository.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -20,8 +20,8 @@ class AuthCubit extends Cubit<AuthState> {
           email: email,
           password: password,
           role: role);
-      AuthModel authModel = AuthModel.fromJson(result);
-      emit(AuthSuccessState(authModel));
+      CommonModel commonModel = CommonModel.fromJson(result);
+      emit(AuthSuccessState(commonModel));
     } catch (e) {
       emit(AuthErrorState(e.toString()));
     }

@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rent_house/data/model/bookhouse/book_house_model.dart';
 import 'package:rent_house/data/network/repository/book_house_repository.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
+
+import '../../../data/model/common/common_model.dart';
 
 class BookHouseCubit extends Cubit<BookHouseState> {
   BookHouseCubit() : super(BookHouseInitialState());
@@ -20,9 +21,8 @@ class BookHouseCubit extends Cubit<BookHouseState> {
         ownerNumber: ownerNumber,
         houseId: houseId,
       );
-      BookHouseModel bookHouseModel =
-          BookHouseModel.fromJson(result as Map<String, dynamic>);
-      emit(BookHouseSuccessState(bookHouseModel));
+      CommonModel commonModel = CommonModel.fromJson(result);
+      emit(BookHouseSuccessState(commonModel));
     } catch (e) {
       emit(BookHouseErrorState(e.toString()));
     }

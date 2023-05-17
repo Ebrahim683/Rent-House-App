@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:rent_house/pages/auth/login_page.dart';
 import 'package:rent_house/pages/auth/user_register_page.dart';
 import 'package:rent_house/pages/home/home_page.dart';
@@ -22,6 +21,7 @@ import '../pages/house/booked/book_house_details_page.dart';
 import '../pages/house/booked/booked_house_page.dart';
 import '../pages/house/details/house_details.dart';
 import '../pages/house/houselist/house_list_page.dart';
+import '../pages/onboarding/onboarding_page.dart';
 import '../pages/owners/addhouse/add_house_page.dart';
 import '../pages/owners/updatehouse/update_house_page.dart';
 import '../state/cubit/gethouse/get_house_list_cubit.dart';
@@ -32,6 +32,7 @@ import '../state/cubit/owner/updatehouse/update_house_cubit.dart';
 import '../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
 
 String get test_page => '/test_page';
+String get onboarding_page => '/onboarding_page';
 String get splash_page => '/splash_page';
 String get home_page => '/home_page';
 String get login_page => '/login_page';
@@ -51,12 +52,16 @@ String get leave_room_page_request_list_page =>
     '/leave_room_page_request_list_page';
 String get approve_page => '/approve_page';
 
-push({required String name}) {
-  Get.toNamed(name);
+push({required BuildContext context, required String name}) {
+  Navigator.pushNamed(context, name);
 }
 
-pushOff({required String name}) {
-  Get.offAllNamed(name);
+pushOff({required BuildContext context, required String name}) {
+  Navigator.pushReplacementNamed(context, name);
+}
+
+pop({required BuildContext context}) {
+  Navigator.pop(context);
 }
 
 class Routers {
@@ -66,6 +71,11 @@ class Routers {
       case '/splash_page':
         return MaterialPageRoute(
           builder: (context) => const SplashPage(),
+        );
+      //onboarding
+      case '/onboarding_page':
+        return MaterialPageRoute(
+          builder: (context) => const OnBoardingPage(),
         );
       //login
       case '/login_page':

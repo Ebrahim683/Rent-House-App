@@ -123,7 +123,7 @@ class _AddHousePageState extends State<AddHousePage> {
           if (state is AddHouseSuccessState) {
             successDialog(
                 context: context,
-                message: state.addHouseModel.message.toString());
+                message: state.commonModel.message.toString());
           } else if (state is AddHouseErrorState) {
             errorDialog(context: context, message: state.error);
           }

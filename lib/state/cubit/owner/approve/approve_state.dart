@@ -1,4 +1,5 @@
-import 'package:rent_house/data/model/authmodel/auth_model.dart';
+
+import '../../../../data/model/common/common_model.dart';
 
 abstract class ApproveState {}
 
@@ -12,6 +13,6 @@ class ApproveErrorState extends ApproveState {
 }
 
 class ApproveSuccessState extends ApproveState {
-  final AuthModel authModel;
-  ApproveSuccessState(this.authModel);
+  final CommonModel commonModel;
+  ApproveSuccessState(this.commonModel);
 }
