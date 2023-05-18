@@ -16,7 +16,7 @@ class ApproveRepository {
       'house_id': houseId,
       'user_name': userName,
       'user_number': userNumber,
-      'owner_name': storageUtils.getName,
+      'owner_name': storageUtils.getName!.toLowerCase(),
       'owner_number': storageUtils.getNumber,
       'time': time,
     };

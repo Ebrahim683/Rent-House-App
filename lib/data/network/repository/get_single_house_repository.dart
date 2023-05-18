@@ -5,7 +5,7 @@ import 'package:rent_house/utils/storage_utils.dart';
 class GetSingleHouseRepository {
   static Future<dynamic> singleHouse({required String time}) async {
     Map<String, dynamic> map = {
-      'owner_name': storageUtils.getName,
+      'owner_name': storageUtils.getName!.toLowerCase(),
       'owner_number': storageUtils.getNumber,
       'time': time,
     };
@@ -18,7 +18,7 @@ class GetSingleHouseRepository {
   }) async {
     Map<String, dynamic> map = {
       'phone_number': userNumber,
-      'owner_name': storageUtils.getName,
+      'owner_name': storageUtils.getName!.toLowerCase(),
       'owner_number': storageUtils.getNumber,
       'house_id': houseId,
     };

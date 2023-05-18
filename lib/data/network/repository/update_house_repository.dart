@@ -19,7 +19,7 @@ class UpdateHouseRepository {
       required String canBook}) async {
     Map<String, dynamic> map = {
       'house_id': houseId,
-      'owner_name': storageUtils.getName,
+      'owner_name': storageUtils.getName!.toLowerCase(),
       'owner_number': storageUtils.getNumber,
       'category': category,
       'fee': fee,

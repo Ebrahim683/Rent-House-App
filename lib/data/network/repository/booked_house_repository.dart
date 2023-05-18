@@ -6,7 +6,7 @@ class BookedHouseRepository {
   static Future<dynamic> bookedHouse() async {
     Map<String, dynamic> map = {
       'phone_number': storageUtils.getNumber,
-      'name': storageUtils.getName,
+      'name': storageUtils.getName!.toLowerCase(),
     };
     return await ApiService.getApi(path: showBookedHouse, body: map);
   }
