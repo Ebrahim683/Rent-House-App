@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,10 +7,12 @@ import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import '../../../routers/routes.dart';
 import '../../../state/cubit/owner/addhouse/add_house_cubit.dart';
+import '../../../state/cubit/owner/bookhouserequest/book_house_list_cubit.dart';
 import '../../../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_cubit.dart';
 import '../../../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
 import '../../profile/user_profile_page.dart';
 import '../addhouse/add_house_page.dart';
+import '../bookhouserequest/book_house_request_page.dart';
 import '../leaveroomrequestlist/leave_room_request_list_page.dart';
 import '../userslist/users_list_page.dart';
 
@@ -24,6 +28,7 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
     'হোম',
     'রুম স্থাপন',
     'ভাড়াটিয়া লিস্ট',
+    'রুম ভাড়ার আবেদন',
     'রুম ছাড়ার আবেদন',
     'প্রোফাইল',
   ];
@@ -38,6 +43,10 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
       child: const UsersListPage(),
     ),
     BlocProvider(
+      create: (context) => BookHouseRequestListCubit(),
+      child: const BookHouseRequestPage(),
+    ),
+    BlocProvider(
       create: (context) => LeaveRoomRequestListCubit(),
       child: const LeaveRoomRequestListPage(),
     ),
@@ -45,9 +54,37 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
   ];
   int currentIndex = 0;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    log('owner base page');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) {
+            return InkWell(
+              onTap: () => Scaffold.of(context).openDrawer(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 225, 229, 233),
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.all(5),
+                child: Image.asset(
+                  'asset/icons/menu.png',
+                  color: Colors.black,
+                  height: 30.h,
+                  width: 30.h,
+                ),
+              ),
+            );
+          },
+        ),
         title: Text(title[currentIndex]),
         centerTitle: true,
         actions: [
@@ -109,7 +146,7 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.format_list_bulleted_rounded),
+              leading: const Icon(Icons.group_outlined),
               title: Text(title[3]),
               onTap: () {
                 pop(context: context);
@@ -119,12 +156,22 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.person_2_outlined),
+              leading: const Icon(Icons.group_off_outlined),
               title: Text(title[4]),
               onTap: () {
                 pop(context: context);
                 setState(() {
                   currentIndex = 4;
+                });
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_2_outlined),
+              title: Text(title[5]),
+              onTap: () {
+                pop(context: context);
+                setState(() {
+                  currentIndex = 5;
                 });
               },
             ),

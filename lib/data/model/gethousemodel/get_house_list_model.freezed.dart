@@ -20,13 +20,11 @@ GetHouseListModel _$GetHouseListModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetHouseListModel {
- 
+// ignore:
   @JsonKey(name: 'status')
-  String? get status =>
-      throw _privateConstructorUsedError;  
+  String? get status => throw _privateConstructorUsedError; // ignore:
   @JsonKey(name: 'message')
-  String? get message =>
-      throw _privateConstructorUsedError;  
+  String? get message => throw _privateConstructorUsedError; // ignore:
   @JsonKey(name: 'data')
   List<GetHouseModel>? get getHouseModel => throw _privateConstructorUsedError;
 
@@ -140,17 +138,17 @@ class _$_GetHouseListModel implements _GetHouseListModel {
   factory _$_GetHouseListModel.fromJson(Map<String, dynamic> json) =>
       _$$_GetHouseListModelFromJson(json);
 
- 
+// ignore:
   @override
   @JsonKey(name: 'status')
   final String? status;
- 
+// ignore:
   @override
   @JsonKey(name: 'message')
   final String? message;
- 
+// ignore:
   final List<GetHouseModel>? _getHouseModel;
- 
+// ignore:
   @override
   @JsonKey(name: 'data')
   List<GetHouseModel>? get getHouseModel {
@@ -207,13 +205,13 @@ abstract class _GetHouseListModel implements GetHouseListModel {
   factory _GetHouseListModel.fromJson(Map<String, dynamic> json) =
       _$_GetHouseListModel.fromJson;
 
-  @override  
+  @override // ignore:
   @JsonKey(name: 'status')
   String? get status;
-  @override  
+  @override // ignore:
   @JsonKey(name: 'message')
   String? get message;
-  @override  
+  @override // ignore:
   @JsonKey(name: 'data')
   List<GetHouseModel>? get getHouseModel;
   @override

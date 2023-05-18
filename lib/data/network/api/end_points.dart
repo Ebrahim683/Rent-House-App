@@ -11,3 +11,6 @@ String get updateHouseOwner => '/owner/updateHouse';
 String get leaveRoomRequest => '/leaveRoom';
 String get leaveRoomRequests => '/owner/leaveRoomRequests';
 String get approveLeaveRoomRequest => '/owner/approveLeaveRoomRequest';
+String get bookRoomRequest => '/owner/bookRoomRequest';
+String get approveRoomRequest => '/owner/approveBookRoomRequest';
+String get getSingleHouse => '/owner/getSingleHouse';

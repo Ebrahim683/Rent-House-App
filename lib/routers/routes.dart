@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rent_house/pages/auth/login_page.dart';
 import 'package:rent_house/pages/auth/user_register_page.dart';
 import 'package:rent_house/pages/owners/base/owner_base_page.dart';
+import 'package:rent_house/pages/owners/bookhouserequest/approve_book_request_page.dart';
+import 'package:rent_house/pages/owners/bookhouserequest/book_house_request_page.dart';
 import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
 import 'package:rent_house/pages/owners/leaveroomrequestlist/approve_page.dart';
 import 'package:rent_house/pages/owners/leaveroomrequestlist/leave_room_request_list_page.dart';
@@ -15,6 +17,7 @@ import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_cubit.dart';
+import 'package:rent_house/state/cubit/owner/singlehouse/single_house_cubit.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
@@ -30,6 +33,7 @@ import '../pages/user/house/details/video/room_video_page.dart';
 import '../pages/user/house/houselist/house_list_page.dart';
 import '../state/cubit/gethouse/get_house_list_cubit.dart';
 import '../state/cubit/owner/addhouse/add_house_cubit.dart';
+import '../state/cubit/owner/bookhouserequest/book_house_list_cubit.dart';
 import '../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_cubit.dart';
 import '../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
 import '../state/cubit/owner/updatehouse/update_house_cubit.dart';
@@ -58,6 +62,8 @@ String get update_house_page => '/update_house_page';
 String get leave_room_page_request_list_page =>
     '/leave_room_page_request_list_page';
 String get approve_page => '/approve_page';
+String get book_room_request_page => '/book_room_request_page';
+String get book_room_approve_page => '/book_room_approve_page';
 
 push({required BuildContext context, required String name}) {
   Navigator.pushNamed(context, name);
@@ -241,11 +247,29 @@ class Routers {
             videoUrl: arguments['videoUrl'],
           ),
         );
-      default:
+      //book room request page
+      case '/book_room_request_page':
         return MaterialPageRoute(
-            builder: (_) => const Scaffold(
-                  body: Center(child: Text('Page not found')),
-                ));
+          builder: (context) => BlocProvider(
+            create: (context) => BookHouseRequestListCubit(),
+            child: const BookHouseRequestPage(),
+          ),
+        );
+      //book room approve page
+      case '/book_room_approve_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                SingleHouseCubit(arguments['bookedHouseRequestModel']),
+            child: ApproveBookRequestPage(
+              bookedHouseRequestModel: arguments['bookedHouseRequestModel'],
+            ),
+          ),
+        );
+      default:
+        return null;
     }
   }
 }

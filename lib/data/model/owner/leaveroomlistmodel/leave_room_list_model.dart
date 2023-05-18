@@ -6,11 +6,11 @@ part 'leave_room_list_model.freezed.dart';
 @freezed
 class LeaveRoomListModel with _$LeaveRoomListModel {
   const factory LeaveRoomListModel({
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'status') String? status,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'message') String? message,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'data') List<LeaveRoomModel>? leaveRoomModel,
   }) = _LeaveRoomListModel;
   factory LeaveRoomListModel.fromJson(Map<String, dynamic> json) =>
@@ -20,27 +20,27 @@ class LeaveRoomListModel with _$LeaveRoomListModel {
 @freezed
 class LeaveRoomModel with _$LeaveRoomModel {
   const factory LeaveRoomModel({
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'id') int? id,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'request_id') int? requestId,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'house_id') int? houseId,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'owner_name') String? ownerName,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'owner_number') String? ownerNumber,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'user_name') String? userName,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'user_number') String? userNumber,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'category') String? category,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'fee') String? fee,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'address') String? address,
-    // ignore: invalid_annotation_target
+    // ignore:  
     @JsonKey(name: 'time') String? time,
   }) = _LeaveRoomModel;
   factory LeaveRoomModel.fromJson(Map<String, dynamic> json) =>

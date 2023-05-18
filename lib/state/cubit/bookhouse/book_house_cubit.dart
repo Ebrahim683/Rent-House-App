@@ -8,7 +8,6 @@ class BookHouseCubit extends Cubit<BookHouseState> {
   BookHouseCubit() : super(BookHouseInitialState());
 
   bookRoom({
-    required String phoneNumber,
     required String ownerName,
     required String ownerNumber,
     required int houseId,
@@ -16,7 +15,6 @@ class BookHouseCubit extends Cubit<BookHouseState> {
     emit(BookHouseLoadingState());
     try {
       final result = await BookHouseRepository.bookHouseRepo(
-        phoneNumber: phoneNumber,
         ownerName: ownerName,
         ownerNumber: ownerNumber,
         houseId: houseId,

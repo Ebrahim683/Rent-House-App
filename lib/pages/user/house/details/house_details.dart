@@ -15,8 +15,6 @@ import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
 import '../../../../routers/routes.dart';
-import '../../../../utils/storage_utils.dart';
-
 
 class HouseDetailsPage extends StatefulWidget {
   final GetHouseModel getHouseModel;
@@ -331,7 +329,6 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                                 } else {
                                   BlocProvider.of<BookHouseCubit>(context)
                                       .bookRoom(
-                                    phoneNumber: storageUtils.getNumber!,
                                     ownerName: ownerName,
                                     ownerNumber: ownerNumber,
                                     houseId: widget.getHouseModel.id!,

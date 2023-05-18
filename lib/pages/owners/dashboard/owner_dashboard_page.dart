@@ -59,9 +59,7 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
   @override
   Widget build(BuildContext context) {
     refreshCallBack() async {
-      setState(() {
-        BlocProvider.of<ShowOwnerHouseCubit>(context).showOwnerHouse();
-      });
+      setState(() {});
     }
 
     // handlePopUp(int value) {

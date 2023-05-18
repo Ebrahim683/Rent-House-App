@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,9 +34,37 @@ class _UserBasePageState extends State<UserBasePage> {
   ];
   int currentIndex = 0;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    log('user base page');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) {
+            return InkWell(
+              onTap: () => Scaffold.of(context).openDrawer(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 225, 229, 233),
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.all(5),
+                child: Image.asset(
+                  'asset/icons/menu.png',
+                  color: Colors.black,
+                  height: 30.h,
+                  width: 30.h,
+                ),
+              ),
+            );
+          },
+        ),
         title: Text(title[currentIndex]),
         centerTitle: true,
         actions: [
