@@ -5,10 +5,10 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
-import '../../../../data/model/gethousemodel/get_house_model.dart';
+import '../../../../data/model/housemodel/house_list_model.dart';
 
 class HouseWidget extends StatelessWidget {
-  final GetHouseModel getHouseModel;
+  final HouseModel getHouseModel;
   const HouseWidget({super.key, required this.getHouseModel});
 
   @override

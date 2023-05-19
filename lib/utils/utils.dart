@@ -3,10 +3,7 @@ import 'dart:developer';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'app_colors.dart';
 
 showSnackBar({required BuildContext context, required String message}) {
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -15,11 +12,16 @@ showSnackBar({required BuildContext context, required String message}) {
   ));
 }
 
-showGetSnackBar({required String title, required String message}) {
-  Get.snackbar(title, message,
-      colorText: Colors.white,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: snackColor);
+snackBar(
+    {required BuildContext context,
+    required String title,
+    required String message}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      behavior: SnackBarBehavior.floating,
+    ),
+  );
 }
 
 errorDialog({required BuildContext context, required String message}) {

@@ -154,7 +154,7 @@ class Routers {
           builder: (context) => BlocProvider(
             create: (context) => BookHouseCubit(),
             child: HouseDetailsPage(
-              getHouseModel: arguments['getHouseModel'],
+              houseModel: arguments['getHouseModel'],
             ),
           ),
         );

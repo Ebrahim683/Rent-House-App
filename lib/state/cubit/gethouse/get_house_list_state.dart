@@ -1,4 +1,5 @@
-import 'package:rent_house/data/model/gethousemodel/get_house_list_model.dart';
+
+import '../../../data/model/housemodel/house_list_model.dart';
 
 abstract class GetHouseListState {}
 
@@ -7,8 +8,8 @@ class GetHouseListInitialState extends GetHouseListState {}
 class GetHouseListLoadingState extends GetHouseListState {}
 
 class GetHouseListSuccessState extends GetHouseListState {
-  final GetHouseListModel getHouseListModel;
-  GetHouseListSuccessState(this.getHouseListModel);
+  final HouseListModel houseListModel;
+  GetHouseListSuccessState(this.houseListModel);
 }
 
 class GetHouseListErrorState extends GetHouseListState {

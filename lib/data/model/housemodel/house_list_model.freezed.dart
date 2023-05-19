@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_house_model.dart';
+part of 'house_list_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,67 +14,268 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GetHouseModel _$GetHouseModelFromJson(Map<String, dynamic> json) {
-  return _GetHouseModel.fromJson(json);
+HouseListModel _$HouseListModelFromJson(Map<String, dynamic> json) {
+  return _HouseListModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GetHouseModel {
-// ignore:
-  @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'owner_name')
-  String? get ownerName => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'owner_number')
-  String? get ownerNumber => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'owner_id')
-  int? get ownerId => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'image1')
-  String? get image1 => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'image2')
-  String? get image2 => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'image3')
-  String? get image3 => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'image4')
-  String? get image4 => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'video')
-  String? get video => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'category')
-  String? get category => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'fee')
-  String? get fee => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'quantity')
-  String? get quantity => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'advance_fee')
-  String? get advanceFee => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'electricity_fee')
-  String? get electricityFee => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'gas_fee')
-  String? get gasFee => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'others_fee')
-  String? get othersFee => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError; // ignore:
-  @JsonKey(name: 'notice')
-  String? get notice => throw _privateConstructorUsedError; // ignore:
+mixin _$HouseListModel {
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError; // ignore:
+  String? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
+  List<HouseModel>? get houseModel => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $HouseListModelCopyWith<HouseListModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HouseListModelCopyWith<$Res> {
+  factory $HouseListModelCopyWith(
+          HouseListModel value, $Res Function(HouseListModel) then) =
+      _$HouseListModelCopyWithImpl<$Res, HouseListModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<HouseModel>? houseModel});
+}
+
+/// @nodoc
+class _$HouseListModelCopyWithImpl<$Res, $Val extends HouseListModel>
+    implements $HouseListModelCopyWith<$Res> {
+  _$HouseListModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? houseModel = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      houseModel: freezed == houseModel
+          ? _value.houseModel
+          : houseModel // ignore: cast_nullable_to_non_nullable
+              as List<HouseModel>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_HouseListModelCopyWith<$Res>
+    implements $HouseListModelCopyWith<$Res> {
+  factory _$$_HouseListModelCopyWith(
+          _$_HouseListModel value, $Res Function(_$_HouseListModel) then) =
+      __$$_HouseListModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<HouseModel>? houseModel});
+}
+
+/// @nodoc
+class __$$_HouseListModelCopyWithImpl<$Res>
+    extends _$HouseListModelCopyWithImpl<$Res, _$_HouseListModel>
+    implements _$$_HouseListModelCopyWith<$Res> {
+  __$$_HouseListModelCopyWithImpl(
+      _$_HouseListModel _value, $Res Function(_$_HouseListModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? houseModel = freezed,
+  }) {
+    return _then(_$_HouseListModel(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      houseModel: freezed == houseModel
+          ? _value._houseModel
+          : houseModel // ignore: cast_nullable_to_non_nullable
+              as List<HouseModel>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_HouseListModel implements _HouseListModel {
+  const _$_HouseListModel(
+      {@JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<HouseModel>? houseModel})
+      : _houseModel = houseModel;
+
+  factory _$_HouseListModel.fromJson(Map<String, dynamic> json) =>
+      _$$_HouseListModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'status')
+  final String? status;
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+  final List<HouseModel>? _houseModel;
+  @override
+  @JsonKey(name: 'data')
+  List<HouseModel>? get houseModel {
+    final value = _houseModel;
+    if (value == null) return null;
+    if (_houseModel is EqualUnmodifiableListView) return _houseModel;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'HouseListModel(status: $status, message: $message, houseModel: $houseModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HouseListModel &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality()
+                .equals(other._houseModel, _houseModel));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, message,
+      const DeepCollectionEquality().hash(_houseModel));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HouseListModelCopyWith<_$_HouseListModel> get copyWith =>
+      __$$_HouseListModelCopyWithImpl<_$_HouseListModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_HouseListModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _HouseListModel implements HouseListModel {
+  const factory _HouseListModel(
+          {@JsonKey(name: 'status') final String? status,
+          @JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'data') final List<HouseModel>? houseModel}) =
+      _$_HouseListModel;
+
+  factory _HouseListModel.fromJson(Map<String, dynamic> json) =
+      _$_HouseListModel.fromJson;
+
+  @override
+  @JsonKey(name: 'status')
+  String? get status;
+  @override
+  @JsonKey(name: 'message')
+  String? get message;
+  @override
+  @JsonKey(name: 'data')
+  List<HouseModel>? get houseModel;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HouseListModelCopyWith<_$_HouseListModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+HouseModel _$HouseModelFromJson(Map<String, dynamic> json) {
+  return _HouseModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$HouseModel {
+  @JsonKey(name: 'id')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner_name')
+  String? get ownerName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner_number')
+  String? get ownerNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner_id')
+  int? get ownerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image1')
+  String? get image1 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image2')
+  String? get image2 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image3')
+  String? get image3 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image4')
+  String? get image4 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'video')
+  String? get video => throw _privateConstructorUsedError;
+  @JsonKey(name: 'category')
+  String? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fee')
+  String? get fee => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quantity')
+  String? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'advance_fee')
+  String? get advanceFee => throw _privateConstructorUsedError;
+  @JsonKey(name: 'electricity_fee')
+  String? get electricityFee => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gas_fee')
+  String? get gasFee => throw _privateConstructorUsedError;
+  @JsonKey(name: 'others_fee')
+  String? get othersFee => throw _privateConstructorUsedError;
+  @JsonKey(name: 'address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'notice')
+  String? get notice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'can_book')
-  String? get canBook => throw _privateConstructorUsedError; // ignore:
+  String? get canBook => throw _privateConstructorUsedError;
+  @JsonKey(name: 'house_id')
+  int? get houseId => throw _privateConstructorUsedError;
   @JsonKey(name: 'time')
   String? get time => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetHouseModelCopyWith<GetHouseModel> get copyWith =>
+  $HouseModelCopyWith<HouseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetHouseModelCopyWith<$Res> {
-  factory $GetHouseModelCopyWith(
-          GetHouseModel value, $Res Function(GetHouseModel) then) =
-      _$GetHouseModelCopyWithImpl<$Res, GetHouseModel>;
+abstract class $HouseModelCopyWith<$Res> {
+  factory $HouseModelCopyWith(
+          HouseModel value, $Res Function(HouseModel) then) =
+      _$HouseModelCopyWithImpl<$Res, HouseModel>;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
@@ -97,13 +298,14 @@ abstract class $GetHouseModelCopyWith<$Res> {
       @JsonKey(name: 'notice') String? notice,
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'can_book') String? canBook,
+      @JsonKey(name: 'house_id') int? houseId,
       @JsonKey(name: 'time') String? time});
 }
 
 /// @nodoc
-class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
-    implements $GetHouseModelCopyWith<$Res> {
-  _$GetHouseModelCopyWithImpl(this._value, this._then);
+class _$HouseModelCopyWithImpl<$Res, $Val extends HouseModel>
+    implements $HouseModelCopyWith<$Res> {
+  _$HouseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -133,6 +335,7 @@ class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
     Object? notice = freezed,
     Object? status = freezed,
     Object? canBook = freezed,
+    Object? houseId = freezed,
     Object? time = freezed,
   }) {
     return _then(_value.copyWith(
@@ -216,6 +419,10 @@ class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
           ? _value.canBook
           : canBook // ignore: cast_nullable_to_non_nullable
               as String?,
+      houseId: freezed == houseId
+          ? _value.houseId
+          : houseId // ignore: cast_nullable_to_non_nullable
+              as int?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -225,11 +432,11 @@ class _$GetHouseModelCopyWithImpl<$Res, $Val extends GetHouseModel>
 }
 
 /// @nodoc
-abstract class _$$_GetHouseModelCopyWith<$Res>
-    implements $GetHouseModelCopyWith<$Res> {
-  factory _$$_GetHouseModelCopyWith(
-          _$_GetHouseModel value, $Res Function(_$_GetHouseModel) then) =
-      __$$_GetHouseModelCopyWithImpl<$Res>;
+abstract class _$$_HouseModelCopyWith<$Res>
+    implements $HouseModelCopyWith<$Res> {
+  factory _$$_HouseModelCopyWith(
+          _$_HouseModel value, $Res Function(_$_HouseModel) then) =
+      __$$_HouseModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -253,15 +460,16 @@ abstract class _$$_GetHouseModelCopyWith<$Res>
       @JsonKey(name: 'notice') String? notice,
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'can_book') String? canBook,
+      @JsonKey(name: 'house_id') int? houseId,
       @JsonKey(name: 'time') String? time});
 }
 
 /// @nodoc
-class __$$_GetHouseModelCopyWithImpl<$Res>
-    extends _$GetHouseModelCopyWithImpl<$Res, _$_GetHouseModel>
-    implements _$$_GetHouseModelCopyWith<$Res> {
-  __$$_GetHouseModelCopyWithImpl(
-      _$_GetHouseModel _value, $Res Function(_$_GetHouseModel) _then)
+class __$$_HouseModelCopyWithImpl<$Res>
+    extends _$HouseModelCopyWithImpl<$Res, _$_HouseModel>
+    implements _$$_HouseModelCopyWith<$Res> {
+  __$$_HouseModelCopyWithImpl(
+      _$_HouseModel _value, $Res Function(_$_HouseModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -287,9 +495,10 @@ class __$$_GetHouseModelCopyWithImpl<$Res>
     Object? notice = freezed,
     Object? status = freezed,
     Object? canBook = freezed,
+    Object? houseId = freezed,
     Object? time = freezed,
   }) {
-    return _then(_$_GetHouseModel(
+    return _then(_$_HouseModel(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -370,6 +579,10 @@ class __$$_GetHouseModelCopyWithImpl<$Res>
           ? _value.canBook
           : canBook // ignore: cast_nullable_to_non_nullable
               as String?,
+      houseId: freezed == houseId
+          ? _value.houseId
+          : houseId // ignore: cast_nullable_to_non_nullable
+              as int?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -380,8 +593,8 @@ class __$$_GetHouseModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetHouseModel implements _GetHouseModel {
-  const _$_GetHouseModel(
+class _$_HouseModel implements _HouseModel {
+  const _$_HouseModel(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'owner_name') this.ownerName,
       @JsonKey(name: 'owner_number') this.ownerNumber,
@@ -402,106 +615,89 @@ class _$_GetHouseModel implements _GetHouseModel {
       @JsonKey(name: 'notice') this.notice,
       @JsonKey(name: 'status') this.status,
       @JsonKey(name: 'can_book') this.canBook,
+      @JsonKey(name: 'house_id') this.houseId,
       @JsonKey(name: 'time') this.time});
 
-  factory _$_GetHouseModel.fromJson(Map<String, dynamic> json) =>
-      _$$_GetHouseModelFromJson(json);
+  factory _$_HouseModel.fromJson(Map<String, dynamic> json) =>
+      _$$_HouseModelFromJson(json);
 
-// ignore:
   @override
   @JsonKey(name: 'id')
   final int? id;
-// ignore:
   @override
   @JsonKey(name: 'owner_name')
   final String? ownerName;
-// ignore:
   @override
   @JsonKey(name: 'owner_number')
   final String? ownerNumber;
-// ignore:
   @override
   @JsonKey(name: 'owner_id')
   final int? ownerId;
-// ignore:
   @override
   @JsonKey(name: 'image1')
   final String? image1;
-// ignore:
   @override
   @JsonKey(name: 'image2')
   final String? image2;
-// ignore:
   @override
   @JsonKey(name: 'image3')
   final String? image3;
-// ignore:
   @override
   @JsonKey(name: 'image4')
   final String? image4;
-// ignore:
   @override
   @JsonKey(name: 'video')
   final String? video;
-// ignore:
   @override
   @JsonKey(name: 'category')
   final String? category;
-// ignore:
   @override
   @JsonKey(name: 'fee')
   final String? fee;
-// ignore:
   @override
   @JsonKey(name: 'quantity')
   final String? quantity;
-// ignore:
   @override
   @JsonKey(name: 'advance_fee')
   final String? advanceFee;
-// ignore:
   @override
   @JsonKey(name: 'electricity_fee')
   final String? electricityFee;
-// ignore:
   @override
   @JsonKey(name: 'gas_fee')
   final String? gasFee;
-// ignore:
   @override
   @JsonKey(name: 'others_fee')
   final String? othersFee;
-// ignore:
   @override
   @JsonKey(name: 'address')
   final String? address;
-// ignore:
   @override
   @JsonKey(name: 'notice')
   final String? notice;
-// ignore:
   @override
   @JsonKey(name: 'status')
   final String? status;
-// ignore:
   @override
   @JsonKey(name: 'can_book')
   final String? canBook;
-// ignore:
+  @override
+  @JsonKey(name: 'house_id')
+  final int? houseId;
   @override
   @JsonKey(name: 'time')
   final String? time;
 
   @override
   String toString() {
-    return 'GetHouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image1: $image1, image2: $image2, image3: $image3, image4: $image4, video: $video, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status, canBook: $canBook, time: $time)';
+    return 'HouseModel(id: $id, ownerName: $ownerName, ownerNumber: $ownerNumber, ownerId: $ownerId, image1: $image1, image2: $image2, image3: $image3, image4: $image4, video: $video, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, status: $status, canBook: $canBook, houseId: $houseId, time: $time)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetHouseModel &&
+            other is _$_HouseModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.ownerName, ownerName) ||
                 other.ownerName == ownerName) &&
@@ -529,6 +725,7 @@ class _$_GetHouseModel implements _GetHouseModel {
             (identical(other.notice, notice) || other.notice == notice) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.canBook, canBook) || other.canBook == canBook) &&
+            (identical(other.houseId, houseId) || other.houseId == houseId) &&
             (identical(other.time, time) || other.time == time));
   }
 
@@ -556,25 +753,26 @@ class _$_GetHouseModel implements _GetHouseModel {
         notice,
         status,
         canBook,
+        houseId,
         time
       ]);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetHouseModelCopyWith<_$_GetHouseModel> get copyWith =>
-      __$$_GetHouseModelCopyWithImpl<_$_GetHouseModel>(this, _$identity);
+  _$$_HouseModelCopyWith<_$_HouseModel> get copyWith =>
+      __$$_HouseModelCopyWithImpl<_$_HouseModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetHouseModelToJson(
+    return _$$_HouseModelToJson(
       this,
     );
   }
 }
 
-abstract class _GetHouseModel implements GetHouseModel {
-  const factory _GetHouseModel(
+abstract class _HouseModel implements HouseModel {
+  const factory _HouseModel(
       {@JsonKey(name: 'id') final int? id,
       @JsonKey(name: 'owner_name') final String? ownerName,
       @JsonKey(name: 'owner_number') final String? ownerNumber,
@@ -595,76 +793,80 @@ abstract class _GetHouseModel implements GetHouseModel {
       @JsonKey(name: 'notice') final String? notice,
       @JsonKey(name: 'status') final String? status,
       @JsonKey(name: 'can_book') final String? canBook,
-      @JsonKey(name: 'time') final String? time}) = _$_GetHouseModel;
+      @JsonKey(name: 'house_id') final int? houseId,
+      @JsonKey(name: 'time') final String? time}) = _$_HouseModel;
 
-  factory _GetHouseModel.fromJson(Map<String, dynamic> json) =
-      _$_GetHouseModel.fromJson;
+  factory _HouseModel.fromJson(Map<String, dynamic> json) =
+      _$_HouseModel.fromJson;
 
-  @override // ignore:
+  @override
   @JsonKey(name: 'id')
   int? get id;
-  @override // ignore:
+  @override
   @JsonKey(name: 'owner_name')
   String? get ownerName;
-  @override // ignore:
+  @override
   @JsonKey(name: 'owner_number')
   String? get ownerNumber;
-  @override // ignore:
+  @override
   @JsonKey(name: 'owner_id')
   int? get ownerId;
-  @override // ignore:
+  @override
   @JsonKey(name: 'image1')
   String? get image1;
-  @override // ignore:
+  @override
   @JsonKey(name: 'image2')
   String? get image2;
-  @override // ignore:
+  @override
   @JsonKey(name: 'image3')
   String? get image3;
-  @override // ignore:
+  @override
   @JsonKey(name: 'image4')
   String? get image4;
-  @override // ignore:
+  @override
   @JsonKey(name: 'video')
   String? get video;
-  @override // ignore:
+  @override
   @JsonKey(name: 'category')
   String? get category;
-  @override // ignore:
+  @override
   @JsonKey(name: 'fee')
   String? get fee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'quantity')
   String? get quantity;
-  @override // ignore:
+  @override
   @JsonKey(name: 'advance_fee')
   String? get advanceFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'electricity_fee')
   String? get electricityFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'gas_fee')
   String? get gasFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'others_fee')
   String? get othersFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'address')
   String? get address;
-  @override // ignore:
+  @override
   @JsonKey(name: 'notice')
   String? get notice;
-  @override // ignore:
+  @override
   @JsonKey(name: 'status')
   String? get status;
-  @override // ignore:
+  @override
   @JsonKey(name: 'can_book')
   String? get canBook;
-  @override // ignore:
+  @override
+  @JsonKey(name: 'house_id')
+  int? get houseId;
+  @override
   @JsonKey(name: 'time')
   String? get time;
   @override
   @JsonKey(ignore: true)
-  _$$_GetHouseModelCopyWith<_$_GetHouseModel> get copyWith =>
+  _$$_HouseModelCopyWith<_$_HouseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

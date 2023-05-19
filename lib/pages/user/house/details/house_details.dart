@@ -7,18 +7,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
-import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
+import 'package:rent_house/data/model/housemodel/house_list_model.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
-
 import '../../../../routers/routes.dart';
 
 class HouseDetailsPage extends StatefulWidget {
-  final GetHouseModel getHouseModel;
-  const HouseDetailsPage({super.key, required this.getHouseModel});
+  final HouseModel houseModel;
+  const HouseDetailsPage({super.key, required this.houseModel});
 
   @override
   State<HouseDetailsPage> createState() => _HouseDetailsPageState();
@@ -31,10 +30,10 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
   List<String> getImageLink() {
     try {
       imageList = [
-        widget.getHouseModel.image1.toString(),
-        widget.getHouseModel.image2.toString(),
-        widget.getHouseModel.image3.toString(),
-        widget.getHouseModel.image4.toString(),
+        widget.houseModel.image1.toString(),
+        widget.houseModel.image2.toString(),
+        widget.houseModel.image3.toString(),
+        widget.houseModel.image4.toString(),
       ];
       log(imageList[0].toString());
     } catch (e) {
@@ -47,7 +46,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
   void initState() {
     super.initState();
     getImageLink();
-    String video = widget.getHouseModel.video.toString();
+    String video = widget.houseModel.video.toString();
     videoUrl = video.replaceAll('http', 'https');
   }
 
@@ -125,7 +124,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                   expandedHeight: Get.height * 0.55,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image.network(
-                      widget.getHouseModel.image1.toString(),
+                      widget.houseModel.image1.toString(),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -156,7 +155,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                               gap(),
                               Expanded(
                                 child: Text(
-                                  widget.getHouseModel.ownerName.toString(),
+                                  widget.houseModel.ownerName.toString(),
                                   style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500),
@@ -166,7 +165,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                               ),
                               gap(w: 10.w),
                               Text(
-                                widget.getHouseModel.ownerNumber.toString(),
+                                widget.houseModel.ownerNumber.toString(),
                                 style: TextStyle(
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w500),
@@ -176,7 +175,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                               IconButton(
                                   onPressed: () {
                                     makeCall(
-                                        number: widget.getHouseModel.ownerNumber
+                                        number: widget.houseModel.ownerNumber
                                             .toString());
                                   },
                                   icon: const Icon(Icons.call)),
@@ -200,45 +199,44 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                         setInfo(
                           icon: Icons.wallet,
                           title: 'মাসিক ভাড়াঃ',
-                          description: '${widget.getHouseModel.fee} টাকা',
+                          description: '${widget.houseModel.fee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.add_home_work_outlined,
                           title: 'রুম সংখাঃ',
-                          description: widget.getHouseModel.quantity.toString(),
+                          description: widget.houseModel.quantity.toString(),
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.electrical_services_outlined,
                           title: 'বিদ্যুৎ বিলঃ',
                           description:
-                              '${widget.getHouseModel.electricityFee} টাকা',
+                              '${widget.houseModel.electricityFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.gas_meter_outlined,
                           title: 'গ্যাস বিলঃ',
-                          description: '${widget.getHouseModel.gasFee} টাকা',
+                          description: '${widget.houseModel.gasFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.money,
                           title: 'অন্যান্য বিলঃ',
-                          description: '${widget.getHouseModel.othersFee} টাকা',
+                          description: '${widget.houseModel.othersFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.currency_exchange,
                           title: 'অগ্রিমঃ',
-                          description:
-                              '${widget.getHouseModel.advanceFee} টাকা',
+                          description: '${widget.houseModel.advanceFee} টাকা',
                         ),
                         gap(),
                         setInfo(
                           icon: Icons.location_on_outlined,
                           title: 'ঠিকানাঃ',
-                          description: widget.getHouseModel.address.toString(),
+                          description: widget.houseModel.address.toString(),
                         ),
                         gap(),
                         Container(
@@ -250,7 +248,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: Text(
-                            widget.getHouseModel.notice.toString(),
+                            widget.houseModel.notice.toString(),
                             style: const TextStyle(color: Colors.black),
                           ),
                         ),
@@ -308,7 +306,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
                           width: Get.width,
                           child: Visibility(
-                            visible: widget.getHouseModel.canBook == 'yes'
+                            visible: widget.houseModel.canBook == 'yes'
                                 ? true
                                 : false,
                             child: MaterialButton(
@@ -316,23 +314,21 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.r)),
                               onPressed: () {
-                                log(widget.getHouseModel.id!.toString());
-                                String ownerName =
-                                    widget.getHouseModel.ownerName!;
+                                log(widget.houseModel.id!.toString());
+                                String ownerName = widget.houseModel.ownerName!;
                                 String ownerNumber =
-                                    widget.getHouseModel.ownerNumber!;
+                                    widget.houseModel.ownerNumber!;
 
-                                if (widget.getHouseModel.status == 'booked') {
+                                if (widget.houseModel.status == 'booked') {
                                   warningDialog(
                                       context: context,
                                       message: 'Already booked');
                                 } else {
                                   BlocProvider.of<BookHouseCubit>(context)
                                       .bookRoom(
-                                    ownerName: ownerName,
-                                    ownerNumber: ownerNumber,
-                                    houseId: widget.getHouseModel.id!,
-                                  );
+                                          ownerName: ownerName,
+                                          ownerNumber: ownerNumber,
+                                          houseId: widget.houseModel.houseId!);
                                 }
                               },
                               child: const Text(

@@ -63,7 +63,11 @@ class OwnerRegisterPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15.r)),
                       color: btnColor,
                       onPressed: () {
-                        showGetSnackBar(title: 'Message', message: 'Register');
+                        snackBar(
+                          title: 'Message',
+                          message: 'Register',
+                          context: context,
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

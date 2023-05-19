@@ -1,5 +1,6 @@
 import 'package:rent_house/data/model/common/common_model.dart';
-import 'package:rent_house/data/model/gethousemodel/get_house_list_model.dart';
+
+import '../../../../data/model/housemodel/house_list_model.dart';
 
 abstract class SingleHouseState {}
 
@@ -13,8 +14,8 @@ class ErrorState extends SingleHouseState {
 }
 
 class SuccessState extends SingleHouseState {
-  final GetHouseListModel getHouseListModel;
-  SuccessState(this.getHouseListModel);
+  final HouseListModel houseListModel;
+  SuccessState(this.houseListModel);
 }
 
 class SuccessStateApprove extends SingleHouseState {

@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:video_compress/video_compress.dart';
+
 import '../../../widget/app_widget.dart';
 
 class AddHousePage extends StatefulWidget {
@@ -83,7 +85,11 @@ class _AddHousePageState extends State<AddHousePage> {
           images = [image1!, image2!, image3!, image4!];
           log(imageList!.length.toString());
         } catch (e) {
-          showGetSnackBar(title: 'Error', message: 'Minimum 4 photo required');
+          snackBar(
+            title: 'Error',
+            message: 'Minimum 4 photo required',
+            context: context,
+          );
         }
       });
     }
@@ -342,29 +348,40 @@ class _AddHousePageState extends State<AddHousePage> {
           String status = statusController.text.toString();
 
           if (fee == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter fee');
+            snackBar(context: context, title: 'Error', message: 'Enter fee');
           } else if (quantity == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter quantity');
+            snackBar(
+                context: context, title: 'Error', message: 'Enter quantity');
           } else if (advanceFee == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter advanceFee');
+            snackBar(
+                context: context, title: 'Error', message: 'Enter advanceFee');
           } else if (electricityFee == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter electricityFee');
+            snackBar(
+                context: context,
+                title: 'Error',
+                message: 'Enter electricityFee');
           } else if (gasFee == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter gasFee');
+            snackBar(context: context, title: 'Error', message: 'Enter gasFee');
           } else if (othersFee == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter othersFee');
+            snackBar(
+                context: context, title: 'Error', message: 'Enter othersFee');
           } else if (notice == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter notice');
+            snackBar(context: context, title: 'Error', message: 'Enter notice');
           } else if (address == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter address');
+            snackBar(
+                context: context, title: 'Error', message: 'Enter address');
           } else if (status == '') {
-            showGetSnackBar(title: 'Error', message: 'Enter status');
+            snackBar(context: context, title: 'Error', message: 'Enter status');
           } else if (imageList!.isEmpty || imageList!.length > 4) {
-            showGetSnackBar(
-                title: 'Error', message: 'Minimum 4 photo required');
+            snackBar(
+                context: context,
+                title: 'Error',
+                message: 'Minimum 4 photo required');
           } else if (video == null) {
-            showGetSnackBar(
-                title: 'Error', message: 'Add a video of your room');
+            snackBar(
+                context: context,
+                title: 'Error',
+                message: 'Add a video of your room');
           } else {
             BlocProvider.of<AddHouseCubit>(context).addHouse(
                 fee: fee,

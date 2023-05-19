@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/app_colors.dart';
 import '../utils/utils.dart';
 
-roundButton() {
+roundButton({required BuildContext context}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.w),
     child: SizedBox(
@@ -16,7 +16,7 @@ roundButton() {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
         color: btnColor,
         onPressed: () {
-          showGetSnackBar(title: 'Message', message: 'Register');
+          snackBar(title: 'Message', message: 'Register', context: context);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

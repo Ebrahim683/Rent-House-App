@@ -20,11 +20,10 @@ BookedHouseListModel _$BookedHouseListModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookedHouseListModel {
-// ignore:
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError; // ignore:
+  String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
-  String? get message => throw _privateConstructorUsedError; // ignore:
+  String? get message => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
   List<BookedHouseModel>? get bookedHouseModel =>
       throw _privateConstructorUsedError;
@@ -140,17 +139,13 @@ class _$_BookedHouseListModel implements _BookedHouseListModel {
   factory _$_BookedHouseListModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookedHouseListModelFromJson(json);
 
-// ignore:
   @override
   @JsonKey(name: 'status')
   final String? status;
-// ignore:
   @override
   @JsonKey(name: 'message')
   final String? message;
-// ignore:
   final List<BookedHouseModel>? _bookedHouseModel;
-// ignore:
   @override
   @JsonKey(name: 'data')
   List<BookedHouseModel>? get bookedHouseModel {
@@ -211,13 +206,13 @@ abstract class _BookedHouseListModel implements BookedHouseListModel {
   factory _BookedHouseListModel.fromJson(Map<String, dynamic> json) =
       _$_BookedHouseListModel.fromJson;
 
-  @override // ignore:
+  @override
   @JsonKey(name: 'status')
   String? get status;
-  @override // ignore:
+  @override
   @JsonKey(name: 'message')
   String? get message;
-  @override // ignore:
+  @override
   @JsonKey(name: 'data')
   List<BookedHouseModel>? get bookedHouseModel;
   @override
@@ -232,37 +227,36 @@ BookedHouseModel _$BookedHouseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookedHouseModel {
-// ignore:
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError; // ignore:
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
-  int? get userId => throw _privateConstructorUsedError; // ignore:
+  int? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment')
-  String? get payment => throw _privateConstructorUsedError; // ignore:
+  String? get payment => throw _privateConstructorUsedError;
   @JsonKey(name: 'owner_id')
-  int? get ownerId => throw _privateConstructorUsedError; // ignore:
+  int? get ownerId => throw _privateConstructorUsedError;
   @JsonKey(name: 'owner_name')
-  String? get ownerName => throw _privateConstructorUsedError; // ignore:
+  String? get ownerName => throw _privateConstructorUsedError;
   @JsonKey(name: 'owner_number')
-  String? get ownerNumber => throw _privateConstructorUsedError; // ignore:
+  String? get ownerNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
-  String? get image => throw _privateConstructorUsedError; // ignore:
+  String? get image => throw _privateConstructorUsedError;
   @JsonKey(name: 'category')
-  String? get category => throw _privateConstructorUsedError; // ignore:
+  String? get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'fee')
-  String? get fee => throw _privateConstructorUsedError; // ignore:
+  String? get fee => throw _privateConstructorUsedError;
   @JsonKey(name: 'quantity')
-  String? get quantity => throw _privateConstructorUsedError; // ignore:
+  String? get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'advance_fee')
-  String? get advanceFee => throw _privateConstructorUsedError; // ignore:
+  String? get advanceFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'electricity_fee')
-  String? get electricityFee => throw _privateConstructorUsedError; // ignore:
+  String? get electricityFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'gas_fee')
-  String? get gasFee => throw _privateConstructorUsedError; // ignore:
+  String? get gasFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'others_fee')
-  String? get othersFee => throw _privateConstructorUsedError; // ignore:
+  String? get othersFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError; // ignore:
+  String? get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'notice')
   String? get notice => throw _privateConstructorUsedError;
 
@@ -544,67 +538,51 @@ class _$_BookedHouseModel implements _BookedHouseModel {
   factory _$_BookedHouseModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookedHouseModelFromJson(json);
 
-// ignore:
   @override
   @JsonKey(name: 'id')
   final int? id;
-// ignore:
   @override
   @JsonKey(name: 'user_id')
   final int? userId;
-// ignore:
   @override
   @JsonKey(name: 'payment')
   final String? payment;
-// ignore:
   @override
   @JsonKey(name: 'owner_id')
   final int? ownerId;
-// ignore:
   @override
   @JsonKey(name: 'owner_name')
   final String? ownerName;
-// ignore:
   @override
   @JsonKey(name: 'owner_number')
   final String? ownerNumber;
-// ignore:
   @override
   @JsonKey(name: 'image')
   final String? image;
-// ignore:
   @override
   @JsonKey(name: 'category')
   final String? category;
-// ignore:
   @override
   @JsonKey(name: 'fee')
   final String? fee;
-// ignore:
   @override
   @JsonKey(name: 'quantity')
   final String? quantity;
-// ignore:
   @override
   @JsonKey(name: 'advance_fee')
   final String? advanceFee;
-// ignore:
   @override
   @JsonKey(name: 'electricity_fee')
   final String? electricityFee;
-// ignore:
   @override
   @JsonKey(name: 'gas_fee')
   final String? gasFee;
-// ignore:
   @override
   @JsonKey(name: 'others_fee')
   final String? othersFee;
-// ignore:
   @override
   @JsonKey(name: 'address')
   final String? address;
-// ignore:
   @override
   @JsonKey(name: 'notice')
   final String? notice;
@@ -701,52 +679,52 @@ abstract class _BookedHouseModel implements BookedHouseModel {
   factory _BookedHouseModel.fromJson(Map<String, dynamic> json) =
       _$_BookedHouseModel.fromJson;
 
-  @override // ignore:
+  @override
   @JsonKey(name: 'id')
   int? get id;
-  @override // ignore:
+  @override
   @JsonKey(name: 'user_id')
   int? get userId;
-  @override // ignore:
+  @override
   @JsonKey(name: 'payment')
   String? get payment;
-  @override // ignore:
+  @override
   @JsonKey(name: 'owner_id')
   int? get ownerId;
-  @override // ignore:
+  @override
   @JsonKey(name: 'owner_name')
   String? get ownerName;
-  @override // ignore:
+  @override
   @JsonKey(name: 'owner_number')
   String? get ownerNumber;
-  @override // ignore:
+  @override
   @JsonKey(name: 'image')
   String? get image;
-  @override // ignore:
+  @override
   @JsonKey(name: 'category')
   String? get category;
-  @override // ignore:
+  @override
   @JsonKey(name: 'fee')
   String? get fee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'quantity')
   String? get quantity;
-  @override // ignore:
+  @override
   @JsonKey(name: 'advance_fee')
   String? get advanceFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'electricity_fee')
   String? get electricityFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'gas_fee')
   String? get gasFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'others_fee')
   String? get othersFee;
-  @override // ignore:
+  @override
   @JsonKey(name: 'address')
   String? get address;
-  @override // ignore:
+  @override
   @JsonKey(name: 'notice')
   String? get notice;
   @override

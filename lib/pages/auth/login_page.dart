@@ -1,16 +1,18 @@
 import 'dart:developer';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:get/get.dart';
+import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
+
 import '../../routers/routes.dart';
 import '../../widget/app_widget.dart';
 
@@ -161,13 +163,17 @@ class _LoginPageState extends State<LoginPage> {
                                           .trim()
                                           .toString();
                                       if (phoneNumber == '') {
-                                        showGetSnackBar(
-                                            title: 'ত্রুটি',
-                                            message: 'আপনার ফোন নম্বর লিখুন');
+                                        snackBar(
+                                          title: 'ত্রুটি',
+                                          message: 'আপনার ফোন নম্বর লিখুন',
+                                          context: context,
+                                        );
                                       } else if (password == '') {
-                                        showGetSnackBar(
-                                            title: 'ত্রুটি',
-                                            message: 'আপনার পাসওয়ার্ড লিখুন');
+                                        snackBar(
+                                          title: 'ত্রুটি',
+                                          message: 'আপনার পাসওয়ার্ড লিখুন',
+                                          context: context,
+                                        );
                                       } else {
                                         BlocProvider.of<LoginCubit>(context)
                                             .login(

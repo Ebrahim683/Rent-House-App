@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rent_house/data/model/gethousemodel/get_house_list_model.dart';
 
+import '../../../data/model/housemodel/house_list_model.dart';
 import '../../../data/network/repository/get_house_list.dart';
 import 'get_house_list_state.dart';
 
@@ -15,7 +15,7 @@ class GetHouseListCubit extends Cubit<GetHouseListState> {
     try {
       final result =
           await GetHouseListRepository.getHouseList(category: category);
-      GetHouseListModel getHouseListModel = GetHouseListModel.fromJson(result);
+      HouseListModel getHouseListModel = HouseListModel.fromJson(result);
       emit(GetHouseListSuccessState(getHouseListModel));
     } catch (e) {
       emit(GetHouseListErrorState(e.toString()));

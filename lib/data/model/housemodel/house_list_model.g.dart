@@ -1,13 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_house_model.dart';
+part of 'house_list_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GetHouseModel _$$_GetHouseModelFromJson(Map<String, dynamic> json) =>
-    _$_GetHouseModel(
+_$_HouseListModel _$$_HouseListModelFromJson(Map<String, dynamic> json) =>
+    _$_HouseListModel(
+      status: json['status'] as String?,
+      message: json['message'] as String?,
+      houseModel: (json['data'] as List<dynamic>?)
+          ?.map((e) => HouseModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_HouseListModelToJson(_$_HouseListModel instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.houseModel,
+    };
+
+_$_HouseModel _$$_HouseModelFromJson(Map<String, dynamic> json) =>
+    _$_HouseModel(
       id: json['id'] as int?,
       ownerName: json['owner_name'] as String?,
       ownerNumber: json['owner_number'] as String?,
@@ -28,10 +44,11 @@ _$_GetHouseModel _$$_GetHouseModelFromJson(Map<String, dynamic> json) =>
       notice: json['notice'] as String?,
       status: json['status'] as String?,
       canBook: json['can_book'] as String?,
+      houseId: json['house_id'] as int?,
       time: json['time'] as String?,
     );
 
-Map<String, dynamic> _$$_GetHouseModelToJson(_$_GetHouseModel instance) =>
+Map<String, dynamic> _$$_HouseModelToJson(_$_HouseModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'owner_name': instance.ownerName,
@@ -53,5 +70,6 @@ Map<String, dynamic> _$$_GetHouseModelToJson(_$_GetHouseModel instance) =>
       'notice': instance.notice,
       'status': instance.status,
       'can_book': instance.canBook,
+      'house_id': instance.houseId,
       'time': instance.time,
     };

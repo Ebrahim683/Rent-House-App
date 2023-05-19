@@ -3,12 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'package:rent_house/data/model/gethousemodel/get_house_list_model.dart';
-import 'package:rent_house/data/model/gethousemodel/get_house_model.dart';
 import 'package:rent_house/state/cubit/owner/singlehouse/single_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/singlehouse/single_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
 
+import '../../../data/model/housemodel/house_list_model.dart';
 import '../../../data/model/owner/bookhouserequestmodel/book_house_request_list_model.dart';
 import '../../../widget/app_widget.dart';
 
@@ -46,9 +45,8 @@ class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
           },
           builder: (context, state) {
             if (state is SuccessState) {
-              GetHouseListModel getHouseListModel = state.getHouseListModel;
-              List<GetHouseModel> getHouseModel =
-                  getHouseListModel.getHouseModel!;
+              HouseListModel getHouseListModel = state.houseListModel;
+              List<HouseModel> getHouseModel = getHouseListModel.houseModel!;
               if (getHouseModel.isEmpty) {
                 return Center(
                   child: Column(

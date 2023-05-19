@@ -1,5 +1,5 @@
 import 'package:rent_house/utils/storage_utils.dart';
-
+import 'dart:developer';
 import '../api/api_service.dart';
 import '../api/end_points.dart';
 
@@ -16,6 +16,7 @@ class BookHouseRepository {
       'owner_number': ownerNumber,
       'house_id': houseId,
     };
+    log(map.toString());
     return await ApiService.postApi(path: bookHouse, body: map);
   }
 }

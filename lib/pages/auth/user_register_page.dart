@@ -1,16 +1,18 @@
 import 'dart:developer';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_state.dart';
-import 'package:loading_overlay/loading_overlay.dart';
 import 'package:rent_house/utils/utils.dart';
+
 import '../../widget/app_widget.dart';
 
 class UserRegisterPage extends StatefulWidget {
@@ -48,7 +50,11 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
             pushOff(context: context, name: login_page);
           } else if (state is AuthErrorState) {
             log(state.error);
-            showGetSnackBar(title: 'ত্রুটি', message: state.error);
+            snackBar(
+              title: 'ত্রুটি',
+              message: state.error,
+              context: context,
+            );
           }
         },
         builder: (context, state) {
@@ -213,28 +219,36 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                       String confirmPassword =
                                           confirmPasswordController.text.trim();
                                       if (name == '') {
-                                        showGetSnackBar(
-                                            title: 'ত্রুটি',
-                                            message: 'আপনার নাম লিখুন');
+                                        snackBar(
+                                          title: 'ত্রুটি',
+                                          message: 'আপনার নাম লিখুন',
+                                          context: context,
+                                        );
                                       } else if (phoneNumber == '') {
-                                        showGetSnackBar(
-                                            title: 'ত্রুটি',
-                                            message:
-                                                'আপনার মোবাইল নাম্বার লিখুন');
+                                        snackBar(
+                                          title: 'ত্রুটি',
+                                          message: 'আপনার মোবাইল নাম্বার লিখুন',
+                                          context: context,
+                                        );
                                       } else if (password == '' &&
                                           password.length < 6) {
-                                        showGetSnackBar(
-                                            title: 'ত্রুটি',
-                                            message: 'পাসওয়ার্ড দিন');
+                                        snackBar(
+                                          title: 'ত্রুটি',
+                                          message: 'পাসওয়ার্ড দিন',
+                                          context: context,
+                                        );
                                       } else if (confirmPassword == '') {
-                                        showGetSnackBar(
-                                            title: 'ত্রুটি',
-                                            message:
-                                                'পাসওয়ার্ড নিশ্চিন্ত করুন');
+                                        snackBar(
+                                          title: 'ত্রুটি',
+                                          message: 'পাসওয়ার্ড নিশ্চিন্ত করুন',
+                                          context: context,
+                                        );
                                       } else if (password != confirmPassword) {
-                                        showGetSnackBar(
-                                            title: 'ত্রুটি',
-                                            message: 'পাসওয়ার্ড ভিন্ন হয়েছে ');
+                                        snackBar(
+                                          title: 'ত্রুটি',
+                                          message: 'পাসওয়ার্ড ভিন্ন হয়েছে ',
+                                          context: context,
+                                        );
                                       } else {
                                         BlocProvider.of<AuthCubit>(context)
                                             .register(

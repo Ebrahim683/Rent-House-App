@@ -8,8 +8,8 @@ class LeaveRoomRequestRepository {
     required String userNumber,
   }) async {
     Map<String, dynamic> map = {
-      'id':id,
-      'user_name': userName,
+      'id': id,
+      'user_name': userName.toLowerCase(),
       'user_number': userNumber,
     };
     return await ApiService.postApi(path: leaveRoomRequest, body: map);

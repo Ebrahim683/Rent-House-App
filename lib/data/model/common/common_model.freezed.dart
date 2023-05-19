@@ -20,9 +20,8 @@ CommonModel _$CommonModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommonModel {
-// ignore:
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError; // ignore:
+  String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
 
@@ -122,11 +121,9 @@ class _$_CommonModel implements _CommonModel {
   factory _$_CommonModel.fromJson(Map<String, dynamic> json) =>
       _$$_CommonModelFromJson(json);
 
-// ignore:
   @override
   @JsonKey(name: 'status')
   final String? status;
-// ignore:
   @override
   @JsonKey(name: 'message')
   final String? message;
@@ -171,10 +168,10 @@ abstract class _CommonModel implements CommonModel {
   factory _CommonModel.fromJson(Map<String, dynamic> json) =
       _$_CommonModel.fromJson;
 
-  @override // ignore:
+  @override
   @JsonKey(name: 'status')
   String? get status;
-  @override // ignore:
+  @override
   @JsonKey(name: 'message')
   String? get message;
   @override

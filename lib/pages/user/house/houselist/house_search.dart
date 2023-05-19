@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../data/model/gethousemodel/get_house_model.dart';
+import '../../../../data/model/housemodel/house_list_model.dart';
 import 'house_widget.dart';
 
-
 class HouseSearch extends SearchDelegate {
-  final List<GetHouseModel> getHouseModelList;
-  HouseSearch({required this.getHouseModelList});
+  final List<HouseModel> houseListModel;
+  HouseSearch({required this.houseListModel});
   @override
   List<Widget>? buildActions(BuildContext context) {
     return <Widget>[
@@ -33,12 +31,12 @@ class HouseSearch extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     return ListView.builder(
-      itemCount: getHouseModelList.length,
+      itemCount: houseListModel.length,
       itemBuilder: (context, index) {
-        if (getHouseModelList[index].fee!.contains(query)) {
-          return HouseWidget(getHouseModel: getHouseModelList[index]);
-        } else if (getHouseModelList[index].address!.contains(query)) {
-          return HouseWidget(getHouseModel: getHouseModelList[index]);
+        if (houseListModel[index].fee!.contains(query)) {
+          return HouseWidget(getHouseModel: houseListModel[index]);
+        } else if (houseListModel[index].address!.contains(query)) {
+          return HouseWidget(getHouseModel: houseListModel[index]);
         } else {
           return Container();
         }
@@ -49,9 +47,9 @@ class HouseSearch extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return ListView.builder(
-      itemCount: getHouseModelList.length,
+      itemCount: houseListModel.length,
       itemBuilder: (context, index) {
-        return HouseWidget(getHouseModel: getHouseModelList[index]);
+        return HouseWidget(getHouseModel: houseListModel[index]);
       },
     );
   }

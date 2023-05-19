@@ -1,55 +1,45 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'get_house_model.g.dart';
-part 'get_house_model.freezed.dart';
-
+part 'house_list_model.g.dart';
+part 'house_list_model.freezed.dart';
 
 @freezed
-class GetHouseModel with _$GetHouseModel {
-  const factory GetHouseModel({
-    // ignore:  
-    @JsonKey(name: 'id') int? id,
-    // ignore:  
-    @JsonKey(name: 'owner_name') String? ownerName,
-    // ignore:  
-    @JsonKey(name: 'owner_number') String? ownerNumber,
-    // ignore:  
-    @JsonKey(name: 'owner_id') int? ownerId,
-    // ignore:  
-    @JsonKey(name: 'image1') String? image1,
-    // ignore:  
-    @JsonKey(name: 'image2') String? image2,
-    // ignore:  
-    @JsonKey(name: 'image3') String? image3,
-    // ignore:  
-    @JsonKey(name: 'image4') String? image4,
-    // ignore:  
-    @JsonKey(name: 'video') String? video,
-    // ignore:  
-    @JsonKey(name: 'category') String? category,
-    // ignore:  
-    @JsonKey(name: 'fee') String? fee,
-    // ignore:  
-    @JsonKey(name: 'quantity') String? quantity,
-    // ignore:  
-    @JsonKey(name: 'advance_fee') String? advanceFee,
-    // ignore:  
-    @JsonKey(name: 'electricity_fee') String? electricityFee,
-    // ignore:  
-    @JsonKey(name: 'gas_fee') String? gasFee,
-    // ignore:  
-    @JsonKey(name: 'others_fee') String? othersFee,
-    // ignore:  
-    @JsonKey(name: 'address') String? address,
-    // ignore:  
-    @JsonKey(name: 'notice') String? notice,
-    // ignore:  
+class HouseListModel with _$HouseListModel {
+  const factory HouseListModel({
     @JsonKey(name: 'status') String? status,
-    // ignore:  
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'data') List<HouseModel>? houseModel,
+  }) = _HouseListModel;
+  factory HouseListModel.fromJson(Map<String, dynamic> json) =>
+      _$HouseListModelFromJson(json);
+}
+
+@freezed
+class HouseModel with _$HouseModel {
+  const factory HouseModel({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'owner_name') String? ownerName,
+    @JsonKey(name: 'owner_number') String? ownerNumber,
+    @JsonKey(name: 'owner_id') int? ownerId,
+    @JsonKey(name: 'image1') String? image1,
+    @JsonKey(name: 'image2') String? image2,
+    @JsonKey(name: 'image3') String? image3,
+    @JsonKey(name: 'image4') String? image4,
+    @JsonKey(name: 'video') String? video,
+    @JsonKey(name: 'category') String? category,
+    @JsonKey(name: 'fee') String? fee,
+    @JsonKey(name: 'quantity') String? quantity,
+    @JsonKey(name: 'advance_fee') String? advanceFee,
+    @JsonKey(name: 'electricity_fee') String? electricityFee,
+    @JsonKey(name: 'gas_fee') String? gasFee,
+    @JsonKey(name: 'others_fee') String? othersFee,
+    @JsonKey(name: 'address') String? address,
+    @JsonKey(name: 'notice') String? notice,
+    @JsonKey(name: 'status') String? status,
     @JsonKey(name: 'can_book') String? canBook,
-    // ignore:  
+    @JsonKey(name: 'house_id') int? houseId,
     @JsonKey(name: 'time') String? time,
-  }) = _GetHouseModel;
-  factory GetHouseModel.fromJson(Map<String, dynamic> json) =>
-      _$GetHouseModelFromJson(json);
+  }) = _HouseModel;
+  factory HouseModel.fromJson(Map<String, dynamic> json) =>
+      _$HouseModelFromJson(json);
 }
