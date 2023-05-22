@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: favColor,
+          ),
           scaffoldBackgroundColor: bgColor,
           appBarTheme: AppBarTheme(color: bgColor),
         ),

@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
@@ -121,15 +122,16 @@ class _AddHousePageState extends State<AddHousePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Add House'),
-      // ),
+      appBar: AppBar(
+        title: const Text('রুম স্থাপন করুন'),
+      ),
       body: BlocConsumer<AddHouseCubit, AddHouseState>(
         listener: (context, state) {
           if (state is AddHouseSuccessState) {
-            successDialog(
-                context: context,
-                message: state.commonModel.message.toString());
+            pop(context: context);
+            // successDialog(
+            //     context: context,
+            //     message: state.commonModel.message.toString());
           } else if (state is AddHouseErrorState) {
             errorDialog(context: context, message: state.error);
           }

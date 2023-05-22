@@ -14,6 +14,7 @@ import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 
 import '../../routers/routes.dart';
+import '../../utils/app_colors.dart';
 import '../../widget/app_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -92,136 +93,232 @@ class _LoginPageState extends State<LoginPage> {
                           border: Border.all(color: Colors.white),
                           height: Get.height * 0.6,
                           width: Get.width,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              inputText(
-                                controller: mobileController,
-                                hint: 'নাম্বার',
-                                icon: Icons.dialpad,
-                                type: TextInputType.phone,
-                                color: Colors.white,
-                              ),
-                              gap(),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20.h),
-                                child: TextField(
-                                  obscureText: sPassword,
-                                  keyboardType: TextInputType.text,
-                                  controller: passwordController,
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      borderSide:
-                                          const BorderSide(color: Colors.white),
-                                    ),
-                                    filled: true,
-                                    hintText: 'পাসওয়ার্ড',
-                                    hintStyle:
-                                        const TextStyle(color: Colors.white),
-                                    fillColor: Colors.white.withAlpha(0),
-                                    prefixIcon: const Icon(
-                                      Icons.password,
-                                      color: Colors.white,
-                                    ),
-                                    suffixIcon: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          sPassword = !sPassword;
-                                        });
-                                      },
-                                      icon: Icon(
-                                        sPassword == true
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              gap(),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                                child: GlassContainer(
-                                  blur: 5,
-                                  height: 50.h,
-                                  width: double.infinity,
-                                  color: Colors.white.withOpacity(0.1),
-                                  child: MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      side:
-                                          const BorderSide(color: Colors.white),
-                                    ),
-                                    onPressed: () {
-                                      String phoneNumber = mobileController.text
-                                          .trim()
-                                          .toString();
-                                      String password = passwordController.text
-                                          .trim()
-                                          .toString();
-                                      if (phoneNumber == '') {
-                                        snackBar(
-                                          title: 'ত্রুটি',
-                                          message: 'আপনার ফোন নম্বর লিখুন',
-                                          context: context,
-                                        );
-                                      } else if (password == '') {
-                                        snackBar(
-                                          title: 'ত্রুটি',
-                                          message: 'আপনার পাসওয়ার্ড লিখুন',
-                                          context: context,
-                                        );
-                                      } else {
-                                        BlocProvider.of<LoginCubit>(context)
-                                            .login(
-                                                phoneNumber: phoneNumber,
-                                                password: password);
-                                      }
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        buttonText(text: 'লগিন করুন'),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              gap(),
-                              Row(
+                          child: Center(
+                            child: SingleChildScrollView(
+                              child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  buttonText(
-                                      color: Colors.white, text: 'এখানে নতুন?'),
-                                  gap(w: 10.w),
-                                  InkWell(
-                                    onTap: () => pushOff(
-                                        context: context,
-                                        name: user_register_page),
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10.w, vertical: 5.h),
-                                      decoration: BoxDecoration(
-                                        color: Colors.teal,
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
+                                  gap(h: 100.h),
+                                  inputText(
+                                    controller: mobileController,
+                                    hint: 'নাম্বার',
+                                    icon: Icons.dialpad,
+                                    type: TextInputType.phone,
+                                    color: Colors.white,
+                                  ),
+                                  gap(),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.h),
+                                    child: TextField(
+                                      obscureText: sPassword,
+                                      keyboardType: TextInputType.text,
+                                      controller: passwordController,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.r),
+                                          borderSide: const BorderSide(
+                                              color: Colors.white),
+                                        ),
+                                        filled: true,
+                                        hintText: 'পাসওয়ার্ড',
+                                        hintStyle: const TextStyle(
+                                            color: Colors.white),
+                                        fillColor: Colors.white.withAlpha(0),
+                                        prefixIcon: const Icon(
+                                          Icons.password,
+                                          color: Colors.white,
+                                        ),
+                                        suffixIcon: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              sPassword = !sPassword;
+                                            });
+                                          },
+                                          icon: Icon(
+                                            sPassword == true
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                       ),
-                                      child: buttonText(
-                                          color: Colors.black,
-                                          text: 'নিবন্ধন করুন'),
                                     ),
                                   ),
+                                  gap(),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.w),
+                                    child: GlassContainer(
+                                      blur: 5,
+                                      height: 50.h,
+                                      width: double.infinity,
+                                      color: Colors.white.withOpacity(0.1),
+                                      child: MaterialButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.r),
+                                          side: const BorderSide(
+                                              color: Colors.white),
+                                        ),
+                                        onPressed: () {
+                                          String phoneNumber = mobileController
+                                              .text
+                                              .trim()
+                                              .toString();
+                                          String password = passwordController
+                                              .text
+                                              .trim()
+                                              .toString();
+                                          if (phoneNumber == '') {
+                                            snackBar(
+                                              title: 'ত্রুটি',
+                                              message: 'আপনার ফোন নম্বর লিখুন',
+                                              context: context,
+                                            );
+                                          } else if (password == '') {
+                                            snackBar(
+                                              title: 'ত্রুটি',
+                                              message: 'আপনার পাসওয়ার্ড লিখুন',
+                                              context: context,
+                                            );
+                                          } else {
+                                            BlocProvider.of<LoginCubit>(context)
+                                                .login(
+                                                    phoneNumber: phoneNumber,
+                                                    password: password);
+                                          }
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            buttonText(text: 'লগিন করুন'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  gap(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      buttonText(
+                                          color: Colors.white,
+                                          text: 'এখানে নতুন?'),
+                                      gap(w: 10.w),
+                                      InkWell(
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                            showDragHandle: true,
+                                            useSafeArea: true,
+                                            context: context,
+                                            isDismissible: true,
+                                            enableDrag: true,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(25.r),
+                                            ),
+                                            builder: (context) {
+                                              return SizedBox(
+                                                height: 180.h,
+                                                width: double.infinity,
+                                                child: Center(
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: 250.w,
+                                                        child: MaterialButton(
+                                                          color: btnColor,
+                                                          textColor:
+                                                              Colors.white,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        25.r),
+                                                          ),
+                                                          onPressed: () {
+                                                            pushOff(
+                                                                context:
+                                                                    context,
+                                                                name:
+                                                                    owner_register_page);
+                                                          },
+                                                          child: const Text(
+                                                              'বাড়িওয়ালা নিবন্ধন'),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'অথবা',
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 20.sp,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 250.w,
+                                                        child: MaterialButton(
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        25.r),
+                                                          ),
+                                                          color: btnColor,
+                                                          textColor:
+                                                              Colors.white,
+                                                          onPressed: () {
+                                                            pushOff(
+                                                                context:
+                                                                    context,
+                                                                name:
+                                                                    user_register_page);
+                                                          },
+                                                          child: const Text(
+                                                              'ভাড়াটিয়া নিবন্ধন'),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10.w, vertical: 5.h),
+                                          decoration: BoxDecoration(
+                                            color: bgColor,
+                                            borderRadius:
+                                                BorderRadius.circular(10.r),
+                                          ),
+                                          child: buttonText(
+                                              color: Colors.black,
+                                              text: 'নিবন্ধন করুন'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  gap(h: 250.h),
                                 ],
                               ),
-                              gap(),
-                            ],
+                            ),
                           ),
                         ),
                       ),

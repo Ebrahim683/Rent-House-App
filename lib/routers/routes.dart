@@ -23,7 +23,7 @@ import '../pages/auth/owner_registrater_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
 import '../pages/owners/addhouse/add_house_page.dart';
 import '../pages/owners/updatehouse/update_house_page.dart';
-import '../pages/profile/user_profile_page.dart';
+import '../pages/profile/profile_page.dart';
 import '../pages/user/base/user_base_page.dart';
 import '../pages/user/home/home_page.dart';
 import '../pages/user/house/booked/book_house_details_page.dart';
@@ -109,7 +109,10 @@ class Routers {
       //owner register
       case '/owner_register_page':
         return MaterialPageRoute(
-          builder: (context) => const OwnerRegisterPage(),
+          builder: (context) => BlocProvider(
+            create: (context) => AuthCubit(),
+            child: const OwnerRegisterPage(),
+          ),
         );
       //user base page
       case '/user_base_page':

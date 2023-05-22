@@ -21,9 +21,11 @@ class ApiService {
         return Future.error(response.statusMessage.toString());
       }
     } on dio.DioError catch (e) {
+      log(e.toString());
       String errorMessage = getError(e);
       return Future.error(errorMessage);
     } catch (e) {
+      log(e.toString());
       return Future.error('Something went wrong');
     }
   }
@@ -45,9 +47,11 @@ class ApiService {
         return Future.error(response.statusMessage.toString());
       }
     } on dio.DioError catch (e) {
+      log(e.toString());
       String errorMessage = getError(e);
       return Future.error(errorMessage);
     } catch (e) {
+      log(e.toString());
       return Future.error('Something went wrong');
     }
   }
@@ -68,9 +72,11 @@ class ApiService {
         return Future.error(response.statusMessage.toString());
       }
     } on dio.DioError catch (e) {
+      log(e.toString());
       String errorMessage = getError(e);
       return Future.error(errorMessage);
     } catch (e) {
+      log(e.toString());
       return Future.error('Something went wrong');
     }
   }
@@ -91,9 +97,11 @@ class ApiService {
         return Future.error(response.statusMessage.toString());
       }
     } on dio.DioError catch (e) {
+      log(e.toString());
       String errorMessage = getError(e);
       return Future.error(errorMessage);
     } catch (e) {
+      log(e.toString());
       return Future.error('Something went wrong');
     }
   }

@@ -7,7 +7,7 @@ import 'package:rent_house/utils/storage_utils.dart';
 
 import '../../../routers/routes.dart';
 import '../../../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
-import '../../profile/user_profile_page.dart';
+import '../../profile/profile_page.dart';
 import '../home/home_page.dart';
 import '../house/booked/booked_house_page.dart';
 

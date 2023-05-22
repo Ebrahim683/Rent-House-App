@@ -6,12 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import '../../../routers/routes.dart';
-import '../../../state/cubit/owner/addhouse/add_house_cubit.dart';
 import '../../../state/cubit/owner/bookhouserequest/book_house_list_cubit.dart';
 import '../../../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_cubit.dart';
 import '../../../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
-import '../../profile/user_profile_page.dart';
-import '../addhouse/add_house_page.dart';
+import '../../../utils/app_colors.dart';
 import '../bookhouserequest/book_house_request_page.dart';
 import '../leaveroomrequestlist/leave_room_request_list_page.dart';
 import '../userslist/users_list_page.dart';
@@ -26,18 +24,18 @@ class OwnerBasePage extends StatefulWidget {
 class _OwnerBasePageState extends State<OwnerBasePage> {
   final title = [
     'হোম',
-    'রুম স্থাপন',
     'ভাড়াটিয়া লিস্ট',
-    'রুম ভাড়ার আবেদন',
+    'ভাড়ার আবেদন',
     'রুম ছাড়ার আবেদন',
-    'প্রোফাইল',
+  ];
+  final icons = [
+    Icons.home_outlined,
+    Icons.list_alt_outlined,
+    Icons.group_outlined,
+    Icons.group_off_outlined,
   ];
   final _pages = [
     const OwnerDashboardPage(),
-    BlocProvider(
-      create: (context) => AddHouseCubit(),
-      child: const AddHousePage(),
-    ),
     BlocProvider(
       create: (context) => ShowOwnerBookedHouseCubit(),
       child: const UsersListPage(),
@@ -50,12 +48,10 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
       create: (context) => LeaveRoomRequestListCubit(),
       child: const LeaveRoomRequestListPage(),
     ),
-    const ProfilePage(),
   ];
   int currentIndex = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     log('owner base page');
   }
@@ -64,26 +60,16 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-          builder: (context) {
-            return InkWell(
-              onTap: () => Scaffold.of(context).openDrawer(),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 225, 229, 233),
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.all(5),
-                child: Image.asset(
-                  'asset/icons/menu.png',
-                  color: Colors.black,
-                  height: 30.h,
-                  width: 30.h,
-                ),
-              ),
-            );
-          },
+        leading: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: CircleAvatar(
+            backgroundColor: const Color.fromRGBO(190, 239, 126, 1),
+            child: IconButton(
+                onPressed: () {
+                  push(context: context, name: profile_page);
+                },
+                icon: const Icon(Icons.person_outline)),
+          ),
         ),
         title: Text(title[currentIndex]),
         centerTitle: true,
@@ -101,81 +87,45 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
         ],
       ),
       body: _pages[currentIndex],
-      drawer: Drawer(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(30.r),
-            topRight: Radius.circular(30.r),
-          ),
+      bottomNavigationBar: navigationBar(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          push(context: context, name: add_house_page);
+        },
+        icon: const Icon(Icons.add),
+        label: const Text('রুম স্থাপন'),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+
+  Widget navigationBar() {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10.h, left: 8.w, right: 8.w),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
+          bottomLeft: Radius.circular(20.r),
+          bottomRight: Radius.circular(20.r),
         ),
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Container(
-                decoration: const BoxDecoration(color: Colors.teal),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.home_outlined),
-              title: Text(title[0]),
-              onTap: () {
-                pop(context: context);
-                setState(() {
-                  currentIndex = 0;
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.format_list_bulleted_rounded),
-              title: Text(title[1]),
-              onTap: () {
-                pop(context: context);
-                setState(() {
-                  currentIndex = 1;
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.format_list_bulleted_rounded),
-              title: Text(title[2]),
-              onTap: () {
-                pop(context: context);
-                setState(() {
-                  currentIndex = 2;
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.group_outlined),
-              title: Text(title[3]),
-              onTap: () {
-                pop(context: context);
-                setState(() {
-                  currentIndex = 3;
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.group_off_outlined),
-              title: Text(title[4]),
-              onTap: () {
-                pop(context: context);
-                setState(() {
-                  currentIndex = 4;
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.person_2_outlined),
-              title: Text(title[5]),
-              onTap: () {
-                pop(context: context);
-                setState(() {
-                  currentIndex = 5;
-                });
-              },
-            ),
+        child: NavigationBar(
+          backgroundColor: bottomNavColor,
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          animationDuration: const Duration(milliseconds: 800),
+          indicatorColor: Colors.white,
+          destinations: [
+            NavigationDestination(icon: Icon(icons[0]), label: title[0]),
+            NavigationDestination(icon: Icon(icons[1]), label: title[1]),
+            NavigationDestination(icon: Icon(icons[2]), label: title[2]),
+            NavigationDestination(icon: Icon(icons[3]), label: title[3]),
           ],
+          selectedIndex: currentIndex,
+          onDestinationSelected: (value) {
+            setState(() {
+              currentIndex = value;
+            });
+          },
         ),
       ),
     );

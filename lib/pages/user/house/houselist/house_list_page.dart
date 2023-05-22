@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'package:loading_overlay/loading_overlay.dart';
-import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/housemodel/house_list_model.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_state.dart';
 import 'package:rent_house/utils/utils.dart';
-
 import '../../../../widget/app_widget.dart';
 import 'house_search.dart';
 import 'house_widget.dart';
@@ -53,10 +50,9 @@ class _HouseListPageState extends State<HouseListPage> {
           },
           builder: (context, state) {
             if (state is GetHouseListLoadingState) {
-              return Center(
-                child: Lottie.asset(
-                  'asset/animations/timer.json',
-                ),
+              return ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) => listLoadingWidget(),
               );
             } else if (state is GetHouseListSuccessState) {
               HouseListModel houseListModel = state.houseListModel;
@@ -77,18 +73,12 @@ class _HouseListPageState extends State<HouseListPage> {
                 );
               } else {
                 houseListModelSearch.addAll(houseModel!);
-                return LoadingOverlay(
-                  isLoading: state is GetHouseListLoadingState ? true : false,
-                  progressIndicator: Lottie.asset(
-                    'asset/animations/timer.json',
-                  ),
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: houseModel.length,
-                    itemBuilder: (context, index) {
-                      return HouseWidget(getHouseModel: houseModel[index]);
-                    },
-                  ),
+                return ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: houseModel.length,
+                  itemBuilder: (context, index) {
+                    return HouseWidget(getHouseModel: houseModel[index]);
+                  },
                 );
               }
             } else if (state is GetHouseListErrorState) {

@@ -1,9 +1,117 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import '../utils/app_colors.dart';
 import '../utils/utils.dart';
+
+Row setInfo() {
+  return Row(
+    children: [
+      CircleAvatar(
+        radius: 15.r,
+        backgroundColor: Colors.black,
+        child: const CircleAvatar(
+          backgroundColor: Colors.white,
+        ),
+      ),
+      gap(w: 5.w),
+      Container(
+        height: 20.h,
+        width: 40.w,
+        decoration: BoxDecoration(
+          color: Colors.teal,
+          borderRadius: BorderRadius.circular(15.r),
+        ),
+      ),
+    ],
+  );
+}
+
+listLoadingWidget() {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+    height: 300.h,
+    width: Get.width,
+    decoration: BoxDecoration(
+      color: Colors.tealAccent,
+      border: Border.all(color: Colors.black),
+      borderRadius: BorderRadius.circular(25.r),
+    ),
+    child: Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(25.r),
+          child: Container(),
+        ),
+        Positioned(
+          bottom: 10,
+          left: 8,
+          right: 8,
+          child: Shimmer(
+            period: const Duration(seconds: 2),
+            gradient:
+                const LinearGradient(colors: [Colors.black45, Colors.white60]),
+            child: Container(
+              height: 180.h,
+              width: Get.width,
+              decoration: BoxDecoration(
+                color: const Color(0xFFEBAF00).withOpacity(0.3),
+                borderRadius: BorderRadius.circular(25.r),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 30.h,
+                      width: 80.w,
+                      decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(15.r),
+                      ),
+                    ),
+                    gap(h: 8.h),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 15.r,
+                          backgroundColor: Colors.teal,
+                        ),
+                        gap(w: 10.w),
+                        Expanded(
+                          child: Container(
+                            height: 20.h,
+                            width: 40.w,
+                            decoration: BoxDecoration(
+                              color: Colors.teal,
+                              borderRadius: BorderRadius.circular(15.r),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    gap(h: 30.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        setInfo(),
+                        setInfo(),
+                        setInfo(),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
 roundButton({required BuildContext context}) {
   return Padding(
