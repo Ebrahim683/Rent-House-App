@@ -5,6 +5,7 @@ import 'package:rent_house/data/model/housemodel/house_list_model.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_state.dart';
 import 'package:rent_house/utils/utils.dart';
+
 import '../../../../widget/app_widget.dart';
 import 'house_search.dart';
 import 'house_widget.dart';
@@ -52,7 +53,7 @@ class _HouseListPageState extends State<HouseListPage> {
             if (state is GetHouseListLoadingState) {
               return ListView.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => listLoadingWidget(),
+                itemBuilder: (context, index) => userHouseListLoadingWidget(),
               );
             } else if (state is GetHouseListSuccessState) {
               HouseListModel houseListModel = state.houseListModel;

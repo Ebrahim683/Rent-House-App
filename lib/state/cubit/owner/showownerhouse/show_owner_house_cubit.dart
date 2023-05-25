@@ -9,7 +9,7 @@ class ShowOwnerHouseCubit extends Cubit<ShowOwnerHouseState> {
   }
 
   showOwnerHouse() async {
-    emit(ShowOwnerHouseInitialState());
+    emit(ShowOwnerHouseLoadingState());
     try {
       final result = await OwnerDashboardRepository.ownerDashboardHouse();
       OwnerHouseListModel ownerHouseListModel =

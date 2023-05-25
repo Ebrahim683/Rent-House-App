@@ -111,10 +111,10 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                   },
                   builder: (context, state) {
                     if (state is ShowOwnerHouseLoadingState) {
-                      return Center(
-                        child: Lottie.asset(
-                          'asset/animations/timer.json',
-                        ),
+                      return ListView.builder(
+                        itemCount: 10,
+                        itemBuilder: (context, index) =>
+                            ownerHouseListLoadingWidget(),
                       );
                     } else if (state is ShowOwnerHouseSuccessState) {
                       OwnerHouseListModel ownerHouseListModel =

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+
 import '../utils/app_colors.dart';
 import '../utils/utils.dart';
 
@@ -29,7 +30,7 @@ Row setInfo() {
   );
 }
 
-listLoadingWidget() {
+userHouseListLoadingWidget() {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
     height: 300.h,
@@ -109,6 +110,77 @@ listLoadingWidget() {
           ),
         ),
       ],
+    ),
+  );
+}
+
+ownerHouseListLoadingWidget() {
+  return Container(
+    margin: const EdgeInsets.all(8.0),
+    height: Get.height * 0.2,
+    width: Get.width,
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black, width: 0.5.w),
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(20.r),
+    ),
+    child: Shimmer(
+      gradient: const LinearGradient(colors: [Colors.black45, Colors.white60]),
+      child: Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.r),
+              color: Colors.teal,
+            ),
+            height: Get.height * 0.2,
+            width: Get.width * 0.4,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 25.h,
+                  width: 220.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.r),
+                    color: Colors.teal,
+                  ),
+                ),
+                gap(h: 10.h),
+                Container(
+                  height: 25.h,
+                  width: 220.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.r),
+                    color: Colors.teal,
+                  ),
+                ),
+                gap(h: 10.h),
+                Container(
+                  height: 25.h,
+                  width: 220.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.r),
+                    color: Colors.teal,
+                  ),
+                ),
+                gap(h: 10.h),
+                Container(
+                  height: 25.h,
+                  width: 220.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.r),
+                    color: Colors.teal,
+                  ),
+                ),
+                gap(h: 10.h),
+              ],
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }

@@ -49,9 +49,8 @@ class _BookHouseRequestPageState extends State<BookHouseRequestPage> {
             } else if (state is BookHouseRequestListSuccessState) {
               BookHouseRequestListModel bookHouseRequestListModel =
                   state.bookHouseRequestListModel;
-              List<BookHouseRequestModel> bookedHouseRequestModel =
-                  bookHouseRequestListModel.bookHouseRequestModel!;
-              if (bookedHouseRequestModel.isEmpty) {
+
+              if (bookHouseRequestListModel.status == 'fail') {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -68,6 +67,8 @@ class _BookHouseRequestPageState extends State<BookHouseRequestPage> {
                   ),
                 );
               } else {
+                List<BookHouseRequestModel> bookedHouseRequestModel =
+                    bookHouseRequestListModel.bookHouseRequestModel!;
                 return LoadingOverlay(
                   isLoading:
                       state is BookHouseRequestListLoadingState ? true : false,
