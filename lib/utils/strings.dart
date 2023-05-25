@@ -1,1 +1,1 @@
-String get appName => 'Rent House';
+String get appName => 'নিকেতন BD';
