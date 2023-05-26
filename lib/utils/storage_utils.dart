@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,11 +23,17 @@ class StorageUtils {
     sharedPreference?.setString('role', role);
   }
 
+  saveOnboarding() {
+    sharedPreference?.setString('onBoarding', 'onBoarding');
+  }
+
   String? get getNumber => sharedPreference?.getString('number') ?? '';
 
   String? get getName => sharedPreference?.getString('name') ?? '';
 
   String? get getRole => sharedPreference?.getString('role') ?? '';
+
+  String? get getOnBoarding => sharedPreference?.getString('onBoarding') ?? '';
 
   static logOut() {
     log('logout');

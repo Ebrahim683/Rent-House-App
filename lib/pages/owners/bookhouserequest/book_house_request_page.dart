@@ -2,10 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/owner/bookhouserequestmodel/book_house_request_list_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../routers/routes.dart';
 import '../../../state/cubit/owner/bookhouserequest/book_house_list_cubit.dart';
@@ -43,8 +44,38 @@ class _BookHouseRequestPageState extends State<BookHouseRequestPage> {
           },
           builder: (context, state) {
             if (state is BookHouseRequestListLoadingState) {
-              return Center(
-                child: Lottie.asset('asset/animations/timer.json'),
+              return ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Shimmer(
+                    gradient: const LinearGradient(
+                        colors: [Colors.black45, Colors.white60]),
+                    child: ListTile(
+                      leading: const CircleAvatar(
+                        backgroundColor: Colors.teal,
+                      ),
+                      title: Container(
+                        height: 15.h,
+                        width: 40.w,
+                        decoration: BoxDecoration(
+                          color: Colors.teal,
+                          borderRadius: BorderRadius.circular(25.r),
+                        ),
+                      ),
+                      subtitle: Container(
+                        height: 15.h,
+                        width: 50.w,
+                        decoration: BoxDecoration(
+                          color: Colors.teal,
+                          borderRadius: BorderRadius.circular(25.r),
+                        ),
+                      ),
+                      trailing: const CircleAvatar(
+                        backgroundColor: Colors.teal,
+                      ),
+                    ),
+                  );
+                },
               );
             } else if (state is BookHouseRequestListSuccessState) {
               BookHouseRequestListModel bookHouseRequestListModel =
