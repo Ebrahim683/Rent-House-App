@@ -64,7 +64,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               },
               child: const Icon(
                 Icons.arrow_forward_ios,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ),
