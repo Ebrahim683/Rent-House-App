@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 
 import '../../../routers/routes.dart';
+import '../../../state/cubit/profile/profile_cubit.dart';
 import '../../../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
 import '../../profile/profile_page.dart';
 import '../home/home_page.dart';
@@ -30,7 +31,6 @@ class _UserBasePageState extends State<UserBasePage> {
       create: (context) => ShowBookedHouseCubit(),
       child: const BookedHousePage(),
     ),
-    const ProfilePage(),
   ];
   int currentIndex = 0;
   @override
@@ -120,9 +120,14 @@ class _UserBasePageState extends State<UserBasePage> {
               title: Text(title[2]),
               onTap: () {
                 pop(context: context);
-                setState(() {
-                  currentIndex = 2;
-                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                        create: (context) => ProfileCubit(),
+                        child: const ProfilePage()),
+                  ),
+                );
               },
             ),
           ],

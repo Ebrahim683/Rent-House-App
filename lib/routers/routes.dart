@@ -18,6 +18,7 @@ import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit
 import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/singlehouse/single_house_cubit.dart';
+import 'package:rent_house/state/cubit/profile/profile_cubit.dart';
 
 import '../pages/auth/owner_registrater_page.dart';
 import '../pages/onboarding/onboarding_page.dart';
@@ -122,9 +123,9 @@ class Routers {
       //user profile
       case '/profile_page':
         return MaterialPageRoute(
-          builder: (context) => const ProfilePage(),
+          builder: (context) => BlocProvider(
+              create: (context) => ProfileCubit(), child: const ProfilePage()),
         );
-      //base_page_user
 
       //homepage
       case '/home_page':

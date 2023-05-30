@@ -104,10 +104,10 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
       padding: EdgeInsets.only(bottom: 10.h, left: 8.w, right: 8.w),
       child: ClipRRect(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.r),
-          topRight: Radius.circular(20.r),
-          bottomLeft: Radius.circular(20.r),
-          bottomRight: Radius.circular(20.r),
+          topLeft: Radius.circular(30.r),
+          topRight: Radius.circular(30.r),
+          bottomLeft: Radius.circular(30.r),
+          bottomRight: Radius.circular(30.r),
         ),
         child: NavigationBar(
           backgroundColor: bottomNavColor,
