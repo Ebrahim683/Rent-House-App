@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-
 import '../utils/app_colors.dart';
 import '../utils/utils.dart';
 
@@ -30,11 +28,12 @@ Row setInfo() {
   );
 }
 
-userHouseListLoadingWidget() {
+userHouseListLoadingWidget(BuildContext context) {
+  Size size = MediaQuery.of(context).size;
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
     height: 300.h,
-    width: Get.width,
+    width: size.width,
     decoration: BoxDecoration(
       color: Colors.tealAccent,
       border: Border.all(color: Colors.black),
@@ -56,7 +55,7 @@ userHouseListLoadingWidget() {
                 const LinearGradient(colors: [Colors.black45, Colors.white60]),
             child: Container(
               height: 180.h,
-              width: Get.width,
+              width: size.width,
               decoration: BoxDecoration(
                 color: const Color(0xFFEBAF00).withOpacity(0.3),
                 borderRadius: BorderRadius.circular(25.r),
@@ -114,11 +113,12 @@ userHouseListLoadingWidget() {
   );
 }
 
-ownerHouseListLoadingWidget() {
+ownerHouseListLoadingWidget(BuildContext context) {
+  Size size = MediaQuery.of(context).size;
   return Container(
     margin: const EdgeInsets.all(8.0),
-    height: Get.height * 0.2,
-    width: Get.width,
+    height: size.height * 0.2,
+    width: size.width,
     decoration: BoxDecoration(
       border: Border.all(color: Colors.black, width: 0.5.w),
       color: Colors.white,
@@ -133,8 +133,8 @@ ownerHouseListLoadingWidget() {
               borderRadius: BorderRadius.circular(20.r),
               color: Colors.teal,
             ),
-            height: Get.height * 0.2,
-            width: Get.width * 0.4,
+            height: size.height * 0.2,
+            width: size.width * 0.4,
           ),
           Expanded(
             child: Column(

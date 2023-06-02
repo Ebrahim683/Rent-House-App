@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:rent_house/data/model/owner/ownerhousemodel/owner_house_list_model.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
@@ -11,6 +10,7 @@ class RoomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, update_house_page,
@@ -18,8 +18,8 @@ class RoomWidget extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.all(8.0),
-        height: Get.height * 0.2,
-        width: Get.width,
+        height: size.height * 0.2,
+        width: size.width,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 0.5.w),
           color: Colors.white,
@@ -28,15 +28,15 @@ class RoomWidget extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              height: Get.height * 0.2,
-              width: Get.width * 0.4,
+              height: size.height * 0.2,
+              width: size.width * 0.4,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.r),
                 child: FadeInImage.assetNetwork(
                   image: ownerHouseModel.image1.toString(),
                   imageScale: 1.0,
                   fit: BoxFit.cover,
-                  width: Get.width,
+                  width: size.width,
                   placeholder: 'asset/images/sliderhouse1.png',
                 ),
               ),

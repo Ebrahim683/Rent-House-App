@@ -35,7 +35,6 @@ class _UserBasePageState extends State<UserBasePage> {
   int currentIndex = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     log('user base page');
   }
@@ -119,13 +118,17 @@ class _UserBasePageState extends State<UserBasePage> {
               leading: const Icon(Icons.person_2_outlined),
               title: Text(title[2]),
               onTap: () {
+                Map<String, dynamic> arguments = {
+                  'phoneNumber': storageUtils.getNumber
+                };
                 pop(context: context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BlocProvider(
                         create: (context) => ProfileCubit(),
-                        child: const ProfilePage()),
+                        child:
+                            ProfilePage(phoneNumber: arguments['phoneNumber'])),
                   ),
                 );
               },

@@ -5,7 +5,6 @@ import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
@@ -62,6 +61,7 @@ class _AddHousePageState extends State<AddHousePage> {
     'flat',
   ];
   String canBook = 'no';
+  String status = 'booked';
   String category = '';
   final picker = ImagePicker();
   File? image1;
@@ -121,6 +121,7 @@ class _AddHousePageState extends State<AddHousePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('রুম স্থাপন করুন'),
@@ -246,11 +247,34 @@ class _AddHousePageState extends State<AddHousePage> {
                     icon: Icons.warning_rounded,
                   ),
                   gap(),
-                  inputText(
-                    controller: statusController,
-                    hint: 'Status',
-                    type: TextInputType.text,
-                    icon: Icons.timer,
+                  // inputText(
+                  //   controller: statusController,
+                  //   hint: 'Status',
+                  //   type: TextInputType.text,
+                  //   icon: Icons.timer,
+                  // ),
+                  Text(
+                    'Room status',
+                    style: TextStyle(fontSize: 20.sp),
+                  ),
+                  gap(),
+                  DropdownButton(
+                    hint: const Text('Room status'),
+                    value: status,
+                    items: ['available', 'booked']
+                        .map(
+                          (item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(item.toString()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        status = value as String;
+                      });
+                      log(status);
+                    },
                   ),
                   gap(),
                   gap(),
@@ -263,7 +287,7 @@ class _AddHousePageState extends State<AddHousePage> {
                   ),
                   gap(h: 10.h),
                   SizedBox(
-                    height: Get.height * 0.5,
+                    height: size.height * 0.5,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Stack(
@@ -295,8 +319,8 @@ class _AddHousePageState extends State<AddHousePage> {
                             },
                           ),
                           Positioned(
-                            top: Get.height * 0.18,
-                            left: Get.width * 0.38,
+                            top: size.height * 0.18,
+                            left: size.width * 0.38,
                             child: FloatingActionButton(
                               heroTag: 'btnimage',
                               backgroundColor: Colors.black45,
@@ -347,7 +371,6 @@ class _AddHousePageState extends State<AddHousePage> {
           String othersFee = othersFeeController.text.toString();
           String address = addressController.text.toString();
           String notice = noticeController.text.toString();
-          String status = statusController.text.toString();
 
           if (fee == '') {
             snackBar(context: context, title: 'Error', message: 'Enter fee');
@@ -372,8 +395,6 @@ class _AddHousePageState extends State<AddHousePage> {
           } else if (address == '') {
             snackBar(
                 context: context, title: 'Error', message: 'Enter address');
-          } else if (status == '') {
-            snackBar(context: context, title: 'Error', message: 'Enter status');
           } else if (imageList!.isEmpty || imageList!.length > 4) {
             snackBar(
                 context: context,

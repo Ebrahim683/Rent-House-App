@@ -53,7 +53,8 @@ class _HouseListPageState extends State<HouseListPage> {
             if (state is GetHouseListLoadingState) {
               return ListView.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => userHouseListLoadingWidget(),
+                itemBuilder: (context, index) =>
+                    userHouseListLoadingWidget(context),
               );
             } else if (state is GetHouseListSuccessState) {
               HouseListModel houseListModel = state.houseListModel;

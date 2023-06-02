@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/housemodel/house_list_model.dart';
@@ -52,6 +51,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     Widget setInfo(
         {required IconData icon,
         required String title,
@@ -121,7 +121,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                   pinned: true,
                   toolbarHeight: 60,
                   elevation: 0,
-                  expandedHeight: Get.height * 0.55,
+                  expandedHeight: size.height * 0.55,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image.network(
                       widget.houseModel.image1.toString(),
@@ -131,7 +131,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                   bottom: PreferredSize(
                     preferredSize: Size.fromHeight(0.h),
                     child: Container(
-                      width: Get.width,
+                      width: size.width,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -255,7 +255,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                         gap(),
                         SizedBox(
                           height: 130.h,
-                          width: Get.width,
+                          width: size.width,
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: imageList.length,
@@ -269,7 +269,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                                     image: imageList[index].toString(),
                                     imageScale: 1.0,
                                     fit: BoxFit.cover,
-                                    width: Get.width * 0.5,
+                                    width: size.width * 0.5,
                                     placeholder:
                                         'asset/images/sliderhouse1.png',
                                   ),
@@ -304,7 +304,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                         gap(),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
-                          width: Get.width,
+                          width: size.width,
                           child: Visibility(
                             visible: widget.houseModel.canBook == 'yes'
                                 ? true

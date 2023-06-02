@@ -12,9 +12,9 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   #state management
-  get: ^4.6.5
+  # get: ^4.6.5
   flutter_bloc: ^8.1.2
-  equatable: ^2.0.5
+  # equatable: ^2.0.5
   #font
   google_fonts: ^4.0.3
   #indicator
@@ -22,15 +22,15 @@ dependencies:
   liquid_pull_to_refresh: ^3.0.1
   #animation
   lottie: ^2.2.0
-  liquid_swipe: ^3.1.0
-  rive: ^0.10.4
+  # liquid_swipe: ^3.1.0
+  # rive: ^0.10.4
   flutter_animate: ^4.1.1+1
   shimmer: ^2.0.0
   #storage
   shared_preferences: ^2.1.1
-  get_storage: ^2.0.3
+  # get_storage: ^2.0.3
   #bottom nav
-  salomon_bottom_bar: ^3.3.1
+  # salomon_bottom_bar: ^3.3.1
   #button
   chips_choice_null_safety: ^2.0.6
   custom_radio_grouped_button: ^2.1.2+2
@@ -39,13 +39,13 @@ dependencies:
   cool_alert: any
   loading_overlay: ^0.3.0
   #slider
-  carousel_slider: ^4.2.1
+  # carousel_slider: ^4.2.1
   #payment
-  flutter_sslcommerz: ^2.2.2-nullsafety.0
+  # flutter_sslcommerz: ^2.2.2-nullsafety.0
   #screen size
   flutter_screenutil: ^5.6.1
   #grid view
-  flutter_staggered_grid_view: ^0.6.2
+  # flutter_staggered_grid_view: ^0.6.2
   #network
   dio: ^5.1.1
   freezed: ^2.3.2
@@ -62,7 +62,7 @@ dependencies:
   image_picker:
   cached_network_image: ^3.2.3
   appinio_video_player: ^1.2.1
-  video_compress: ^3.1.2
+  video_compress: 3.1.1
   json_annotation: ^4.8.1
   
 

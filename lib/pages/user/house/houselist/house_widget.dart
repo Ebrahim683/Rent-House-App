@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
@@ -13,6 +12,7 @@ class HouseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     Row setInfo({
       required IconData icon,
       required String text,
@@ -50,7 +50,7 @@ class HouseWidget extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         height: 300.h,
-        width: Get.width,
+        width: size.width,
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: Colors.black),
@@ -64,7 +64,7 @@ class HouseWidget extends StatelessWidget {
                 image: getHouseModel.image1.toString(),
                 imageScale: 1.0,
                 fit: BoxFit.cover,
-                width: Get.width,
+                width: size.width,
                 placeholder: 'asset/images/sliderhouse1.png',
               ),
             ),
@@ -77,7 +77,7 @@ class HouseWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.r),
                 blur: 8,
                 height: 180.h,
-                width: Get.width,
+                width: size.width,
                 color: const Color(0xFFEBAF00).withOpacity(0.3),
                 child: Padding(
                   padding:

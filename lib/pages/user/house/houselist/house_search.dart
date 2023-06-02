@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:rent_house/routers/routes.dart';
 import '../../../../data/model/housemodel/house_list_model.dart';
 import 'house_widget.dart';
 
@@ -23,7 +23,7 @@ class HouseSearch extends SearchDelegate {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        Get.back();
+        pop(context: context);
       },
     );
   }

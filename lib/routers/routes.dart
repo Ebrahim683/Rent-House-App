@@ -122,9 +122,13 @@ class Routers {
         );
       //user profile
       case '/profile_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-              create: (context) => ProfileCubit(), child: const ProfilePage()),
+              create: (context) => ProfileCubit(),
+              child: ProfilePage(phoneNumber: arguments['phoneNumber'])),
         );
 
       //homepage

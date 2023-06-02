@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:rent_house/pages/onboarding/onboarding_widget.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:rent_house/routers/routes.dart';
@@ -38,6 +37,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -52,7 +52,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             },
           ),
           Positioned(
-            left: Get.width * 0.45,
+            left: size.width * 0.45,
             bottom: 60.h,
             child: FloatingActionButton(
               elevation: 15,

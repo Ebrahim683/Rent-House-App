@@ -27,9 +27,9 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
   final othersFeeController = TextEditingController();
   final addressController = TextEditingController();
   final noticeController = TextEditingController();
-  final statusController = TextEditingController();
 
   String canBook = '';
+  String status = '';
 
   List<String> items = [
     'family',
@@ -57,6 +57,7 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
   void initState() {
     super.initState();
     canBook = widget.ownerHouseModel.canBook.toString();
+    status = widget.ownerHouseModel.status.toString();
   }
 
   @override
@@ -172,13 +173,34 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
                     icon: Icons.warning_rounded,
                   ),
                   gap(),
-                  labelText(label: 'Status'),
-                  inputText(
-                    controller: statusController,
-                    hint: widget.ownerHouseModel.status.toString(),
-                    icon: Icons.timer,
+                  Text(
+                    'Room status',
+                    style: TextStyle(fontSize: 20.sp),
                   ),
-                  gap(),
+                  // inputText(
+                  //   controller: statusController,
+                  //   hint: widget.ownerHouseModel.status.toString(),
+                  //   icon: Icons.timer,
+                  // ),
+                  DropdownButton(
+                    hint: const Text('Can book the room'),
+                    value: status,
+                    items: ['available', 'booked']
+                        .map(
+                          (item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(item.toString()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        status = value as String;
+                      });
+                      log(status);
+                    },
+                  ),
+                  gap(h: 50.h),
                 ],
               ),
             ),
@@ -197,7 +219,6 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
           String othersFee = othersFeeController.text.toString();
           String address = addressController.text.toString();
           String notice = noticeController.text.toString();
-          String status = statusController.text.toString();
           BlocProvider.of<UpdateHouseCubit>(context).updateHouse(
             houseId: widget.ownerHouseModel.id!,
             category: widget.ownerHouseModel.category.toString(),

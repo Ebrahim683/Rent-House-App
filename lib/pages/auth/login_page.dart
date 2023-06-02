@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
@@ -30,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.green,
       appBar: AppBar(
@@ -69,20 +69,20 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Lottie.asset(
                         'asset/animations/bubbles.json',
-                        height: Get.height * 0.4,
-                        width: Get.width,
+                        height: size.height * 0.4,
+                        width: size.width,
                       ),
                       gap(),
                       Lottie.asset(
                         'asset/animations/bubbles.json',
-                        height: Get.height * 0.4,
-                        width: Get.width,
+                        height: size.height * 0.4,
+                        width: size.width,
                       ),
                     ],
                   ),
                   Positioned(
-                    top: Get.height * 0.15,
-                    bottom: Get.height * 0.15,
+                    top: size.height * 0.15,
+                    bottom: size.height * 0.15,
                     left: 20.w,
                     right: 20.w,
                     child: BackdropFilter(
@@ -91,8 +91,8 @@ class _LoginPageState extends State<LoginPage> {
                         child: GlassContainer(
                           blur: 5,
                           border: Border.all(color: Colors.white),
-                          height: Get.height * 0.6,
-                          width: Get.width,
+                          height: size.height * 0.6,
+                          width: size.width,
                           child: Center(
                             child: SingleChildScrollView(
                               child: Column(

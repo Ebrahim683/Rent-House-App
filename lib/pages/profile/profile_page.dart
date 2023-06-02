@@ -10,7 +10,8 @@ import 'package:rent_house/widget/app_widget.dart';
 import '../../state/cubit/profile/profile_state.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final String phoneNumber;
+  const ProfilePage({super.key, required this.phoneNumber});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -73,7 +74,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   gap(),
                   refreshButton(onPress: () {
                     setState(() {
-                      BlocProvider.of<ProfileCubit>(context).getProfile();
+                      BlocProvider.of<ProfileCubit>(context)
+                          .getProfile(phoneNumber: widget.phoneNumber);
                     });
                   }),
                 ],
@@ -91,7 +93,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     gap(),
                     refreshButton(onPress: () {
                       setState(() {
-                        BlocProvider.of<ProfileCubit>(context).getProfile();
+                        BlocProvider.of<ProfileCubit>(context)
+                            .getProfile(phoneNumber: widget.phoneNumber);
                       });
                     }),
                   ],
@@ -168,7 +171,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   gap(),
                   refreshButton(onPress: () {
                     setState(() {
-                      BlocProvider.of<ProfileCubit>(context).getProfile();
+                      BlocProvider.of<ProfileCubit>(context)
+                          .getProfile(phoneNumber: widget.phoneNumber);
                     });
                   }),
                 ],

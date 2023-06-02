@@ -114,7 +114,7 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
                       return ListView.builder(
                         itemCount: 10,
                         itemBuilder: (context, index) =>
-                            ownerHouseListLoadingWidget(),
+                            ownerHouseListLoadingWidget(context),
                       );
                     } else if (state is ShowOwnerHouseSuccessState) {
                       OwnerHouseListModel ownerHouseListModel =
