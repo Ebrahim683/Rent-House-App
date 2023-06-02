@@ -126,7 +126,8 @@ class _UserBasePageState extends State<UserBasePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => BlocProvider(
-                        create: (context) => ProfileCubit(),
+                        create: (context) =>
+                            ProfileCubit(arguments['phoneNumber']),
                         child:
                             ProfilePage(phoneNumber: arguments['phoneNumber'])),
                   ),

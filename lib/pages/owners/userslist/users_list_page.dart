@@ -10,6 +10,7 @@ import 'package:rent_house/state/cubit/owner/showownerbookedhouse/show_owner_boo
 import 'package:rent_house/utils/utils.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../routers/routes.dart';
 import '../../../widget/app_widget.dart';
 
 class UsersListPage extends StatefulWidget {
@@ -122,6 +123,14 @@ class _UsersListPageState extends State<UsersListPage> {
                             showBookedRoomModel![index].userName.toString()),
                         subtitle: Text(
                             showBookedRoomModel[index].userNumber.toString()),
+                        onTap: () {
+                          Navigator.pushNamed(context, profile_page,
+                              arguments: {
+                                'phoneNumber': showBookedRoomModel[index]
+                                    .userNumber
+                                    .toString(),
+                              });
+                        },
                       );
                     },
                   ),

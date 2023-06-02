@@ -66,7 +66,8 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
             backgroundColor: const Color.fromRGBO(190, 239, 126, 1),
             child: IconButton(
                 onPressed: () {
-                  push(context: context, name: profile_page);
+                  Navigator.pushNamed(context, profile_page,
+                      arguments: {'phoneNumber': storageUtils.getNumber});
                 },
                 icon: const Icon(Icons.person_outline)),
           ),

@@ -127,7 +127,7 @@ class Routers {
 
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-              create: (context) => ProfileCubit(),
+              create: (context) => ProfileCubit(arguments['phoneNumber']),
               child: ProfilePage(phoneNumber: arguments['phoneNumber'])),
         );
 
