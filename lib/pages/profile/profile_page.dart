@@ -1,17 +1,23 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/profile/profile_model_list.dart';
 import 'package:rent_house/state/cubit/profile/profile_cubit.dart';
+import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
 import '../../state/cubit/profile/profile_state.dart';
 
 class ProfilePage extends StatefulWidget {
   final String phoneNumber;
-  const ProfilePage({super.key, required this.phoneNumber});
+  final String role;
+  const ProfilePage({super.key, required this.phoneNumber, required this.role});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -50,16 +56,42 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  File? profileImage;
+  Future<void> _pickImage() async {
+    ImagePicker imagePicker = ImagePicker();
+    final selectedImage = await imagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 30);
+    if (selectedImage != null) {
+      setState(() {
+        profileImage = File(selectedImage.path);
+        BlocProvider.of<ProfileCubit>(context)
+            .updateProfile(profilePic: profileImage!);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('প্রোফাইল'),
         centerTitle: true,
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is ErrorState) {
+            errorDialog(context: context, message: state.error);
+          } else if (state is UpdateSuccessState) {
+            successDialog(
+                context: context,
+                message: state.commonModel.message.toString());
+            setState(() {
+              BlocProvider.of<ProfileCubit>(context)
+                  .getProfile(phoneNumber: widget.phoneNumber);
+            });
+          }
+        },
         builder: (context, state) {
           if (state is LoadingState) {
             return Center(
@@ -120,19 +152,39 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 300.h,
                             ),
                           ),
-                          // Positioned(
-                          //   left: size.width * 0.3,
-                          //   bottom: -20,
-                          //   child: CircleAvatar(
-                          //     radius: 70.r,
-                          //     backgroundColor: Colors.teal,
-                          //     child: const Icon(
-                          //       Icons.person,
-                          //       color: Colors.white,
-                          //       size: 100,
-                          //     ),
-                          //   ),
-                          // ),
+                          Positioned(
+                            left: size.width * 0.3,
+                            bottom: -20,
+                            child: InkWell(
+                              onTap: () {
+                                if (widget.role == 'me') {
+                                  _pickImage().then((value) {
+                                    log('image picked');
+                                  });
+                                } else {
+                                  log(widget.role);
+                                }
+                              },
+                              child: SizedBox(
+                                height: 150.h,
+                                width: 150.w,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100.r),
+                                  child: Container(
+                                    color: Colors.teal,
+                                    child: FadeInImage.assetNetwork(
+                                      image:
+                                          profileModel[0].profilePic.toString(),
+                                      imageScale: 1.0,
+                                      fit: BoxFit.cover,
+                                      width: size.width,
+                                      placeholder: 'asset/icons/avatar.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       gap(),

@@ -222,22 +222,21 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
           BlocProvider.of<UpdateHouseCubit>(context).updateHouse(
             houseId: widget.ownerHouseModel.id!,
             category: widget.ownerHouseModel.category.toString(),
-            fee: fee == '' ? widget.ownerHouseModel.fee.toString() : fee,
-            quantity: quantity == ''
-                ? widget.ownerHouseModel.quantity.toString()
-                : quantity,
+            fee: fee == '' ? widget.ownerHouseModel.fee! : int.parse(fee),
+            quantity:
+                quantity == '' ? widget.ownerHouseModel.quantity! : quantity,
             advanceFee: advanceFee == ''
-                ? widget.ownerHouseModel.advanceFee.toString()
-                : advanceFee,
+                ? widget.ownerHouseModel.advanceFee!
+                : int.parse(advanceFee),
             electricityFee: electricityFee == ''
-                ? widget.ownerHouseModel.electricityFee.toString()
-                : electricityFee,
+                ? widget.ownerHouseModel.electricityFee!
+                : int.parse(electricityFee),
             gasFee: gasFee == ''
-                ? widget.ownerHouseModel.gasFee.toString()
-                : gasFee,
+                ? widget.ownerHouseModel.gasFee!
+                : int.parse(gasFee),
             othersFee: othersFee == ''
-                ? widget.ownerHouseModel.othersFee.toString()
-                : othersFee,
+                ? widget.ownerHouseModel.othersFee!
+                : int.parse(othersFee),
             address: address == ''
                 ? widget.ownerHouseModel.address.toString()
                 : address,

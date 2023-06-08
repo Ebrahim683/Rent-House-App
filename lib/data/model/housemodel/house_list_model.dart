@@ -12,7 +12,7 @@ class HouseListModel with _$HouseListModel {
   }) = _HouseListModel;
   factory HouseListModel.fromJson(Map<String, dynamic> json) =>
       _$HouseListModelFromJson(json);
-}
+} 
 
 @freezed
 class HouseModel with _$HouseModel {
@@ -27,12 +27,12 @@ class HouseModel with _$HouseModel {
     @JsonKey(name: 'image4') String? image4,
     @JsonKey(name: 'video') String? video,
     @JsonKey(name: 'category') String? category,
-    @JsonKey(name: 'fee') String? fee,
+    @JsonKey(name: 'fee') int? fee,
     @JsonKey(name: 'quantity') String? quantity,
-    @JsonKey(name: 'advance_fee') String? advanceFee,
-    @JsonKey(name: 'electricity_fee') String? electricityFee,
-    @JsonKey(name: 'gas_fee') String? gasFee,
-    @JsonKey(name: 'others_fee') String? othersFee,
+    @JsonKey(name: 'advance_fee') int? advanceFee,
+    @JsonKey(name: 'electricity_fee') int? electricityFee,
+    @JsonKey(name: 'gas_fee') int? gasFee,
+    @JsonKey(name: 'others_fee') int? othersFee,
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'notice') String? notice,
     @JsonKey(name: 'status') String? status,

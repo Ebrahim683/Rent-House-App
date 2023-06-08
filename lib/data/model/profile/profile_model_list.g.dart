@@ -29,6 +29,7 @@ _$_ProfileModel _$$_ProfileModelFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
       role: json['role'] as String?,
+      profilePic: json['profile_pic'] as String?,
     );
 
 Map<String, dynamic> _$$_ProfileModelToJson(_$_ProfileModel instance) =>
@@ -38,4 +39,5 @@ Map<String, dynamic> _$$_ProfileModelToJson(_$_ProfileModel instance) =>
       'phone_number': instance.phoneNumber,
       'email': instance.email,
       'role': instance.role,
+      'profile_pic': instance.profilePic,
     };

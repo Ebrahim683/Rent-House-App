@@ -8,12 +8,12 @@ import 'package:rent_house/utils/storage_utils.dart';
 
 class AddHouseRepository {
   static addHouseRepo({
-    required String fee,
-    required String advanceFee,
+    required int fee,
+    required int advanceFee,
     required String quantity,
-    required String electricityFee,
-    required String gasFee,
-    required String othersFee,
+    required int electricityFee,
+    required int gasFee,
+    required int othersFee,
     required String address,
     required String notice,
     required String status,

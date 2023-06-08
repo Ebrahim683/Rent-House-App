@@ -129,10 +129,13 @@ class _AddHousePageState extends State<AddHousePage> {
       body: BlocConsumer<AddHouseCubit, AddHouseState>(
         listener: (context, state) {
           if (state is AddHouseSuccessState) {
-            pop(context: context);
-            // successDialog(
-            //     context: context,
-            //     message: state.commonModel.message.toString());
+            if (state.commonModel.status == 'fail') {
+              errorDialog(
+                  context: context,
+                  message: state.commonModel.message.toString());
+            } else {
+              pop(context: context);
+            }
           } else if (state is AddHouseErrorState) {
             errorDialog(context: context, message: state.error);
           }
@@ -363,31 +366,31 @@ class _AddHousePageState extends State<AddHousePage> {
         backgroundColor: Colors.blue,
         heroTag: 'btnsubmit',
         onPressed: () {
-          String fee = feeController.text.toString();
+          int fee = int.parse(feeController.text);
           String quantity = quantityController.text.toString();
-          String advanceFee = advanceFeeController.text.toString();
-          String electricityFee = electricityFeeController.text.toString();
-          String gasFee = gasFeeController.text.toString();
-          String othersFee = othersFeeController.text.toString();
+          int advanceFee = int.parse(advanceFeeController.text);
+          int electricityFee = int.parse(electricityFeeController.text);
+          int gasFee = int.parse(gasFeeController.text);
+          int othersFee = int.parse(othersFeeController.text);
           String address = addressController.text.toString();
           String notice = noticeController.text.toString();
 
-          if (fee == '') {
+          if (fee == 0.0) {
             snackBar(context: context, title: 'Error', message: 'Enter fee');
           } else if (quantity == '') {
             snackBar(
                 context: context, title: 'Error', message: 'Enter quantity');
-          } else if (advanceFee == '') {
+          } else if (advanceFee == 0.0) {
             snackBar(
                 context: context, title: 'Error', message: 'Enter advanceFee');
-          } else if (electricityFee == '') {
+          } else if (electricityFee == 0.0) {
             snackBar(
                 context: context,
                 title: 'Error',
                 message: 'Enter electricityFee');
-          } else if (gasFee == '') {
+          } else if (gasFee == 0.0) {
             snackBar(context: context, title: 'Error', message: 'Enter gasFee');
-          } else if (othersFee == '') {
+          } else if (othersFee == 0.0) {
             snackBar(
                 context: context, title: 'Error', message: 'Enter othersFee');
           } else if (notice == '') {

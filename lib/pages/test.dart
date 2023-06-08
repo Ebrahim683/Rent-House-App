@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:lottie/lottie.dart';
-import 'package:appinio_video_player/appinio_video_player.dart';
+import 'package:rent_house/data/model/housemodel/house_list_model.dart';
+import 'package:rent_house/pages/user/house/houselist/house_search.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -12,135 +10,169 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  // void getCurrentPosition() async {
-  //   LocationPermission permission = await Geolocator.checkPermission();
-  //   if (permission == LocationPermission.denied ||
-  //       permission == LocationPermission.deniedForever) {
-  //     Geolocator.requestPermission();
-  //   } else {
-  //     Position position = await Geolocator.getCurrentPosition(
-  //         desiredAccuracy: LocationAccuracy.high);
-  //     log(position.longitude.toString());
-  //     log(position.latitude.toString());
-  //     getAddress(position);
-  //   }
-  // }
-
-  // getAddress(Position position) async {
-  //   try {
-  //     // GeoCode geoCode = GeoCode();
-  //     // Address address = await geoCode.reverseGeocoding(
-  //     //     latitude: position.latitude, longitude: position.longitude);
-  //     // Coordinates coordinates =
-  //     //     Coordinates(position.latitude, position.longitude);
-  //     // final address =
-  //     //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
-  //     List<Placemark> placemark =
-  //         await placemarkFromCoordinates(position.latitude, position.longitude);
-  //     Placemark address = placemark[0];
-
-  //     log(address.toString());
-  //   } catch (e) {
-  //     log(e.toString());
-  //   }
-  // }
-
-  // List<String> items = [
-  //   'family',
-  //   'bachelor',
-  //   'female',
-  //   'sublet',
-  //   'office',
-  //   'warehouse',
-  //   'shop',
-  //   'garage',
-  //   'others',
-  //   'industry',
-  //   'flat',
-  // ];
-
-  // String? selectedValue;
-
-  // File? _image;
-
-  // Future<void> _pickImage() async {
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _image = File(pickedFile.path);
-  //       log(_image.toString());
-  //     });
-  //   }
-  // }
-
-  // Future<void> _uploadImage() async {
-  //   if (_image == null) {
-  //     return;
-  //   }
-
-  //   final formData = FormData.fromMap({
-  //     'image': await MultipartFile.fromFile(_image!.path),
-  //   });
-
-  //   try {
-  //     final response = await Dio().post(
-  //       'http://10.0.2.2:5000/owner/photo',
-  //       data: formData,
-  //     );
-  //     log(response.data);
-  //   } catch (e) {
-  //     log(e.toString());
-  //   }
-  // }
-
-  late VideoPlayerController controller;
-  late CustomVideoPlayerController customVideoPlayerController;
-  @override
-  void initState() {
-    super.initState();
-    try {
-      controller = VideoPlayerController.asset('asset/logo/video.mp4');
-      controller.addListener(() {
-        setState(() {});
-      });
-      controller.setLooping(true);
-      controller.setVolume(0.0);
-      controller.initialize().then((value) {
-        setState(() {});
-        controller.play();
-      });
-      customVideoPlayerController = CustomVideoPlayerController(
-        context: context,
-        videoPlayerController: controller,
-        customVideoPlayerSettings: CustomVideoPlayerSettings(
-          deviceOrientationsAfterFullscreen: [DeviceOrientation.portraitUp],
-          placeholderWidget: Center(
-            child: Lottie.asset('asset/animations/timer.json'),
-          ),
-          showDurationRemaining: true,
-          showDurationPlayed: true,
-        ),
-      );
-    } catch (e) {
-      log(e.toString());
-    }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    List<HouseModel> houseListModel = const [
+      HouseModel(
+        address: 'savar',
+        advanceFee: 5,
+        canBook: 'dfd',
+        category: 'dfdr',
+        electricityFee: 547,
+        fee: 101,
+        gasFee: 56,
+        houseId: 1,
+        id: 101,
+        image1: 'dfdr',
+        image2: 'dfdr',
+        image3: 'dfdr',
+        image4: 'dfdr',
+        notice: 'dfdr',
+        othersFee: 452,
+        ownerId: 1,
+        ownerName: 'dfdr',
+        ownerNumber: 'dfdr',
+        quantity: 'dfdr',
+        status: 'dfdr',
+        time: 'dfdr',
+        video: 'dfdr',
+      ),
+      HouseModel(
+        address: 'savar',
+        advanceFee: 45,
+        canBook: 'dfd',
+        category: 'dfdr',
+        electricityFee: 45,
+        fee: 100,
+        gasFee: 54,
+        houseId: 1,
+        id: 100,
+        image1: 'dfdr',
+        image2: 'dfdr',
+        image3: 'dfdr',
+        image4: 'dfdr',
+        notice: 'dfdr',
+        othersFee: 54,
+        ownerId: 1,
+        ownerName: 'dfdr',
+        ownerNumber: 'dfdr',
+        quantity: 'dfdr',
+        status: 'dfdr',
+        time: 'dfdr',
+        video: 'dfdr',
+      ),
+      HouseModel(
+        address: 'savar',
+        advanceFee: 54,
+        canBook: 'dfd',
+        category: 'dfdr',
+        electricityFee: 45,
+        fee: 102,
+        gasFee: 45,
+        houseId: 1,
+        id: 102,
+        image1: 'dfdr',
+        image2: 'dfdr',
+        image3: 'dfdr',
+        image4: 'dfdr',
+        notice: 'dfdr',
+        othersFee: 45,
+        ownerId: 1,
+        ownerName: 'dfdr',
+        ownerNumber: 'dfdr',
+        quantity: 'dfdr',
+        status: 'dfdr',
+        time: 'dfdr',
+        video: 'dfdr',
+      ),
+      HouseModel(
+        address: 'savar',
+        advanceFee: 54,
+        canBook: 'dfd',
+        category: 'dfdr',
+        electricityFee: 54,
+        fee: 2010,
+        gasFee: 54,
+        houseId: 1,
+        id: 2010,
+        image1: 'dfdr',
+        image2: 'dfdr',
+        image3: 'dfdr',
+        image4: 'dfdr',
+        notice: 'dfdr',
+        othersFee: 45,
+        ownerId: 1,
+        ownerName: 'dfdr',
+        ownerNumber: 'dfdr',
+        quantity: 'dfdr',
+        status: 'dfdr',
+        time: 'dfdr',
+        video: 'dfdr',
+      ),
+      HouseModel(
+        address: 'savar',
+        advanceFee: 45,
+        canBook: 'dfd',
+        category: 'dfdr',
+        electricityFee: 47,
+        fee: 200,
+        gasFee: 7,
+        houseId: 1,
+        id: 200,
+        image1: 'dfdr',
+        image2: 'dfdr',
+        image3: 'dfdr',
+        image4: 'dfdr',
+        notice: 'dfdr',
+        othersFee: 78,
+        ownerId: 1,
+        ownerName: 'dfdr',
+        ownerNumber: 'dfdr',
+        quantity: 'dfdr',
+        status: 'dfdr',
+        time: 'dfdr',
+        video: 'dfdr',
+      ),
+      HouseModel(
+        address: 'asulia',
+        advanceFee: 45,
+        canBook: 'dfd',
+        category: 'dfdr',
+        electricityFee: 4,
+        fee: 300,
+        gasFee: 54,
+        houseId: 1,
+        id: 300,
+        image1: 'dfdr',
+        image2: 'dfdr',
+        image3: 'dfdr',
+        image4: 'dfdr',
+        notice: 'dfdr',
+        othersFee: 45,
+        ownerId: 1,
+        ownerName: 'dfdr',
+        ownerNumber: 'dfdr',
+        quantity: 'dfdr',
+        status: 'dfdr',
+        time: 'dfdr',
+        video: 'dfdr',
+      )
+    ];
     return Scaffold(
       backgroundColor: Colors.cyan[200],
-      appBar: AppBar(),
-      body: CustomVideoPlayer(
-        customVideoPlayerController: customVideoPlayerController,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: HouseSearch(houseListModel: houseListModel),
+                );
+              },
+              icon: const Icon(Icons.search)),
+        ],
       ),
+      body: Center(),
     );
   }
 }

@@ -230,6 +230,8 @@ mixin _$ProfileModel {
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profile_pic')
+  String? get profilePic => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -248,7 +250,8 @@ abstract class $ProfileModelCopyWith<$Res> {
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'role') String? role});
+      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'profile_pic') String? profilePic});
 }
 
 /// @nodoc
@@ -269,6 +272,7 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? role = freezed,
+    Object? profilePic = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -291,6 +295,10 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      profilePic: freezed == profilePic
+          ? _value.profilePic
+          : profilePic // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -308,7 +316,8 @@ abstract class _$$_ProfileModelCopyWith<$Res>
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'role') String? role});
+      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'profile_pic') String? profilePic});
 }
 
 /// @nodoc
@@ -327,6 +336,7 @@ class __$$_ProfileModelCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? role = freezed,
+    Object? profilePic = freezed,
   }) {
     return _then(_$_ProfileModel(
       id: freezed == id
@@ -349,6 +359,10 @@ class __$$_ProfileModelCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      profilePic: freezed == profilePic
+          ? _value.profilePic
+          : profilePic // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -361,7 +375,8 @@ class _$_ProfileModel implements _ProfileModel {
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'phone_number') this.phoneNumber,
       @JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'role') this.role});
+      @JsonKey(name: 'role') this.role,
+      @JsonKey(name: 'profile_pic') this.profilePic});
 
   factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileModelFromJson(json);
@@ -381,10 +396,13 @@ class _$_ProfileModel implements _ProfileModel {
   @override
   @JsonKey(name: 'role')
   final String? role;
+  @override
+  @JsonKey(name: 'profile_pic')
+  final String? profilePic;
 
   @override
   String toString() {
-    return 'ProfileModel(id: $id, name: $name, phoneNumber: $phoneNumber, email: $email, role: $role)';
+    return 'ProfileModel(id: $id, name: $name, phoneNumber: $phoneNumber, email: $email, role: $role, profilePic: $profilePic)';
   }
 
   @override
@@ -397,13 +415,15 @@ class _$_ProfileModel implements _ProfileModel {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.profilePic, profilePic) ||
+                other.profilePic == profilePic));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, phoneNumber, email, role);
+      Object.hash(runtimeType, id, name, phoneNumber, email, role, profilePic);
 
   @JsonKey(ignore: true)
   @override
@@ -421,11 +441,13 @@ class _$_ProfileModel implements _ProfileModel {
 
 abstract class _ProfileModel implements ProfileModel {
   const factory _ProfileModel(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'name') final String? name,
-      @JsonKey(name: 'phone_number') final String? phoneNumber,
-      @JsonKey(name: 'email') final String? email,
-      @JsonKey(name: 'role') final String? role}) = _$_ProfileModel;
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'phone_number') final String? phoneNumber,
+          @JsonKey(name: 'email') final String? email,
+          @JsonKey(name: 'role') final String? role,
+          @JsonKey(name: 'profile_pic') final String? profilePic}) =
+      _$_ProfileModel;
 
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =
       _$_ProfileModel.fromJson;
@@ -445,6 +467,9 @@ abstract class _ProfileModel implements ProfileModel {
   @override
   @JsonKey(name: 'role')
   String? get role;
+  @override
+  @JsonKey(name: 'profile_pic')
+  String? get profilePic;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileModelCopyWith<_$_ProfileModel> get copyWith =>

@@ -246,17 +246,17 @@ mixin _$OwnerHouseModel {
   @JsonKey(name: 'category')
   String? get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'fee')
-  String? get fee => throw _privateConstructorUsedError;
+  int? get fee => throw _privateConstructorUsedError;
   @JsonKey(name: 'quantity')
   String? get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'advance_fee')
-  String? get advanceFee => throw _privateConstructorUsedError;
+  int? get advanceFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'electricity_fee')
-  String? get electricityFee => throw _privateConstructorUsedError;
+  int? get electricityFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'gas_fee')
-  String? get gasFee => throw _privateConstructorUsedError;
+  int? get gasFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'others_fee')
-  String? get othersFee => throw _privateConstructorUsedError;
+  int? get othersFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'address')
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'notice')
@@ -289,12 +289,12 @@ abstract class $OwnerHouseModelCopyWith<$Res> {
       @JsonKey(name: 'image4') String? image4,
       @JsonKey(name: 'video') String? video,
       @JsonKey(name: 'category') String? category,
-      @JsonKey(name: 'fee') String? fee,
+      @JsonKey(name: 'fee') int? fee,
       @JsonKey(name: 'quantity') String? quantity,
-      @JsonKey(name: 'advance_fee') String? advanceFee,
-      @JsonKey(name: 'electricity_fee') String? electricityFee,
-      @JsonKey(name: 'gas_fee') String? gasFee,
-      @JsonKey(name: 'others_fee') String? othersFee,
+      @JsonKey(name: 'advance_fee') int? advanceFee,
+      @JsonKey(name: 'electricity_fee') int? electricityFee,
+      @JsonKey(name: 'gas_fee') int? gasFee,
+      @JsonKey(name: 'others_fee') int? othersFee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'notice') String? notice,
       @JsonKey(name: 'status') String? status,
@@ -379,7 +379,7 @@ class _$OwnerHouseModelCopyWithImpl<$Res, $Val extends OwnerHouseModel>
       fee: freezed == fee
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -387,19 +387,19 @@ class _$OwnerHouseModelCopyWithImpl<$Res, $Val extends OwnerHouseModel>
       advanceFee: freezed == advanceFee
           ? _value.advanceFee
           : advanceFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       electricityFee: freezed == electricityFee
           ? _value.electricityFee
           : electricityFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       gasFee: freezed == gasFee
           ? _value.gasFee
           : gasFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       othersFee: freezed == othersFee
           ? _value.othersFee
           : othersFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -439,12 +439,12 @@ abstract class _$$_OwnerHouseModelCopyWith<$Res>
       @JsonKey(name: 'image4') String? image4,
       @JsonKey(name: 'video') String? video,
       @JsonKey(name: 'category') String? category,
-      @JsonKey(name: 'fee') String? fee,
+      @JsonKey(name: 'fee') int? fee,
       @JsonKey(name: 'quantity') String? quantity,
-      @JsonKey(name: 'advance_fee') String? advanceFee,
-      @JsonKey(name: 'electricity_fee') String? electricityFee,
-      @JsonKey(name: 'gas_fee') String? gasFee,
-      @JsonKey(name: 'others_fee') String? othersFee,
+      @JsonKey(name: 'advance_fee') int? advanceFee,
+      @JsonKey(name: 'electricity_fee') int? electricityFee,
+      @JsonKey(name: 'gas_fee') int? gasFee,
+      @JsonKey(name: 'others_fee') int? othersFee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'notice') String? notice,
       @JsonKey(name: 'status') String? status,
@@ -527,7 +527,7 @@ class __$$_OwnerHouseModelCopyWithImpl<$Res>
       fee: freezed == fee
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -535,19 +535,19 @@ class __$$_OwnerHouseModelCopyWithImpl<$Res>
       advanceFee: freezed == advanceFee
           ? _value.advanceFee
           : advanceFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       electricityFee: freezed == electricityFee
           ? _value.electricityFee
           : electricityFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       gasFee: freezed == gasFee
           ? _value.gasFee
           : gasFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       othersFee: freezed == othersFee
           ? _value.othersFee
           : othersFee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -628,22 +628,22 @@ class _$_OwnerHouseModel implements _OwnerHouseModel {
   final String? category;
   @override
   @JsonKey(name: 'fee')
-  final String? fee;
+  final int? fee;
   @override
   @JsonKey(name: 'quantity')
   final String? quantity;
   @override
   @JsonKey(name: 'advance_fee')
-  final String? advanceFee;
+  final int? advanceFee;
   @override
   @JsonKey(name: 'electricity_fee')
-  final String? electricityFee;
+  final int? electricityFee;
   @override
   @JsonKey(name: 'gas_fee')
-  final String? gasFee;
+  final int? gasFee;
   @override
   @JsonKey(name: 'others_fee')
-  final String? othersFee;
+  final int? othersFee;
   @override
   @JsonKey(name: 'address')
   final String? address;
@@ -748,12 +748,12 @@ abstract class _OwnerHouseModel implements OwnerHouseModel {
       @JsonKey(name: 'image4') final String? image4,
       @JsonKey(name: 'video') final String? video,
       @JsonKey(name: 'category') final String? category,
-      @JsonKey(name: 'fee') final String? fee,
+      @JsonKey(name: 'fee') final int? fee,
       @JsonKey(name: 'quantity') final String? quantity,
-      @JsonKey(name: 'advance_fee') final String? advanceFee,
-      @JsonKey(name: 'electricity_fee') final String? electricityFee,
-      @JsonKey(name: 'gas_fee') final String? gasFee,
-      @JsonKey(name: 'others_fee') final String? othersFee,
+      @JsonKey(name: 'advance_fee') final int? advanceFee,
+      @JsonKey(name: 'electricity_fee') final int? electricityFee,
+      @JsonKey(name: 'gas_fee') final int? gasFee,
+      @JsonKey(name: 'others_fee') final int? othersFee,
       @JsonKey(name: 'address') final String? address,
       @JsonKey(name: 'notice') final String? notice,
       @JsonKey(name: 'status') final String? status,
@@ -794,22 +794,22 @@ abstract class _OwnerHouseModel implements OwnerHouseModel {
   String? get category;
   @override
   @JsonKey(name: 'fee')
-  String? get fee;
+  int? get fee;
   @override
   @JsonKey(name: 'quantity')
   String? get quantity;
   @override
   @JsonKey(name: 'advance_fee')
-  String? get advanceFee;
+  int? get advanceFee;
   @override
   @JsonKey(name: 'electricity_fee')
-  String? get electricityFee;
+  int? get electricityFee;
   @override
   @JsonKey(name: 'gas_fee')
-  String? get gasFee;
+  int? get gasFee;
   @override
   @JsonKey(name: 'others_fee')
-  String? get othersFee;
+  int? get othersFee;
   @override
   @JsonKey(name: 'address')
   String? get address;

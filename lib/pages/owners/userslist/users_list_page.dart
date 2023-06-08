@@ -129,6 +129,7 @@ class _UsersListPageState extends State<UsersListPage> {
                                 'phoneNumber': showBookedRoomModel[index]
                                     .userNumber
                                     .toString(),
+                                'role': 'user',
                               });
                         },
                       );

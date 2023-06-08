@@ -43,13 +43,19 @@ class _LoginPageState extends State<LoginPage> {
           if (state is LoginSuccessState) {
             log(state.loginModel.message.toString());
 
-            storageUtils.saveNumber(mobileController.text.trim().toString());
-            storageUtils.saveName(state.loginModel.data![0].name.toString());
-            storageUtils.saveRole(state.loginModel.data![0].role.toString());
-            if (state.loginModel.data![0].role == 'user') {
-              pushOff(context: context, name: user_base_page);
-            } else if (state.loginModel.data![0].role == 'owner') {
-              pushOff(context: context, name: owner_base_page);
+            if (state.loginModel.status == 'fail') {
+              errorDialog(
+                  context: context,
+                  message: state.loginModel.message.toString());
+            } else {
+              storageUtils.saveNumber(mobileController.text.trim().toString());
+              storageUtils.saveName(state.loginModel.data![0].name.toString());
+              storageUtils.saveRole(state.loginModel.data![0].role.toString());
+              if (state.loginModel.data![0].role == 'user') {
+                pushOff(context: context, name: user_base_page);
+              } else if (state.loginModel.data![0].role == 'owner') {
+                pushOff(context: context, name: owner_base_page);
+              }
             }
           } else if (state is LoginErrorState) {
             errorDialog(context: context, message: state.error);

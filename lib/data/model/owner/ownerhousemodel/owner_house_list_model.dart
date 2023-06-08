@@ -41,17 +41,17 @@ class OwnerHouseModel with _$OwnerHouseModel {
        
     @JsonKey(name: 'category') String? category,
        
-    @JsonKey(name: 'fee') String? fee,
+    @JsonKey(name: 'fee') int? fee,
        
     @JsonKey(name: 'quantity') String? quantity,
        
-    @JsonKey(name: 'advance_fee') String? advanceFee,
+    @JsonKey(name: 'advance_fee') int? advanceFee,
        
-    @JsonKey(name: 'electricity_fee') String? electricityFee,
+    @JsonKey(name: 'electricity_fee') int? electricityFee,
        
-    @JsonKey(name: 'gas_fee') String? gasFee,
+    @JsonKey(name: 'gas_fee') int? gasFee,
        
-    @JsonKey(name: 'others_fee') String? othersFee,
+    @JsonKey(name: 'others_fee') int? othersFee,
        
     @JsonKey(name: 'address') String? address,
        

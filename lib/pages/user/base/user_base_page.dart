@@ -119,7 +119,8 @@ class _UserBasePageState extends State<UserBasePage> {
               title: Text(title[2]),
               onTap: () {
                 Map<String, dynamic> arguments = {
-                  'phoneNumber': storageUtils.getNumber
+                  'phoneNumber': storageUtils.getNumber,
+                  'role': 'me'
                 };
                 pop(context: context);
                 Navigator.push(
@@ -128,8 +129,10 @@ class _UserBasePageState extends State<UserBasePage> {
                     builder: (context) => BlocProvider(
                         create: (context) =>
                             ProfileCubit(arguments['phoneNumber']),
-                        child:
-                            ProfilePage(phoneNumber: arguments['phoneNumber'])),
+                        child: ProfilePage(
+                          phoneNumber: arguments['phoneNumber'],
+                          role: arguments['role'],
+                        )),
                   ),
                 );
               },
