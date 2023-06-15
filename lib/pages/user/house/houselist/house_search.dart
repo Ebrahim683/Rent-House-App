@@ -1,16 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:rent_house/routers/routes.dart';
-import 'package:rent_house/widget/app_widget.dart';
 import '../../../../data/model/housemodel/house_list_model.dart';
 import 'house_widget.dart';
-import 'dart:developer';
 
 class HouseSearch extends SearchDelegate {
   final List<HouseModel> houseListModel;
   HouseSearch({required this.houseListModel});
-  List<HouseModel> newList = [];
-  bool sort = false;
-
+  List<HouseModel>? filterHouse;
   @override
   List<Widget>? buildActions(BuildContext context) {
     return <Widget>[
@@ -18,13 +15,6 @@ class HouseSearch extends SearchDelegate {
         icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
-        },
-      ),
-      gap(),
-      IconButton(
-        icon: const Icon(Icons.settings),
-        onPressed: () {
-          sort = true;
         },
       ),
     ];
@@ -35,42 +25,29 @@ class HouseSearch extends SearchDelegate {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        pop(context: context);
-        newList.clear();
+        filterHouse!.clear();
+        log(filterHouse!.length.toString());
+        close(context, null);
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    newList.clear();
-    HouseModel temp;
+    (filterHouse ?? []).clear();
+    filterHouse = houseListModel
+        .where((houseModel) =>
+            houseModel.address!.toLowerCase().contains(query.toLowerCase()))
+        .toList();
 
-    for (var houseModel in houseListModel) {
-      if (houseModel.address == query) {
-        newList.add(houseModel);
-      }
-    }
-
-    for (int i = 0; i < newList.length; i++) {
-      for (int j = i + 1; j < newList.length; j++) {
-        if (newList[i].fee! > newList[j].fee!) {
-          temp = newList[i];
-          newList[i] = newList[j];
-          newList[j] = temp;
-        }
-      }
-    }
-
+    filterHouse!.sort(
+      (a, b) => a.fee!.compareTo(b.fee!),
+    );
+    log(filterHouse!.length.toString());
     return ListView.builder(
-      itemCount: newList.length,
+      itemCount: (filterHouse ?? []).length,
       itemBuilder: (context, index) {
-        if (newList.isEmpty) {
-          return Container();
-        } else {
-          log(newList[index].toString());
-          return HouseWidget(getHouseModel: newList[index]);
-        }
+        return HouseWidget(getHouseModel: filterHouse![index]);
       },
     );
   }

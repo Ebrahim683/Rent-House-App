@@ -108,6 +108,7 @@ class _UsersListPageState extends State<UsersListPage> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: Colors.blue[300],
                           child: Text((index + 1).toString()),
                         ),
                         trailing: IconButton(

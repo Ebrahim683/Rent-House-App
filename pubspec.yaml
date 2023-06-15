@@ -61,7 +61,7 @@ dependencies:
   #media
   image_picker:
   cached_network_image: ^3.2.3
-  appinio_video_player: ^1.2.1
+  appinio_video_player: any
   video_compress: 3.1.1
   json_annotation: ^4.8.1
   

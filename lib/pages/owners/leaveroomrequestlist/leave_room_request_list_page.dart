@@ -107,6 +107,7 @@ class _LeaveRoomRequestListPageState extends State<LeaveRoomRequestListPage> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: Colors.blue[300],
                           child:
                               Text(leaveRoomModel![index].requestId.toString()),
                         ),

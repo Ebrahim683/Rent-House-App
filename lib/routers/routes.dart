@@ -5,6 +5,7 @@ import 'package:rent_house/pages/auth/user_register_page.dart';
 import 'package:rent_house/pages/owners/base/owner_base_page.dart';
 import 'package:rent_house/pages/owners/bookhouserequest/approve_book_request_page.dart';
 import 'package:rent_house/pages/owners/bookhouserequest/book_house_request_page.dart';
+import 'package:rent_house/pages/owners/bookhouserequest/request_house_details.dart';
 import 'package:rent_house/pages/owners/dashboard/owner_dashboard_page.dart';
 import 'package:rent_house/pages/owners/leaveroomrequestlist/approve_page.dart';
 import 'package:rent_house/pages/owners/leaveroomrequestlist/leave_room_request_list_page.dart';
@@ -60,6 +61,7 @@ String get owner_dashboard_page => '/owner_dashboard_page';
 String get add_house_page => '/add_house_page';
 String get users_list_page => '/users_list_page';
 String get update_house_page => '/update_house_page';
+String get request_house_details_page => '/request_house_details_page';
 String get leave_room_page_request_list_page =>
     '/leave_room_page_request_list_page';
 String get approve_page => '/approve_page';
@@ -278,6 +280,15 @@ class Routers {
             child: ApproveBookRequestPage(
               bookedHouseRequestModel: arguments['bookedHouseRequestModel'],
             ),
+          ),
+        );
+      //user profile
+      case '/request_house_details_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => RequestHouseDetails(
+            houseModel: arguments['houseModel'],
           ),
         );
       default:

@@ -3,6 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:lottie/lottie.dart';
+import 'package:rent_house/pages/owners/bookhouserequest/request_house_details.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/singlehouse/single_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/singlehouse/single_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
@@ -39,12 +43,19 @@ class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
               log(state.error);
               errorDialog(context: context, message: state.error);
             } else if (state is SuccessStateApprove) {
-              successDialog(
-                  context: context, message: state.commonModel.message!);
+              snackBar(
+                  context: context,
+                  title: 'সফল',
+                  message: state.commonModel.message!);
+              pop(context: context);
             }
           },
           builder: (context, state) {
-            if (state is SuccessState) {
+            if (state is LoadingState) {
+              return Center(
+                child: Lottie.asset('asset/animations/timer.json'),
+              );
+            } else if (state is SuccessState) {
               HouseListModel getHouseListModel = state.houseListModel;
               List<HouseModel> getHouseModel = getHouseListModel.houseModel!;
               if (getHouseModel.isEmpty) {
@@ -66,9 +77,11 @@ class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
                   ),
                 );
               } else {
-                return Center(
-                  child: Text(getHouseModel[0].ownerName.toString()),
-                );
+                return LoadingOverlay(
+                    isLoading: state is LoadingState ? true : false,
+                    progressIndicator:
+                        Lottie.asset('asset/animations/timer.json'),
+                    child: RequestHouseDetails(houseModel: getHouseModel[0]));
               }
             } else if (state is ErrorState) {
               return Center(
@@ -108,14 +121,18 @@ class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.orange[300],
         onPressed: () {
           BlocProvider.of<SingleHouseCubit>(context).approve(
               houseId: widget.bookedHouseRequestModel.houseId!,
               userNumber: widget.bookedHouseRequestModel.userNumber.toString());
         },
-        child: const Icon(
+        label: const Text(
+          'Approve',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: const Icon(
           Icons.done,
           color: Colors.white,
         ),

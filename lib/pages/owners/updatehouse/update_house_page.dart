@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/updatehouse/update_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/updatehouse/update_house_state.dart';
+import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 import '../../../data/model/owner/ownerhousemodel/owner_house_list_model.dart';
@@ -72,9 +74,11 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
           if (state is UpdateHouseErrorState) {
             errorDialog(context: context, message: state.error);
           } else if (state is UpdateHouseSuccessState) {
-            successDialog(
+            snackBar(
                 context: context,
+                title: 'সফল',
                 message: state.commonModel.message.toString());
+            pop(context: context);
           }
         },
         builder: (context, state) {
@@ -207,8 +211,8 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: btnColor,
         onPressed: () {
           log(category.toString());
           String fee = feeController.text.toString();
@@ -251,7 +255,11 @@ class _UpdateHousePageState extends State<UpdateHousePage> {
                 : canBook,
           );
         },
-        child: const Icon(
+        label: const Text(
+          'আপডেট',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: const Icon(
           Icons.update,
           color: Colors.white,
         ),

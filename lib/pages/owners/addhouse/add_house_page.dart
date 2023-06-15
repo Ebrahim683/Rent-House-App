@@ -134,6 +134,10 @@ class _AddHousePageState extends State<AddHousePage> {
                   context: context,
                   message: state.commonModel.message.toString());
             } else {
+              snackBar(
+                  context: context,
+                  title: 'সফল',
+                  message: 'রুম স্থাপন সম্পন্ন হয়েছে');
               pop(context: context);
             }
           } else if (state is AddHouseErrorState) {

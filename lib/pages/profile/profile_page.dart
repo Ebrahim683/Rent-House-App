@@ -13,6 +13,7 @@ import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
 import '../../state/cubit/profile/profile_state.dart';
+import '../../utils/assets.dart';
 
 class ProfilePage extends StatefulWidget {
   final String phoneNumber;
@@ -137,79 +138,78 @@ class _ProfilePageState extends State<ProfilePage> {
               return LoadingOverlay(
                 isLoading: state is LoadingState ? true : false,
                 progressIndicator: Lottie.asset('asset/animations/timer.json'),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          ClipPath(
-                            clipper: ClipperProfileTop(),
-                            child: Container(
-                              color: Colors.orange,
-                              height: 300.h,
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            ClipPath(
+                              clipper: ClipperProfileTop(),
+                              child: Container(
+                                color: Colors.orange,
+                                height: 300.h,
+                              ),
                             ),
-                          ),
-                          Positioned(
-                            left: size.width * 0.3,
-                            bottom: -20,
-                            child: InkWell(
-                              onTap: () {
-                                if (widget.role == 'me') {
-                                  _pickImage().then((value) {
-                                    log('image picked');
-                                  });
-                                } else {
-                                  log(widget.role);
-                                }
-                              },
-                              child: SizedBox(
-                                height: 150.h,
-                                width: 150.w,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.r),
-                                  child: Container(
-                                    color: Colors.teal,
-                                    child: FadeInImage.assetNetwork(
-                                      image:
-                                          profileModel[0].profilePic.toString(),
-                                      imageScale: 1.0,
-                                      fit: BoxFit.cover,
-                                      width: size.width,
-                                      placeholder: 'asset/icons/avatar.png',
+                            Positioned(
+                              left: size.width * 0.3,
+                              bottom: -20,
+                              child: InkWell(
+                                onTap: () {
+                                  if (widget.role == 'me') {
+                                    _pickImage().then((value) {
+                                      log('image picked');
+                                    });
+                                  } else {
+                                    log(widget.role);
+                                  }
+                                },
+                                child: SizedBox(
+                                  height: 150.h,
+                                  width: 150.w,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100.r),
+                                    child: Container(
+                                      color: Colors.teal,
+                                      child: FadeInImage.assetNetwork(
+                                        image: profileModel[0]
+                                            .profilePic
+                                            .toString(),
+                                        imageScale: 1.0,
+                                        fit: BoxFit.cover,
+                                        width: size.width,
+                                        placeholder: avatar,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      gap(),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              gap(h: 50.h),
-                              singleItem(
-                                  icon: Icons.person_outline,
-                                  text: profileModel[0].name.toString()),
-                              singleItem(
-                                  icon: Icons.call_outlined,
-                                  text: profileModel[0].phoneNumber.toString()),
-                              singleItem(
-                                  icon: Icons.email_outlined,
-                                  text: profileModel[0].email.toString()),
-                              singleItem(
-                                  icon: Icons.co_present_rounded,
-                                  text: profileModel[0].role.toString()),
-                            ],
-                          ),
+                          ],
                         ),
-                      ),
-                    ],
+                        gap(),
+                        Column(
+                          children: [
+                            gap(h: 50.h),
+                            singleItem(
+                                icon: Icons.person_outline,
+                                text: profileModel[0].name.toString()),
+                            singleItem(
+                                icon: Icons.call_outlined,
+                                text: profileModel[0].phoneNumber.toString()),
+                            singleItem(
+                                icon: Icons.email_outlined,
+                                text: profileModel[0].email.toString()),
+                            singleItem(
+                                icon: Icons.co_present_rounded,
+                                text: profileModel[0].role.toString()),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );

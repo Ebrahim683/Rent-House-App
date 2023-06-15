@@ -8,6 +8,7 @@ import 'package:rent_house/utils/storage_utils.dart';
 import '../../../routers/routes.dart';
 import '../../../state/cubit/profile/profile_cubit.dart';
 import '../../../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
+import '../../../utils/assets.dart';
 import '../../profile/profile_page.dart';
 import '../home/home_page.dart';
 import '../house/booked/booked_house_page.dart';
@@ -55,7 +56,7 @@ class _UserBasePageState extends State<UserBasePage> {
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.all(5),
                 child: Image.asset(
-                  'asset/icons/menu.png',
+                  menu,
                   color: Colors.black,
                   height: 30.h,
                   width: 30.h,

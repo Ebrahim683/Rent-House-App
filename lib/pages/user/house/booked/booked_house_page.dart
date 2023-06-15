@@ -9,7 +9,6 @@ import 'package:rent_house/data/model/bookedhousemodel/booked_house_list_model.d
 import 'package:rent_house/state/cubit/showbookedhouse/show_booked_house_cubit.dart';
 import 'package:rent_house/state/cubit/showbookedhouse/show_booked_house_state.dart';
 import 'package:rent_house/utils/utils.dart';
-
 import '../../../../routers/routes.dart';
 import '../../../../widget/app_widget.dart';
 
@@ -98,7 +97,8 @@ class _BookedHousePageState extends State<BookedHousePage> {
                           bookedHouseModel![index].ownerName.toString(),
                         ),
                         leading: CircleAvatar(
-                          child: Text(bookedHouseModel[index].id.toString()),
+                          backgroundColor: Colors.blue[300],
+                          child: Text((index + 1).toString()),
                         ),
                         trailing: IconButton(
                             onPressed: () {

@@ -239,7 +239,7 @@ mixin _$LeaveRoomModel {
   @JsonKey(name: 'category')
   String? get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'fee')
-  String? get fee => throw _privateConstructorUsedError;
+  int? get fee => throw _privateConstructorUsedError;
   @JsonKey(name: 'address')
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'time')
@@ -266,7 +266,7 @@ abstract class $LeaveRoomModelCopyWith<$Res> {
       @JsonKey(name: 'user_name') String? userName,
       @JsonKey(name: 'user_number') String? userNumber,
       @JsonKey(name: 'category') String? category,
-      @JsonKey(name: 'fee') String? fee,
+      @JsonKey(name: 'fee') int? fee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'time') String? time});
 }
@@ -332,7 +332,7 @@ class _$LeaveRoomModelCopyWithImpl<$Res, $Val extends LeaveRoomModel>
       fee: freezed == fee
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -362,7 +362,7 @@ abstract class _$$_LeaveRoomModelCopyWith<$Res>
       @JsonKey(name: 'user_name') String? userName,
       @JsonKey(name: 'user_number') String? userNumber,
       @JsonKey(name: 'category') String? category,
-      @JsonKey(name: 'fee') String? fee,
+      @JsonKey(name: 'fee') int? fee,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'time') String? time});
 }
@@ -426,7 +426,7 @@ class __$$_LeaveRoomModelCopyWithImpl<$Res>
       fee: freezed == fee
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -484,7 +484,7 @@ class _$_LeaveRoomModel implements _LeaveRoomModel {
   final String? category;
   @override
   @JsonKey(name: 'fee')
-  final String? fee;
+  final int? fee;
   @override
   @JsonKey(name: 'address')
   final String? address;
@@ -561,7 +561,7 @@ abstract class _LeaveRoomModel implements LeaveRoomModel {
       @JsonKey(name: 'user_name') final String? userName,
       @JsonKey(name: 'user_number') final String? userNumber,
       @JsonKey(name: 'category') final String? category,
-      @JsonKey(name: 'fee') final String? fee,
+      @JsonKey(name: 'fee') final int? fee,
       @JsonKey(name: 'address') final String? address,
       @JsonKey(name: 'time') final String? time}) = _$_LeaveRoomModel;
 
@@ -594,7 +594,7 @@ abstract class _LeaveRoomModel implements LeaveRoomModel {
   String? get category;
   @override
   @JsonKey(name: 'fee')
-  String? get fee;
+  int? get fee;
   @override
   @JsonKey(name: 'address')
   String? get address;

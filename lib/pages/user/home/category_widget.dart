@@ -23,13 +23,13 @@ class CategoryWidget extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         elevation: 15,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(25.r),
           side: BorderSide(color: Colors.black, width: 0.5.w),
         ),
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(25.r),
           ),
           child: Center(
             child: Column(

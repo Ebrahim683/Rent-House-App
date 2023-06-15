@@ -46,7 +46,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
     super.initState();
     getImageLink();
     String video = widget.houseModel.video.toString();
-    videoUrl = video.replaceAll('http', 'https');
+    videoUrl = video.toString();
   }
 
   @override
@@ -95,10 +95,11 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
             errorDialog(context: context, message: state.error);
             log(state.error);
           } else if (state is BookHouseSuccessState) {
-            successDialog(
+            snackBar(
                 context: context,
+                title: 'সফল',
                 message: state.commonModel.message.toString());
-            log(state.commonModel.message.toString());
+            pop(context: context);
           }
         },
         builder: (context, state) {
@@ -310,7 +311,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                                 ? true
                                 : false,
                             child: MaterialButton(
-                              color: Colors.orange[300],
+                              color: btnColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.r)),
                               onPressed: () {

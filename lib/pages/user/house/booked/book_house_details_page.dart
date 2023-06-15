@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/bookedhousemodel/booked_house_list_model.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit.dart';
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_state.dart';
 import 'package:rent_house/utils/storage_utils.dart';
@@ -13,7 +12,6 @@ import 'package:rent_house/utils/utils.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../widget/app_widget.dart';
-
 
 class BookedHouseDetailsPage extends StatelessWidget {
   final BookedHouseModel bookedHouseModel;
@@ -57,43 +55,45 @@ class BookedHouseDetailsPage extends StatelessWidget {
       );
     }
 
-    handlePopUp(int value) {
-      switch (value) {
-        case 0:
-          log(bookedHouseModel.id!.toString());
-          BlocProvider.of<LeaveRoomRequestCubit>(context).leaveRoom(
-            id: bookedHouseModel.id!,
-            userName: storageUtils.getName!,
-            userNumber: storageUtils.getNumber!,
-          );
-          break;
-        default:
-      }
-    }
+    // handlePopUp(int value) {
+    //   switch (value) {
+    //     case 0:
+    //       log(bookedHouseModel.id!.toString());
+    //       BlocProvider.of<LeaveRoomRequestCubit>(context).leaveRoom(
+    //         id: bookedHouseModel.id!,
+    //         userName: storageUtils.getName!,
+    //         userNumber: storageUtils.getNumber!,
+    //       );
+    //       break;
+    //     default:
+    //   }
+    // }
 
     return Scaffold(
       appBar: AppBar(
         title: Text(bookedHouseModel.ownerName.toString()),
-        actions: [
-          PopupMenuButton<int>(
-            onSelected: (value) => handlePopUp(value),
-            itemBuilder: (context) => [
-              const PopupMenuItem(
-                value: 0,
-                child: Text('রুম ছাড়ুন'),
-              ),
-            ],
-          ),
-        ],
+        // actions: [
+        //   PopupMenuButton<int>(
+        //     onSelected: (value) => handlePopUp(value),
+        //     itemBuilder: (context) => [
+        //       const PopupMenuItem(
+        //         value: 0,
+        //         child: Text('রুম ছাড়ুন'),
+        //       ),
+        //     ],
+        //   ),
+        // ],
       ),
       body: BlocConsumer<LeaveRoomRequestCubit, LeaveRoomRequestState>(
         listener: (context, state) {
           if (state is LeaveRoomRequestErrorState) {
             errorDialog(context: context, message: state.error);
           } else if (state is LeaveRoomRequestSuccessState) {
-            successDialog(
+            snackBar(
                 context: context,
+                title: 'সফল',
                 message: state.commonModel.message.toString());
+            pop(context: context);
           }
         },
         builder: (context, state) {
@@ -181,6 +181,16 @@ class BookedHouseDetailsPage extends StatelessWidget {
                     ),
                   ),
                   gap(),
+                  roundButton(
+                    title: 'রুম ছাড়ুন',
+                    onPressed: () {
+                      BlocProvider.of<LeaveRoomRequestCubit>(context).leaveRoom(
+                        id: bookedHouseModel.id!,
+                        userName: storageUtils.getName!,
+                        userNumber: storageUtils.getNumber!,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

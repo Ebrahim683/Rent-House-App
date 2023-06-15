@@ -34,7 +34,7 @@ _$_LeaveRoomModel _$$_LeaveRoomModelFromJson(Map<String, dynamic> json) =>
       userName: json['user_name'] as String?,
       userNumber: json['user_number'] as String?,
       category: json['category'] as String?,
-      fee: json['fee'] as String?,
+      fee: json['fee'] as int?,
       address: json['address'] as String?,
       time: json['time'] as String?,
     );

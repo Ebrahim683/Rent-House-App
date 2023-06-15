@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import '../utils/app_colors.dart';
-import '../utils/utils.dart';
 
 Row setInfo() {
   return Row(
@@ -185,7 +184,8 @@ ownerHouseListLoadingWidget(BuildContext context) {
   );
 }
 
-roundButton({required BuildContext context}) {
+roundButton(
+    {required String title, required Function() onPressed, Color? color}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.w),
     child: SizedBox(
@@ -194,15 +194,13 @@ roundButton({required BuildContext context}) {
       child: MaterialButton(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
-        color: btnColor,
-        onPressed: () {
-          snackBar(title: 'Message', message: 'Register', context: context);
-        },
+        color: color ?? btnColor,
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buttonText(text: "Register"),
+            buttonText(text: title),
           ],
         ),
       ),

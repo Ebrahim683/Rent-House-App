@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/owner/leaveroomlistmodel/leave_room_list_model.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_state.dart';
 import 'package:rent_house/utils/utils.dart';
@@ -69,8 +70,11 @@ class ApprovePage extends StatelessWidget {
       body: BlocConsumer<ApproveCubit, ApproveState>(
         listener: (context, state) {
           if (state is ApproveSuccessState) {
-            successDialog(
-                context: context, message: state.commonModel.message.toString());
+            snackBar(
+                title: 'সফল',
+                context: context,
+                message: state.commonModel.message.toString());
+            pop(context: context);
           } else if (state is ApproveErrorState) {
             errorDialog(context: context, message: state.error);
           }
@@ -129,7 +133,7 @@ class ApprovePage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.blue,
         onPressed: () {
           BlocProvider.of<ApproveCubit>(context).approve(
@@ -140,7 +144,11 @@ class ApprovePage extends StatelessWidget {
             time: leaveRoomModel.time!,
           );
         },
-        child: const Icon(
+        label: const Text(
+          'Approve',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: const Icon(
           Icons.done,
           color: Colors.white,
         ),

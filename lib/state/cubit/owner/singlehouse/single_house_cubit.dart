@@ -8,7 +8,7 @@ import '../../../../data/model/housemodel/house_list_model.dart';
 
 class SingleHouseCubit extends Cubit<SingleHouseState> {
   final BookHouseRequestModel bookHouseRequestModel;
-  SingleHouseCubit(this.bookHouseRequestModel) : super(InitialState()) {
+  SingleHouseCubit(this.bookHouseRequestModel) : super(LoadingState()) {
     singleHouse(time: bookHouseRequestModel.time!);
   }
   singleHouse({required String time}) async {
