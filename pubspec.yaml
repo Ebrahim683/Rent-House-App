@@ -39,7 +39,7 @@ dependencies:
   cool_alert: any
   loading_overlay: ^0.3.0
   #slider
-  # carousel_slider: ^4.2.1
+  carousel_slider: ^4.2.1
   #payment
   # flutter_sslcommerz: ^2.2.2-nullsafety.0
   #screen size

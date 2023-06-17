@@ -10,6 +10,7 @@ import '../../../state/cubit/owner/bookhouserequest/book_house_list_cubit.dart';
 import '../../../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_cubit.dart';
 import '../../../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
 import '../../../utils/app_colors.dart';
+import '../../../utils/strings.dart';
 import '../bookhouserequest/book_house_request_page.dart';
 import '../leaveroomrequestlist/leave_room_request_list_page.dart';
 import '../userslist/users_list_page.dart';
@@ -23,7 +24,7 @@ class OwnerBasePage extends StatefulWidget {
 
 class _OwnerBasePageState extends State<OwnerBasePage> {
   final title = [
-    'হোম',
+    appName,
     'ভাড়াটিয়া লিস্ট',
     'ভাড়ার আবেদন',
     'রুম ছাড়ার আবেদন',
@@ -92,11 +93,15 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
       body: _pages[currentIndex],
       bottomNavigationBar: navigationBar(),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: favColor,
         onPressed: () {
           push(context: context, name: add_house_page);
         },
-        icon: const Icon(Icons.add),
-        label: const Text('রুম স্থাপন'),
+        icon: const Icon(Icons.add, color: Colors.white),
+        label: const Text(
+          'রুম স্থাপন',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
@@ -118,7 +123,7 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
           animationDuration: const Duration(milliseconds: 800),
           indicatorColor: Colors.white,
           destinations: [
-            NavigationDestination(icon: Icon(icons[0]), label: title[0]),
+            NavigationDestination(icon: Icon(icons[0]), label: 'হোম'),
             NavigationDestination(icon: Icon(icons[1]), label: title[1]),
             NavigationDestination(icon: Icon(icons[2]), label: title[2]),
             NavigationDestination(icon: Icon(icons[3]), label: title[3]),

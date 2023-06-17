@@ -11,6 +11,7 @@ import 'package:lottie/lottie.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_cubit.dart';
 import 'package:rent_house/state/cubit/owner/addhouse/add_house_state.dart';
+import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:video_compress/video_compress.dart';
 
@@ -367,7 +368,7 @@ class _AddHousePageState extends State<AddHousePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
+        backgroundColor: favColor,
         heroTag: 'btnsubmit',
         onPressed: () {
           int fee = int.parse(feeController.text);

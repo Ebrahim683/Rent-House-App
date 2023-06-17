@@ -20,7 +20,6 @@ class HouseListPage extends StatefulWidget {
 }
 
 class _HouseListPageState extends State<HouseListPage> {
-  String search = '';
   List<HouseModel> houseListModelSearch = [];
   @override
   Widget build(BuildContext context) {
@@ -74,6 +73,7 @@ class _HouseListPageState extends State<HouseListPage> {
                   ),
                 );
               } else {
+                houseListModelSearch.clear();
                 houseListModelSearch.addAll(houseModel!);
                 return ListView.builder(
                   physics: const BouncingScrollPhysics(),

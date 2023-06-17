@@ -134,7 +134,7 @@ class ApprovePage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.blue,
+        backgroundColor: btnColor,
         onPressed: () {
           BlocProvider.of<ApproveCubit>(context).approve(
             requestId: leaveRoomModel.requestId!,

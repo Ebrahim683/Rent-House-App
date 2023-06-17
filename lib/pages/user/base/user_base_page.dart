@@ -8,7 +8,9 @@ import 'package:rent_house/utils/storage_utils.dart';
 import '../../../routers/routes.dart';
 import '../../../state/cubit/profile/profile_cubit.dart';
 import '../../../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
+import '../../../utils/app_colors.dart';
 import '../../../utils/assets.dart';
+import '../../../utils/strings.dart';
 import '../../profile/profile_page.dart';
 import '../home/home_page.dart';
 import '../house/booked/booked_house_page.dart';
@@ -22,7 +24,7 @@ class UserBasePage extends StatefulWidget {
 
 class _UserBasePageState extends State<UserBasePage> {
   final title = [
-    'হোম',
+    appName,
     'ভাড়াকৃত রুম',
     'প্রোফাইল',
   ];
@@ -82,6 +84,7 @@ class _UserBasePageState extends State<UserBasePage> {
       ),
       body: _pages[currentIndex],
       drawer: Drawer(
+        backgroundColor: bgColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(30.r),
@@ -90,14 +93,12 @@ class _UserBasePageState extends State<UserBasePage> {
         ),
         child: ListView(
           children: [
-            DrawerHeader(
-              child: Container(
-                decoration: const BoxDecoration(color: Colors.teal),
-              ),
+            const DrawerHeader(
+              child: FlutterLogo(),
             ),
             ListTile(
               leading: const Icon(Icons.home_outlined),
-              title: Text(title[0]),
+              title: const Text('হোম'),
               onTap: () {
                 pop(context: context);
                 setState(() {

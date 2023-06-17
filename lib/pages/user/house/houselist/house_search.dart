@@ -25,8 +25,7 @@ class HouseSearch extends SearchDelegate {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        filterHouse!.clear();
-        log(filterHouse!.length.toString());
+        houseListModel.clear();
         close(context, null);
       },
     );

@@ -15,3 +15,5 @@ String get menu => 'asset/icons/menu.png';
 String get avatar => 'asset/icons/avatar.png';
 //icons
 IconData get home => Icons.home_outlined;
+//images
+String get sliderHouse1 => 'asset/images/sliderhouse1.png';

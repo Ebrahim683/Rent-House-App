@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/data/model/owner/ownerhousemodel/owner_house_list_model.dart';
@@ -18,7 +19,7 @@ class RoomWidget extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.all(8.0),
-        height: size.height * 0.2,
+        height: size.height * 0.25,
         width: size.width,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 0.5.w),
@@ -28,16 +29,27 @@ class RoomWidget extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              height: size.height * 0.2,
-              width: size.width * 0.4,
+              height: size.height * 0.25,
+              width: size.width * 0.45,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.r),
-                child: FadeInImage.assetNetwork(
-                  image: ownerHouseModel.image1.toString(),
-                  imageScale: 1.0,
+                // child: FadeInImage.assetNetwork(
+                //   image: ownerHouseModel.image1.toString(),
+                //   imageScale: 1.0,
+                //   fit: BoxFit.cover,
+                //   width: size.width,
+                //   placeholder: 'asset/images/sliderhouse1.png',
+                // ),
+                child: CachedNetworkImage(
+                  imageUrl: ownerHouseModel.image1.toString(),
                   fit: BoxFit.cover,
                   width: size.width,
-                  placeholder: 'asset/images/sliderhouse1.png',
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Center(
+                    child: CircularProgressIndicator(
+                        value: downloadProgress.progress),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
