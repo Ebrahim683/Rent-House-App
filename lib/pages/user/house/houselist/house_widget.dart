@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/routers/routes.dart';
@@ -5,6 +6,7 @@ import 'package:rent_house/widget/app_widget.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
 import '../../../../data/model/housemodel/house_list_model.dart';
+import '../../../../utils/assets.dart';
 
 class HouseWidget extends StatelessWidget {
   final HouseModel getHouseModel;
@@ -60,12 +62,20 @@ class HouseWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(25.r),
-              child: FadeInImage.assetNetwork(
-                image: getHouseModel.image1.toString(),
-                imageScale: 1.0,
+              child: CachedNetworkImage(
+                imageUrl: getHouseModel.image1.toString(),
                 fit: BoxFit.cover,
                 width: size.width,
-                placeholder: 'asset/images/sliderhouse1.png',
+                progressIndicatorBuilder: (context, url, progress) => Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Image.asset(loading_image),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Image.asset(broken_image),
+                ),
               ),
             ),
             Positioned(

@@ -1,6 +1,6 @@
-//asset icons
 import 'package:flutter/material.dart';
 
+//asset icons
 String get bachelor => 'asset/icons/bachelor.png';
 String get family => 'asset/icons/family.png';
 String get male => 'asset/icons/male.png';
@@ -13,6 +13,8 @@ String get industry => 'asset/icons/industry.png';
 String get flat => 'asset/icons/flat.png';
 String get menu => 'asset/icons/menu.png';
 String get avatar => 'asset/icons/avatar.png';
+String get broken_image => 'asset/icons/broken_image.png';
+String get loading_image => 'asset/icons/loading.png';
 //icons
 IconData get home => Icons.home_outlined;
 //images

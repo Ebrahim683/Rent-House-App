@@ -62,38 +62,7 @@ class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
       setState(() {});
     }
 
-    // handlePopUp(int value) {
-    //   switch (value) {
-    //     case 0:
-    //         StorageUtils.logOut();
-    //       pushOff(context: context, name: login_page);
-    //       break;
-    //     case 1:
-    //       push(context: context, name: users_list_page);
-    //       break;
-    //     case 2:
-    //       push(context: context, name: leave_room_page_request_list_page);
-    //       break;
-    //     default:
-    //       null;
-    //   }
-    // }
-
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(appName),
-      //   actions: [
-      //     PopupMenuButton<int>(
-      //       onSelected: (value) => handlePopUp(value),
-      //       itemBuilder: (context) => [
-      //         const PopupMenuItem<int>(value: 0, child: Text('লগ আউট')),
-      //         const PopupMenuItem<int>(value: 1, child: Text('ভাড়াটিয়া লিস্ট')),
-      //         const PopupMenuItem<int>(
-      //             value: 2, child: Text('রুম ছাড়ার আবেদন')),
-      //       ],
-      //     ),
-      //   ],
-      // ),
       body: LiquidPullToRefresh(
         onRefresh: refreshCallBack,
         child: Column(

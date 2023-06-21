@@ -12,9 +12,11 @@ import 'package:rent_house/pages/owners/leaveroomrequestlist/leave_room_request_
 import 'package:rent_house/pages/owners/userslist/users_list_page.dart';
 import 'package:rent_house/pages/splash/splash_page.dart';
 import 'package:rent_house/pages/test.dart';
+import 'package:rent_house/pages/user/house/houselist/house_search_page.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
+import 'package:rent_house/state/cubit/housesearch/house_search_cubit.dart';
 import 'package:rent_house/state/cubit/leaveroomrequest/leave_room_request_cubit.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/showownerhouse/show_owner_house_cubit.dart';
@@ -50,6 +52,7 @@ String get login_page => '/login_page';
 String get user_register_page => '/user_register_page';
 String get owner_register_page => '/owner_register_page';
 String get house_list_page => '/house_list_page';
+String get house_search_page => '/house_search_page';
 String get house_details_page => '/house_details_page';
 String get booked_house_page => '/booked_house_page';
 String get booked_house_details_page => '/booked_house_details_page';
@@ -157,6 +160,19 @@ class Routers {
             child: HouseListPage(
               category: arguments['category'],
               title: arguments['title'],
+            ),
+          ),
+        );
+      //house search
+      case '/house_search_page':
+        Map<String, dynamic> arguments =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (BuildContext context) =>
+                HouseSearchCubit(arguments['houseListModel']),
+            child: HouseSearchPage(
+              houseListModel: arguments['houseListModel'],
             ),
           ),
         );

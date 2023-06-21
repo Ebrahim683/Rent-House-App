@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:rent_house/data/model/housemodel/house_list_model.dart';
+import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_state.dart';
 import 'package:rent_house/utils/utils.dart';
 
 import '../../../../widget/app_widget.dart';
-import 'house_search.dart';
 import 'house_widget.dart';
 
 class HouseListPage extends StatefulWidget {
@@ -34,9 +34,13 @@ class _HouseListPageState extends State<HouseListPage> {
         title: Text(widget.title),
         actions: [
           IconButton(
-              onPressed: () => showSearch(
-                  context: context,
-                  delegate: HouseSearch(houseListModel: houseListModelSearch)),
+              onPressed: () {
+                Map<String, dynamic> arguments = {
+                  'houseListModel': houseListModelSearch
+                };
+                Navigator.pushNamed(context, house_search_page,
+                    arguments: arguments);
+              },
               icon: const Icon(Icons.search)),
         ],
       ),

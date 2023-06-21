@@ -12,6 +12,7 @@ import 'package:rent_house/data/model/housemodel/house_list_model.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
+import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 import '../../../../routers/routes.dart';
@@ -169,12 +170,15 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                                 fit: BoxFit.cover,
                                 progressIndicatorBuilder:
                                     (context, url, progress) => Center(
-                                  child: LinearProgressIndicator(
-                                    value: progress.progress,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Image.asset(loading_image),
                                   ),
                                 ),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                                errorWidget: (context, url, error) => Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Image.asset(broken_image),
+                                ),
                               ),
                             );
                           },
