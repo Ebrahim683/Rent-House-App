@@ -3,9 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/storage_utils.dart';
+import 'package:flutter/services.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await storageUtils.init();
   runApp(const MyApp());
 }

@@ -103,7 +103,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
             errorDialog(context: context, message: state.error);
             log(state.error);
           } else if (state is BookHouseSuccessState) {
-            snackBar(
+            showSnackBar(
                 context: context,
                 title: 'সফল',
                 message: state.commonModel.message.toString());

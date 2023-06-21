@@ -1,18 +1,10 @@
 import 'dart:developer';
-
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-showSnackBar({required BuildContext context, required String message}) {
-  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(message),
-    margin: EdgeInsets.symmetric(horizontal: 15.w),
-  ));
-}
-
-snackBar(
+showSnackBar(
     {required BuildContext context,
     required String title,
     required String message}) {
@@ -20,6 +12,7 @@ snackBar(
     SnackBar(
       content: Text(message),
       behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.symmetric(horizontal: 15.w),
     ),
   );
 }

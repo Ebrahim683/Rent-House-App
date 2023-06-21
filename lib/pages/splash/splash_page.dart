@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/routers/routes.dart';
+import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/strings.dart';
 
@@ -34,6 +36,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -48,21 +51,32 @@ class _SplashPageState extends State<SplashPage> {
         child: Stack(
           children: [
             Center(
+              child: Image.asset(
+                family,
+                height: size.height * 0.4,
+                width: size.width * 0.4,
+              )
+                  .animate()
+                  .rotate(duration: 1500.ms)
+                  .then()
+                  .shimmer(duration: 1500.ms),
+            ),
+            Positioned(
+              bottom: 20.h,
+              left: size.width * 0.25,
               child: Text(
                 appName,
                 style: const TextStyle(
-                  color: Colors.teal,
+                  color: Colors.grey,
                   wordSpacing: 15,
                   fontSize: 40,
+                  fontWeight: FontWeight.w400,
                 ),
-              ).animate().shimmer(duration: 2500.ms).shake(),
-            ),
-            Positioned(
-              bottom: 20,
-              left: MediaQuery.of(context).size.width * 0.45,
-              child: const CircularProgressIndicator(
-                color: Colors.white,
-              ),
+              )
+                  .animate()
+                  .fadeIn(duration: 1500.ms)
+                  .then()
+                  .shimmer(duration: 1500.ms),
             ),
           ],
         ),

@@ -70,7 +70,7 @@ class ApprovePage extends StatelessWidget {
       body: BlocConsumer<ApproveCubit, ApproveState>(
         listener: (context, state) {
           if (state is ApproveSuccessState) {
-            snackBar(
+            showSnackBar(
                 title: 'সফল',
                 context: context,
                 message: state.commonModel.message.toString());

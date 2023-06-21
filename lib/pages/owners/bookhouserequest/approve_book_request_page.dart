@@ -43,7 +43,7 @@ class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
               log(state.error);
               errorDialog(context: context, message: state.error);
             } else if (state is SuccessStateApprove) {
-              snackBar(
+              showSnackBar(
                   context: context,
                   title: 'সফল',
                   message: state.commonModel.message!);

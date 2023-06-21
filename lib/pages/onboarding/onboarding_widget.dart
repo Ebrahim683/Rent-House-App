@@ -7,8 +7,11 @@ class OnBoardingWidget extends StatelessWidget {
   final String image;
   final String description;
 
-  const OnBoardingWidget(
-      {super.key, required this.image, required this.description});
+  const OnBoardingWidget({
+    super.key,
+    required this.image,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,35 +27,23 @@ class OnBoardingWidget extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        // Positioned(
-        //   top: 100,
-        //   left: 50,
-        //   child: Text(
-        //     'Title',
-        //     style: TextStyle(
-        //       color: Colors.black,
-        //       fontSize: 20.sp,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   )
-        //       .animate()
-        //       .fade(duration: 800.ms)
-        //       .slideY(curve: Curves.easeIn)
-        //       .then()
-        //       .shake(),
-        // ),
         Positioned(
-          top: 100.h,
+          bottom: 120.h,
           left: 10.w,
           right: 10.w,
-          child: Padding(
+          child: Container(
+            margin: const EdgeInsets.all(8.0),
             padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              color: Colors.orangeAccent.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(25.r),
+            ),
             child: Text(
               description,
               style: GoogleFonts.righteous(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
               ),
             ).animate().fade(duration: 1000.ms).slideX(curve: Curves.easeIn),
           ),

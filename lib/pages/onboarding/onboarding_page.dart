@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/pages/onboarding/onboarding_widget.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:rent_house/routers/routes.dart';
+import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/storage_utils.dart';
+import 'package:rent_house/utils/strings.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -20,11 +22,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     'asset/images/house2.jpg',
     'asset/images/house3.jpg',
   ];
-  final descriptions = [
-    'dsfyhdskjfhdskjfghdskjgfhskefhdskjfghdskljfhkdsj',
-    'dsfyhdskjfhdskjfghdskjgfhskefhdskjfghdskljfhkdsj',
-    'dsfyhdskjfhdskjfghdskjgfhskefhdskjfghdskljfhkdsj',
-  ];
+
   @override
   void initState() {
     pageViewController.addListener(() {
@@ -47,7 +45,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             itemBuilder: (context, index) {
               return OnBoardingWidget(
                 image: images[index],
-                description: descriptions[index],
+                description: onBoardingDescription[index],
               );
             },
           ),
@@ -56,8 +54,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             bottom: 60.h,
             child: FloatingActionButton(
               elevation: 15,
-              splashColor: Colors.yellow,
-              backgroundColor: Colors.teal,
+              backgroundColor: btnColor,
               onPressed: () {
                 storageUtils.saveOnboarding();
                 pushOff(context: context, name: login_page);
@@ -77,7 +74,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.r)),
                 size: Size(50.w, 8.h),
-                color: Colors.teal,
+                color: Colors.grey,
                 activeShape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.r)),
                 activeSize: Size(50.w, 8.h),

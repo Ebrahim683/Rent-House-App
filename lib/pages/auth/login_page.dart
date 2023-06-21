@@ -180,13 +180,13 @@ class _LoginPageState extends State<LoginPage> {
                                               .trim()
                                               .toString();
                                           if (phoneNumber == '') {
-                                            snackBar(
+                                            showSnackBar(
                                               title: 'ত্রুটি',
                                               message: 'আপনার ফোন নম্বর লিখুন',
                                               context: context,
                                             );
                                           } else if (password == '') {
-                                            snackBar(
+                                            showSnackBar(
                                               title: 'ত্রুটি',
                                               message: 'আপনার পাসওয়ার্ড লিখুন',
                                               context: context,

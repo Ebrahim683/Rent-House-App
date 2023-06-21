@@ -89,7 +89,7 @@ class BookedHouseDetailsPage extends StatelessWidget {
           if (state is LeaveRoomRequestErrorState) {
             errorDialog(context: context, message: state.error);
           } else if (state is LeaveRoomRequestSuccessState) {
-            snackBar(
+            showSnackBar(
                 context: context,
                 title: 'সফল',
                 message: state.commonModel.message.toString());

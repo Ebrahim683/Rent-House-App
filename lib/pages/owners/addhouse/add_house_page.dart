@@ -87,7 +87,7 @@ class _AddHousePageState extends State<AddHousePage> {
           images = [image1!, image2!, image3!, image4!];
           log(imageList!.length.toString());
         } catch (e) {
-          snackBar(
+          showSnackBar(
             title: 'Error',
             message: 'Minimum 4 photo required',
             context: context,
@@ -135,7 +135,7 @@ class _AddHousePageState extends State<AddHousePage> {
                   context: context,
                   message: state.commonModel.message.toString());
             } else {
-              snackBar(
+              showSnackBar(
                   context: context,
                   title: 'সফল',
                   message: 'রুম স্থাপন সম্পন্ন হয়েছে');
@@ -381,35 +381,38 @@ class _AddHousePageState extends State<AddHousePage> {
           String notice = noticeController.text.toString();
 
           if (fee == 0.0) {
-            snackBar(context: context, title: 'Error', message: 'Enter fee');
+            showSnackBar(
+                context: context, title: 'Error', message: 'Enter fee');
           } else if (quantity == '') {
-            snackBar(
+            showSnackBar(
                 context: context, title: 'Error', message: 'Enter quantity');
           } else if (advanceFee == 0.0) {
-            snackBar(
+            showSnackBar(
                 context: context, title: 'Error', message: 'Enter advanceFee');
           } else if (electricityFee == 0.0) {
-            snackBar(
+            showSnackBar(
                 context: context,
                 title: 'Error',
                 message: 'Enter electricityFee');
           } else if (gasFee == 0.0) {
-            snackBar(context: context, title: 'Error', message: 'Enter gasFee');
+            showSnackBar(
+                context: context, title: 'Error', message: 'Enter gasFee');
           } else if (othersFee == 0.0) {
-            snackBar(
+            showSnackBar(
                 context: context, title: 'Error', message: 'Enter othersFee');
           } else if (notice == '') {
-            snackBar(context: context, title: 'Error', message: 'Enter notice');
+            showSnackBar(
+                context: context, title: 'Error', message: 'Enter notice');
           } else if (address == '') {
-            snackBar(
+            showSnackBar(
                 context: context, title: 'Error', message: 'Enter address');
           } else if (imageList!.isEmpty || imageList!.length > 4) {
-            snackBar(
+            showSnackBar(
                 context: context,
                 title: 'Error',
                 message: 'Minimum 4 photo required');
           } else if (video == null) {
-            snackBar(
+            showSnackBar(
                 context: context,
                 title: 'Error',
                 message: 'Add a video of your room');

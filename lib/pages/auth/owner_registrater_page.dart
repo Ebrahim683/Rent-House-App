@@ -11,6 +11,7 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_state.dart';
 import 'package:rent_house/utils/utils.dart';
+
 import '../../utils/app_colors.dart';
 import '../../utils/storage_utils.dart';
 import '../../widget/app_widget.dart';
@@ -33,7 +34,7 @@ class _OwnerRegisterPageState extends State<OwnerRegisterPage> {
   bool scPassword = true;
   @override
   Widget build(BuildContext context) {
-      Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -54,7 +55,7 @@ class _OwnerRegisterPageState extends State<OwnerRegisterPage> {
             pushOff(context: context, name: user_base_page);
           } else if (state is AuthErrorState) {
             log(state.error);
-            snackBar(
+            showSnackBar(
               title: 'ত্রুটি',
               message: state.error,
               context: context,
@@ -233,13 +234,13 @@ class _OwnerRegisterPageState extends State<OwnerRegisterPage> {
                                             confirmPasswordController.text
                                                 .trim();
                                         if (name == '') {
-                                          snackBar(
+                                          showSnackBar(
                                             title: 'ত্রুটি',
                                             message: 'আপনার নাম লিখুন',
                                             context: context,
                                           );
                                         } else if (phoneNumber == '') {
-                                          snackBar(
+                                          showSnackBar(
                                             title: 'ত্রুটি',
                                             message:
                                                 'আপনার মোবাইল নাম্বার লিখুন',
@@ -247,20 +248,20 @@ class _OwnerRegisterPageState extends State<OwnerRegisterPage> {
                                           );
                                         } else if (password == '' &&
                                             password.length < 6) {
-                                          snackBar(
+                                          showSnackBar(
                                             title: 'ত্রুটি',
                                             message: 'পাসওয়ার্ড দিন',
                                             context: context,
                                           );
                                         } else if (confirmPassword == '') {
-                                          snackBar(
+                                          showSnackBar(
                                             title: 'ত্রুটি',
                                             message: 'পাসওয়ার্ড নিশ্চিন্ত করুন',
                                             context: context,
                                           );
                                         } else if (password !=
                                             confirmPassword) {
-                                          snackBar(
+                                          showSnackBar(
                                             title: 'ত্রুটি',
                                             message: 'পাসওয়ার্ড ভিন্ন হয়েছে ',
                                             context: context,
