@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/pages/onboarding/onboarding_widget.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/app_colors.dart';
+import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/strings.dart';
+import 'package:onboarding_animation/onboarding_animation.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -18,9 +19,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   final pageViewController = PageController(initialPage: 0);
   double currentIndex = 0;
   final images = [
-    'asset/images/house1.jpg',
-    'asset/images/house2.jpg',
-    'asset/images/house3.jpg',
+    house1,
+    house2,
+    house3,
   ];
 
   @override
@@ -37,17 +38,35 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          PageView.builder(
-            controller: pageViewController,
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              return OnBoardingWidget(
-                image: images[index],
-                description: onBoardingDescription[index],
-              );
-            },
+          // PageView.builder(
+          //   controller: pageViewController,
+          //   itemCount: 3,
+          //   itemBuilder: (context, index) {
+          //     return OnBoardingWidget(
+          //       image: images[index],
+          //       description: onBoardingDescription[index],
+          //     );
+          //   },
+          // ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: OnBoardingAnimation(
+              pages: List.generate(
+                  3,
+                  (index) => OnBoardingWidget(
+                        image: images[index],
+                        description: onBoardingDescription[index],
+                      )),
+              indicatorDotHeight: 10.0,
+              indicatorDotWidth: 10.0,
+              indicatorType: IndicatorType.expandingDots,
+              indicatorPosition: IndicatorPosition.bottomCenter,
+              indicatorActiveDotColor: Colors.orangeAccent.shade400,
+              indicatorInActiveDotColor: Colors.grey,
+            ),
           ),
           Positioned(
             left: size.width * 0.45,
@@ -65,23 +84,23 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: DotsIndicator(
-              position: currentIndex.toDouble(),
-              dotsCount: 3,
-              decorator: DotsDecorator(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.r)),
-                size: Size(50.w, 8.h),
-                color: Colors.grey,
-                activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.r)),
-                activeSize: Size(50.w, 8.h),
-                activeColor: Colors.yellow,
-              ),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: DotsIndicator(
+          //     position: currentIndex.toDouble(),
+          //     dotsCount: 3,
+          //     decorator: DotsDecorator(
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(15.r)),
+          //       size: Size(50.w, 8.h),
+          //       color: Colors.grey,
+          //       activeShape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(15.r)),
+          //       activeSize: Size(50.w, 8.h),
+          //       activeColor: Colors.yellow,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

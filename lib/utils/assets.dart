@@ -19,3 +19,6 @@ String get loading_image => 'asset/icons/loading.png';
 IconData get home => Icons.home_outlined;
 //images
 String get sliderHouse1 => 'asset/images/sliderhouse1.png';
+String get house1 => 'asset/images/house1.jpg';
+String get house2 => 'asset/images/house2.jpg';
+String get house3 => 'asset/images/house3.png';
