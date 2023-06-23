@@ -52,7 +52,7 @@ class _OwnerRegisterPageState extends State<OwnerRegisterPage> {
             storageUtils.saveNumber(mobileController.text.toString());
             storageUtils.saveName(nameController.text.trim.toString());
             storageUtils.saveRole(role);
-            pushOff(context: context, name: user_base_page);
+            pushOff(context: context, name: owner_base_page);
           } else if (state is AuthErrorState) {
             log(state.error);
             showSnackBar(

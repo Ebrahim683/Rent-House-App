@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,6 +35,24 @@ class _AddHousePageState extends State<AddHousePage> {
   final addressController = TextEditingController();
   final noticeController = TextEditingController();
   final statusController = TextEditingController();
+
+  CupertinoAlertDialog alertDialog = CupertinoAlertDialog(
+    content: SizedBox(
+      height: 200.h,
+      width: 300.w,
+      child: const Center(child: CircularProgressIndicator()),
+    ),
+    title: const Text('Compressing video...'),
+  );
+
+  viewDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => alertDialog,
+      barrierDismissible: false,
+    );
+  }
+
   int tag = 0;
   List<String> options = [
     'Family',
@@ -104,6 +123,7 @@ class _AddHousePageState extends State<AddHousePage> {
     );
     if (selectedVideo != null) {
       try {
+        viewDialog();
         MediaInfo? mediaInfo = await VideoCompress.compressVideo(
           selectedVideo.path,
           quality: VideoQuality.LowQuality,
@@ -117,6 +137,7 @@ class _AddHousePageState extends State<AddHousePage> {
       } catch (e) {
         log(e.toString());
       }
+      Navigator.of(context).pop('dialog');
     }
   }
 
