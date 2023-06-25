@@ -122,10 +122,10 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                   pinned: true,
                   leading: Padding(
                     padding: EdgeInsets.only(left: 10.w),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue.withOpacity(0.8),
-                      child: InkWell(
-                        onTap: () => pop(context: context),
+                    child: InkWell(
+                      onTap: () => pop(context: context),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue.withOpacity(0.8),
                         child: const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
@@ -136,14 +136,14 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                   actions: [
                     Padding(
                       padding: EdgeInsets.only(right: 10.w),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.blue.withOpacity(0.8),
-                        child: InkWell(
-                          onTap: () {
-                            makeCall(
-                                number:
-                                    widget.houseModel.ownerNumber.toString());
-                          },
+                      child: InkWell(
+                        onTap: () {
+                          makeCall(
+                              number:
+                                  widget.houseModel.ownerNumber.toString());
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Colors.blue.withOpacity(0.8),
                           child: const Icon(
                             Icons.call_outlined,
                             color: Colors.white,

@@ -15,6 +15,7 @@ String get menu => 'asset/icons/menu.png';
 String get avatar => 'asset/icons/avatar.png';
 String get broken_image => 'asset/icons/broken_image.png';
 String get loading_image => 'asset/icons/loading.png';
+String get filter_icon => 'asset/icons/filter_icon.png';
 //icons
 IconData get home => Icons.home_outlined;
 //images

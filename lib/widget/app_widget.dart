@@ -195,7 +195,7 @@ roundButton(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
         color: color ?? btnColor,
-        onPressed: onPressed,
+        onPressed: () => onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

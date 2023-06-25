@@ -11,20 +11,50 @@ class HouseSearchCubit extends Cubit<HouseSearchState> {
     _isAscending = value;
   }
 
-  bool getAscending() => _isAscending;
+  bool get getAscending => _isAscending;
 
-  searchHouse(List<HouseModel> list, String query) {
+  searchHouse(String query) {
     if (query == '') {
       emit(ErrorState('Please enter address'));
     } else {
-      getAscending() == true
-          ? list.sort(
+      emit(SearchHouseState(houseListModel));
+    }
+  }
+
+  sortHouse(String query) {
+    if (query == '') {
+      emit(ErrorState('Please enter address'));
+    } else {
+      getAscending == true
+          ? houseListModel.sort(
               (a, b) => a.fee!.compareTo(b.fee!),
             )
-          : list.sort(
+          : houseListModel.sort(
               (a, b) => b.fee!.compareTo(a.fee!),
             );
-      emit(SearchHouseState(list));
+      emit(SearchHouseState(houseListModel));
     }
+  }
+
+  filterHouse(String query, int low, int high) {
+    // if (low > high || low.toString() == '' || high.toString() == '') {
+    //   emit(ErrorState('Filtering not correct'));
+    // } else if (query == '') {
+    //   emit(ErrorState('Please enter address'));
+    // } else {
+    //   houseListModel
+    //       .where((element) => element.fee! >= low && element.fee! <= high)
+    //       .toList();
+    //   emit(SearchHouseState(houseListModel));
+    // }
+  if (low>high) {
+     emit(ErrorState('Filtering not correct'));
+  } else {
+      List<HouseModel> list = houseListModel
+          .where((element) => element.fee! >= low && element.fee! <= high)
+          .toList();
+      list.sort((a, b) => a.fee!.compareTo(b.fee!));
+      emit(SearchHouseState(list));
+  }
   }
 }
