@@ -22,6 +22,7 @@ class BookHouseRequestModel with _$BookHouseRequestModel {
     @JsonKey(name: 'user_number') String? userNumber,
     @JsonKey(name: 'house_id') int? houseId,
     @JsonKey(name: 'time') String? time,
+    @JsonKey(name: 'device_token') String? deviceToken,
   }) = _BookHouseRequestModel;
   factory BookHouseRequestModel.fromJson(Map<String, dynamic> json) =>
       _$BookHouseRequestModelFromJson(json);

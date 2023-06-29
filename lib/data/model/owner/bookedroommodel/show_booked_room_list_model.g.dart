@@ -46,6 +46,7 @@ _$_ShowBookedRoomModel _$$_ShowBookedRoomModelFromJson(
       address: json['address'] as String?,
       notice: json['notice'] as String?,
       status: json['status'] as String?,
+      deviceToken: json['device_token'] as String?,
     );
 
 Map<String, dynamic> _$$_ShowBookedRoomModelToJson(
@@ -70,4 +71,5 @@ Map<String, dynamic> _$$_ShowBookedRoomModelToJson(
       'address': instance.address,
       'notice': instance.notice,
       'status': instance.status,
+      'device_token': instance.deviceToken,
     };

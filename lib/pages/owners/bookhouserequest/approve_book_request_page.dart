@@ -13,6 +13,8 @@ import 'package:rent_house/utils/utils.dart';
 
 import '../../../data/model/housemodel/house_list_model.dart';
 import '../../../data/model/owner/bookhouserequestmodel/book_house_request_list_model.dart';
+import '../../../utils/notification_service.dart';
+import '../../../utils/storage_utils.dart';
 import '../../../widget/app_widget.dart';
 
 class ApproveBookRequestPage extends StatefulWidget {
@@ -25,6 +27,16 @@ class ApproveBookRequestPage extends StatefulWidget {
 }
 
 class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
+  String deviceToken = '';
+
+  @override
+  void initState() {
+    super.initState();
+    NotificationService.getPersonDeviceToken(
+            number: widget.bookedHouseRequestModel.userNumber.toString())
+        .then((value) => deviceToken = value);
+  }
+
   @override
   Widget build(BuildContext context) {
     onRefresh() async {
@@ -43,6 +55,10 @@ class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
               log(state.error);
               errorDialog(context: context, message: state.error);
             } else if (state is SuccessStateApprove) {
+              NotificationService.sentNotification(
+                  deviceToken: deviceToken,
+                  title: 'আবেদন এপ্রুভ',
+                  body: '${storageUtils.getName} আপনার আবেদন এপ্রুভ করেছেন');
               showSnackBar(
                   context: context,
                   title: 'সফল',

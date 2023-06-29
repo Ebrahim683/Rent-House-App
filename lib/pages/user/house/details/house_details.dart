@@ -13,9 +13,12 @@ import 'package:rent_house/state/cubit/bookhouse/book_house_cubit.dart';
 import 'package:rent_house/state/cubit/bookhouse/book_house_state.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/assets.dart';
+import 'package:rent_house/utils/notification_service.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
+
 import '../../../../routers/routes.dart';
+import '../../../../utils/storage_utils.dart';
 
 class HouseDetailsPage extends StatefulWidget {
   final HouseModel houseModel;
@@ -44,12 +47,28 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
     return imageList;
   }
 
+  String deviceToken = '';
+
+  // getOwnerDeviceToken() async {
+  //   await ProfileRepository.getProfile(
+  //           phoneNumber: widget.houseModel.ownerNumber.toString())
+  //       .then((value) {
+  //     ProfileModelList profileModelList = ProfileModelList.fromJson(value);
+  //     ProfileModel profileModel = profileModelList.profileModel![0];
+  //     deviceToken = profileModel.deviceToken.toString();
+  //     log(deviceToken);
+  //   });
+  // }
+
   @override
   void initState() {
     super.initState();
     getImageLink();
     String video = widget.houseModel.video.toString();
     videoUrl = video.toString();
+    NotificationService.getPersonDeviceToken(
+            number: widget.houseModel.ownerNumber.toString())
+        .then((value) => deviceToken = value);
   }
 
   @override
@@ -103,6 +122,10 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
             errorDialog(context: context, message: state.error);
             log(state.error);
           } else if (state is BookHouseSuccessState) {
+            NotificationService.sentNotification(
+                deviceToken: deviceToken,
+                title: 'ভাড়ার আবেদন',
+                body: '${storageUtils.getName} ভাড়ার জন্য আবেদন করেছেন');
             showSnackBar(
                 context: context,
                 title: 'সফল',
@@ -139,8 +162,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                       child: InkWell(
                         onTap: () {
                           makeCall(
-                              number:
-                                  widget.houseModel.ownerNumber.toString());
+                              number: widget.houseModel.ownerNumber.toString());
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.blue.withOpacity(0.8),
@@ -177,7 +199,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                                 ),
                                 errorWidget: (context, url, error) => Padding(
                                   padding: const EdgeInsets.all(15),
-                                  child: Image.asset(broken_image),
+                                  child: Image.asset(error_image),
                                 ),
                               ),
                             );

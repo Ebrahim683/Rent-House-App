@@ -39,6 +39,7 @@ class HouseModel with _$HouseModel {
     @JsonKey(name: 'can_book') String? canBook,
     @JsonKey(name: 'house_id') int? houseId,
     @JsonKey(name: 'time') String? time,
+    @JsonKey(name: 'device_token') String? deviceToken,
   }) = _HouseModel;
   factory HouseModel.fromJson(Map<String, dynamic> json) =>
       _$HouseModelFromJson(json);

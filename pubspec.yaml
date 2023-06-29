@@ -36,9 +36,10 @@ dependencies:
   chips_choice_null_safety: ^2.0.6
   custom_radio_grouped_button: ^2.1.2+2
   dropdown_button2: ^2.1.0
-  #alert dialog
+  #notify
   cool_alert: any
   loading_overlay: ^0.3.0
+  awesome_notifications: ^0.7.4+1
   #slider
   carousel_slider: ^4.2.1
   #payment
@@ -65,6 +66,9 @@ dependencies:
   appinio_video_player: any
   video_compress: 3.1.1
   json_annotation: ^4.8.1
+  #firebase
+  firebase_messaging: ^14.6.4
+  firebase_core: ^2.14.0
   
 
 dev_dependencies:

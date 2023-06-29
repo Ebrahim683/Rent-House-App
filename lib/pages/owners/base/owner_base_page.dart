@@ -10,6 +10,7 @@ import '../../../state/cubit/owner/bookhouserequest/book_house_list_cubit.dart';
 import '../../../state/cubit/owner/leaveroomrequestlist/leave_room_request_list_cubit.dart';
 import '../../../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.dart';
 import '../../../utils/app_colors.dart';
+import '../../../utils/notification_service.dart';
 import '../../../utils/strings.dart';
 import '../bookhouserequest/book_house_request_page.dart';
 import '../leaveroomrequestlist/leave_room_request_list_page.dart';
@@ -55,6 +56,8 @@ class _OwnerBasePageState extends State<OwnerBasePage> {
   void initState() {
     super.initState();
     log('owner base page');
+    NotificationService.requestPermission();
+    NotificationService.firebaseInit();
   }
 
   @override

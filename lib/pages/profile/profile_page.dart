@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -174,14 +175,30 @@ class _ProfilePageState extends State<ProfilePage> {
                                     borderRadius: BorderRadius.circular(100.r),
                                     child: Container(
                                       color: Colors.teal,
-                                      child: FadeInImage.assetNetwork(
-                                        image: profileModel[0]
-                                            .profilePic
-                                            .toString(),
-                                        imageScale: 1.0,
+                                      // child: FadeInImage.assetNetwork(
+                                      //   image: profileModel[0]
+                                      //       .profilePic
+                                      //       .toString(),
+                                      //   imageScale: 1.0,
+                                      //   fit: BoxFit.cover,
+                                      //   width: size.width,
+                                      //   placeholder: avatar,
+                                      // ),
+                                      child: CachedNetworkImage(
+                                        imageUrl: profileModel[0]
+                                                    .profilePic
+                                                    .toString() ==
+                                                ''
+                                            ? 'https://img.freepik.com/free-icon/user_318-159711.jpg'
+                                            : profileModel[0]
+                                                .profilePic
+                                                .toString(),
+                                        placeholder: (context, url) =>
+                                            Image.asset(avatar),
                                         fit: BoxFit.cover,
                                         width: size.width,
-                                        placeholder: avatar,
+                                        errorWidget: (context, url, error) =>
+                                            Image.asset(error_image),
                                       ),
                                     ),
                                   ),

@@ -7,14 +7,31 @@ import 'package:rent_house/data/model/owner/leaveroomlistmodel/leave_room_list_m
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_cubit.dart';
 import 'package:rent_house/state/cubit/owner/approve/approve_state.dart';
+import 'package:rent_house/utils/notification_service.dart';
+import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../../widget/app_widget.dart';
 
-class ApprovePage extends StatelessWidget {
+class ApprovePage extends StatefulWidget {
   final LeaveRoomModel leaveRoomModel;
   const ApprovePage({super.key, required this.leaveRoomModel});
+
+  @override
+  State<ApprovePage> createState() => _ApprovePageState();
+}
+
+class _ApprovePageState extends State<ApprovePage> {
+  String deviceToken = '';
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    NotificationService.getPersonDeviceToken(
+            number: widget.leaveRoomModel.userNumber.toString())
+        .then((value) => deviceToken = value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +73,11 @@ class ApprovePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(leaveRoomModel.userName.toString()),
+        title: Text(widget.leaveRoomModel.userName.toString()),
         actions: [
           IconButton(
             onPressed: () {
-              makeCall(number: leaveRoomModel.userNumber.toString());
+              makeCall(number: widget.leaveRoomModel.userNumber.toString());
             },
             icon: const Icon(Icons.call),
           ),
@@ -70,6 +87,12 @@ class ApprovePage extends StatelessWidget {
       body: BlocConsumer<ApproveCubit, ApproveState>(
         listener: (context, state) {
           if (state is ApproveSuccessState) {
+            NotificationService.sentNotification(
+              deviceToken: deviceToken,
+              title: 'আবেদন এপ্রুভ',
+              body:
+                  '${storageUtils.getName} আপনার রুম ছাড়ার আবেদন এপ্রুভ করেছেন',
+            );
             showSnackBar(
                 title: 'সফল',
                 context: context,
@@ -90,43 +113,43 @@ class ApprovePage extends StatelessWidget {
                 setInfo(
                   icon: Icons.person,
                   title: 'বাড়ীওয়ালার নামঃ ',
-                  description: '${leaveRoomModel.ownerName}',
+                  description: '${widget.leaveRoomModel.ownerName}',
                 ),
                 gap(),
                 setInfo(
                   icon: Icons.dialpad,
                   title: 'বাড়ীওয়ালার নাম্বার ',
-                  description: '${leaveRoomModel.ownerNumber}',
+                  description: '${widget.leaveRoomModel.ownerNumber}',
                 ),
                 gap(),
                 setInfo(
                   icon: Icons.person,
                   title: 'ভাড়াটিয়ার নামঃ ',
-                  description: '${leaveRoomModel.userName}',
+                  description: '${widget.leaveRoomModel.userName}',
                 ),
                 gap(),
                 setInfo(
                   icon: Icons.dialpad,
                   title: 'ভাড়াটিয়ার নাম্বার ',
-                  description: '${leaveRoomModel.userNumber}',
+                  description: '${widget.leaveRoomModel.userNumber}',
                 ),
                 gap(),
                 setInfo(
                   icon: Icons.style_outlined,
                   title: 'রুমের ধরনঃ ',
-                  description: '${leaveRoomModel.category}',
+                  description: '${widget.leaveRoomModel.category}',
                 ),
                 gap(),
                 setInfo(
                   icon: Icons.wallet,
                   title: 'মাসিক ভাড়াঃ',
-                  description: '${leaveRoomModel.fee} টাকা',
+                  description: '${widget.leaveRoomModel.fee} টাকা',
                 ),
                 gap(),
                 setInfo(
                   icon: Icons.location_on_outlined,
                   title: 'ঠিকানাঃ',
-                  description: leaveRoomModel.address.toString(),
+                  description: widget.leaveRoomModel.address.toString(),
                 ),
               ],
             ),
@@ -137,11 +160,11 @@ class ApprovePage extends StatelessWidget {
         backgroundColor: btnColor,
         onPressed: () {
           BlocProvider.of<ApproveCubit>(context).approve(
-            requestId: leaveRoomModel.requestId!,
-            houseId: leaveRoomModel.houseId!,
-            userName: leaveRoomModel.userName!,
-            userNumber: leaveRoomModel.userNumber!,
-            time: leaveRoomModel.time!,
+            requestId: widget.leaveRoomModel.requestId!,
+            houseId: widget.leaveRoomModel.houseId!,
+            userName: widget.leaveRoomModel.userName!,
+            userNumber: widget.leaveRoomModel.userNumber!,
+            time: widget.leaveRoomModel.time!,
           );
         },
         label: const Text(

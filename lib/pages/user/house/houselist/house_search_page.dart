@@ -169,7 +169,7 @@ class _HouseSearchPageState extends State<HouseSearchPage> {
           BlocBuilder<HouseSearchCubit, HouseSearchState>(
             builder: (context, state) {
               if (state is InitialState) {
-                return buildSuggestion(state.houseListModel);
+                return buildSuggestion();
               } else if (state is SearchHouseState) {
                 return searchListWidget(state.searchHouse);
               } else if (state is ErrorState) {
@@ -188,13 +188,15 @@ class _HouseSearchPageState extends State<HouseSearchPage> {
     );
   }
 
-  Widget buildSuggestion(List<HouseModel> list) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return HouseWidget(getHouseModel: list[index]);
-        },
+  Widget buildSuggestion() {
+    return const Center(
+      child: Text(
+        'Type address for search',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

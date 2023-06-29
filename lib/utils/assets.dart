@@ -13,7 +13,7 @@ String get industry => 'asset/icons/industry.png';
 String get flat => 'asset/icons/flat.png';
 String get menu => 'asset/icons/menu.png';
 String get avatar => 'asset/icons/avatar.png';
-String get broken_image => 'asset/icons/broken_image.png';
+String get error_image => 'asset/icons/broken_image.png';
 String get loading_image => 'asset/icons/loading.png';
 String get filter_icon => 'asset/icons/filter_icon.png';
 //icons

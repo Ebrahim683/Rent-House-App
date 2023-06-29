@@ -33,6 +33,7 @@ _$_BookHouseRequestModel _$$_BookHouseRequestModelFromJson(
       userNumber: json['user_number'] as String?,
       houseId: json['house_id'] as int?,
       time: json['time'] as String?,
+      deviceToken: json['device_token'] as String?,
     );
 
 Map<String, dynamic> _$$_BookHouseRequestModelToJson(
@@ -43,4 +44,5 @@ Map<String, dynamic> _$$_BookHouseRequestModelToJson(
       'user_number': instance.userNumber,
       'house_id': instance.houseId,
       'time': instance.time,
+      'device_token': instance.deviceToken,
     };

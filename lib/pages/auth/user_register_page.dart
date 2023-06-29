@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/auth_state.dart';
+import 'package:rent_house/utils/notification_service.dart';
 import 'package:rent_house/utils/utils.dart';
 
 import '../../utils/app_colors.dart';
@@ -29,9 +30,18 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  String deviceToken = '';
   String role = 'user';
   bool sPassword = true;
   bool scPassword = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    NotificationService.getDeviceToken().then((token) => deviceToken = token);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -50,7 +60,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
           if (state is AuthSuccessState) {
             log(state.commonModel.message.toString());
             storageUtils.saveNumber(mobileController.text.toString());
-            storageUtils.saveName(nameController.text.trim.toString());
+            storageUtils.saveName(nameController.text.trim().toString());
             storageUtils.saveRole(role);
             pushOff(context: context, name: user_base_page);
           } else if (state is AuthErrorState) {
@@ -276,6 +286,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                                 : email,
                                             password: password,
                                             role: role,
+                                            deviceToken: deviceToken,
                                           );
                                         }
                                       },

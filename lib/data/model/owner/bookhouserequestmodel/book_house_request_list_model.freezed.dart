@@ -251,6 +251,8 @@ mixin _$BookHouseRequestModel {
   int? get houseId => throw _privateConstructorUsedError;
   @JsonKey(name: 'time')
   String? get time => throw _privateConstructorUsedError;
+  @JsonKey(name: 'device_token')
+  String? get deviceToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -269,7 +271,8 @@ abstract class $BookHouseRequestModelCopyWith<$Res> {
       @JsonKey(name: 'user_name') String? userName,
       @JsonKey(name: 'user_number') String? userNumber,
       @JsonKey(name: 'house_id') int? houseId,
-      @JsonKey(name: 'time') String? time});
+      @JsonKey(name: 'time') String? time,
+      @JsonKey(name: 'device_token') String? deviceToken});
 }
 
 /// @nodoc
@@ -291,6 +294,7 @@ class _$BookHouseRequestModelCopyWithImpl<$Res,
     Object? userNumber = freezed,
     Object? houseId = freezed,
     Object? time = freezed,
+    Object? deviceToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -313,6 +317,10 @@ class _$BookHouseRequestModelCopyWithImpl<$Res,
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as String?,
+      deviceToken: freezed == deviceToken
+          ? _value.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -330,7 +338,8 @@ abstract class _$$_BookHouseRequestModelCopyWith<$Res>
       @JsonKey(name: 'user_name') String? userName,
       @JsonKey(name: 'user_number') String? userNumber,
       @JsonKey(name: 'house_id') int? houseId,
-      @JsonKey(name: 'time') String? time});
+      @JsonKey(name: 'time') String? time,
+      @JsonKey(name: 'device_token') String? deviceToken});
 }
 
 /// @nodoc
@@ -349,6 +358,7 @@ class __$$_BookHouseRequestModelCopyWithImpl<$Res>
     Object? userNumber = freezed,
     Object? houseId = freezed,
     Object? time = freezed,
+    Object? deviceToken = freezed,
   }) {
     return _then(_$_BookHouseRequestModel(
       id: freezed == id
@@ -371,6 +381,10 @@ class __$$_BookHouseRequestModelCopyWithImpl<$Res>
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as String?,
+      deviceToken: freezed == deviceToken
+          ? _value.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -383,7 +397,8 @@ class _$_BookHouseRequestModel implements _BookHouseRequestModel {
       @JsonKey(name: 'user_name') this.userName,
       @JsonKey(name: 'user_number') this.userNumber,
       @JsonKey(name: 'house_id') this.houseId,
-      @JsonKey(name: 'time') this.time});
+      @JsonKey(name: 'time') this.time,
+      @JsonKey(name: 'device_token') this.deviceToken});
 
   factory _$_BookHouseRequestModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookHouseRequestModelFromJson(json);
@@ -403,10 +418,13 @@ class _$_BookHouseRequestModel implements _BookHouseRequestModel {
   @override
   @JsonKey(name: 'time')
   final String? time;
+  @override
+  @JsonKey(name: 'device_token')
+  final String? deviceToken;
 
   @override
   String toString() {
-    return 'BookHouseRequestModel(id: $id, userName: $userName, userNumber: $userNumber, houseId: $houseId, time: $time)';
+    return 'BookHouseRequestModel(id: $id, userName: $userName, userNumber: $userNumber, houseId: $houseId, time: $time, deviceToken: $deviceToken)';
   }
 
   @override
@@ -420,13 +438,15 @@ class _$_BookHouseRequestModel implements _BookHouseRequestModel {
             (identical(other.userNumber, userNumber) ||
                 other.userNumber == userNumber) &&
             (identical(other.houseId, houseId) || other.houseId == houseId) &&
-            (identical(other.time, time) || other.time == time));
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.deviceToken, deviceToken) ||
+                other.deviceToken == deviceToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, userName, userNumber, houseId, time);
+  int get hashCode => Object.hash(
+      runtimeType, id, userName, userNumber, houseId, time, deviceToken);
 
   @JsonKey(ignore: true)
   @override
@@ -445,11 +465,13 @@ class _$_BookHouseRequestModel implements _BookHouseRequestModel {
 
 abstract class _BookHouseRequestModel implements BookHouseRequestModel {
   const factory _BookHouseRequestModel(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'user_name') final String? userName,
-      @JsonKey(name: 'user_number') final String? userNumber,
-      @JsonKey(name: 'house_id') final int? houseId,
-      @JsonKey(name: 'time') final String? time}) = _$_BookHouseRequestModel;
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'user_name') final String? userName,
+          @JsonKey(name: 'user_number') final String? userNumber,
+          @JsonKey(name: 'house_id') final int? houseId,
+          @JsonKey(name: 'time') final String? time,
+          @JsonKey(name: 'device_token') final String? deviceToken}) =
+      _$_BookHouseRequestModel;
 
   factory _BookHouseRequestModel.fromJson(Map<String, dynamic> json) =
       _$_BookHouseRequestModel.fromJson;
@@ -469,6 +491,9 @@ abstract class _BookHouseRequestModel implements BookHouseRequestModel {
   @override
   @JsonKey(name: 'time')
   String? get time;
+  @override
+  @JsonKey(name: 'device_token')
+  String? get deviceToken;
   @override
   @JsonKey(ignore: true)
   _$$_BookHouseRequestModelCopyWith<_$_BookHouseRequestModel> get copyWith =>

@@ -439,19 +439,20 @@ class _AddHousePageState extends State<AddHousePage> {
                 message: 'Add a video of your room');
           } else {
             BlocProvider.of<AddHouseCubit>(context).addHouse(
-                fee: fee,
-                advanceFee: advanceFee,
-                quantity: quantity,
-                electricityFee: electricityFee,
-                gasFee: gasFee,
-                othersFee: othersFee,
-                address: address,
-                notice: notice,
-                status: status,
-                canBook: canBook,
-                category: category == '' ? 'family' : category,
-                imageList: images!,
-                video: video!);
+              fee: fee,
+              advanceFee: advanceFee,
+              quantity: quantity,
+              electricityFee: electricityFee,
+              gasFee: gasFee,
+              othersFee: othersFee,
+              address: address,
+              notice: notice,
+              status: status,
+              canBook: canBook,
+              category: category == '' ? 'family' : category,
+              imageList: images!,
+              video: video!,
+            );
           }
         },
         child: const Icon(Icons.done, color: Colors.white),

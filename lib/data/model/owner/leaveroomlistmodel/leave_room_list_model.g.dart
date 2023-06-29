@@ -37,6 +37,7 @@ _$_LeaveRoomModel _$$_LeaveRoomModelFromJson(Map<String, dynamic> json) =>
       fee: json['fee'] as int?,
       address: json['address'] as String?,
       time: json['time'] as String?,
+      deviceToken: json['device_token'] as String?,
     );
 
 Map<String, dynamic> _$$_LeaveRoomModelToJson(_$_LeaveRoomModel instance) =>
@@ -52,4 +53,5 @@ Map<String, dynamic> _$$_LeaveRoomModelToJson(_$_LeaveRoomModel instance) =>
       'fee': instance.fee,
       'address': instance.address,
       'time': instance.time,
+      'device_token': instance.deviceToken,
     };

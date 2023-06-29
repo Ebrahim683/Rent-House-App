@@ -37,24 +37,14 @@ class HouseSearchCubit extends Cubit<HouseSearchState> {
   }
 
   filterHouse(String query, int low, int high) {
-    // if (low > high || low.toString() == '' || high.toString() == '') {
-    //   emit(ErrorState('Filtering not correct'));
-    // } else if (query == '') {
-    //   emit(ErrorState('Please enter address'));
-    // } else {
-    //   houseListModel
-    //       .where((element) => element.fee! >= low && element.fee! <= high)
-    //       .toList();
-    //   emit(SearchHouseState(houseListModel));
-    // }
-  if (low>high) {
-     emit(ErrorState('Filtering not correct'));
-  } else {
+    if (low > high) {
+      emit(ErrorState('Filtering not correct'));
+    } else {
       List<HouseModel> list = houseListModel
           .where((element) => element.fee! >= low && element.fee! <= high)
           .toList();
       list.sort((a, b) => a.fee!.compareTo(b.fee!));
       emit(SearchHouseState(list));
-  }
+    }
   }
 }

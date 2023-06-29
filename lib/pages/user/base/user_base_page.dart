@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rent_house/utils/notification_service.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 
 import '../../../routers/routes.dart';
@@ -40,6 +42,15 @@ class _UserBasePageState extends State<UserBasePage> {
   void initState() {
     super.initState();
     log('user base page');
+    AwesomeNotifications().isNotificationAllowed().then((value) {
+      if (!value) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+    NotificationService.getDeviceToken().then((value) {
+      log(value);
+    });
+    NotificationService.firebaseInit();
   }
 
   @override

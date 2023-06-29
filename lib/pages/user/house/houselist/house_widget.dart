@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
-import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
 import '../../../../data/model/housemodel/house_list_model.dart';
 import '../../../../utils/assets.dart';
@@ -74,7 +74,7 @@ class HouseWidget extends StatelessWidget {
                 ),
                 errorWidget: (context, url, error) => Padding(
                   padding: const EdgeInsets.all(15),
-                  child: Image.asset(broken_image),
+                  child: Image.asset(error_image),
                 ),
               ),
             ),

@@ -259,6 +259,8 @@ mixin _$BookedHouseModel {
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'notice')
   String? get notice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'device_token')
+  String? get deviceToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -288,7 +290,8 @@ abstract class $BookedHouseModelCopyWith<$Res> {
       @JsonKey(name: 'gas_fee') int? gasFee,
       @JsonKey(name: 'others_fee') int? othersFee,
       @JsonKey(name: 'address') String? address,
-      @JsonKey(name: 'notice') String? notice});
+      @JsonKey(name: 'notice') String? notice,
+      @JsonKey(name: 'device_token') String? deviceToken});
 }
 
 /// @nodoc
@@ -320,6 +323,7 @@ class _$BookedHouseModelCopyWithImpl<$Res, $Val extends BookedHouseModel>
     Object? othersFee = freezed,
     Object? address = freezed,
     Object? notice = freezed,
+    Object? deviceToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -386,6 +390,10 @@ class _$BookedHouseModelCopyWithImpl<$Res, $Val extends BookedHouseModel>
           ? _value.notice
           : notice // ignore: cast_nullable_to_non_nullable
               as String?,
+      deviceToken: freezed == deviceToken
+          ? _value.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -414,7 +422,8 @@ abstract class _$$_BookedHouseModelCopyWith<$Res>
       @JsonKey(name: 'gas_fee') int? gasFee,
       @JsonKey(name: 'others_fee') int? othersFee,
       @JsonKey(name: 'address') String? address,
-      @JsonKey(name: 'notice') String? notice});
+      @JsonKey(name: 'notice') String? notice,
+      @JsonKey(name: 'device_token') String? deviceToken});
 }
 
 /// @nodoc
@@ -444,6 +453,7 @@ class __$$_BookedHouseModelCopyWithImpl<$Res>
     Object? othersFee = freezed,
     Object? address = freezed,
     Object? notice = freezed,
+    Object? deviceToken = freezed,
   }) {
     return _then(_$_BookedHouseModel(
       id: freezed == id
@@ -510,6 +520,10 @@ class __$$_BookedHouseModelCopyWithImpl<$Res>
           ? _value.notice
           : notice // ignore: cast_nullable_to_non_nullable
               as String?,
+      deviceToken: freezed == deviceToken
+          ? _value.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -533,7 +547,8 @@ class _$_BookedHouseModel implements _BookedHouseModel {
       @JsonKey(name: 'gas_fee') this.gasFee,
       @JsonKey(name: 'others_fee') this.othersFee,
       @JsonKey(name: 'address') this.address,
-      @JsonKey(name: 'notice') this.notice});
+      @JsonKey(name: 'notice') this.notice,
+      @JsonKey(name: 'device_token') this.deviceToken});
 
   factory _$_BookedHouseModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookedHouseModelFromJson(json);
@@ -586,10 +601,13 @@ class _$_BookedHouseModel implements _BookedHouseModel {
   @override
   @JsonKey(name: 'notice')
   final String? notice;
+  @override
+  @JsonKey(name: 'device_token')
+  final String? deviceToken;
 
   @override
   String toString() {
-    return 'BookedHouseModel(id: $id, userId: $userId, payment: $payment, ownerId: $ownerId, ownerName: $ownerName, ownerNumber: $ownerNumber, image: $image, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice)';
+    return 'BookedHouseModel(id: $id, userId: $userId, payment: $payment, ownerId: $ownerId, ownerName: $ownerName, ownerNumber: $ownerNumber, image: $image, category: $category, fee: $fee, quantity: $quantity, advanceFee: $advanceFee, electricityFee: $electricityFee, gasFee: $gasFee, othersFee: $othersFee, address: $address, notice: $notice, deviceToken: $deviceToken)';
   }
 
   @override
@@ -619,7 +637,9 @@ class _$_BookedHouseModel implements _BookedHouseModel {
             (identical(other.othersFee, othersFee) ||
                 other.othersFee == othersFee) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.notice, notice) || other.notice == notice));
+            (identical(other.notice, notice) || other.notice == notice) &&
+            (identical(other.deviceToken, deviceToken) ||
+                other.deviceToken == deviceToken));
   }
 
   @JsonKey(ignore: true)
@@ -641,7 +661,8 @@ class _$_BookedHouseModel implements _BookedHouseModel {
       gasFee,
       othersFee,
       address,
-      notice);
+      notice,
+      deviceToken);
 
   @JsonKey(ignore: true)
   @override
@@ -659,22 +680,24 @@ class _$_BookedHouseModel implements _BookedHouseModel {
 
 abstract class _BookedHouseModel implements BookedHouseModel {
   const factory _BookedHouseModel(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'user_id') final int? userId,
-      @JsonKey(name: 'payment') final String? payment,
-      @JsonKey(name: 'owner_id') final int? ownerId,
-      @JsonKey(name: 'owner_name') final String? ownerName,
-      @JsonKey(name: 'owner_number') final String? ownerNumber,
-      @JsonKey(name: 'image') final String? image,
-      @JsonKey(name: 'category') final String? category,
-      @JsonKey(name: 'fee') final int? fee,
-      @JsonKey(name: 'quantity') final String? quantity,
-      @JsonKey(name: 'advance_fee') final int? advanceFee,
-      @JsonKey(name: 'electricity_fee') final int? electricityFee,
-      @JsonKey(name: 'gas_fee') final int? gasFee,
-      @JsonKey(name: 'others_fee') final int? othersFee,
-      @JsonKey(name: 'address') final String? address,
-      @JsonKey(name: 'notice') final String? notice}) = _$_BookedHouseModel;
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'user_id') final int? userId,
+          @JsonKey(name: 'payment') final String? payment,
+          @JsonKey(name: 'owner_id') final int? ownerId,
+          @JsonKey(name: 'owner_name') final String? ownerName,
+          @JsonKey(name: 'owner_number') final String? ownerNumber,
+          @JsonKey(name: 'image') final String? image,
+          @JsonKey(name: 'category') final String? category,
+          @JsonKey(name: 'fee') final int? fee,
+          @JsonKey(name: 'quantity') final String? quantity,
+          @JsonKey(name: 'advance_fee') final int? advanceFee,
+          @JsonKey(name: 'electricity_fee') final int? electricityFee,
+          @JsonKey(name: 'gas_fee') final int? gasFee,
+          @JsonKey(name: 'others_fee') final int? othersFee,
+          @JsonKey(name: 'address') final String? address,
+          @JsonKey(name: 'notice') final String? notice,
+          @JsonKey(name: 'device_token') final String? deviceToken}) =
+      _$_BookedHouseModel;
 
   factory _BookedHouseModel.fromJson(Map<String, dynamic> json) =
       _$_BookedHouseModel.fromJson;
@@ -727,6 +750,9 @@ abstract class _BookedHouseModel implements BookedHouseModel {
   @override
   @JsonKey(name: 'notice')
   String? get notice;
+  @override
+  @JsonKey(name: 'device_token')
+  String? get deviceToken;
   @override
   @JsonKey(ignore: true)
   _$$_BookedHouseModelCopyWith<_$_BookedHouseModel> get copyWith =>

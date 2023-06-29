@@ -33,6 +33,7 @@ class BookedHouseModel with _$BookedHouseModel {
     @JsonKey(name: 'others_fee') int? othersFee,
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'notice') String? notice,
+    @JsonKey(name: 'device_token') String? deviceToken,
   }) = _BookedHouseModel;
   factory BookedHouseModel.fromJson(Map<String, dynamic> json) =>
       _$BookedHouseModelFromJson(json);

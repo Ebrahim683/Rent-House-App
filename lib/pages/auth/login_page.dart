@@ -9,6 +9,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/state/cubit/authcubit/login_cubit.dart';
 import 'package:rent_house/state/cubit/authcubit/login_state.dart';
+import 'package:rent_house/utils/notification_service.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 
@@ -27,6 +28,15 @@ class _LoginPageState extends State<LoginPage> {
   bool sPassword = true;
   final mobileController = TextEditingController();
   final passwordController = TextEditingController();
+  String deviceToken = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    NotificationService.getDeviceToken().then((value) => deviceToken = value);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -194,8 +204,10 @@ class _LoginPageState extends State<LoginPage> {
                                           } else {
                                             BlocProvider.of<LoginCubit>(context)
                                                 .login(
-                                                    phoneNumber: phoneNumber,
-                                                    password: password);
+                                              phoneNumber: phoneNumber,
+                                              password: password,
+                                              deviceToken: deviceToken,
+                                            );
                                           }
                                         },
                                         child: Row(

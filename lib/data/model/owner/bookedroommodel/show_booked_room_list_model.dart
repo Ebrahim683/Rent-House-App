@@ -22,42 +22,25 @@ class ShowBookedRoomModel with _$ShowBookedRoomModel {
   const factory ShowBookedRoomModel({
      
     @JsonKey(name: 'id') int? id,
-     
     @JsonKey(name: 'owner_id') int? ownerId,
-     
     @JsonKey(name: 'house_id') int? houseId,
-     
     @JsonKey(name: 'user_id') int? userId,
-     
     @JsonKey(name: 'owner_name') String? ownerName,
-     
     @JsonKey(name: 'owner_number') String? ownerNumber,
-     
     @JsonKey(name: 'user_name') String? userName,
-     
     @JsonKey(name: 'user_number') String? userNumber,
-     
     @JsonKey(name: 'image') String? image,
-     
     @JsonKey(name: 'category') String? category,
-     
     @JsonKey(name: 'fee') int? fee,
-     
     @JsonKey(name: 'quantity') String? quantity,
-     
     @JsonKey(name: 'advance_fee') int? advanceFee,
-     
     @JsonKey(name: 'electricity_fee') int? electricityFee,
-     
     @JsonKey(name: 'gas_fee') int? gas_fee,
-     
     @JsonKey(name: 'others_fee') int? othersFee,
-     
     @JsonKey(name: 'address') String? address,
-     
     @JsonKey(name: 'notice') String? notice,
-     
     @JsonKey(name: 'status') String? status,
+    @JsonKey(name: 'device_token') String? deviceToken,
   }) = _ShowBookedRoomModel;
   factory ShowBookedRoomModel.fromJson(Map<String, dynamic> json) =>
       _$ShowBookedRoomModelFromJson(json);

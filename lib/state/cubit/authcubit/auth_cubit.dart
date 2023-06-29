@@ -6,20 +6,24 @@ import 'package:rent_house/data/network/repository/auth_repository.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitialState());
 
-  register(
-      {required String name,
-      required String phoneNumber,
-      required String email,
-      required String password,
-      required String role}) async {
+  register({
+    required String name,
+    required String phoneNumber,
+    required String email,
+    required String password,
+    required String role,
+    required String deviceToken,
+  }) async {
     emit(AuthLoadingState());
     try {
       final result = await AuthRepository.registerUser(
-          name: name,
-          phoneNumber: phoneNumber,
-          email: email,
-          password: password,
-          role: role);
+        name: name,
+        phoneNumber: phoneNumber,
+        email: email,
+        password: password,
+        role: role,
+        deviceToken: deviceToken,
+      );
       CommonModel commonModel = CommonModel.fromJson(result);
       emit(AuthSuccessState(commonModel));
     } catch (e) {

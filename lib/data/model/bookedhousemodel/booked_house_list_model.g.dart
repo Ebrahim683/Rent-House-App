@@ -42,6 +42,7 @@ _$_BookedHouseModel _$$_BookedHouseModelFromJson(Map<String, dynamic> json) =>
       othersFee: json['others_fee'] as int?,
       address: json['address'] as String?,
       notice: json['notice'] as String?,
+      deviceToken: json['device_token'] as String?,
     );
 
 Map<String, dynamic> _$$_BookedHouseModelToJson(_$_BookedHouseModel instance) =>
@@ -62,4 +63,5 @@ Map<String, dynamic> _$$_BookedHouseModelToJson(_$_BookedHouseModel instance) =>
       'others_fee': instance.othersFee,
       'address': instance.address,
       'notice': instance.notice,
+      'device_token': instance.deviceToken,
     };
