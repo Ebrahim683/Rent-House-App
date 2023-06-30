@@ -10,23 +10,6 @@ import 'package:rent_house/utils/storage_utils.dart';
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-/*   await AwesomeNotifications().initialize(
-    null,
-    [
-      NotificationChannel(
-        channelKey: channelKey,
-        channelName: channelName,
-        channelDescription: channelDescription,
-        importance: NotificationImportance.Max,
-        playSound: true,
-        onlyAlertOnce: true,
-        criticalAlerts: true,
-        enableVibration: true,
-        enableLights: true,
-      )
-    ],
-    debug: true,
-  ); */
   NotificationService.notificationInit();
   await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([

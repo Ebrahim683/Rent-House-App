@@ -28,7 +28,6 @@ class NotificationService {
           channelShowBadge: true,
         )
       ],
-      debug: true,
     );
   }
 

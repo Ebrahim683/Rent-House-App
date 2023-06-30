@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rent_house/utils/assets.dart';
+import 'package:rent_house/widget/app_widget.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -8,96 +11,121 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  var controller = TextEditingController();
-  List<int> dataList = [
-    100,
-    110,
-    105,
-    101,
-    128,
-    241,
-    263,
-    402,
-    315,
-    267,
-    125,
-    306,
-  ];
-  List<int> filteredList = [];
-  String query = '';
-
-  @override
-  void initState() {
-    super.initState();
-    filteredList.clear();
-    filteredList.addAll(dataList);
+  singleItem({
+    required IconData icon,
+    required String title,
+    required String description,
+  }) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Icon(icon),
+              gap(w: 10.w),
+              Text(title),
+            ],
+          ),
+          gap(h: 10.h),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              description,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.sp,
+              ),
+            ),
+          ),
+          const Divider(color: Colors.teal),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            TextField(
-              controller: controller,
-              onChanged: (value) {
-                setState(() {
-                  query = value;
-                });
-              },
+      body: Column(
+        children: [
+          Container(
+            height: size.height * 0.45,
+            width: size.width,
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 123, 70, 209),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(45.r),
+                bottomRight: Radius.circular(45.r),
+              ),
             ),
-            Row(
+            child: Stack(
               children: [
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      filteredList.sort(
-                        (a, b) => a.compareTo(b),
-                      );
-                    });
-                  },
-                  icon: Icon(Icons.arrow_downward),
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      filteredList.sort(
-                        (a, b) => b.compareTo(a),
-                      );
-                    });
-                  },
-                  icon: Icon(Icons.arrow_upward),
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      filteredList = dataList
-                          .where((element) => element > 100 && element < 200)
-                          .toList();
-                    });
-                  },
-                  icon: Icon(Icons.filter_list_outlined),
+                Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 90.r,
+                        child: Image.asset(avatar),
+                      ),
+                      gap(),
+                      Text(
+                        'Md.Ebrahim Rahman',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      gap(h: 10.h),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 5.h, horizontal: 15.w),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1.w, color: Colors.white),
+                          borderRadius: BorderRadius.circular(15.r),
+                        ),
+                        child: const Text(
+                          'User',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: filteredList.length,
-                itemBuilder: (context, index) {
-                  // return filteredList[index].toString().contains(query)
-                  //     ? ListTile(
-                  //         title: Text(filteredList[index].toString()),
-                  //       )
-                  //     : Container();
-                  return ListTile(
-                    title: Text(filteredList[index].toString()),
-                  );
-                },
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  gap(),
+                  singleItem(
+                    icon: Icons.person_outline,
+                    title: 'Name',
+                    description: 'Md.Ebrahim Rahman',
+                  ),
+                  singleItem(
+                    icon: Icons.email_outlined,
+                    title: 'Email',
+                    description: 'ebrahim@gmail.com',
+                  ),
+                  singleItem(
+                    icon: Icons.call_outlined,
+                    title: 'Phone number',
+                    description: '01234567890',
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
