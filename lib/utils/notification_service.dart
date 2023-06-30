@@ -28,6 +28,7 @@ class NotificationService {
           channelShowBadge: true,
         )
       ],
+      debug: false,
     );
   }
 
@@ -95,6 +96,7 @@ class NotificationService {
         },
       ),
     );
+    print('notification sent');
   }
 
   static Future<String> getPersonDeviceToken({required String number}) async {

@@ -208,12 +208,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-                                gap(),
+                                gap(h: 10.h),
                                 Text(
                                   profileModel[0].name.toString(),
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16.sp,
+                                    fontSize: 20.sp,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
