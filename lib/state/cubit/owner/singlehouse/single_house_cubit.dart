@@ -22,11 +22,11 @@ class SingleHouseCubit extends Cubit<SingleHouseState> {
     }
   }
 
-  approve({required int houseId, required String userNumber}) async {
+  approve({required String time, required String userNumber}) async {
     emit(LoadingState());
     try {
       final result = await GetSingleHouseRepository.approve(
-          houseId: houseId, userNumber: userNumber);
+          time: time, userNumber: userNumber);
       CommonModel commonModel = CommonModel.fromJson(result);
       emit(SuccessStateApprove(commonModel));
     } catch (e) {

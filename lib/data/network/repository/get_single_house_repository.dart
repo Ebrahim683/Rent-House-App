@@ -14,13 +14,13 @@ class GetSingleHouseRepository {
 
   static Future<dynamic> approve({
     required String userNumber,
-    required int houseId,
+    required String time,
   }) async {
     Map<String, dynamic> map = {
       'phone_number': userNumber,
       'owner_name': storageUtils.getName!.toLowerCase(),
       'owner_number': storageUtils.getNumber,
-      'house_id': houseId,
+      'time': time,
     };
     return await ApiService.postApi(path: approveRoomRequest, body: map);
   }

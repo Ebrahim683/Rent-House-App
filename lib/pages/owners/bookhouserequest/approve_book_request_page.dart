@@ -141,7 +141,7 @@ class _ApproveBookRequestPageState extends State<ApproveBookRequestPage> {
         backgroundColor: Colors.orange[300],
         onPressed: () {
           BlocProvider.of<SingleHouseCubit>(context).approve(
-              houseId: widget.bookedHouseRequestModel.houseId!,
+              time: widget.bookedHouseRequestModel.time!,
               userNumber: widget.bookedHouseRequestModel.userNumber.toString());
         },
         label: const Text(
