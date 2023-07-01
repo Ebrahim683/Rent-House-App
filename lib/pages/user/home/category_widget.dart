@@ -4,56 +4,51 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
 class CategoryWidget extends StatelessWidget {
-  final String animation;
+  final String image;
   final String title;
+  final color;
 
-  const CategoryWidget(
-      {super.key, required this.animation, required this.title});
+  const CategoryWidget({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, house_list_page, arguments: {
-          'category': title.toLowerCase().replaceAll(' ', ''),
-          'title': title.toString(),
-        });
-      },
-      child: Card(
-        margin: const EdgeInsets.all(10),
-        elevation: 15,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.r),
-          side: BorderSide(color: Colors.black, width: 0.5.w),
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, house_list_page, arguments: {
+            'category': title.toLowerCase().replaceAll(' ', ''),
+            'title': title.toString(),
+          });
+        },
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(25.r),
+            borderRadius: BorderRadius.circular(30.r),
+            color: color[200],
           ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                gap(h: 5.h),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Image.asset(
-                      animation,
-                    ),
-                  ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AspectRatio(
+                aspectRatio: 1 / 0.7,
+                child: Image.asset(
+                  image,
                 ),
-                gap(h: 3.h),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              gap(),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w400,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

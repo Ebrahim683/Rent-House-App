@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:rent_house/pages/user/home/category_widget.dart';
 import 'package:rent_house/utils/storage_utils.dart';
@@ -82,15 +83,30 @@ class _HomePageState extends State<HomePage> {
       'Flat',
     ];
 
+    final colors = [
+      Colors.red,
+      Colors.orange,
+      Colors.blue,
+      Colors.pink,
+      Colors.green,
+      Colors.amber,
+      Colors.cyan,
+      Colors.yellow,
+      Colors.purple,
+      Colors.lime,
+    ];
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: GridView.count(
         crossAxisCount: 2,
+        childAspectRatio: 1 / 1.5,
         children: List.generate(
           titles.length,
           (index) => CategoryWidget(
             title: titles[index],
-            animation: images[index],
+            image: images[index],
+            color: colors[index],
           ),
         ),
       ),

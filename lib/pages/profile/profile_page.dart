@@ -76,8 +76,9 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 123, 70, 209),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Builder(
           builder: (context) => IconButton(
@@ -154,7 +155,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   children: [
                     Container(
-                      height: size.height * 0.4,
+                      height: size.height * 0.5,
                       width: size.width,
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 123, 70, 209),
