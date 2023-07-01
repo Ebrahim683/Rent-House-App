@@ -25,6 +25,7 @@ class StorageUtils {
 
   saveOnboarding() {
     sharedPreference?.setString('onBoarding', 'onBoarding');
+    log('onboarding save');
   }
 
   String? get getNumber => sharedPreference?.getString('number') ?? '';

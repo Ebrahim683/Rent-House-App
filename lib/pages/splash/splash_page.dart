@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/routers/routes.dart';
@@ -31,7 +32,17 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+      SystemUiOverlay.bottom,
+    ]);
     checkLoggedIn();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
   }
 
   @override
@@ -40,13 +51,7 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color.fromARGB(255, 245, 145, 98),
-                Color.fromARGB(255, 41, 67, 136),
-              ]),
+          color: Color(0xffFF6004),
         ),
         child: Stack(
           children: [
