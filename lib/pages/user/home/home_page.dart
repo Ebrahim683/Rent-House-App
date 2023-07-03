@@ -1,10 +1,17 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rent_house/data/network/repository/profile_repository.dart';
 import 'package:rent_house/pages/user/home/category_widget.dart';
+import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/storage_utils.dart';
+import 'package:rent_house/utils/strings.dart';
 
+import '../../../data/model/profile/profile_model_list.dart';
 import '../../../utils/assets.dart';
+import '../../../widget/app_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,49 +45,50 @@ class _HomePageState extends State<HomePage> {
   //   StorageUtils.saveLocation(address);
   // }
 
+  String profilePic = '';
+
+  getUserProfile() async {
+    try {
+      final result = await ProfileRepository.getProfile(
+          phoneNumber: storageUtils.getNumber.toString());
+      ProfileModelList profileModelList = ProfileModelList.fromJson(result);
+      List<ProfileModel>? profileModel = profileModelList.profileModel!;
+      setState(() {
+        profilePic = profileModel[0].profilePic!;
+      });
+      log(profilePic);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-
+    getUserProfile();
     log(storageUtils.getName.toString() + storageUtils.getNumber.toString());
   }
 
   @override
   Widget build(BuildContext context) {
-    // 'asset/icons/family.png',
-    // 'asset/icons/bachelor.png',
-    // 'asset/icons/male.png',
-    // 'asset/icons/female.png',
-    // 'asset/icons/sublet.png',
-    // 'asset/icons/office.png',
-    // 'asset/icons/shop.png',
-    // 'asset/icons/garage.png',
-    // 'asset/icons/industry.png',
-    // 'asset/icons/flat.png',
+    Size size = MediaQuery.sizeOf(context);
+
     final images = [
       family,
       bachelor,
-      male,
-      female,
-      sublet,
       office,
+      industry,
       shop,
       garage,
-      industry,
-      flat,
     ];
 
     final titles = [
-      'Family',
-      'Bachelor',
-      'Male',
-      'Female',
-      'Sublet',
-      'Office',
-      'Shop',
-      'Garage',
-      'Industry',
-      'Flat',
+      familyTitle,
+      bachelorTitle,
+      officeTitle,
+      factoryTitle,
+      shopTitle,
+      garageTitle,
     ];
 
     final colors = [
@@ -90,25 +98,81 @@ class _HomePageState extends State<HomePage> {
       Colors.pink,
       Colors.green,
       Colors.amber,
-      Colors.cyan,
-      Colors.yellow,
-      Colors.purple,
-      Colors.lime,
     ];
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 1 / 1.5,
-        children: List.generate(
-          titles.length,
-          (index) => CategoryWidget(
-            title: titles[index],
-            image: images[index],
-            color: colors[index],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: size.width,
+            height: size.height * 0.7,
+            decoration: BoxDecoration(
+              color: userHomeScreenTopScreenColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30.r),
+                bottomRight: Radius.circular(30.r),
+              ),
+            ),
+            child: Column(
+              children: [
+                gap(h: 80.h),
+                SizedBox(
+                  height: 150.h,
+                  width: 150.w,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100.r),
+                    child: Container(
+                      color: Colors.teal,
+                      child: CachedNetworkImage(
+                        imageUrl: profilePic == ''
+                            ? 'https://img.freepik.com/free-icon/user_318-159711.jpg'
+                            : profilePic,
+                        placeholder: (context, url) => Image.asset(avatar),
+                        fit: BoxFit.cover,
+                        width: size.width,
+                        errorWidget: (context, url, error) =>
+                            Image.asset(error_image),
+                      ),
+                    ),
+                  ),
+                ),
+                gap(h: 10.h),
+                Container(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1.w, color: Colors.black),
+                    borderRadius: BorderRadius.circular(15.r),
+                  ),
+                  child: Text(
+                    storageUtils.getName.toString(),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+                gap(h: 10.h),
+                Flexible(
+                  child: GridView.count(
+                    padding: EdgeInsets.zero,
+                    crossAxisCount: 3,
+                    children: List.generate(
+                      6,
+                      (index) => CategoryWidget(
+                        title: titles[index],
+                        image: images[index],
+                        color: colors[index],
+                        index: index,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

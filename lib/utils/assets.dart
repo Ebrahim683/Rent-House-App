@@ -23,3 +23,4 @@ String get sliderHouse1 => 'asset/images/sliderhouse1.png';
 String get house1 => 'asset/images/house1.jpg';
 String get house2 => 'asset/images/house2.jpg';
 String get house3 => 'asset/images/house3.png';
+String get splash_bg => 'asset/images/splash_page.png';

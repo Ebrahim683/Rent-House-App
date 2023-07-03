@@ -185,7 +185,7 @@ ownerHouseListLoadingWidget(BuildContext context) {
 }
 
 roundButton(
-    {required String title, required Function() onPressed, Color? color}) {
+    {required String title, required Function() onClick, Color? color}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.w),
     child: SizedBox(
@@ -195,7 +195,9 @@ roundButton(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
         color: color ?? btnColor,
-        onPressed: () => onPressed,
+        onPressed: () {
+          onClick();
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

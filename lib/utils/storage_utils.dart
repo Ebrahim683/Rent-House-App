@@ -38,7 +38,9 @@ class StorageUtils {
 
   static logOut() {
     log('logout');
-    sharedPreference?.clear();
+    sharedPreference?.remove('name');
+    sharedPreference?.remove('number');
+    sharedPreference?.remove('role');
   }
 }
 

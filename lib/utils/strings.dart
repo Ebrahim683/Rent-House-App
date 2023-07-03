@@ -11,3 +11,14 @@ String get channelName => 'rent_house_channel';
 String get channelDescription => 'this is rent house from infinityalgostation';
 String get headersKey =>
     'AAAAno0X-tE:APA91bERtljdo9FrxjDYR0gv-AYRgk6VQinxR3vackBiSQU-VRAs8ZxsX_uOBJpyJ5m1UuEUkjXQC5HLD_TGynznDJq2Guj8W7YE08QHWLOSPFlmbexgjqUxyG83gNWXrZNF09IKS02B';
+
+String get familyTitle => 'ফ্যামিলি';
+String get bachelorTitle => 'ব্যাচেলর';
+String get officeTitle => 'অফিস';
+String get factoryTitle => 'ফ্যাক্টরি';
+String get shopTitle => 'দোকান';
+String get garageTitle => 'গ্যারেজ';
+String get subletTitle => 'সাবলেট';
+String get flatTitle => 'ফ্লাট';
+String get maleTitle => 'পুরুষ';
+String get femaleTitle => 'মহিলা';

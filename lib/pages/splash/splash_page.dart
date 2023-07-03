@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/routers/routes.dart';
+import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/strings.dart';
@@ -47,42 +47,43 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.sizeOf(context);
     return Scaffold(
+      backgroundColor: splashScreenColor,
       body: Container(
-        decoration: const BoxDecoration(
-          color: Color(0xffFF6004),
+        height: size.height,
+        width: size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(splash_bg),
+            fit: BoxFit.fill,
+          ),
         ),
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: Image.asset(
-                family,
-                height: size.height * 0.4,
-                width: size.width * 0.4,
-              )
-                  .animate()
-                  .rotate(duration: 1500.ms)
-                  .then()
-                  .shimmer(duration: 1500.ms),
-            ),
-            Positioned(
-              bottom: 20.h,
-              left: size.width * 0.25,
-              child: Text(
-                appName,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  wordSpacing: 15,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-                  .animate()
-                  .fadeIn(duration: 1500.ms)
-                  .then()
-                  .shimmer(duration: 1500.ms),
-            ),
+            Image.asset(
+              family,
+              height: size.height * 0.4,
+              width: size.width * 0.4,
+            )
+                .animate()
+                .fadeIn(duration: 1500.ms)
+                .then()
+                .shimmer(duration: 1500.ms),
+            Text(
+              appName,
+              style: const TextStyle(
+                color: Colors.white,
+                wordSpacing: 15,
+                fontSize: 40,
+                fontWeight: FontWeight.w400,
+              ),
+            )
+                .animate()
+                .fadeIn(duration: 1500.ms)
+                .then()
+                .shimmer(duration: 1500.ms, color: Colors.grey),
           ],
         ),
       ),

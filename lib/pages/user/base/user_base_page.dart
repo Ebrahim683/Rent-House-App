@@ -56,6 +56,8 @@ class _UserBasePageState extends State<UserBasePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         leading: Builder(
           builder: (context) {
             return InkWell(
@@ -92,6 +94,8 @@ class _UserBasePageState extends State<UserBasePage> {
           ),
         ],
       ),
+      extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: true,
       body: _pages[currentIndex],
       drawer: Drawer(
         backgroundColor: bgColor,
