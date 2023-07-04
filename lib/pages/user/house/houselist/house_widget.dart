@@ -15,32 +15,45 @@ class HouseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Row setInfo({
+    Widget setInfo({
       required IconData icon,
-      required String text,
+      required String title,
+      required String desc,
     }) {
-      return Row(
-        children: [
-          CircleAvatar(
-            radius: 15.r,
-            backgroundColor: Colors.black,
-            child: Icon(
+      return Padding(
+        padding: EdgeInsets.symmetric(vertical: 5.h),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
               icon,
-              color: Colors.white,
-            ),
-          ),
-          gap(w: 5.w),
-          Text(
-            text,
-            softWrap: false,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
               color: Colors.black,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.bold,
+              size: 20,
             ),
-          ),
-        ],
+            gap(w: 5.w),
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            gap(w: 5.w),
+            Expanded(
+              child: Text(
+                desc,
+                softWrap: false,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       );
     }
 
@@ -51,7 +64,7 @@ class HouseWidget extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-        height: 300.h,
+        height: size.height * 0.3,
         width: size.width,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -78,68 +91,59 @@ class HouseWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 10,
-              left: 8,
-              right: 8,
-              child: GlassContainer(
-                border: Border.all(color: Colors.teal),
-                borderRadius: BorderRadius.circular(20.r),
-                blur: 8,
-                height: 180.h,
-                width: size.width,
-                color: const Color(0xFFEBAF00).withOpacity(0.3),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        getHouseModel.ownerName.toString(),
-                        style: TextStyle(color: Colors.black, fontSize: 18.sp),
-                      ),
-                      gap(h: 8.h),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 15.r,
-                            backgroundColor: Colors.black,
-                            child: const Icon(
-                              Icons.location_on_outlined,
-                              color: Colors.white,
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: size.width * 0.4,
+                  top: 30.h,
+                  bottom: 30.h,
+                  right: 10.w,
+                ),
+                child: GlassContainer(
+                  border: Border.all(color: Colors.teal),
+                  borderRadius: BorderRadius.circular(20.r),
+                  blur: 8,
+                  height: size.height,
+                  width: size.width,
+                  color:
+                      const Color.fromARGB(255, 218, 214, 204).withOpacity(0.3),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            setInfo(
+                              icon: Icons.person,
+                              title: 'মালিকঃ',
+                              desc: getHouseModel.ownerName.toString(),
                             ),
-                          ),
-                          gap(w: 10.w),
-                          Expanded(
-                            child: Text(
-                              getHouseModel.address.toString(),
-                              softWrap: false,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(color: Colors.black),
+                            setInfo(
+                              icon: Icons.location_on,
+                              title: 'ঠিকানাঃ',
+                              desc: getHouseModel.address.toString(),
                             ),
-                          ),
-                        ],
+                            setInfo(
+                              icon: Icons.call,
+                              title: 'ফোনঃ',
+                              desc: getHouseModel.ownerNumber.toString(),
+                            ),
+                            setInfo(
+                              icon: Icons.money_sharp,
+                              title: 'মাসিক ভাড়াঃ',
+                              desc: getHouseModel.fee.toString(),
+                            ),
+                            setInfo(
+                              icon: Icons.timer_rounded,
+                              title: 'অবস্থাঃ',
+                              desc: getHouseModel.status.toString(),
+                            ),
+                          ],
+                        ),
                       ),
-                      gap(h: 30.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          setInfo(
-                            icon: Icons.wallet,
-                            text: '${getHouseModel.fee} টাকা',
-                          ),
-                          setInfo(
-                            icon: Icons.add_home_work_outlined,
-                            text: getHouseModel.quantity.toString(),
-                          ),
-                          setInfo(
-                            icon: Icons.hourglass_bottom_rounded,
-                            text: getHouseModel.status.toString(),
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/routers/routes.dart';
+import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/strings.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
@@ -37,6 +38,13 @@ class CategoryWidget extends StatelessWidget {
       garageTitle,
     ];
 
+    final categoryImage1 = [
+      office,
+      industry,
+      shop,
+      garage,
+    ];
+
     final category2 = [
       'Family',
       'Sublet',
@@ -49,6 +57,12 @@ class CategoryWidget extends StatelessWidget {
       flatTitle,
     ];
 
+    final categoryImage2 = [
+      family,
+      sublet,
+      flat,
+    ];
+
     final category3 = [
       'Male',
       'Female',
@@ -59,15 +73,21 @@ class CategoryWidget extends StatelessWidget {
       femaleTitle,
     ];
 
-    pushByCategory(String category, String pageTitle) {
+    final categoryImage3 = [
+      male,
+      female,
+    ];
+
+    pushByCategory(String category, String pageTitle, String categoryImage) {
       log(category);
       Navigator.pushNamed(context, house_list_page, arguments: {
         'category': category.toLowerCase().replaceAll(' ', ''),
         'title': pageTitle.toString(),
+        'image': categoryImage,
       });
     }
 
-    viewBottomSheet(category, title) {
+    viewBottomSheet(category, title, categoryImage) {
       showModalBottomSheet(
         showDragHandle: true,
         useSafeArea: true,
@@ -89,8 +109,11 @@ class CategoryWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: roundButton(
                     title: title[index],
-                    onClick: () =>
-                        pushByCategory(category[index], title[index]),
+                    onClick: () {
+                      Navigator.of(context).pop();
+                      pushByCategory(
+                          category[index], title[index], categoryImage[index]);
+                    },
                   ),
                 ),
               ),
@@ -103,14 +126,15 @@ class CategoryWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (index == 0) {
-          viewBottomSheet(category2, title2);
+          viewBottomSheet(category2, title2, categoryImage2);
         } else if (index == 1) {
-          viewBottomSheet(category3, title3);
+          viewBottomSheet(category3, title3, categoryImage3);
         } else {
           log(category1[index - 2]);
           Navigator.pushNamed(context, house_list_page, arguments: {
             'category': category1[index - 2].toLowerCase().replaceAll(' ', ''),
             'title': title1[index - 2].toString(),
+            'image': categoryImage1[index - 2].toString(),
           });
         }
       },

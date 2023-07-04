@@ -160,6 +160,7 @@ class Routers {
             child: HouseListPage(
               category: arguments['category'],
               title: arguments['title'],
+              image: arguments['image'],
             ),
           ),
         );
