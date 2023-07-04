@@ -13,16 +13,16 @@ class TestPage extends StatefulWidget {
 
 class _TestPageState extends State<TestPage> {
   final images = [
-    family,
-    bachelor,
-    male,
-    female,
-    sublet,
-    office,
-    shop,
-    garage,
-    industry,
-    flat,
+    family_icon,
+    bachelor_icon,
+    male_icon,
+    female_icon,
+    sublet_icon,
+    office_icon,
+    shop_icon,
+    garage_icon,
+    industry_icon,
+    flat_icon,
   ];
 
   final titles = [
@@ -74,7 +74,7 @@ class _TestPageState extends State<TestPage> {
                 gap(h: 80.h),
                 CircleAvatar(
                   radius: 80.r,
-                  child: Image.asset(avatar),
+                  child: Image.asset(avatar_icon),
                 ),
                 gap(h: 10.h),
                 Container(

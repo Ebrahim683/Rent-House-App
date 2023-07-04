@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/profile/profile_cubit.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
+
 import '../../state/cubit/profile/profile_state.dart';
 import '../../utils/assets.dart';
 
@@ -199,7 +201,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   .profilePic
                                                   .toString(),
                                           placeholder: (context, url) =>
-                                              Image.asset(avatar),
+                                              Image.asset(avatar_icon),
                                           fit: BoxFit.cover,
                                           width: size.width,
                                           errorWidget: (context, url, error) =>

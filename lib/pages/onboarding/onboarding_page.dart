@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:onboarding_animation/onboarding_animation.dart';
 import 'package:rent_house/pages/onboarding/onboarding_widget.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/strings.dart';
-import 'package:onboarding_animation/onboarding_animation.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -19,9 +19,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   final pageViewController = PageController(initialPage: 0);
   double currentIndex = 0;
   final images = [
-    house1,
-    house2,
-    house3,
+    img_house1,
+    img_house2,
+    img_house3,
   ];
 
   @override

@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/notification_service.dart';
 import 'package:rent_house/utils/storage_utils.dart';
+
 import '../../../routers/routes.dart';
 import '../../../state/cubit/profile/profile_cubit.dart';
 import '../../../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
@@ -70,7 +72,7 @@ class _UserBasePageState extends State<UserBasePage> {
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.all(5),
                 child: Image.asset(
-                  menu,
+                  menu_icon,
                   color: Colors.black,
                   height: 30.h,
                   width: 30.h,

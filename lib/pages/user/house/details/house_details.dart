@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/housemodel/house_list_model.dart';
@@ -30,8 +31,8 @@ class HouseDetailsPage extends StatefulWidget {
 
 class _HouseDetailsPageState extends State<HouseDetailsPage> {
   late String videoUrl;
-  int dotPos = 0;
   List<String> imageList = [];
+
   List<String> getImageLink() {
     try {
       imageList = [
@@ -49,17 +50,6 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
 
   String deviceToken = '';
 
-  // getOwnerDeviceToken() async {
-  //   await ProfileRepository.getProfile(
-  //           phoneNumber: widget.houseModel.ownerNumber.toString())
-  //       .then((value) {
-  //     ProfileModelList profileModelList = ProfileModelList.fromJson(value);
-  //     ProfileModel profileModel = profileModelList.profileModel![0];
-  //     deviceToken = profileModel.deviceToken.toString();
-  //     log(deviceToken);
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -74,24 +64,23 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Widget setInfo({
-      required IconData icon,
+
+    Widget setInfoHeader({
+      required String icon,
       required String title,
       required String description,
       double? textSize,
     }) {
       return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.h),
+        margin: EdgeInsets.symmetric(horizontal: 20.w),
         padding: EdgeInsets.symmetric(vertical: 5.w, horizontal: 10.h),
-        decoration: BoxDecoration(
-          color: transparentColor,
-          borderRadius: BorderRadius.circular(20.r),
-        ),
+        color: transparentColor,
         child: Row(
           children: [
-            Icon(
+            Image.asset(
               icon,
-              color: Colors.black,
+              height: 20.h,
+              width: 20.w,
             ),
             gap(w: 15.w),
             Text(
@@ -109,6 +98,47 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
               overflow: TextOverflow.ellipsis,
               style:
                   TextStyle(color: Colors.black, fontSize: textSize ?? 15.sp),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget setInfo({
+      required String icon,
+      required String title,
+      required String description,
+      double? textSize,
+    }) {
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(vertical: 15.w, horizontal: 5.h),
+        color: Colors.white.withOpacity(0.6),
+        child: Row(
+          children: [
+            Image.asset(
+              icon,
+              height: 25.h,
+              width: 25.w,
+            ),
+            gap(w: 15.w),
+            Text(
+              title,
+              softWrap: false,
+              style:
+                  TextStyle(fontSize: textSize ?? 16.sp, color: Colors.black),
+              overflow: TextOverflow.ellipsis,
+            ),
+            gap(w: 5.w),
+            Expanded(
+              child: Text(
+                description,
+                softWrap: false,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    TextStyle(color: Colors.black, fontSize: textSize ?? 15.sp),
+              ),
             ),
           ],
         ),
@@ -143,19 +173,6 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
               slivers: [
                 SliverAppBar(
                   pinned: true,
-                  leading: Padding(
-                    padding: EdgeInsets.only(left: 10.w),
-                    child: InkWell(
-                      onTap: () => pop(context: context),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.blue.withOpacity(0.8),
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
                   actions: [
                     Padding(
                       padding: EdgeInsets.only(right: 10.w),
@@ -164,174 +181,148 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                           makeCall(
                               number: widget.houseModel.ownerNumber.toString());
                         },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.blue.withOpacity(0.8),
-                          child: const Icon(
-                            Icons.call_outlined,
-                            color: Colors.white,
-                          ),
+                        child: const Icon(
+                          Icons.call,
+                          color: Colors.black,
                         ),
                       ),
                     )
                   ],
                   toolbarHeight: 60,
                   elevation: 0,
-                  expandedHeight: size.height * 0.5,
+                  expandedHeight: size.height * 0.25,
                   backgroundColor: transparentColor,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Column(
+                    background: Stack(
                       children: [
-                        gap(h: 25.h),
                         CarouselSlider.builder(
                           itemCount: imageList.length,
                           itemBuilder: (context, index, realIndex) {
-                            return ClipRRect(
-                              borderRadius: BorderRadius.circular(30.r),
-                              child: CachedNetworkImage(
-                                imageUrl: imageList[index],
-                                fit: BoxFit.cover,
-                                progressIndicatorBuilder:
-                                    (context, url, progress) => Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Image.asset(loading_image),
-                                  ),
-                                ),
-                                errorWidget: (context, url, error) => Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: Image.asset(error_image),
-                                ),
+                            return CachedNetworkImage(
+                              imageUrl: imageList[index],
+                              fit: BoxFit.cover,
+                              width: size.width,
+                              progressIndicatorBuilder:
+                                  (context, url, progress) => Center(
+                                child: Image.asset(loading_image),
+                              ),
+                              errorWidget: (context, url, error) => Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Image.asset(error_image),
                               ),
                             );
                           },
                           options: CarouselOptions(
                             autoPlay: true,
                             autoPlayCurve: Curves.easeIn,
-                            height: size.height * 0.40,
-                            enlargeCenterPage: true,
-                            // onPageChanged: (index, reason) {
-                            //   setState(() {
-                            //     dotPos = index;
-                            //   });
-                            // },
+                            height: size.height * 0.3,
+                            viewportFraction: 1,
                           ),
                         ),
-                        // gap(h: 5.h),
-                        // DotsIndicator(
-                        //   dotsCount: 6,
-                        //   position: dotPos.toDouble(),
-                        // ),
+                        Positioned(
+                          bottom: 10.h,
+                          left: 10.w,
+                          child: GlassContainer(
+                            blur: 5,
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: Colors.white.withOpacity(0.4),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 3.h),
+                              child: setInfoHeader(
+                                icon: person_icon,
+                                title: 'মালিকঃ ',
+                                description:
+                                    widget.houseModel.ownerName.toString(),
+                                textSize: 18.sp,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
                 SliverToBoxAdapter(
                   child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40.r),
-                            topRight: Radius.circular(40.r))),
+                    color: transparentColor,
                     child: Column(
                       children: [
-                        gap(h: 5.h),
+                        gap(h: 20.h),
                         setInfo(
-                          icon: Icons.wallet,
-                          title: 'মাসিক ভাড়াঃ',
-                          description: '${widget.houseModel.fee} টাকা',
-                          textSize: 25.sp,
+                          icon: location_icon,
+                          title: 'ঠিকানাঃ',
+                          description: widget.houseModel.address.toString(),
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25.w),
-                            child: Text(widget.houseModel.address.toString()),
-                          ),
-                        ),
-                        gap(),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20.h),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 5.w, horizontal: 10.h),
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 190, 196, 195),
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                          child: Text(
-                            widget.houseModel.notice.toString(),
-                            style: const TextStyle(color: Colors.black),
-                          ),
-                        ),
-                        gap(),
+                        gap(h: 10.h),
                         setInfo(
-                          icon: Icons.person_outline,
-                          title: 'বাড়িওয়ালার নামঃ',
-                          description: widget.houseModel.ownerName.toString(),
-                        ),
-                        gap(),
-                        setInfo(
-                          icon: Icons.dialpad_outlined,
-                          title: 'বাড়িওয়ালার নাম্বারঃ',
+                          icon: call_icon,
+                          title: 'ফোনঃ',
                           description: widget.houseModel.ownerNumber.toString(),
                         ),
-                        gap(),
+                        gap(h: 10.h),
                         setInfo(
-                          icon: Icons.add_home_work_outlined,
-                          title: 'রুম সংখাঃ',
-                          description: widget.houseModel.quantity.toString(),
+                          icon: fee_icon,
+                          title: 'ভাড়াঃ',
+                          description: widget.houseModel.fee.toString(),
                         ),
-                        gap(),
+                        gap(h: 10.h),
                         setInfo(
-                          icon: Icons.currency_exchange,
+                          icon: advance_fee_icon,
                           title: 'অগ্রিমঃ',
-                          description: '${widget.houseModel.advanceFee} টাকা',
+                          description: widget.houseModel.advanceFee.toString(),
                         ),
-
-                        gap(),
+                        gap(h: 10.h),
                         setInfo(
-                          icon: Icons.gas_meter_outlined,
+                          icon: gas_fee_icon,
                           title: 'গ্যাস বিলঃ',
-                          description: '${widget.houseModel.gasFee} টাকা',
+                          description: widget.houseModel.gasFee.toString(),
                         ),
-                        gap(),
+                        gap(h: 10.h),
                         setInfo(
-                          icon: Icons.money,
-                          title: 'অন্যান্য বিলঃ',
-                          description: '${widget.houseModel.othersFee} টাকা',
-                        ),
-                        gap(),
-                        setInfo(
-                          icon: Icons.electrical_services_outlined,
+                          icon: electricity_fee_icon,
                           title: 'বিদ্যুৎ বিলঃ',
                           description:
-                              '${widget.houseModel.electricityFee} টাকা',
+                              widget.houseModel.electricityFee.toString(),
                         ),
-                        gap(),
-                        // SizedBox(
-                        //   height: 130.h,
-                        //   width: size.width,
-                        //   child: ListView.builder(
-                        //     shrinkWrap: true,
-                        //     itemCount: imageList.length,
-                        //     scrollDirection: Axis.horizontal,
-                        //     itemBuilder: (context, index) {
-                        //       return Padding(
-                        //         padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        //         child: ClipRRect(
-                        //           borderRadius: BorderRadius.circular(25.r),
-                        //           child: FadeInImage.assetNetwork(
-                        //             image: imageList[index].toString(),
-                        //             imageScale: 1.0,
-                        //             fit: BoxFit.cover,
-                        //             width: size.width * 0.5,
-                        //             placeholder:
-                        //                 'asset/images/sliderhouse1.png',
-                        //           ),
-                        //         ),
-                        //       );
-                        //     },
-                        //   ),
-                        // ),
-                        // gap(),
+                        gap(h: 10.h),
+                        setInfo(
+                          icon: others_fee_icon,
+                          title: 'অন্যান্য বিলঃ',
+                          description: widget.houseModel.othersFee.toString(),
+                        ),
+                        gap(h: 10.h),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20.w),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 15.w, horizontal: 5.h),
+                          color: Colors.white.withOpacity(0.6),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('ভাড়ার'),
+                                  gap(w: 5.w),
+                                  Image.asset(
+                                    notice_icon,
+                                    height: 30.h,
+                                    width: 30.w,
+                                  ),
+                                  gap(w: 5.w),
+                                  const Text('নোটিশ'),
+                                ],
+                              ),
+                              gap(),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                child:
+                                    Text(widget.houseModel.notice.toString()),
+                              ),
+                            ],
+                          ),
+                        ),
+                        gap(h: 20.h),
                         SizedBox(
                           width: 300.w,
                           child: CupertinoButton(

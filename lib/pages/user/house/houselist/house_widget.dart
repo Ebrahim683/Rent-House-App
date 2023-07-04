@@ -16,7 +16,7 @@ class HouseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     Widget setInfo({
-      required IconData icon,
+      required String icon,
       required String title,
       required String desc,
     }) {
@@ -25,10 +25,11 @@ class HouseWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
+            Image.asset(
               icon,
               color: Colors.black,
-              size: 20,
+              height: 20,
+              width: 20,
             ),
             gap(w: 5.w),
             Text(
@@ -116,27 +117,27 @@ class HouseWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             setInfo(
-                              icon: Icons.person,
+                              icon: person_icon,
                               title: 'মালিকঃ',
                               desc: getHouseModel.ownerName.toString(),
                             ),
                             setInfo(
-                              icon: Icons.location_on,
+                              icon: location_icon,
                               title: 'ঠিকানাঃ',
                               desc: getHouseModel.address.toString(),
                             ),
                             setInfo(
-                              icon: Icons.call,
+                              icon: call_icon,
                               title: 'ফোনঃ',
                               desc: getHouseModel.ownerNumber.toString(),
                             ),
                             setInfo(
-                              icon: Icons.money_sharp,
-                              title: 'মাসিক ভাড়াঃ',
+                              icon: fee_icon,
+                              title: 'ভাড়াঃ',
                               desc: getHouseModel.fee.toString(),
                             ),
                             setInfo(
-                              icon: Icons.timer_rounded,
+                              icon: status_icon,
                               title: 'অবস্থাঃ',
                               desc: getHouseModel.status.toString(),
                             ),

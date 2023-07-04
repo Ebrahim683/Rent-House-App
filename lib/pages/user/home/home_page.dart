@@ -74,12 +74,12 @@ class _HomePageState extends State<HomePage> {
     Size size = MediaQuery.sizeOf(context);
 
     final images = [
-      family,
-      bachelor,
-      office,
-      industry,
-      shop,
-      garage,
+      family_icon,
+      bachelor_icon,
+      office_icon,
+      industry_icon,
+      shop_icon,
+      garage_icon,
     ];
 
     final titles = [
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                         imageUrl: profilePic == ''
                             ? 'https://img.freepik.com/free-icon/user_318-159711.jpg'
                             : profilePic,
-                        placeholder: (context, url) => Image.asset(avatar),
+                        placeholder: (context, url) => Image.asset(avatar_icon),
                         fit: BoxFit.cover,
                         width: size.width,
                         errorWidget: (context, url, error) =>

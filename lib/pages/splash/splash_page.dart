@@ -55,7 +55,7 @@ class _SplashPageState extends State<SplashPage> {
         width: size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(splash_bg),
+            image: AssetImage(img_splash_bg),
             fit: BoxFit.fill,
           ),
         ),
@@ -63,7 +63,7 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              family,
+              family_icon,
               height: size.height * 0.4,
               width: size.width * 0.4,
             )

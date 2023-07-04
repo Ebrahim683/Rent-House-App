@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rent_house/routers/routes.dart';
@@ -39,10 +40,10 @@ class CategoryWidget extends StatelessWidget {
     ];
 
     final categoryImage1 = [
-      office,
-      industry,
-      shop,
-      garage,
+      office_icon,
+      industry_icon,
+      shop_icon,
+      garage_icon,
     ];
 
     final category2 = [
@@ -58,9 +59,9 @@ class CategoryWidget extends StatelessWidget {
     ];
 
     final categoryImage2 = [
-      family,
-      sublet,
-      flat,
+      family_icon,
+      sublet_icon,
+      flat_icon,
     ];
 
     final category3 = [
@@ -74,8 +75,8 @@ class CategoryWidget extends StatelessWidget {
     ];
 
     final categoryImage3 = [
-      male,
-      female,
+      male_icon,
+      female_icon,
     ];
 
     pushByCategory(String category, String pageTitle, String categoryImage) {
