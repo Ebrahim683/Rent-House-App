@@ -33,7 +33,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    NotificationService.getDeviceToken().then((value) => deviceToken = value);
+    NotificationService.getDeviceToken().then((value) {
+      deviceToken = value;
+      log('deviceToken: $deviceToken');
+    });
   }
 
   @override

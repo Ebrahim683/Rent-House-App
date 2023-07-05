@@ -19,12 +19,12 @@ String get person_icon => 'asset/icons/person.png';
 String get fee_icon => 'asset/icons/fee.png';
 String get electricity_fee_icon => 'asset/icons/electricity.png';
 String get gas_fee_icon => 'asset/icons/gas.png';
-String get others_fee_icon => 'asset/icons/filter_icon.png';
+String get others_fee_icon => 'asset/icons/others_fee.png';
 String get quantity_icon => 'asset/icons/filter_icon.png';
-String get status_icon => 'asset/icons/filter_icon.png';
+String get status_icon => 'asset/icons/status.png';
 String get location_icon => 'asset/icons/home_location.png';
 String get call_icon => 'asset/icons/call_icon.png';
-String get advance_fee_icon => 'asset/icons/filter_icon.png';
+String get advance_fee_icon => 'asset/icons/advance_fee.png';
 String get notice_icon => 'asset/icons/notes.png';
 
 //images
