@@ -37,7 +37,6 @@ class _OwnerRegisterPageState extends State<OwnerRegisterPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     NotificationService.getDeviceToken().then((token) => deviceToken = token);
   }
@@ -61,7 +60,9 @@ class _OwnerRegisterPageState extends State<OwnerRegisterPage> {
             log(state.commonModel.message.toString());
             storageUtils.saveNumber(mobileController.text.toString());
             storageUtils.saveName(nameController.text.trim().toString());
+            storageUtils.saveEmail(emailController.text.trim().toString());
             storageUtils.saveRole(role);
+            storageUtils.saveProfilePic('');
             pushOff(context: context, name: owner_base_page);
           } else if (state is AuthErrorState) {
             log(state.error);

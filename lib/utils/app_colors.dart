@@ -7,4 +7,4 @@ Color? get favColor => Colors.deepOrange[300];
 Color? get bottomNavColor => const Color.fromRGBO(190, 239, 126, 1);
 Color? get transparentColor => Colors.white.withAlpha(0);
 Color? get splashScreenColor => Colors.yellow;
-Color? get userHomeScreenTopScreenColor => Colors.yellow;
+Color? get userBackgroundColor => Colors.yellow;

@@ -26,12 +26,16 @@ _$_LoginDetails _$$_LoginDetailsFromJson(Map<String, dynamic> json) =>
     _$_LoginDetails(
       phoneNumber: json['phone_number'] as String?,
       name: json['name'] as String?,
+      email: json['email'] as String?,
       role: json['role'] as String?,
+      profilePic: json['profile_pic'] as String?,
     );
 
 Map<String, dynamic> _$$_LoginDetailsToJson(_$_LoginDetails instance) =>
     <String, dynamic>{
       'phone_number': instance.phoneNumber,
       'name': instance.name,
+      'email': instance.email,
       'role': instance.role,
+      'profile_pic': instance.profilePic,
     };

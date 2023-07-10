@@ -11,6 +11,7 @@ import 'package:lottie/lottie.dart';
 import 'package:rent_house/data/model/profile/profile_model_list.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/profile/profile_cubit.dart';
+import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/utils.dart';
 import 'package:rent_house/widget/app_widget.dart';
 
@@ -151,6 +152,10 @@ class _ProfilePageState extends State<ProfilePage> {
               );
             } else {
               List<ProfileModel> profileModel = profileModelList.profileModel!;
+              StorageUtils.clearProfilePic();
+              storageUtils.saveProfilePic(
+                profileModel[0].profilePic.toString(),
+              );
               return LoadingOverlay(
                 isLoading: state is LoadingState ? true : false,
                 progressIndicator: Lottie.asset('asset/animations/timer.json'),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -6,6 +8,9 @@ import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/strings.dart';
+
+import '../../data/model/profile/profile_model_list.dart';
+import '../../data/network/repository/profile_repository.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -16,33 +21,44 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   checkLoggedIn() {
-    Future.delayed(const Duration(seconds: 4), () {
-      if (storageUtils.getRole == 'user') {
-        pushOff(context: context, name: user_base_page);
-      } else if (storageUtils.getRole == 'owner') {
-        pushOff(context: context, name: owner_base_page);
-      } else if (storageUtils.getOnBoarding == '') {
-        pushOff(context: context, name: onboarding_page);
-      } else {
-        pushOff(context: context, name: login_page);
-      }
-    });
+    Future.delayed(
+      const Duration(seconds: 4),
+      () {
+        if (storageUtils.getRole == 'user') {
+          getUserProfile();
+          pushOff(context: context, name: user_base_page);
+        } else if (storageUtils.getRole == 'owner') {
+          getUserProfile();
+          pushOff(context: context, name: owner_base_page);
+        } else if (storageUtils.getOnBoarding == '') {
+          pushOff(context: context, name: onboarding_page);
+        } else {
+          pushOff(context: context, name: login_page);
+        }
+      },
+    );
+  }
+
+  getUserProfile() async {
+    try {
+      final result = await ProfileRepository.getProfile(
+          phoneNumber: storageUtils.getNumber.toString());
+      ProfileModelList profileModelList = ProfileModelList.fromJson(result);
+      List<ProfileModel>? profileModel = profileModelList.profileModel!;
+      StorageUtils.clearProfilePic();
+      storageUtils.saveProfilePic(
+        profileModel[0].profilePic.toString(),
+      );
+      log(profileModel[0].profilePic.toString());
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
-      SystemUiOverlay.bottom,
-    ]);
     checkLoggedIn();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
   }
 
   @override

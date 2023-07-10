@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 //asset icons
 String get bachelor_icon => 'asset/icons/bachelor.png';
 String get family_icon => 'asset/icons/family.png';
@@ -26,9 +28,9 @@ String get location_icon => 'asset/icons/home_location.png';
 String get call_icon => 'asset/icons/call_icon.png';
 String get advance_fee_icon => 'asset/icons/advance_fee.png';
 String get notice_icon => 'asset/icons/notes.png';
+String get booked_house_list_icon => 'asset/icons/booked_house_list.png';
 
 //images
-String get img_sliderHouse1 => 'asset/images/sliderhouse1.png';
 String get img_house1 => 'asset/images/house1.jpg';
 String get img_house2 => 'asset/images/house2.jpg';
 String get img_house3 => 'asset/images/house3.png';

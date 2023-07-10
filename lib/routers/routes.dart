@@ -43,6 +43,8 @@ import '../state/cubit/owner/showownerbookedhouse/show_owner_booked_house_cubit.
 import '../state/cubit/owner/updatehouse/update_house_cubit.dart';
 import '../state/cubit/showbookedhouse/show_booked_house_cubit.dart';
 
+// ignore_for_file: non_constant_identifier_names
+
 String get test_page => '/test_page';
 String get onboarding_page => '/onboarding_page';
 String get splash_page => '/splash_page';

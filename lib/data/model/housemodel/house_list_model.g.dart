@@ -46,7 +46,6 @@ _$_HouseModel _$$_HouseModelFromJson(Map<String, dynamic> json) =>
       canBook: json['can_book'] as String?,
       houseId: json['house_id'] as int?,
       time: json['time'] as String?,
-      deviceToken: json['device_token'] as String?,
     );
 
 Map<String, dynamic> _$$_HouseModelToJson(_$_HouseModel instance) =>
@@ -73,5 +72,4 @@ Map<String, dynamic> _$$_HouseModelToJson(_$_HouseModel instance) =>
       'can_book': instance.canBook,
       'house_id': instance.houseId,
       'time': instance.time,
-      'device_token': instance.deviceToken,
     };

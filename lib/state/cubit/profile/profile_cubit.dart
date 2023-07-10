@@ -36,4 +36,5 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ErrorState(e.toString()));
     }
   }
+
 }

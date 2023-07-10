@@ -3,13 +3,10 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rent_house/data/network/repository/profile_repository.dart';
 import 'package:rent_house/pages/user/home/category_widget.dart';
 import 'package:rent_house/utils/app_colors.dart';
 import 'package:rent_house/utils/storage_utils.dart';
 import 'package:rent_house/utils/strings.dart';
-
-import '../../../data/model/profile/profile_model_list.dart';
 import '../../../utils/assets.dart';
 import '../../../widget/app_widget.dart';
 
@@ -45,27 +42,9 @@ class _HomePageState extends State<HomePage> {
   //   StorageUtils.saveLocation(address);
   // }
 
-  String profilePic = '';
-
-  getUserProfile() async {
-    try {
-      final result = await ProfileRepository.getProfile(
-          phoneNumber: storageUtils.getNumber.toString());
-      ProfileModelList profileModelList = ProfileModelList.fromJson(result);
-      List<ProfileModel>? profileModel = profileModelList.profileModel!;
-      setState(() {
-        profilePic = profileModel[0].profilePic!;
-      });
-      log(profilePic);
-    } catch (e) {
-      log(e.toString());
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    getUserProfile();
     log(storageUtils.getName.toString() + storageUtils.getNumber.toString());
   }
 
@@ -102,13 +81,14 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: size.width,
             height: size.height * 0.7,
             decoration: BoxDecoration(
-              color: userHomeScreenTopScreenColor,
+              color: userBackgroundColor,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30.r),
                 bottomRight: Radius.circular(30.r),
@@ -125,9 +105,9 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       color: Colors.teal,
                       child: CachedNetworkImage(
-                        imageUrl: profilePic == ''
+                        imageUrl: storageUtils.getProfilePic == ''
                             ? 'https://img.freepik.com/free-icon/user_318-159711.jpg'
-                            : profilePic,
+                            : storageUtils.getProfilePic.toString(),
                         placeholder: (context, url) => Image.asset(avatar_icon),
                         fit: BoxFit.cover,
                         width: size.width,

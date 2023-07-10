@@ -19,8 +19,17 @@ class StorageUtils {
     sharedPreference?.setString('name', name);
   }
 
+  saveEmail(String email) {
+    log('email saved');
+    sharedPreference?.setString('email', email);
+  }
+
   saveRole(String role) {
     sharedPreference?.setString('role', role);
+  }
+
+  saveProfilePic(String pic) {
+    sharedPreference?.setString('pic', pic);
   }
 
   saveOnboarding() {
@@ -32,9 +41,17 @@ class StorageUtils {
 
   String? get getName => sharedPreference?.getString('name') ?? '';
 
+  String? get getEmail => sharedPreference?.getString('email') ?? '';
+
   String? get getRole => sharedPreference?.getString('role') ?? '';
 
+  String? get getProfilePic => sharedPreference?.getString('pic') ?? '';
+
   String? get getOnBoarding => sharedPreference?.getString('onBoarding') ?? '';
+
+  static clearProfilePic() {
+    sharedPreference?.remove('pic');
+  }
 
   static logOut() {
     log('logout');

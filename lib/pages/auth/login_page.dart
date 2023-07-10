@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,9 +59,14 @@ class _LoginPageState extends State<LoginPage> {
                   context: context,
                   message: state.loginModel.message.toString());
             } else {
+              StorageUtils.clearProfilePic();
               storageUtils.saveNumber(mobileController.text.trim().toString());
               storageUtils.saveName(state.loginModel.data![0].name.toString());
+              storageUtils
+                  .saveEmail(state.loginModel.data![0].email.toString());
               storageUtils.saveRole(state.loginModel.data![0].role.toString());
+              storageUtils.saveProfilePic(
+                  state.loginModel.data![0].profilePic.toString());
               if (state.loginModel.data![0].role == 'user') {
                 pushOff(context: context, name: user_base_page);
               } else if (state.loginModel.data![0].role == 'owner') {

@@ -6,7 +6,6 @@ import 'package:rent_house/pages/user/house/houselist/house_widget.dart';
 import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/housesearch/house_search_cubit.dart';
 import 'package:rent_house/state/cubit/housesearch/house_search_state.dart';
-import 'package:rent_house/utils/assets.dart';
 import 'package:rent_house/utils/utils.dart';
 import '../../../../data/model/housemodel/house_list_model.dart';
 import '../../../../widget/app_widget.dart';
@@ -36,9 +35,98 @@ class _HouseSearchPageState extends State<HouseSearchPage> {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<HouseSearchCubit>(context);
+
+    handlePopUpClick(String value) {
+      switch (value) {
+        case '/filter':
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text('Select price range'),
+                content: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('From'),
+                    gap(h: 10.h),
+                    TextField(
+                      controller: lowController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: '2000',
+                      ),
+                    ),
+                    gap(h: 10.h),
+                    const Text('To'),
+                    gap(h: 10.h),
+                    TextField(
+                      controller: highController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: '5000',
+                      ),
+                    ),
+                    gap(h: 10.h),
+                    CupertinoButton.filled(
+                      child: const Text('Filter'),
+                      onPressed: () {
+                        String lowString = lowController.text.toString();
+                        String highString = highController.text.toString();
+                        if (lowString == '' || highString == '') {
+                          showSnackBar(
+                              context: context,
+                              title: 'Error',
+                              message: 'Enter filter range');
+                        } else {
+                          int? low = int.tryParse(lowString);
+                          int? high = int.tryParse(highString);
+                          bloc.filterHouse(query, low!, high!);
+                          pop(context: context);
+                          lowController.text = '';
+                          highController.text = '';
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+
+          break;
+        default:
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Search'),
+        actions: [
+          PopupMenuButton(
+            onSelected: (value) {
+              handlePopUpClick(value);
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: '/filter',
+                child: Text('Filter'),
+              ),
+            ],
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -85,83 +173,6 @@ class _HouseSearchPageState extends State<HouseSearchPage> {
                         : Icons.arrow_downward_outlined,
                   ),
                   color: Colors.black,
-                ),
-                IconButton.outlined(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Select price range'),
-                          content: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text('From'),
-                              gap(h: 10.h),
-                              TextField(
-                                controller: lowController,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.r),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: '2000',
-                                ),
-                              ),
-                              gap(h: 10.h),
-                              const Text('To'),
-                              gap(h: 10.h),
-                              TextField(
-                                controller: highController,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.r),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: '5000',
-                                ),
-                              ),
-                              gap(h: 10.h),
-                              CupertinoButton.filled(
-                                child: const Text('Filter'),
-                                onPressed: () {
-                                  String lowString =
-                                      lowController.text.toString();
-                                  String highString =
-                                      highController.text.toString();
-                                  if (lowString == '' || highString == '') {
-                                    showSnackBar(
-                                        context: context,
-                                        title: 'Error',
-                                        message: 'Enter filter range');
-                                  } else {
-                                    int? low = int.tryParse(lowString);
-                                    int? high = int.tryParse(highString);
-                                    bloc.filterHouse(query, low!, high!);
-                                    pop(context: context);
-                                    lowController.text = '';
-                                    highController.text = '';
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  icon: Image.asset(
-                    filter_icon,
-                    height: 25.h,
-                    width: 25.w,
-                  ),
                 ),
               ],
             ),

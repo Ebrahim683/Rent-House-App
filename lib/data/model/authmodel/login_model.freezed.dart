@@ -222,8 +222,12 @@ mixin _$LoginDetails {
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email')
+  String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profile_pic')
+  String? get profilePic => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -240,7 +244,9 @@ abstract class $LoginDetailsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'role') String? role});
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'profile_pic') String? profilePic});
 }
 
 /// @nodoc
@@ -258,7 +264,9 @@ class _$LoginDetailsCopyWithImpl<$Res, $Val extends LoginDetails>
   $Res call({
     Object? phoneNumber = freezed,
     Object? name = freezed,
+    Object? email = freezed,
     Object? role = freezed,
+    Object? profilePic = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: freezed == phoneNumber
@@ -269,9 +277,17 @@ class _$LoginDetailsCopyWithImpl<$Res, $Val extends LoginDetails>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profilePic: freezed == profilePic
+          ? _value.profilePic
+          : profilePic // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -288,7 +304,9 @@ abstract class _$$_LoginDetailsCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'role') String? role});
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'profile_pic') String? profilePic});
 }
 
 /// @nodoc
@@ -304,7 +322,9 @@ class __$$_LoginDetailsCopyWithImpl<$Res>
   $Res call({
     Object? phoneNumber = freezed,
     Object? name = freezed,
+    Object? email = freezed,
     Object? role = freezed,
+    Object? profilePic = freezed,
   }) {
     return _then(_$_LoginDetails(
       phoneNumber: freezed == phoneNumber
@@ -315,9 +335,17 @@ class __$$_LoginDetailsCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profilePic: freezed == profilePic
+          ? _value.profilePic
+          : profilePic // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -329,7 +357,9 @@ class _$_LoginDetails implements _LoginDetails {
   const _$_LoginDetails(
       {@JsonKey(name: 'phone_number') this.phoneNumber,
       @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'role') this.role});
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'role') this.role,
+      @JsonKey(name: 'profile_pic') this.profilePic});
 
   factory _$_LoginDetails.fromJson(Map<String, dynamic> json) =>
       _$$_LoginDetailsFromJson(json);
@@ -341,12 +371,18 @@ class _$_LoginDetails implements _LoginDetails {
   @JsonKey(name: 'name')
   final String? name;
   @override
+  @JsonKey(name: 'email')
+  final String? email;
+  @override
   @JsonKey(name: 'role')
   final String? role;
+  @override
+  @JsonKey(name: 'profile_pic')
+  final String? profilePic;
 
   @override
   String toString() {
-    return 'LoginDetails(phoneNumber: $phoneNumber, name: $name, role: $role)';
+    return 'LoginDetails(phoneNumber: $phoneNumber, name: $name, email: $email, role: $role, profilePic: $profilePic)';
   }
 
   @override
@@ -357,12 +393,16 @@ class _$_LoginDetails implements _LoginDetails {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.profilePic, profilePic) ||
+                other.profilePic == profilePic));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber, name, role);
+  int get hashCode =>
+      Object.hash(runtimeType, phoneNumber, name, email, role, profilePic);
 
   @JsonKey(ignore: true)
   @override
@@ -380,9 +420,12 @@ class _$_LoginDetails implements _LoginDetails {
 
 abstract class _LoginDetails implements LoginDetails {
   const factory _LoginDetails(
-      {@JsonKey(name: 'phone_number') final String? phoneNumber,
-      @JsonKey(name: 'name') final String? name,
-      @JsonKey(name: 'role') final String? role}) = _$_LoginDetails;
+          {@JsonKey(name: 'phone_number') final String? phoneNumber,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'email') final String? email,
+          @JsonKey(name: 'role') final String? role,
+          @JsonKey(name: 'profile_pic') final String? profilePic}) =
+      _$_LoginDetails;
 
   factory _LoginDetails.fromJson(Map<String, dynamic> json) =
       _$_LoginDetails.fromJson;
@@ -394,8 +437,14 @@ abstract class _LoginDetails implements LoginDetails {
   @JsonKey(name: 'name')
   String? get name;
   @override
+  @JsonKey(name: 'email')
+  String? get email;
+  @override
   @JsonKey(name: 'role')
   String? get role;
+  @override
+  @JsonKey(name: 'profile_pic')
+  String? get profilePic;
   @override
   @JsonKey(ignore: true)
   _$$_LoginDetailsCopyWith<_$_LoginDetails> get copyWith =>

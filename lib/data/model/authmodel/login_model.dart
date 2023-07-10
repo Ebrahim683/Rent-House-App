@@ -20,7 +20,9 @@ class LoginDetails with _$LoginDetails {
   
     @JsonKey(name: 'phone_number') String? phoneNumber,
     @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'role') String? role,
+    @JsonKey(name: 'profile_pic') String? profilePic,
   }) = _LoginDetails;
   factory LoginDetails.fromJson(Map<String, dynamic> json) =>
       _$LoginDetailsFromJson(json);

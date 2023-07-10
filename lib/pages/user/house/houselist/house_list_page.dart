@@ -7,6 +7,7 @@ import 'package:rent_house/routers/routes.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_cubit.dart';
 import 'package:rent_house/state/cubit/gethouse/get_house_list_state.dart';
 import 'package:rent_house/utils/utils.dart';
+
 import '../../../../utils/app_colors.dart';
 import '../../../../widget/app_widget.dart';
 import 'house_widget.dart';
@@ -38,7 +39,7 @@ class _HouseListPageState extends State<HouseListPage> {
     }
 
     return Scaffold(
-      backgroundColor: userHomeScreenTopScreenColor,
+      backgroundColor: userBackgroundColor,
       body: LiquidPullToRefresh(
         onRefresh: refreshCallBack,
         child: CustomScrollView(

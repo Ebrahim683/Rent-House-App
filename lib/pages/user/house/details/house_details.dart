@@ -181,9 +181,10 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                           makeCall(
                               number: widget.houseModel.ownerNumber.toString());
                         },
-                        child: const Icon(
-                          Icons.call,
-                          color: Colors.black,
+                        child: Image.asset(
+                          call_icon,
+                          height: 40.h,
+                          width: 40.w,
                         ),
                       ),
                     )
@@ -221,7 +222,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                         ),
                         Positioned(
                           bottom: 10.h,
-                          left: 10.w,
+                          left: 20.w,
                           child: GlassContainer(
                             blur: 5,
                             borderRadius: BorderRadius.circular(10.r),
